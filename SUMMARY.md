@@ -4,3 +4,7 @@
 * [Verifiable Random Function (VRF)](verifiable-random-function-vrf.md)
 * [Request-Response](request-response.md)
 * [Prepayment](prepayment.md)
+
+## Node Operator's Guide
+
+* [Installation](node-operators-guide/installation.md)
