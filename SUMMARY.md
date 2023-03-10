@@ -10,4 +10,5 @@
 
 ## Node Operator's Guide
 
-* [Installation](node-operators-guide/installation.md)
+* [Introduction](node-operators-guide/introduction.md)
+* [Kubernetes](node-operators-guide/kubernetes.md)
