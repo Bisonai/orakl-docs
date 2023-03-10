@@ -1,3 +1,7 @@
+---
+description: Undeniably random numbers in your smart contract
+---
+
 # Verifiable Random Function (VRF)
 
 A detailed example of how to use Orakl Network VRF can be found at example repository [`vrf-consumer`](https://github.com/Bisonai/vrf-consumer).

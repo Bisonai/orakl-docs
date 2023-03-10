@@ -1,3 +1,7 @@
+---
+description: Arbitrary off-chain data available to your smart contract
+---
+
 # Request-Response
 
 A detailed example of how to use Orakl Network Request-Response can be found at example repository [`request-response-consumer`](https://github.com/Bisonai/request-response-consumer).
