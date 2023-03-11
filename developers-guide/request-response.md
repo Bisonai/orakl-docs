@@ -17,7 +17,7 @@ Orakl Network Request-Response can be used with two different payment approaches
 
 **Prepayment** requires user to create an account, deposit KLAY and assign consumer before being able to request for data. It is more suitable for users that know that they will use Request-Response often and possibly from multiple smart contracts. You can learn more about **Prepayment** at Developer's guide for Prepayment.
 
-**Direct Payment** allows user to pay directly for Request-Response without any extra prerequisites. This approach is a great for infrequent use, or for users that do not want to hassle with **Prepayment** settings and want to use VRF as soon as possible.
+**Direct Payment** allows user to pay directly for Request-Response without any extra prerequisites. This approach is a great for infrequent use, or for users that do not want to hassle with **Prepayment** settings and want to use Request-Response as soon as possible.
 
 In the rest of this document, we describe both **Prepayment** and **Direct Payment** approaches that can be used for Request-Response.
 

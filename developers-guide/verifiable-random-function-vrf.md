@@ -44,7 +44,7 @@ contract VRFConsumer is VRFConsumerBase {
 
 ### Initialization
 
-VRF smart contract ([`VRFCoordinator`](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/VRFCoordinator.sol)) is used both for requesting random words and also for request fulfillments. We recommend you to bond `VRFCoordinator` interface with `VRFCordinator` address supplied through a constructor parameter, and use use it for random words requests (`requestRandomWords`).
+VRF smart contract ([`VRFCoordinator`](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/VRFCoordinator.sol)) is used both for requesting random words and also for request fulfillments. We recommend you to bond `VRFCoordinator` interface with `VRFCoordinator` address supplied through a constructor parameter, and use it for random words requests (`requestRandomWords`).
 
 ```solidity
 import "@bisonai/orakl-contracts/src/v0.1/VRFConsumerBase.sol";
@@ -138,7 +138,7 @@ contract VRFConsumer is VRFConsumerBase {
 
 There is no difference in initializing VRF user contract that request for VRF with **Prepayment** or **Direct Payment**.
 
-VRF smart contract ([`VRFCoordinator`](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/VRFCoordinator.sol)) is used both for requesting random words and also for request fulfillments. We recommend you to bond `VRFCoordinator` interface with `VRFCordinator` address supplied through a constructor parameter, and use use it for random words requests (`requestRandomWordsPayment`).
+VRF smart contract ([`VRFCoordinator`](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/VRFCoordinator.sol)) is used both for requesting random words and also for request fulfillments. We recommend you to bond `VRFCoordinator` interface with `VRFCoordinator` address supplied through a constructor parameter, and use it for random words requests (`requestRandomWordsPayment`).
 
 ```solidity
 import "@bisonai/orakl-contracts/src/v0.1/VRFConsumerBase.sol";
