@@ -6,9 +6,9 @@
 
 The main components of **Prepayment** are **Account**, **Account Owner**, **Consumer** and **Coordinator**.
 
-- **Account owners** are entities that create an account (`createAccount`). They can also close the account (`cancelAccount`), add (`addConsumer`) or remove consumer (`removeConsumer`) from their account(s). $KLAY can be withdrawn from account only by the account owner, however anybody is allowed to deposit (`deposit`) $KLAY to any account.
-- **Consumers** assigned to account use the account's balance to pay for Orakl Network services. The ownership of account can be transfered to other entity through a two-step process (`requestAccountOwnerTransfer`, `acceptAccountOwnerTransfer`). Coordinators are smart contracts that can fulfill request issued by consumers, and they are rewarded for their work (`chargeFee`). Consequently, they can withdraw their earnings (`nodeWidthdraw`).
-- **Coordinators** can be added (`addCoordinator`) or removed (`removeCoordinator`) only by the owner of `Prepayment` smart contract.
+* **Account owners** are entities that create an account (`createAccount`). They can also close the account (`cancelAccount`), add (`addConsumer`) or remove consumer (`removeConsumer`) from their account(s). $KLAY can be withdrawn from account only by the account owner, however anybody is allowed to deposit (`deposit`) $KLAY to any account.
+* **Consumers** assigned to account use the account's balance to pay for Orakl Network services. The ownership of account can be transfered to other entity through a two-step process (`requestAccountOwnerTransfer`, `acceptAccountOwnerTransfer`). Coordinators are smart contracts that can fulfill request issued by consumers, and they are rewarded for their work (`chargeFee`). Consequently, they can withdraw their earnings (`nodeWidthdraw`).
+* **Coordinators** can be added (`addCoordinator`) or removed (`removeCoordinator`) only by the owner of `Prepayment` smart contract.
 
 ## How to use Prepayment?
 
@@ -24,7 +24,7 @@ The rest of the page is a description functions defined on `Prepayment` smart co
 ### Prerequisites
 
 1. [Create account](prepayment.md#create-account)
-2. [Deposit $KLAY to account](prepayment.md#deposit-klay-to-account)
+2. [Deposit $KLAY to account](prepayment.md#deposit-usdklay-to-account)
 3. [Add consumer](prepayment.md#add-consumer)
 
 #### **Create account**

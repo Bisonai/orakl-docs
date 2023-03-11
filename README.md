@@ -18,8 +18,8 @@ The rest of this page describes [Products](./#products) and [Payment](./#payment
 
 ## Products
 
-* [Request-Response](developers-guide/request-response.md)
 * [Verifiable Random Function (VRF)](developers-guide/verifiable-random-function-vrf.md)
+* [Request-Response](developers-guide/request-response.md)
 * [Data Feed](developers-guide/data-feed.md)
 
 ### Verifiable Random Function (VRF)
@@ -36,7 +36,7 @@ The detailed information about Orakl Request-Response can be found at [developer
 
 ### Data Feed
 
-**Data Feed** provides a direct on-chain access to the latest off-chain information. The data are collected in a decentralized and secure way through a set of decentralized and reliable operators.&#x20;
+**Data Feed** provides a direct on-chain access to the latest off-chain information. The data are collected in a decentralized and secure way through a set of decentralized and reliable operators.
 
 The detailed information about Orakl Data Feed can be found at [developer's guide on how to use Data Feed](developers-guide/data-feed.md). To get a hands-on experience with Orakl Data Feed, we recommend to explore [an example Hardhat project using Orakl Data Feed](https://github.com/Bisonai/data-feed-consumer).
 
