@@ -17,7 +17,7 @@ Orakl Network VRF allows smart contracts to use VRF to generate verifiably rando
 * [Prepayment (recommended)](verifiable-random-function-vrf.md#prepayment-recommended)
 * [Direct Payment](verifiable-random-function-vrf.md#direct-payment)
 
-**Prepayment** requires user to create an account, deposit KLAY and assign consumer before being able to request for VRF. It is more suitable for users that know that they will use VRF often and possibly from multiple smart contracts. You can learn more about **Prepayment** at Developer's guide for Prepayment.
+**Prepayment** requires user to create an account, deposit $KLAY and assign consumer before being able to request for VRF. It is more suitable for users that know that they will use VRF often and possibly from multiple smart contracts. You can learn more about **Prepayment** at Developer's guide for Prepayment.
 
 **Direct Payment** allows user to pay directly for VRF without any extra prerequisites. This approach is a great for infrequent use, or for users that do not want to hassle with **Prepayment** settings and want to use VRF as soon as possible.
 
@@ -25,9 +25,9 @@ In the rest of this document, we describe both **Prepayment** and **Direct Payme
 
 ## Prepayment (recommended)
 
-We assume that at this point you have already created account through [`Prepayment` smart contract](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/Prepayment.sol), deposited KLAY, and assigned consumer(s) to it. If not, please read how to do all the above, in order to be able to continue in this guide.
+We assume that at this point you have already created account through [`Prepayment` smart contract](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/Prepayment.sol), deposited $KLAY, and assigned consumer(s) to it. If not, please read how to do all the above, in order to be able to continue in this guide.
 
-After you created account (and obtained `accId`), deposited some KLAY and assigned at least one consumer, you can use it to request and fulfill random words.
+After you created account (and obtained `accId`), deposited some $KLAY and assigned at least one consumer, you can use it to request and fulfill random words.
 
 * [Initialization](verifiable-random-function-vrf.md#initialization)
 * [Request random words](verifiable-random-function-vrf.md#request-random-words-with-direct-payment-consumer)
@@ -44,7 +44,7 @@ contract VRFConsumer is VRFConsumerBase {
 
 ### Initialization
 
-VRF smart contract ([`VRFCoordinator`](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/VRFCoordinator.sol)) is used both for requesting random words and also for request fulfillments. We recommend you to bond `VRFCoordinator` interface with `VRFCordinator` address supplied through a constructor parameter, and use use it for random words requests (`requestRandomWords`).
+VRF smart contract ([`VRFCoordinator`](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/VRFCoordinator.sol)) is used both for requesting random words and also for request fulfillments. We recommend you to bond `VRFCoordinator` interface with `VRFCoordinator` address supplied through a constructor parameter, and use it for random words requests (`requestRandomWords`).
 
 ```solidity
 import "@bisonai/orakl-contracts/src/v0.1/VRFConsumerBase.sol";
@@ -119,7 +119,7 @@ This function is executed from previously defined `COORDINATOR` contract. After 
 
 ## Direct Payment
 
-**Direct Payment** represents an alternative payment method which does not require a user to create account, deposit KLAY, and assign consumer before being able to utilize VRF functionality. Request for VRF with **Direct Payment** is only a little bit different compared to **Prepayment**, however, fulfillment function is exactly same.
+**Direct Payment** represents an alternative payment method which does not require a user to create account, deposit $KLAY, and assign consumer before being able to utilize VRF functionality. Request for VRF with **Direct Payment** is only a little bit different compared to **Prepayment**, however, fulfillment function is exactly same.
 
 * [Initialization for direct payment](verifiable-random-function-vrf.md#initialization-for-direct-payment)
 * [Request random words with direct payment (consumer)](verifiable-random-function-vrf.md#request-random-words-with-direct-payment-consumer)
@@ -138,7 +138,7 @@ contract VRFConsumer is VRFConsumerBase {
 
 There is no difference in initializing VRF user contract that request for VRF with **Prepayment** or **Direct Payment**.
 
-VRF smart contract ([`VRFCoordinator`](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/VRFCoordinator.sol)) is used both for requesting random words and also for request fulfillments. We recommend you to bond `VRFCoordinator` interface with `VRFCordinator` address supplied through a constructor parameter, and use use it for random words requests (`requestRandomWordsPayment`).
+VRF smart contract ([`VRFCoordinator`](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/VRFCoordinator.sol)) is used both for requesting random words and also for request fulfillments. We recommend you to bond `VRFCoordinator` interface with `VRFCoordinator` address supplied through a constructor parameter, and use it for random words requests (`requestRandomWordsPayment`).
 
 ```solidity
 import "@bisonai/orakl-contracts/src/v0.1/VRFConsumerBase.sol";
@@ -155,7 +155,7 @@ contract VRFConsumer is VRFConsumerBase {
 
 ### Request random words with direct payment (consumer)
 
-The request for random words using **Direct Payment** is very similar to request using **Prepayment**. The only difference is that for **Direct Payment** user has to send KLAY together with call using `value` property, and the name of function is `requestRandomWordsPayment` instead of `requestRandomWords` used for **Prepayment**. There are several checks that has to pass in order to successfully request for VRF. You can read about about them in one of the previous subsections called Request random words.
+The request for random words using **Direct Payment** is very similar to request using **Prepayment**. The only difference is that for **Direct Payment** user has to send $KLAY together with call using `value` property, and the name of function is `requestRandomWordsPayment` instead of `requestRandomWords` used for **Prepayment**. There are several checks that has to pass in order to successfully request for VRF. You can read about them in one of the previous subsections called Request random words.
 
 ```solidity
 receive() external payable {}
@@ -221,4 +221,4 @@ function requestRandomWordsPayment(
 }
 ```
 
-This function first calculates a fee (`vrfFee`) for the request by calling `estimateDirectPaymentFee()` function. `isDirectPayment` variable indicates whether the request is created through **Prepayment** or **Direct Payment** method. Then, it deposits the required fee (`vrfFee`) to the account by calling `s_prepayment.deposit(accId)` and passing the fee (`vrfFee`) as value. If the amount of KLAY passed by `msg.value` to the `requestRandomWordsPayment` is larger than required fee (`vrfFee`), the remaining amount is sent back to the caller using the `msg.sender.call()` method. Finally, the function returns `requestId` that is generated by the `requestRandomWordsInternal()` function.
+This function first calculates a fee (`vrfFee`) for the request by calling `estimateDirectPaymentFee()` function. `isDirectPayment` variable indicates whether the request is created through **Prepayment** or **Direct Payment** method. Then, it deposits the required fee (`vrfFee`) to the account by calling `s_prepayment.deposit(accId)` and passing the fee (`vrfFee`) as value. If the amount of $KLAY passed by `msg.value` to the `requestRandomWordsPayment` is larger than required fee (`vrfFee`), the remaining amount is sent back to the caller using the `msg.sender.call()` method. Finally, the function returns `requestId` that is generated by the `requestRandomWordsInternal()` function.

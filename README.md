@@ -22,17 +22,17 @@ The rest of this page describes [Products](./#products) and [Payment](./#payment
 * [Verifiable Random Function (VRF)](developers-guide/verifiable-random-function-vrf.md)
 * [Data Feed](developers-guide/data-feed.md)
 
-### Request-Response
-
-**Request-Response** allows to query any information off-chain and bring it to your smart contract.
-
-The detailed information about Orakl Request-Response can be found at [developer's guide on how to use Request-Response](developers-guide/request-response.md). After understanding the basics of Request-Response, you can look at [an example Hardhat project using Orakl Request-Response](https://github.com/Bisonai/vrf-consumer).
-
 ### Verifiable Random Function (VRF)
 
 **Verifiable Random Function** allows for the generation of random numbers on the blockchain in a verifiable and transparent manner. This can be useful for a wide range of use cases, such as gaming and gambling applications, where a fair and unbiased random number generator is essential.
 
 The detailed information about Orakl VRF can be found at [developer's guide on how to use VRF](developers-guide/verifiable-random-function-vrf.md). If you want to start using VRF right away, we recommend to look at [an example Hardhat project using Orakl VRF](https://github.com/Bisonai/vrf-consumer).
+
+### Request-Response
+
+**Request-Response** allows to query any information off-chain and bring it to your smart contract.
+
+The detailed information about Orakl Request-Response can be found at [developer's guide on how to use Request-Response](developers-guide/request-response.md). After understanding the basics of Request-Response, you can look at [an example Hardhat project using Orakl Request-Response](https://github.com/Bisonai/vrf-consumer).
 
 ### Data Feed
 

@@ -6,11 +6,13 @@
 
 The main components of **Prepayment** are **Account**, **Account Owner**, **Consumer** and **Coordinator**.
 
-Account owners are entities that create an account (`createAccount`). They can also close the account (`cancelAccount`), add (`addConsumer`) or remove consumer (`removeConsumer`) from their account(s). KLAY can be withdrawn from account only by the account owner, however anybody is allowed to deposit (`deposit`) KLAY to any account. Consumers assigned to account use the account's balance to pay for Orakl Network services. The ownership of account can be transfered to other entity through a two-step process (`requestAccountOwnerTransfer`, `acceptAccountOwnerTransfer`). Coordinators are smart contracts that can fulfill request issued by consumers, and they are rewarded for their work (`chargeFee`). Consequently, they can withdraw their earnings (`nodeWidthdraw`). Coordinators can be added (`addCoordinator`) or removed (`removeCoordinator`) only by the owner of `Prepayment` smart contract.
+- **Account owners** are entities that create an account (`createAccount`). They can also close the account (`cancelAccount`), add (`addConsumer`) or remove consumer (`removeConsumer`) from their account(s). $KLAY can be withdrawn from account only by the account owner, however anybody is allowed to deposit (`deposit`) $KLAY to any account.
+- **Consumers** assigned to account use the account's balance to pay for Orakl Network services. The ownership of account can be transfered to other entity through a two-step process (`requestAccountOwnerTransfer`, `acceptAccountOwnerTransfer`). Coordinators are smart contracts that can fulfill request issued by consumers, and they are rewarded for their work (`chargeFee`). Consequently, they can withdraw their earnings (`nodeWidthdraw`).
+- **Coordinators** can be added (`addCoordinator`) or removed (`removeCoordinator`) only by the owner of `Prepayment` smart contract.
 
 ## How to use Prepayment?
 
-In the current stage, it is possible to control **Prepayment** only directly through smart contract interface. However, we are planning to make a user-friendly interface to create new account, deposit or withdraw KLAY, and modify list of approved consumers. Stay tuned!
+In the current stage, it is possible to control **Prepayment** only directly through smart contract interface. However, we are planning to make a user-friendly interface to create new account, deposit or withdraw $KLAY, and modify list of approved consumers. Stay tuned!
 
 There are prerequisites that you have to do before you can use your **Prepayment** account to pay for Orakl Network services. If you are already experienced with the basic prerequisites, you might be interested in other auxiliary functions defined on Prepayment smart contract.
 
@@ -22,7 +24,7 @@ The rest of the page is a description functions defined on `Prepayment` smart co
 ### Prerequisites
 
 1. [Create account](prepayment.md#create-account)
-2. [Deposit KLAY to account](prepayment.md#deposit-klay-to-account)
+2. [Deposit $KLAY to account](prepayment.md#deposit-klay-to-account)
 3. [Add consumer](prepayment.md#add-consumer)
 
 #### **Create account**
@@ -46,7 +48,7 @@ function createAccount() external returns (uint64) {
 
 This function creates a new account by incrementing a global variable `s_currentAccId` by 1 and storing the value in a local variable `currentAccId`. Then, it creates an empty array of addresses called consumers and assigns it to the consumers field of `s_accountConfigs[currentAccId]`. It also creates `s_accounts[currentAccId]` with balance and `reqCount` set to 0. Information about newly created account ID and sender's address are emitted using `AccountCreated` event. Finally, it returns the new account ID.
 
-#### **Deposit KLAY to account**
+#### **Deposit $KLAY to account**
 
 ```solidity
 function deposit(uint64 accId) external payable {

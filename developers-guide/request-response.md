@@ -15,17 +15,17 @@ Orakl Network Request-Response can be used with two different payment approaches
 * Prepayment (recommended)
 * Direct Payment
 
-**Prepayment** requires user to create an account, deposit KLAY and assign consumer before being able to request for data. It is more suitable for users that know that they will use Request-Response often and possibly from multiple smart contracts. You can learn more about **Prepayment** at Developer's guide for Prepayment.
+**Prepayment** requires user to create an account, deposit $KLAY and assign consumer before being able to request for data. It is more suitable for users that know that they will use Request-Response often and possibly from multiple smart contracts. You can learn more about **Prepayment** at Developer's guide for Prepayment.
 
-**Direct Payment** allows user to pay directly for Request-Response without any extra prerequisites. This approach is a great for infrequent use, or for users that do not want to hassle with **Prepayment** settings and want to use VRF as soon as possible.
+**Direct Payment** allows user to pay directly for Request-Response without any extra prerequisites. This approach is a great for infrequent use, or for users that do not want to hassle with **Prepayment** settings and want to use Request-Response as soon as possible.
 
 In the rest of this document, we describe both **Prepayment** and **Direct Payment** approaches that can be used for Request-Response.
 
 ## Prepayment (recommended)
 
-We assume that at this point you have already created account through [`Prepayment` smart contract](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/Prepayment.sol), deposited KLAY, and assigned consumer(s) to it. If not, please read how to do all the above, in order to be able to continue in this guide.
+We assume that at this point you have already created account through [`Prepayment` smart contract](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/Prepayment.sol), deposited $KLAY, and assigned consumer(s) to it. If not, please read how to do all the above, in order to be able to continue in this guide.
 
-After you created account (and obtained `accId`), deposited some KLAY and assigned at least one consumer, you can use it to request data and receive response.
+After you created account (and obtained `accId`), deposited some $KLAY and assigned at least one consumer, you can use it to request data and receive response.
 
 * Initialization
 * Request data
@@ -111,7 +111,7 @@ This function is executed from `RequestResponseCoordinator` contract defined dur
 
 ## Direct Payment
 
-**Direct Payment** represents an alternative payment method which does not require a user to create account, deposit KLAY, and assign consumer before being able to utilize VRF functionality. Request-Response with **Direct Payment** is only a little bit different compared to **Prepayment**, however, fulfillment function is exactly same.
+**Direct Payment** represents an alternative payment method which does not require a user to create account, deposit $KLAY, and assign consumer before being able to utilize VRF functionality. Request-Response with **Direct Payment** is only a little bit different compared to **Prepayment**, however, fulfillment function is exactly same.
 
 * Initialization for direct payment
 * Request data with direct payment (consumer)
@@ -143,7 +143,7 @@ contract RequestResponseConsumer is RequestResponseConsumerBase {
 
 ### Request data with direct payment (consumer)
 
-The data request using **Direct Payment** is very similar to data request using **Prepayment**. The only difference is that for **Direct Payment** user has to send KLAY together with call using `value` property, and does not have to specify account ID (`accId`) as in **Prepayment**. There are several checks that has to pass in order to successfully request data. You can read about about them in one of the previous subsections called Request data.
+The data request using **Direct Payment** is very similar to data request using **Prepayment**. The only difference is that for **Direct Payment** user has to send $KLAY together with call using `value` property, and does not have to specify account ID (`accId`) as in **Prepayment**. There are several checks that has to pass in order to successfully request data. You can read about about them in one of the previous subsections called Request data.
 
 ```solidity
 receive() external payable {}
@@ -204,4 +204,4 @@ function requestData(
 }
 ```
 
-This function first calculates a fee (`fee`) for the request by calling `estimateDirectPaymentFee()` function. `isDirectPayment` variable indicates whether the request is created through **Prepayment** or **Direct Payment** method. Then, it deposits the required fee (`fee`) to the account by calling `s_prepayment.deposit(accId)` and passing the fee (`fee`) as value. If the amount of KLAY passed by `msg.value` to the `requestData` is larger than required fee (`fee`), the remaining amount is sent back to the caller using the `msg.sender.call()` method. Finally, the function returns `requestId` that is generated by the `requestDataInternal()` function.
+This function first calculates a fee (`fee`) for the request by calling `estimateDirectPaymentFee()` function. `isDirectPayment` variable indicates whether the request is created through **Prepayment** or **Direct Payment** method. Then, it deposits the required fee (`fee`) to the account by calling `s_prepayment.deposit(accId)` and passing the fee (`fee`) as value. If the amount of $KLAY passed by `msg.value` to the `requestData` is larger than required fee (`fee`), the remaining amount is sent back to the caller using the `msg.sender.call()` method. Finally, the function returns `requestId` that is generated by the `requestDataInternal()` function.
