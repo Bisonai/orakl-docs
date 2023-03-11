@@ -155,7 +155,7 @@ contract VRFConsumer is VRFConsumerBase {
 
 ### Request random words with direct payment (consumer)
 
-The request for random words using **Direct Payment** is very similar to request using **Prepayment**. The only difference is that for **Direct Payment** user has to send KLAY together with call using `value` property, and the name of function is `requestRandomWordsPayment` instead of `requestRandomWords` used for **Prepayment**. There are several checks that has to pass in order to successfully request for VRF. You can read about about them in one of the previous subsections called Request random words.
+The request for random words using **Direct Payment** is very similar to request using **Prepayment**. The only difference is that for **Direct Payment** user has to send KLAY together with call using `value` property, and the name of function is `requestRandomWordsPayment` instead of `requestRandomWords` used for **Prepayment**. There are several checks that has to pass in order to successfully request for VRF. You can read about them in one of the previous subsections called Request random words.
 
 ```solidity
 receive() external payable {}
