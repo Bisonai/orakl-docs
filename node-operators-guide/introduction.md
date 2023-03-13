@@ -196,6 +196,14 @@ orakl-cli fetcher start \
 
 ### Orakl Network VRF
 
+The Orakl Network VRF is one of the main Orakl Network solutions. It provides an access to provably random number generator.
+
+The code is located under [`core` directory](https://github.com/Bisonai/orakl/tree/master/core), and separated to three independent microservices: listener, worker and reporter.
+
+#### Architecture
+
+<figure><img src="../.gitbook/assets/orakl-network-vrf.png" alt=""><figcaption><p>Orakl Network VRF</p></figcaption></figure>
+
 ### Orakl Network Request-Response
 
 ### Orakl Network Aggregator
