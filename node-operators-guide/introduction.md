@@ -124,12 +124,12 @@ An **aggregator** is described with on-chain metadata (`address`), off-chain met
 ```json
 {
   "aggregatorHash": "0xfda8c08a8b7641e001ad23c0fb363a9e7aab1e3a7eb8a6ddee41deeb7e3ef279",
-  "name": "ETH-USD",
+  "name": "BTC-USD",
   "address": "0x15c0b3ea93ed4de0a1f93f4ae130aefd8f2e8ccb",
   "heartbeat": 15000,
   "threshold": 0.05,
   "absoluteThreshold": 0.1,
-  "adapterHash": "0x7e6552824ce107ab0d6e4266ba6b93f0afe5aa576a491364fc01881a34ddb12b"
+  "adapterHash": "0xe63985ed9d9aae887bdcfa03b53a1bea6fd1acc58b8cd51a9a69ede43eac6235"
 }
 ```
 
@@ -137,12 +137,29 @@ An **aggregator** is described with on-chain metadata (`address`), off-chain met
 
 After the **Orakl Network Fetcher** is launched, all active aggregators will start to
 
-* collect data for each data source defined within related adapter feeds, and
+* collect data for each data source defined in adapter feeds of activated aggregator, and
 * compute and store their aggregate.
 
+The collected and computed data are sent through the **Orakl Network API** to PostgreSQL.
 
 
-Data and their aggregates are sent through the **Orakl Network API** to PostgreSQL.
+
+If there are no adapters and aggregators in Orakl Network state, you can create them through the **Orakl Network CLI**. Agregators are associated with `chain`, therefore if you have not defined any chain through the **Orakl Network API** yet, you can do it with following command.
+
+```sh
+orakl-cli chain insert --name localhost
+```
+
+An example of adding adapter and aggregator to `localhost` chain is shown at the code listing below. Please note that `adapterHash` in adapter and aggregator JSON files has to be same, otherwise they would not be associated. If you try to add aggregator with `adapterHash` that has not been registered, the operation will be aborted.
+
+```sh
+orakl-cli adapter insert \
+    --file-path [path/to/adapter.json]
+
+orakl-cli aggregator insert \
+    --file-path [path/to/aggregator.json] \
+    --chain localhost
+```
 
 #### Architecture
 
