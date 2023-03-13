@@ -142,9 +142,16 @@ After the **Orakl Network Fetcher** is launched, all active aggregators will sta
 
 The collected and computed data are sent through the **Orakl Network API** to PostgreSQL.
 
+#### Add adapter & aggregator
 
+If there are no adapters and aggregators in Orakl Network state, you can create them through the **Orakl Network CLI**. To find out, if there are any adapter and aggregator in Orakl Network state, you can execute the command below.
 
-If there are no adapters and aggregators in Orakl Network state, you can create them through the **Orakl Network CLI**. Agregators are associated with `chain`, therefore if you have not defined any chain through the **Orakl Network API** yet, you can do it with following command.
+```
+orakl-cli adapter list
+orakl-cli aggregator list
+```
+
+Agregators are associated with `chain`, therefore if you have not defined any chain through the **Orakl Network API** yet, you need to do it before adding any aggregator.
 
 ```sh
 orakl-cli chain insert --name localhost
@@ -158,6 +165,26 @@ orakl-cli adapter insert \
 
 orakl-cli aggregator insert \
     --file-path [path/to/aggregator.json] \
+    --chain localhost
+```
+
+#### Activate aggregator
+
+After the adapters and aggregators are registered to Orakl Network state, they are in an inactive state at first. If we want them to use for data collection, we have to activate them. Activation can be performed through the **Orakl Network CLI**.
+
+```sh
+orakl-cli fetcher start \
+    --id [aggregatorhash] \
+    --chain localhost
+```
+
+#### Deactivate aggregator
+
+Data collection defined with an adapter-aggregator pair can be stopped anytime by executing a command below with appropriate `aggregatorHash`.
+
+```sh
+orakl-cli fetcher start \
+    --id [aggregatorhash] \
     --chain localhost
 ```
 
