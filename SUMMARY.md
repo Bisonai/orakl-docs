@@ -8,6 +8,10 @@
 * [Data Feed](developers-guide/data-feed.md)
 * [Prepayment](developers-guide/prepayment.md)
 
+## Orakl Network CLI
+
+* [Introduction](orakl-network-cli/introduction.md)
+
 ## Node Operator's Guide
 
 * [Introduction](node-operators-guide/introduction.md)
