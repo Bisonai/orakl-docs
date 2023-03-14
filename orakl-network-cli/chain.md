@@ -6,7 +6,7 @@ description: List, insert and remove Orakl Network chains
 
 The Orakl Network state can hold information about deployments to multiple chains. The chain is a fundamental configuration which is used in all other Orakl Network settings.
 
-The **Orakl Network CLI** provides a commands to
+The **Orakl Network CLI** provides commands to
 
 * [List Chains](chain.md#list-chains)
 * [Insert New Chain](chain.md#insert-new-chain)
