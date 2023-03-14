@@ -64,7 +64,7 @@ orakl-cli adapter list \
 
 ### Insert New Adapter
 
-Adapter definitions can become quite lengthy when there are more than one data source. For this reason we support the registration of new adapter through a `--file-path` parameter which points to the JSON file with adapter definition.
+Adapter definitions can become quite lengthy when there are more than one data source. For this reason we support the registration of new adapter through the `--file-path` parameter which points to the JSON file with adapter definition.
 
 ```sh
 orakl-cli adapter insert \
