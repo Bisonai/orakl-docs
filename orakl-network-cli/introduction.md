@@ -1,11 +1,11 @@
 # Introduction
 
-The **Orakl Network CLI** is a tool to configure and manage the **Orakl Network**.
+The **Orakl Network CLI** is a tool to configure and manage the **Orakl Network**. The configurable parts of the Orakl Network are listed below:
 
-* Chain
-* Service
-* Listener
-* VRF
+* [Chain](chain.md)
+* [Service](service.md)
+* [Listener](listener.md)
+* [VRF Keys](vrf-keys.md)
 * Adapter
 * Aggregator
 * Orakl Network Fetcher
@@ -18,21 +18,13 @@ We recommend to install the **Orakl Network CLI** globally using the command bel
 npm install -g @bisonai/orakl-cli
 ```
 
-After a successful installation, you can create an alias `orakl-cli` alias for the `@bisonai/orakl-cli` package. The alias can be defined in your shell configuration file (e.g. `.zshrc` or `.bashrc`). Setting up an alias is not mandatory, so feel free to use it directly with `npx @bisonai/orakl-cli` command.
+After a successful installation, you can start using it with `npx @bisonai/orakl-cli` command. To list all of supported features, you can use the `--help` flag.
 
 ```sh
-echo "alias orakl-cli='npx @bisonai/orakl-cli'" >> ~/.zshrc
+npx @bisonai/orakl-cli --help
 ```
 
-> Do not forget to restart your shell after the configuration file update!
-
-After successful installation and a setup of `orakl-cli` alias, you can explore supported features using `--help` flag.
-
-```sh
-orakl-cli --help
-```
-
-The output of the command is shown below.
+The output of the `--help` command is displayed below.
 
 ```
 operator <subcommand>
@@ -51,4 +43,13 @@ where <subcommand> can be one of:
 For more help, try running `operator <subcommand> --help`
 ```
 
-### Setup alias
+## Setup Alias
+
+The Orakl Network CLI is a tool that node operators will use quite frequently. It might feel clumsy to keep rewriting the  `@bisonai/` prefix at every command. To combat that we recommend to create an `orakl-cli` alias for the `@bisonai/orakl-cli` package. The alias can be defined in your shell configuration file (e.g. `.zshrc` or `.bashrc`).&#x20;
+
+```sh
+echo "alias orakl-cli='npx @bisonai/orakl-cli'" >> ~/.zshrc
+```
+
+> Do not forget to restart your shell after the configuration file update!
+
