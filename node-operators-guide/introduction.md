@@ -218,7 +218,8 @@ The code is located under [`core` directory](https://github.com/Bisonai/orakl/tr
 
 Before we launch the **Orakl Network VRF**, we must specify [several environment variables](https://github.com/Bisonai/orakl/blob/master/core/.env.example):
 
-* `NODE_ENV`
+* `NODE_ENV=production`
+* `ORAKL_NETWORK_API_URL`
 * `CHAIN`
 * `HEALTH_CHECK_PORT`
 * `SLACK_WEBHOOK_URL`
@@ -229,9 +230,17 @@ Before we launch the **Orakl Network VRF**, we must specify [several environment
 * `HOST_SETTINGS_DB_DIR`
 * `HOST_SETTINGS_LOG_DIR`
 
-#### Orakl Network API Configuration
+The **Orakl Network VRF** is implemented in Node.js which uses `NODE_ENV` environment variable to signal the execution environment (e.g. `production`, `development`). [Setting the environment to `production`](https://nodejs.dev/en/learn/nodejs-the-difference-between-development-and-production/) generally ensures that logging is kept to a minimum, and more caching levels take place to optimize performance.
 
-To be able to run VRF as a node operator, one must have registered VRF keys in [`VRFCoordinator`](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/VRFCoordinator.sol), and VRF keys has be in Orakl Network state as well. If you do not have VRF keys, you can generate them with the **Orakl Network CLI** using the following command.
+`ORAKL_NETWORK_API_URL` corresponds to url where the **Orakl Network API** is running. Collected and aggregated data by the **Orakl Network Fetcher** will be send to [PostgreSQL](https://www.postgresql.org/) through the **Orakl Network API** interface.
+
+`CHAIN` environment variable specifies on which chain the **Orakl Network VRF** will be running, and which resources will be collected from the **Orakl Network API**.
+
+#### Orakl Network VRF Worker
+
+To be able to run VRF as a node operator, one must have registered VRF keys in [`VRFCoordinator`](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/VRFCoordinator.sol), and VRF keys has to be in Orakl Network state as well. VRF worker will load them from the **Orakl Network API** when it is launched.
+
+&#x20;If you do not have VRF keys, you can generate them with the **Orakl Network CLI** using the following command.
 
 ```sh
 orakl-cli vrf keygen
@@ -258,9 +267,29 @@ orakl-cli vrf insert \
     --pk_y ${pk_y}
 ```
 
+#### Orakl Network VRF Listener
+
+The **Orakl Network API** holds information about all listeners. The command below adds a single VRF listener to the Orakl Network state to listen on `vrfCoordinatorAddress` for `RandomWordsRequested` event. The `chain` parameter specifies a chain on which we expect to operate the **Orakl Network VRF Listener**.
+
+```sh
+orakl-cli listener insert \
+    --service VRF \
+    --chain ${chain} \
+    --address ${vrfCoordinatorAddress} \
+    --eventName RandomWordsRequested
+```
+
 #### Launch
 
+Before launching the VRF solution, the **Orakl Network API** has to be accessible from the **Orakl Network VRF** to load VRF keys, and listener settings.
 
+After the **Orakl Network API** is healthy, VRF microservices (listener, worker, reporter) can be launched in an arbitrary order. Microservices communicate with each other through the BullMQ - job queue.
+
+```sh
+yarn start:listener:vrf
+yarn start:worker:vrf
+yarn start:reporter:vrf
+```
 
 #### Architecture
 
