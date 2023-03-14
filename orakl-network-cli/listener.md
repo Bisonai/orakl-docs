@@ -1,3 +1,7 @@
+---
+description: List, insert and remove Orakl Network listeners
+---
+
 # Listener
 
 The **Orakl Network Listener** is a microservice that is part of every Orakl Network solution (VRF, Request-Response and Aggregator). The listener configuration includes [`chain`](chain.md), [`service`](service.md), `address` and `eventName` property. The **Orakl Network Listener** listens for an event defined as `eventName` emitted from smart contract `address`.

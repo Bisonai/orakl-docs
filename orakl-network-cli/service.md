@@ -1,3 +1,7 @@
+---
+description: List, insert and remove Orakl Network services
+---
+
 # Service
 
 The Orakl Network offers several solutions, and each of them has its own specific configuration (e.g. listener setting). Service configuration in the **Orakl Network CLI**, allows to define an arbitrary services that can be associated with higher level solution configuration.

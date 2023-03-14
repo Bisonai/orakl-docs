@@ -1,3 +1,7 @@
+---
+description: List, insert and remove Orakl Network chains
+---
+
 # Chain
 
 The Orakl Network state can hold information about deployments to multiple chains. The chain is a fundamental configuration which is used in all other Orakl Network settings.
