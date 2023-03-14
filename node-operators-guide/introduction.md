@@ -280,7 +280,7 @@ orakl-cli vrf insert \
 
 #### Orakl Network VRF Listener
 
-The **Orakl Network API** holds information about all listeners. The command below adds a single VRF listener to the Orakl Network state to listen on `vrfCoordinatorAddress` for `RandomWordsRequested` event. The `chain` parameter specifies a chain on which we expect to operate the **Orakl Network VRF Listener**.
+The **Orakl Network API** holds information about all listeners. The command below adds a single VRF listener to the Orakl Network state to listen on `vrfCoordinatorAddress` for `RandomWordsRequested` event. The `chain` parameter specifies a chain on which we expect to operate with the **Orakl Network VRF Listener**.
 
 ```sh
 orakl-cli listener insert \
@@ -313,6 +313,20 @@ The **Orakl Network Request-Response** is one of the main Orakl Network solution
 The code is located under [`core` directory](https://github.com/Bisonai/orakl/tree/master/core), and separated to three independent microservices: listener, worker and reporter.
 
 #### Configuration
+
+
+
+#### Orakl Network Request-Response Listener
+
+The **Orakl Network API** holds information about all listeners. The command below adds a single Request-Response listener to the Orakl Network state to listen on `requestResponseCoordinatorAddress` for `DataRequested` event. The `chain` parameter specifies a chain on which we expect to operate with the **Orakl Network Request-Response Listener**.
+
+```sh
+orakl-cli listener insert \
+    --service RequestResponse \
+    --chain ${chain} \
+    --address ${requestResponseCoordinatorAddress} \
+    --eventName DataRequested
+```
 
 #### Launch
 
