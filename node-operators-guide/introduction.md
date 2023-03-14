@@ -47,7 +47,7 @@ Before we launch the **Orakl Network API**, we must specify [few environment var
 
 #### Launch
 
-To launch the **Orakl Network API** from source code in the production, one must first build the service and then launch.
+To launch the **Orakl Network API** from source code in the production, one must first build the service, and then it can be launched.
 
 ```sh
 yarn build
@@ -141,6 +141,13 @@ An **aggregator** is described with on-chain metadata (`address`), off-chain met
 ```
 
 #### Launch
+
+To launch the **Orakl Network Fetcher** from source code in the production, one must first build the service, and then it can be launched.
+
+```sh
+yarn build
+yarn start:prod
+```
 
 After the **Orakl Network Fetcher** is launched, all active aggregators will start to
 
