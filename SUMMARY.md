@@ -13,6 +13,7 @@
 * [Introduction](orakl-network-cli/introduction.md)
 * [Chain](orakl-network-cli/chain.md)
 * [Service](orakl-network-cli/service.md)
+* [Listener](orakl-network-cli/listener.md)
 
 ## Node Operator's Guide
 

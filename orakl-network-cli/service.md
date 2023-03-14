@@ -6,7 +6,7 @@ The **Orakl Network CLI** provides a commands to
 
 * [List Services](service.md#list-all-services)
 * [Insert New Service](service.md#insert-new-service)
-* [Remove Service Specified by `id`](service.md#remove-service-specified-by-id)``
+* [Remove Service Specified By `id`](service.md#remove-service-specified-by-id)``
 
 ### List all services
 
