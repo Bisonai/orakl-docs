@@ -10,9 +10,13 @@ The **Orakl Network CLI** provides a commands to
 
 ### List all services
 
+To list all serviced registered in the Orakl Network state, run the command below.
+
 ```sh
 orakl-cli service list
 ```
+
+The example output after listing all services can be seen in the listing below. In this case, there are three services: `VRF`, `Aggregator` and `RequestResponse`.
 
 ```json
 [
@@ -24,14 +28,18 @@ orakl-cli service list
 
 ### Insert New Service
 
+A new service can be registered to the Orakl Network state with `service insert` command.
+
 ```sh
-npx orakl-cli service insert \
+orakl-cli service insert \
     --name Automation
 ```
 
 ### Remove Service Specified By `id`
 
+Services that are not associated with any settings can be deleted based on the service `id`.
+
 ```sh
-npx orakl-cli service remove \
+orakl-cli service remove \
     --id 4
 ```
