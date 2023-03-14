@@ -1,5 +1,5 @@
 ---
-description: Take control of the Orakl Network with CLI
+description: Take Control Of The Orakl Network With CLI
 ---
 
 # Introduction
