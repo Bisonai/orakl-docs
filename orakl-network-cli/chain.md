@@ -26,8 +26,9 @@ orakl-cli chain list
 
 If there are not chains set, we can add a new chain using `chain insert` command of the **Orakl Network CLI**.
 
-```
-orakl-cli chain insert --name other
+```sh
+orakl-cli chain insert \
+    --name other
 ```
 
 ### Remove Chain Specified By `id`
@@ -35,5 +36,6 @@ orakl-cli chain insert --name other
 Chains can be removed when there are no association to them yet.
 
 ```sh
-orakl-cli chain remove --id 4
+orakl-cli chain remove \
+    --id 4
 ```
