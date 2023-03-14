@@ -210,9 +210,57 @@ orakl-cli fetcher start \
 
 ### Orakl Network VRF
 
-The Orakl Network VRF is one of the main Orakl Network solutions. It provides an access to provably random number generator.
+The **Orakl Network VRF** is one of the main Orakl Network solutions. It provides an access to provably random number generator.
 
 The code is located under [`core` directory](https://github.com/Bisonai/orakl/tree/master/core), and separated to three independent microservices: listener, worker and reporter.
+
+#### Configuration
+
+Before we launch the **Orakl Network VRF**, we must specify [several environment variables](https://github.com/Bisonai/orakl/blob/master/core/.env.example):
+
+* `NODE_ENV`
+* `CHAIN`
+* `HEALTH_CHECK_PORT`
+* `SLACK_WEBHOOK_URL`
+* `LOG_LEVEL`
+* `LOG_DIR`
+* `REDIS_HOST`
+* `REDIS_PORT`
+* `HOST_SETTINGS_DB_DIR`
+* `HOST_SETTINGS_LOG_DIR`
+
+#### Orakl Network API Configuration
+
+To be able to run VRF as a node operator, one must have registered VRF keys in [`VRFCoordinator`](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/VRFCoordinator.sol), and VRF keys has be in Orakl Network state as well. If you do not have VRF keys, you can generate them with the **Orakl Network CLI** using the following command.
+
+```sh
+orakl-cli vrf keygen
+```
+
+The output of generated command will be similar to the one below, but including the keys on the right side of the keys (`sk`, `pk`, ...). VRF keys are generated randomly, therefore every time you call the `keygen` command, you receive a different output.
+
+```
+sk=
+pk=
+pk_x=
+pk_y=
+key_hash=
+```
+
+To store VRF keys in Orakl Network state use `orakl-cli vrf insert` command. Parameter `--chain` corresponds to the network name to which VRF keys will be associated.
+
+```sh
+orakl-cli vrf insert \
+    --chain ${chain} \
+    --pk ${pk} \
+    --sk ${sk} \
+    --pk_x ${pk_x} \
+    --pk_y ${pk_y}
+```
+
+#### Launch
+
+
 
 #### Architecture
 
