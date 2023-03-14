@@ -27,7 +27,7 @@ To display VRF keys that are associated with a specific chain, you can apply an 
 
 ```sh
 orakl-cli vrf list \
-    --chain localhost
+    --chain ${chain}
 ```
 
 ### Generate VRF  Keys
@@ -66,9 +66,9 @@ orakl-cli vrf insert \
 
 ### Remove VRF Keys Specified By `id`
 
-VRF keys can be removed based on their `id`, using the `--id` parameter applied to `vrf remove` command. The command below removes a VRF keys identified with `id=2`.
+VRF keys can be removed based on their `id`, using the `--id` parameter applied to `vrf remove` command.
 
 ```sh
 orakl-cli vrf remove \
-    --id 2
+    --id ${id}
 ```

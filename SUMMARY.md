@@ -15,6 +15,7 @@
 * [Service](orakl-network-cli/service.md)
 * [Listener](orakl-network-cli/listener.md)
 * [VRF Keys](orakl-network-cli/vrf-keys.md)
+* [Adapter](orakl-network-cli/adapter.md)
 
 ## Node Operator's Guide
 

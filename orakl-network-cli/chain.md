@@ -32,7 +32,7 @@ If there are not chains set, we can add a new chain using `chain insert` command
 
 ```sh
 orakl-cli chain insert \
-    --name other
+    --name ${chainName}
 ```
 
 ### Remove Chain Specified By `id`
@@ -41,5 +41,5 @@ Chains can be removed when there are no association to them yet.
 
 ```sh
 orakl-cli chain remove \
-    --id 4
+    --id ${id}
 ```

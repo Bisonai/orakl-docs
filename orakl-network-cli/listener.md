@@ -41,37 +41,37 @@ The example output of `listener list` command is displayed below. It includes th
 ]
 ```
 
-To list listeners associated with a specific chain, you can use the `--chain` parameter. In the example below, we want to list all listeners defined on `localhost` chain.
+To list listeners associated with a specific chain, you can use the `--chain` parameter.
 
 ```sh
 orakl-cli listener list \
-    --chain localhost
+    --chain ${chain}
 ```
 
-To list listeners associated with a specific service, you can use the `--service` parameter. In the example below, we want to list all listeners associated with `VRF` service.
+To list listeners associated with a specific service, you can use the `--service` parameter.
 
 ```sh
 orakl-cli listener list \
-    --service VRF
+    --service ${service}
 ```
 
 ### Insert New Listener
 
-Insert new listener to `baobab` chain
+To insert new listener, one can use the `listener insert` command.
 
 ```sh
 orakl-cli listener insert \
-    --chain baobaob \
-    --service VRF \
-    --address 0x97ba95dcc35e820148cab9ce488f650c77e4736f \
-    --eventName SomeEvent
+    --chain ${chain} \
+    --service ${service} \
+    --address ${address} \
+    --eventName ${eventName}
 ```
 
 ### Remove Listener Specified By `id`
 
-Listeners can be removed based on their `id`, using the `--id` parameter applied to `listener remove` command. The command below removes a listener with `id=4`.
+Listeners can be removed based on their `id`, using the `--id` parameter applied to `listener remove` command.
 
 ```sh
 orakl-cli listener remove \
-    --id 4
+    --id ${id}
 ```

@@ -36,14 +36,14 @@ A new service can be registered to the Orakl Network state with `service insert`
 
 ```sh
 orakl-cli service insert \
-    --name Automation
+    --name ${name}
 ```
 
 ### Remove Service Specified By `id`
 
-Services that are not associated with any settings can be deleted based on the service `id`.
+Services that are not associated with any other configuration can be deleted given the service `id`.
 
 ```sh
 orakl-cli service remove \
-    --id 4
+    --id ${id}
 ```
