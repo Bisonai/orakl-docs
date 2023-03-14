@@ -257,7 +257,7 @@ To be able to run VRF as a node operator, one must have registered VRF keys in [
 orakl-cli vrf keygen
 ```
 
-The output of generated command will be similar to the one below, but including the keys on the right side of the keys (`sk`, `pk`, ...). VRF keys are generated randomly, therefore every time you call the `keygen` command, you receive a different output.
+The output of generated command will be similar to the one below, but including the keys on the right side of the keys (`sk`, `pk`, `pk_x`,`pk_y`, and `key_hash`). VRF keys are generated randomly, therefore every time you call the `keygen` command, you receive a different output. `sk` represents a secret key which is used to generate the VRF `beta` and `pi`. This secret key should never be shared with anybody except the required personnel.
 
 ```
 sk=
@@ -314,7 +314,19 @@ The code is located under [`core` directory](https://github.com/Bisonai/orakl/tr
 
 #### Configuration
 
+Before we launch the **Orakl Network VRF**, we must specify [several environment variables](https://github.com/Bisonai/orakl/blob/master/core/.env.example). The environment variables are automatically loaded from a `.env` file.
 
+* `NODE_ENV=production`&#x20;
+* `ORAKL_NETWORK_API_URL`
+* `CHAIN`&#x20;
+* `HEALTH_CHECK_PORT`
+* `SLACK_WEBHOOK_URL`
+* `LOG_LEVEL`
+* `LOG_DIR`
+* `REDIS_HOST`
+* `REDIS_PORT`
+* `HOST_SETTINGS_DB_DIR`
+* `HOST_SETTINGS_LOG_DIR`
 
 #### Orakl Network Request-Response Listener
 
