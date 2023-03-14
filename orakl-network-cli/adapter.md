@@ -4,6 +4,8 @@ description: List, insert and remove Orakl Network adapters
 
 # Adapter
 
+> If you are not an **Orakl Network Data Feed Operator**, you do not need to read the explanation on this page.
+
 The **Orakl Network CLI** provides commands to
 
 * [List Adapters](adapter.md#list-adapters)
