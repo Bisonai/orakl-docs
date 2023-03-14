@@ -28,13 +28,13 @@ Off-chain part is split to several auxiliary micro services, and the main oracle
 
 ### Orakl Network API
 
-The Orakl Network API is an abstraction layer representing a single source of truth for Orakl Network deployment. The code is located under [`api` directory](https://github.com/Bisonai/orakl/tree/master/api).&#x20;
+The **Orakl Network API** is an abstraction layer representing a single source of truth for Orakl Network deployment. The code is located under [`api` directory](https://github.com/Bisonai/orakl/tree/master/api).&#x20;
 
-The Orakl Network API has to be reachable from every Orakl Network service, and accessible to the [Orakl Network CLI](introduction.md#orakl-network-cli). It is implemented as a REST web server that accept requests from other services, and the state of the Orakl Network is stored in PostgreSQL database. The Orakl Network API has to be launched and configured before any other microservice.
+The **Orakl Network API** has to be reachable from every Orakl Network service, and accessible to the [**Orakl Network CLI**](introduction.md#orakl-network-cli). It is implemented as a REST web server that accept requests from other services, and the state of the Orakl Network is stored in PostgreSQL database. The **Orakl Network API** has to be launched and configured before any other microservice.
 
 #### Configuration
 
-Before we launch the Orakl Network API, we must specify [few environment variables](https://github.com/Bisonai/orakl/blob/master/api/.env.example):
+Before we launch the **Orakl Network API**, we must specify [few environment variables](https://github.com/Bisonai/orakl/blob/master/api/.env.example):
 
 * `DATABASE_URL`
 * `APP_PORT`
@@ -43,7 +43,16 @@ Before we launch the Orakl Network API, we must specify [few environment variabl
 
 > The format of `DATABASE_URL` should be `postgresql://[userspec@][hostspec][/dbname][?paramspec]`. An example string can look as follows `postgresql://bisonai@localhost:5432/orakl?schema=public.`&#x20;
 
-`APP_PORT` represents a port on which the Orakl Network API will be running. This port will be necessary when we connect to Orakl Network API from other services.
+`APP_PORT` represents a port on which the **Orakl Network API** will be running. This port will be necessary when we connect to **Orakl Network API** from other services.
+
+#### Launch
+
+To launch the **Orakl Network API** from source code in the production, one must first build the service and then launch.
+
+```sh
+yarn build
+yarn start:prod
+```
 
 #### Architecture
 
@@ -53,9 +62,7 @@ Before we launch the Orakl Network API, we must specify [few environment variabl
 
 The Orakl Network CLI is a tool to configure and manage Orakl Network. The Orakl Network allows us to read and modify the state of Orakl Network, therefore it is very important tool for node operator. The code is located under [`cli` directory](../developers-guide/data-feed.md).
 
-
-
-To learn more about the Orakl Network CLI, start with the [Introduction page of Orakl Network CLI section](broken-reference).
+To learn more about the **Orakl Network CLI**, start with the [Introduction page of Orakl Network CLI section](broken-reference).
 
 ### Orakl Network Fetcher
 
@@ -65,18 +72,18 @@ The code is located under `fetcher` directory.
 
 #### Configuration
 
-Before we launch the Orakl Network Fetcher, we must specify [several environment variables](https://github.com/Bisonai/orakl/blob/master/fetcher/.env.example):
+Before we launch the **Orakl Network Fetcher**, we must specify [several environment variables](https://github.com/Bisonai/orakl/blob/master/fetcher/.env.example):
 
 * `REDIS_HOST`
 * `REDIS_PORT`
 * `ORAKL_NETWORK_API_URL`
 * `APP_PORT`
 
-`REDIS_HOST` and `REDIS_PORT` represent host and port of Redis to which the Orakl Network Fetcher connect to. The default values are `localhost` and `6379`, respectively. Redis is used indirectly through [BullMQ](https://docs.bullmq.io/) to collect data in regular predefined intervals.&#x20;
+`REDIS_HOST` and `REDIS_PORT` represent host and port of [Redis](https://redis.io/) to which the **Orakl Network Fetcher** connect to. The default values are `localhost` and `6379`, respectively. Redis is used indirectly through [BullMQ](https://docs.bullmq.io/) to collect data in regular predefined intervals.&#x20;
 
-`ORAKL_NETWORK_API_URL` corresponds to url where the Orakl Network API is running. Collected and aggregated data by the Orakl Network Fetcher will be send to PostgreSQL through the Orakl Network API interface.
+`ORAKL_NETWORK_API_URL` corresponds to url where the **Orakl Network API** is running. Collected and aggregated data by the **Orakl Network Fetcher** will be send to [PostgreSQL](https://www.postgresql.org/) through the **Orakl Network API** interface.
 
-`APP_PORT` represents a port on which the Orakl Network Fetcher will be running. This port will be necessary when we connect to Orakl Network API from other services (e.g. Orakl Network CLI).
+`APP_PORT` represents a port on which the **Orakl Network Fetcher** will be running. This port will be necessary when we connect to **Orakl Network API** from other services (e.g. **Orakl Network CLI**).
 
 #### Adapter & Aggregator
 
