@@ -11,6 +11,7 @@
 ## Orakl Network CLI
 
 * [Introduction](orakl-network-cli/introduction.md)
+* [Chain](orakl-network-cli/chain.md)
 
 ## Node Operator's Guide
 
