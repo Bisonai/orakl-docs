@@ -11,7 +11,7 @@ description: >-
 > The oracle version `v0.1` uses Solidity version `^0.8.16`. The version of npm package `@bisonai/orakl-contract` is an internal version of package to recognize changes. In the closed alpha version, smart contracts are all defined under `v0.1` but are expected to be frequently changed.
 
 ```
-yarn install @bisonai/orakl-contracts@v0.4.4
+yarn add @bisonai/orakl-contracts@v0.4.4
 ```
 
 The rest of this page describes [Products](./#products) and [Payment](./#payment) options.

@@ -1,5 +1,5 @@
 ---
-description: List, insert and remove Orakl Network listeners
+description: List, Insert And Remove Orakl Network Listeners
 ---
 
 # Listener

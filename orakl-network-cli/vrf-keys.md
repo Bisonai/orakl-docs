@@ -1,5 +1,5 @@
 ---
-description: List, generate, insert and remove Orakl Network VRF keys
+description: List, Generate, Insert and Remove Orakl Network VRF Keys
 ---
 
 # VRF Keys

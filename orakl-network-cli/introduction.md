@@ -12,7 +12,7 @@ The **Orakl Network CLI** is a tool to configure and manage the **Orakl Network*
 * [VRF Keys](vrf-keys.md)
 * [Adapter](adapter.md)
 * [Aggregator](aggregator.md)
-* Orakl Network Fetcher
+* [Orakl Network Data Feed](orakl-network-data-feed.md)
 
 ### Installation
 

@@ -188,8 +188,8 @@ After the adapters and aggregators are registered to Orakl Network state, they a
 
 ```sh
 orakl-cli fetcher start \
-    --id [aggregatorhash] \
-    --chain localhost
+    --id ${aggregatorhash} \
+    --chain ${chainName}
 ```
 
 #### Deactivate aggregator
@@ -198,8 +198,8 @@ Data collection defined with an adapter-aggregator pair can be stopped anytime b
 
 ```sh
 orakl-cli fetcher start \
-    --id [aggregatorhash] \
-    --chain localhost
+    --id ${aggregatorHash} \
+    --chain ${chainName}
 ```
 
 #### Architecture
@@ -251,7 +251,7 @@ Logs are sent to console, and to file which is located at `LOG_DIR` directory.
 
 To be able to run VRF as a node operator, one must have registered VRF keys in [`VRFCoordinator`](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/VRFCoordinator.sol), and VRF keys has to be in Orakl Network state as well. VRF worker will load them from the **Orakl Network API** when it is launched.
 
-&#x20;If you do not have VRF keys, you can generate them with the **Orakl Network CLI** using the following command.
+If you do not have VRF keys, you can generate them with the **Orakl Network CLI** using the following command.
 
 ```sh
 orakl-cli vrf keygen

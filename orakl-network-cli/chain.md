@@ -1,5 +1,5 @@
 ---
-description: List, insert and remove Orakl Network chains
+description: List, Insert And Remove Orakl Network Chains
 ---
 
 # Chain

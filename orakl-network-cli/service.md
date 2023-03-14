@@ -1,5 +1,5 @@
 ---
-description: List, insert and remove Orakl Network services
+description: List, Insert And Remove Orakl Network Services
 ---
 
 # Service

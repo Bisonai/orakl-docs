@@ -1,5 +1,5 @@
 ---
-description: List, insert and remove Orakl Network adapters
+description: List, Insert And Remove Orakl Network Adapters
 ---
 
 # Adapter

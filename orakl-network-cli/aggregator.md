@@ -1,5 +1,5 @@
 ---
-description: List, insert and remove Orakl Network aggregators
+description: List, Insert And Remove Orakl Network Aggregators
 ---
 
 # Aggregator
