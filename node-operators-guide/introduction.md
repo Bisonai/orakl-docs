@@ -257,14 +257,14 @@ If you do not have VRF keys, you can generate them with the **Orakl Network CLI*
 orakl-cli vrf keygen
 ```
 
-The output of generated command will be similar to the one below, but including the keys on the right side of the keys (`sk`, `pk`, `pk_x`,`pk_y`, and `key_hash`). VRF keys are generated randomly, therefore every time you call the `keygen` command, you receive a different output. `sk` represents a secret key which is used to generate the VRF `beta` and `pi`. This secret key should never be shared with anybody except the required personnel.
+The output of generated command will be similar to the one below, but including the keys on the right side of the keys (`sk`, `pk`, `pkX`,`pkY`, and `keyHash`). VRF keys are generated randomly, therefore every time you call the `keygen` command, you receive a different output. `sk` represents a secret key which is used to generate the VRF `beta` and `pi`. This secret key should never be shared with anybody except the required personnel.
 
 ```
 sk=
 pk=
-pk_x=
-pk_y=
-key_hash=
+pkX=
+pkY=
+keyHash=
 ```
 
 To store VRF keys in Orakl Network state use `orakl-cli vrf insert` command. Parameter `--chain` corresponds to the network name to which VRF keys will be associated.
@@ -274,8 +274,9 @@ orakl-cli vrf insert \
     --chain ${chain} \
     --pk ${pk} \
     --sk ${sk} \
-    --pk_x ${pk_x} \
-    --pk_y ${pk_y}
+    --pkX ${pkX} \
+    --pkY ${pkY} \
+    --keyHash ${keyHash}
 ```
 
 #### Orakl Network VRF Listener
