@@ -1,10 +1,10 @@
 ---
-description: Brief description of the Orakl Network for node operators
+description: Brief Description Of The Orakl Network For Node Operators
 ---
 
 # Introduction
 
-The Orakl Network is a service composed of [hybrid smart contracts](https://blog.chain.link/hybrid-smart-contracts-explained/) utilizing both on-chain and off-chain computation and computation in order to deliver following solutions:
+The Orakl Network is a service composed of [hybrid smart contracts](https://blog.chain.link/hybrid-smart-contracts-explained/) utilizing both on-chain and off-chain computation in order to deliver following solutions:
 
 * [Verifiable Random Function (VRF)](../developers-guide/verifiable-random-function-vrf.md)
 * [Request-Response](../developers-guide/request-response.md)
