@@ -22,4 +22,10 @@
 ## Node Operator's Guide
 
 * [Introduction](node-operators-guide/introduction.md)
+* [Orakl Network API](node-operators-guide/orakl-network-api.md)
+* [Orakl Network CLI](node-operators-guide/orakl-network-cli.md)
+* [Orakl Network Fetcher](node-operators-guide/orakl-network-fetcher.md)
+* [Orakl Network VRF](node-operators-guide/orakl-network-vrf.md)
+* [Orakl Network Request-Response](node-operators-guide/orakl-network-request-response.md)
+* [Orakl Network Data Feed](node-operators-guide/orakl-network-data-feed.md)
 * [Kubernetes](node-operators-guide/kubernetes.md)
