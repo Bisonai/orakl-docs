@@ -76,7 +76,7 @@ The **Orakl Network VRF** is implemented in Node.js which uses `NODE_ENV` enviro
 
 `CHAIN` environment variable specifies on which chain the **Orakl Network VRF** will be running, and which resources will be collected from the **Orakl Network API**.
 
-`PROVIDER_URL` defines an URL string to JSON-RPC endpoint that listener and reporter communicates through.
+`PROVIDER_URL` defines an URL string representing a JSON-RPC endpoint that listener and reporter communicate through.
 
 `ORAKL_NETWORK_API_URL` corresponds to url where the **Orakl Network API** is running. The **Orakl Network API** interface is used to access Orakl Network state such as listener and VRF key configuration.
 
@@ -90,7 +90,7 @@ Logs are sent to console, and to file which is located at `LOG_DIR` directory.
 
 The **Orakl Network VRF** does not offer a rich REST API, but defines a health check endpoint (`/`) served under a port denoted as `HEALTH_CHECK_PORT`.
 
-`HOST_SETTINGS_LOG_DIR` is used in [Docker Compose file](https://github.com/Bisonai/orakl/blob/master/core/docker-compose.vrf.yaml), and represents a location at host where collected file logs will be stored.
+`HOST_SETTINGS_LOG_DIR` is used in [Docker Compose file](https://github.com/Bisonai/orakl/blob/master/core/docker-compose.vrf.yaml), and represents a location at host where collected log files will be stored.
 
 Errors and warnings emitted by the **Orakl Network VRF** can be [sent to Slack channels through a slack webhook](https://api.slack.com/messaging/webhooks). The webhook URL can be set with the `SLACK_WEBOOK_URL` environment variable.
 
