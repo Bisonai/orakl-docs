@@ -27,15 +27,40 @@ orakl-cli listener insert \
 Before we launch the **Orakl Network Request-Response**, we must specify [several environment variables](https://github.com/Bisonai/orakl/blob/master/core/.env.example). The environment variables are automatically loaded from a `.env` file.
 
 * `NODE_ENV=production`&#x20;
-* `ORAKL_NETWORK_API_URL`
 * `CHAIN`&#x20;
-* `HEALTH_CHECK_PORT`
-* `SLACK_WEBHOOK_URL`
+* `PROVIDER_URL`
+* `ORAKL_NETWORK_API_URL`
+* `PUBLIC_KEY`
+* `PRIVATE_KEY`
 * `LOG_LEVEL`
 * `LOG_DIR`
 * `REDIS_HOST`
 * `REDIS_PORT`
+* `HEALTH_CHECK_PORT`
 * `HOST_SETTINGS_LOG_DIR`
+* `SLACK_WEBHOOK_URL`
+
+The **Orakl Network Request-Response** is implemented in Node.js which uses `NODE_ENV` environment variable to signal the execution environment (e.g. `production`, `development`). [Setting the environment to `production`](https://nodejs.dev/en/learn/nodejs-the-difference-between-development-and-production/) generally ensures that logging is kept to a minimum, and more caching levels take place to optimize performance.
+
+`CHAIN` environment variable specifies on which chain the **Orakl Network Request-Response** will be running, and which resources will be collected from the **Orakl Network API**.
+
+`PROVIDER_URL` defines an URL string to JSON-RPC endpoint that listener and reporter communicates through.
+
+`ORAKL_NETWORK_API_URL` corresponds to url where the **Orakl Network API** is running. The **Orakl Network API** interface is used to access Orakl Network state such as listener configuration.
+
+`PUBLIC_KEY` and `PRIVATE_KEY` environment variables are necessary for reporter to fulfill incoming request.
+
+Setting a level of logs emitted by a running instance is set through `LOG_LEVEL` environment variable, and can be one of the following: `error`, `warning`, `info`, `debug` and `trace`, ordered from the most restrictive to the least. By selecting any of the available options you subscribe to the specified level and all levels with lower restrictiveness.
+
+Logs are sent to console, and to file which is located at `LOG_DIR` directory.
+
+`REDIS_HOST` and `REDIS_PORT` represent host and port of [Redis](https://redis.io/) to which all microservices of the **Orakl Network Request-Response** connect. The default values are `localhost` and `6379`, respectively.&#x20;
+
+The **Orakl Network Request-Response** does not offer a rich REST API, but defines a health check endpoint (`/`) served under a port denoted as `HEALTH_CHECK_PORT`.
+
+`HOST_SETTINGS_LOG_DIR`is used in [Docker Compose file](https://github.com/Bisonai/orakl/blob/master/core/docker-compose.request-response.yaml), and represents a location at host where collected file logs will be stored.
+
+Errors and warnings emitted by the **Orakl Network Request-Response** can be [sent to Slack channels through a slack webhook](https://api.slack.com/messaging/webhooks). The webhook URL can be set with the `SLACK_WEBOOK_URL` environment variable.
 
 ## Launch
 
