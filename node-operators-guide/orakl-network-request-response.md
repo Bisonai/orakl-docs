@@ -54,11 +54,11 @@ Setting a level of logs emitted by a running instance is set through `LOG_LEVEL`
 
 Logs are sent to console, and to file which is located at `LOG_DIR` directory.
 
-`REDIS_HOST` and `REDIS_PORT` represent host and port of [Redis](https://redis.io/) to which all microservices of the **Orakl Network Request-Response** connect. The default values are `localhost` and `6379`, respectively.&#x20;
+`REDIS_HOST` and `REDIS_PORT` represent host and port of [Redis](https://redis.io/) to which all **Orakl Network Request-Response** microservices connect. The default values are `localhost` and `6379`, respectively.&#x20;
 
 The **Orakl Network Request-Response** does not offer a rich REST API, but defines a health check endpoint (`/`) served under a port denoted as `HEALTH_CHECK_PORT`.
 
-`HOST_SETTINGS_LOG_DIR`is used in [Docker Compose file](https://github.com/Bisonai/orakl/blob/master/core/docker-compose.request-response.yaml), and represents a location at host where collected file logs will be stored.
+`HOST_SETTINGS_LOG_DIR` is used in [Docker Compose file](https://github.com/Bisonai/orakl/blob/master/core/docker-compose.request-response.yaml), and represents a location at host where collected file logs will be stored.
 
 Errors and warnings emitted by the **Orakl Network Request-Response** can be [sent to Slack channels through a slack webhook](https://api.slack.com/messaging/webhooks). The webhook URL can be set with the `SLACK_WEBOOK_URL` environment variable.
 
