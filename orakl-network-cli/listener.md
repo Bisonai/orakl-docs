@@ -36,7 +36,7 @@ The example output of `listener list` command is displayed below. It includes th
   },
   {
     address: '0x45778c29A34bA00427620b937733490363839d8C',
-    eventName: 'Requested'
+    eventName: 'DataRequested'
   }
 ]
 ```
