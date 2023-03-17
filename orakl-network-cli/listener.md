@@ -22,7 +22,7 @@ orakl-cli listener list \
     [--service ${service}]
 ```
 
-The example output of `listener list` command is displayed below. It includes three different listeners listening on three addressed for  various events: `RandomWordsRequested`, `NewRound` and `Requested`.
+The example output of `listener list` command is displayed below. It includes three different listeners listening on three addressed for  various events: `RandomWordsRequested`, `NewRound` and `DataRequested`.
 
 ```json
 [
