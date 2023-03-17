@@ -78,20 +78,19 @@ The **Orakl Network VRF** is implemented in Node.js which uses `NODE_ENV` enviro
 
 `PROVIDER_URL` defines an URL string to JSON-RPC endpoint that listener and reporter communicates through.
 
-`ORAKL_NETWORK_API_URL` corresponds to url where the **Orakl Network API** is running. Collected and aggregated data by the **Orakl Network Fetcher** will be send to [PostgreSQL](https://www.postgresql.org/) through the **Orakl Network API** interface.
+`ORAKL_NETWORK_API_URL` corresponds to url where the **Orakl Network API** is running. The **Orakl Network API** interface is used to access Orakl Network state such as listener and VRF key configuration.
 
-`PUBLIC_KEY` and `PRIVATE_KEY` environment variables are neccessary for reporter to fulfill incoming request.
+`PUBLIC_KEY` and `PRIVATE_KEY` environment variables are necessary for reporter to fulfill incoming request.
 
 Setting a level of logs emitted by a running instance is set through `LOG_LEVEL` environment variable, and can be one of the following: `error`, `warning`, `info`, `debug` and `trace`, ordered from the most restrictive to the least. By selecting any of the available options you subscribe to the specified level and all levels with lower restrictiveness.
 
 Logs are sent to console, and to file which is located at `LOG_DIR` directory.
 
-`REDIS_HOST` and `REDIS_PORT` represent host and port of [Redis](https://redis.io/) to which the **Orakl Network Fetcher** connect to. The default values are `localhost` and `6379`, respectively. Redis is used indirectly through [BullMQ](https://docs.bullmq.io/) to collect data in regular predefined intervals.&#x20;
+`REDIS_HOST` and `REDIS_PORT` represent host and port of [Redis](https://redis.io/) to which all **Orakl Network VRF** microservices connect. The default values are `localhost` and `6379`, respectively.&#x20;
 
-The **Orakl Network VRF** does not offer a rich REST API, but defines a health check endpoint (`/`) \
-served under a port denoted as `HEALTH_CHECK_PORT`.
+The **Orakl Network VRF** does not offer a rich REST API, but defines a health check endpoint (`/`) served under a port denoted as `HEALTH_CHECK_PORT`.
 
-`HOST_SETTINGS_LOG_DIR`is used in [Docker Compose file](https://github.com/Bisonai/orakl/blob/master/core/docker-compose.vrf.yaml), and represents a location at host where collected file logs will be stored.
+`HOST_SETTINGS_LOG_DIR` is used in [Docker Compose file](https://github.com/Bisonai/orakl/blob/master/core/docker-compose.vrf.yaml), and represents a location at host where collected file logs will be stored.
 
 Errors and warnings emitted by the **Orakl Network VRF** can be [sent to Slack channels through a slack webhook](https://api.slack.com/messaging/webhooks). The webhook URL can be set with the `SLACK_WEBOOK_URL` environment variable.
 
