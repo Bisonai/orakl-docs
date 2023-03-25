@@ -41,11 +41,13 @@ orakl-cli aggregator list \
 
 ### Insert New Aggregator
 
-Same as with adapters, aggregator definitions can become quite lengthy. For this reason we support the registration of new a new aggregator through the `--file-path` parameter which points to the JSON file with aggregator definition. Additionally, we must specify a `chain` to which we associate the newly added aggregator.
+Same as with adapters, aggregator definitions can become quite lengthy. For this reason we support the registration of new a new aggregator through the `--source` parameter which can point to the JSON aggregator file on your local computer, or to JSON aggregator file hosted on web. Additionally, we must specify a `chain` to which we associate the newly added aggregator.
+
+You can use predefined aggregator definitions from the [Orakl Network Data Feed Configuration page](https://bisonai.github.io/orakl-config/).
 
 ```sh
 orakl-cli aggregator insert \
-    --file-path ${aggregatorJsonFile} \
+    --source ${pathOrUrlToAggregatorJsonFile} \
     --chain ${chain}
 ```
 

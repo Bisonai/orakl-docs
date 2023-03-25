@@ -66,11 +66,13 @@ orakl-cli adapter list \
 
 ### Insert New Adapter
 
-Adapter definitions can become quite lengthy when there are more than one data source. For this reason we support the registration of new adapter through the `--file-path` parameter which points to the JSON file with adapter definition.
+Adapter definition can become quite lengthy when there is more than one data source. For this reason we support the registration of new adapter through the `--source` parameter which can point to the JSON adapter file on your local computer, or to JSON adapter file hosted on web.
+
+You can use predefined adapter definitions from the [Orakl Network Data Feed Configuration page](https://bisonai.github.io/orakl-config/).
 
 ```sh
 orakl-cli adapter insert \
-    --file-path ${adapterJsonFile}
+    --source ${pathOrUrlToAdapterJsonFile}
 ```
 
 ### Remove Adapter Specified By `id`
