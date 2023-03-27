@@ -1,22 +1,30 @@
 ---
-description: List, Insert, Remove, Activate And Deactivate Orakl Network Reporters
+description: List, Insert, Remove, Activate, Deactivate And Refresh Orakl Network Reporters
 ---
 
 # Reporter
 
 > If you are not an **Orakl Network Data Feed Operator**, you do not need to read the explanation on this page.
 
-The **Orakl Network CLI** provides commands to
+The **Orakl Network CLI** provides commands to modify both [permanent](reporter.md#permanent-state) or [ephemeral state](reporter.md#ephemeral-state) of **Orakl Network Reporter**. The list of supported actions is shown below:
 
 * [List Reporters](reporter.md#list-reporters)
 * [Insert New Reporter](reporter.md#insert-new-reporter)
 * [Remove Reporter Specified By `id`](reporter.md#remove-reporter-specified-by-id)``
+* [List Active Reporters](reporter.md#list-active-reporters)
+* [Activate Reporter](reporter.md#activate-reporter)
+* [Deactivate Reporter](reporter.md#deactivate-reporter)
+* [Refresh Reporters](reporter.md#refresh-reporters)
 
-### What Is Reporter?
+## What Is Reporter?
 
-Reporter is an abstraction for Externally Owned Account (EOA), as well as for an on-chain oracle that is associated with it. Reporter is allowed to make transactions only to the oracle specified by the address (`oracleAddress`) on a predefined `chain`. Reporters can be grouped according to the service they are assigned to.
+Reporter is an abstraction for Externally Owned Account (EOA), as well as for an on-chain oracle that is associated with it. Reporter is allowed to make transactions only to the oracle specified by the address (`oracleAddress`) on a predefined `chain` for a specific `service`.
 
-Reporter metadata are used in all the Orakl Network Service (**Orakl Network Listener**, **Orakl Network Worker** and **Orakl Network Reporter**), therefore we recommend to setup reporters before running any of these services.
+Reporter metadata are used in all the **Orakl Network** services (**Orakl Network Listener**, **Orakl Network Worker** and **Orakl Network Reporter**).
+
+## Permanent  State
+
+The permanent state of reporter is loaded on launch of the **Orakl Network Reporter** service, and accessed on-demand from the **Orakl Network Listener** and the **Orakl Network Worker**.
 
 ### List Reporters
 
@@ -50,4 +58,54 @@ Reporter can be removed using the `reporter remove` command supplied with an ext
 ```sh
 orakl-cli reporter remove \
     --id ${id}
+```
+
+## Ephemeral State
+
+The ephemeral state of reporter is created during launch of the **Orakl Network Reporter** service, and is used throughout its lifetime until the service terminates. All commands from the [Permanent State section](reporter.md#permanent-state) will not have affect on the ephemeral state unless you apply the `activate`, `deactivate` or `refresh` commands that are described below.
+
+Unlike the permanent reporter state, the ephemeral reporter state can be accessed through a watchman that runs inside of **Orakl Network Reporter** service. For this reason, every command that needs an access to ephemeral state has to specify a `--host` and a `--port` parameter that define the location of the **Orakl Network Reporter** service in the network.
+
+### List Active Reporters
+
+All reporters that happened to be at permanent state during the launch of the **Orakl Network Reporter** service are automatically made active, and can be listed with `reporter active` command. [Reporters that are later activated](reporter.md#activate-reporter) will be visible through this command as well. If reporter is not in an active state, it cannot send transaction to its assigned oracle.
+
+```sh
+orakl-cli reporter active \
+    --host ${host} \
+    --port ${port}
+```
+
+### Activate Reporter
+
+Reporters that are added to the permanent reporter state after the launch of the **Orakl Network Reporter** service are inactive by default. Inactive reporters can be activated by the `reporter activate` command with `--id` parameter. The reporter identifier can be listed with [`reporter list` command](reporter.md#list-reporters). After, reporter becomes active, it can start submitting requested transaction to the chain.
+
+```sh
+orakl-cli reporter activate \
+    --id ${id}
+    --host ${host} \
+    --port ${port}
+```
+
+### Deactivate Reporter
+
+The number of active reporter does not affect required resources for the **Orakl Network Reporter** service, however from time to time, you might need to deactivate some of your active reporters. To deactivate reporter, you can use `reporter deactivate` command.&#x20;
+
+```sh
+orakl-cli reporter deactivate \
+    --id ${id}
+    --host ${host} \
+    --port ${port}
+```
+
+> If you do not want to use reporter long-term, you should [remove it from the permanent reporter state](reporter.md#remove-reporter-specified-by-id), otherwise it will become active after the **Orakl Network Reporter** restarts.
+
+### Refresh Reporters
+
+Sometimes, it might be faster to sync permanent reporter state with ephemeral reporter state. If you need to set ephemeral reporter state to the permanent one, you can use `reporter refresh` command.
+
+```sh
+orakl-cli reporter refresh \
+    --host ${host} \
+    --port ${port}
 ```
