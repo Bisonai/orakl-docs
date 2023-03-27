@@ -1,16 +1,16 @@
 ---
-description: Arbitrary off-chain data available to your smart contract
+description: Arbitrary Off-Chain Data Available To Your Smart Contract
 ---
 
 # Request-Response
 
-A detailed example of how to use Orakl Network Request-Response can be found at example repository [`request-response-consumer`](https://github.com/Bisonai/request-response-consumer).
+A detailed example of how to use the **Orakl Network Request-Response** can be found at example repository [`request-response-consumer`](https://github.com/Bisonai/request-response-consumer).
 
 ## What is Request-Response?
 
-The Orakl Network Request-Response serves as a solution to cover a wide range of use cases. While it may not be possible to bring every data feed directly to the blockchain, the Request-Response allows users to specify within their smart contracts the specific data they require and how it should be processed before it is received on-chain. This feature returns data in several predefined formats such as Single Word Response and Multi-Variable Word Responses, providing users with greater flexibility and control over their data, and allowing them to access a wide range of external data sources.
+The **Orakl Network Request-Response** serves as a solution to cover a wide range of use cases. While it may not be possible to bring every data feed directly to the blockchain, the Request-Response allows users to specify within their smart contracts the specific data they require and how they should be processed before they are received on-chain. This feature returns data in several predefined formats such as **Single Word Response** and **Multi-Variable Word Responses**, providing users with greater flexibility and control over their data, and allowing them to access a wide range of external data sources.
 
-Orakl Network Request-Response can be used with two different payment approaches:
+**Orakl Network Request-Response** can be used with two different payment approaches:
 
 * Prepayment (recommended)
 * Direct Payment
@@ -19,7 +19,7 @@ Orakl Network Request-Response can be used with two different payment approaches
 
 **Direct Payment** allows user to pay directly for Request-Response without any extra prerequisites. This approach is a great for infrequent use, or for users that do not want to hassle with **Prepayment** settings and want to use Request-Response as soon as possible.
 
-In the rest of this document, we describe both **Prepayment** and **Direct Payment** approaches that can be used for Request-Response.
+In this document, we describe both payment approaches ([Prepayment](request-response.md#prepayment-recommended) and [Direct Payment](request-response.md#direct-payment)) for requesting data from off-chain. Finally, we explain how to build an on-chain request and how to define parse commands.
 
 ## Prepayment (recommended)
 
