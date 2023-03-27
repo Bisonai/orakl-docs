@@ -2,19 +2,16 @@
 description: Start And Stop Data Collection
 ---
 
-# Orakl Network Data Feed
+# Fetcher
 
 > If you are not an **Orakl Network Data Feed Operator**, you do not need to read the explanation on this page.
 
 The **Orakl Network CLI** provides commands to
 
-* [Start Single Data Feed Collection](orakl-network-data-feed.md#start-single-data-feed-collection)
-* [Stop Single Data Feed Collection](orakl-network-data-feed.md#stop-single-data-feed-collection)
+* [Start Single Data Feed Collection](fetcher.md#start-single-data-feed-collection)
+* [Stop Single Data Feed Collection](fetcher.md#stop-single-data-feed-collection)
 
-The **Orakl Network Fetcher** is used to regularly collect data based on the definitions in adapter. Collected and aggregated data are then available to the **Orakl Network Data Feed**. The Orakl Network Data Feed control mechanism is split into two distinct actions:
-
-* Data Feed Collection
-* Provisioning Of Data Feed To Aggregator
+The **Orakl Network Fetcher** is used to regularly collect data based on the definitions in adapter. Collected and aggregated data are available to the **Orakl Network Data Feed**.
 
 ### Start Single Data Feed Collection
 
