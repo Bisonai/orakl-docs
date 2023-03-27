@@ -18,7 +18,7 @@
 * [Adapter](orakl-network-cli/adapter.md)
 * [Aggregator](orakl-network-cli/aggregator.md)
 * [Reporter](orakl-network-cli/reporter.md)
-* [Fetcher](orakl-network-cli/fetcher.md)
+* [Fetcher](orakl-network-cli/orakl-network-data-feed.md)
 
 ## Node Operator's Guide
 
