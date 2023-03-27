@@ -123,7 +123,7 @@ orakl-cli listener activate \
 
 Every new active listener requires an extra computation resource, however, in general it operates with low overhead. When a listener spots an event for which it was listening for, it create a new job for the **Orakl Network Worker**, which then passes new job to the **Orakl Network Reporter**. The consequence of having an extra listener which we do need is an unnecessarily high load on the overall system.
 
-To deactivate reporter, and therefore to lower the load on the system, you can use `listener deactivate` command.&#x20;
+To deactivate listener, and therefore to lower the load on the system, you can use `listener deactivate` command.&#x20;
 
 ```sh
 orakl-cli listener deactivate \
