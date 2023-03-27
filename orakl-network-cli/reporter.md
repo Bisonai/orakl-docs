@@ -62,13 +62,13 @@ orakl-cli reporter remove \
 
 ## Ephemeral State
 
-The ephemeral state of reporter is created during launch of the **Orakl Network Reporter** service, and is used throughout its lifetime until the service terminates. All commands from the [Permanent State section](reporter.md#permanent-state) will not have affect on the ephemeral state unless you apply the `activate`, `deactivate` or `refresh` commands that are described below.
+The ephemeral state of reporter is created during launch of the **Orakl Network Reporter** service, and is used throughout its lifetime until it terminates. All commands from the [Permanent State section](reporter.md#permanent-state) will not have affect on the ephemeral state unless you apply the `activate`, `deactivate` or `refresh` commands that are described below.
 
-Unlike the permanent reporter state, the ephemeral reporter state can be accessed through a watchman that runs inside of **Orakl Network Reporter** service. For this reason, every command that needs an access to ephemeral state has to specify a `--host` and a `--port` parameter that define the location of the **Orakl Network Reporter** service in the network.
+Unlike the permanent reporter state, the ephemeral reporter state is accessed through a watchman that runs inside of **Orakl Network Reporter** service. For this reason, every command that needs an access to ephemeral state has to specify a `--host` and a `--port` parameter that defines the location of the **Orakl Network Reporter** service in the network.
 
 ### List Active Reporters
 
-All reporters that happened to be at permanent state during the launch of the **Orakl Network Reporter** service are automatically made active, and can be listed with `reporter active` command. [Reporters that are later activated](reporter.md#activate-reporter) will be visible through this command as well. If reporter is not in an active state, it cannot send transaction to its assigned oracle.
+All reporters that are part of the permanent state during the launch of the **Orakl Network Reporter** service are automatically made active, and can be listed with `reporter active` command. [Reporters that are later activated](reporter.md#activate-reporter) will be visible through this command as well. If reporter is not in an active state, it cannot send transaction to its assigned oracle.
 
 ```sh
 orakl-cli reporter active \
@@ -78,7 +78,7 @@ orakl-cli reporter active \
 
 ### Activate Reporter
 
-Reporters that are added to the permanent reporter state after the launch of the **Orakl Network Reporter** service are inactive by default. Inactive reporters can be activated by the `reporter activate` command with `--id` parameter. The reporter identifier can be listed with [`reporter list` command](reporter.md#list-reporters). After, reporter becomes active, it can start submitting requested transaction to the chain.
+Reporters that are added to the permanent reporter state after the launch of the **Orakl Network Reporter** service are inactive by default. Inactive reporters can be activated by the `reporter activate` command with `--id` parameter. The reporter identifier can be found through the [`reporter list` command](reporter.md#list-reporters). After reporter becomes active, it can start submitting requested transaction to the chain.
 
 ```sh
 orakl-cli reporter activate \
