@@ -17,6 +17,7 @@
 * [VRF Keys](orakl-network-cli/vrf-keys.md)
 * [Adapter](orakl-network-cli/adapter.md)
 * [Aggregator](orakl-network-cli/aggregator.md)
+* [Reporter](orakl-network-cli/reporter.md)
 * [Orakl Network Data Feed](orakl-network-cli/orakl-network-data-feed.md)
 
 ## Node Operator's Guide
