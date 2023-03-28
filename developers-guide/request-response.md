@@ -19,7 +19,7 @@ The **Orakl Network Request-Response** serves as a solution to cover a wide rang
 
 **Direct Payment** allows user to pay directly for Request-Response without any extra prerequisites. This approach is a great for infrequent use, or for users that do not want to hassle with **Prepayment** settings and want to use Request-Response as soon as possible.
 
-In this document, we describe both payment approaches ([Prepayment](request-response.md#prepayment-recommended) and [Direct Payment](request-response.md#direct-payment)) for requesting data from off-chain. Finally, we explain how to build an on-chain request and how to define parse commands.
+In this document, we describe both payment approaches ([Prepayment](request-response.md#prepayment-recommended) and [Direct Payment](request-response.md#direct-payment)) for requesting data from off-chain. Finally, we explain [how to build an on-chain requests](request-response.md#request) and [how to post-process an API response](request-response.md#response-post-processing).
 
 ## Prepayment (recommended)
 
@@ -31,7 +31,7 @@ After you created account (and obtained `accId`), deposited some $KLAY and assig
 * Request data
 * Receive response
 
-User smart contract that wants to utilize Orakl Network Request-Response has to inherit from [`VRFRequestResponseBase` abstract smart contract](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/RequestResponseConsumerBase.sol).
+User smart contract that wants to utilize **Orakl Network Request-Response** has to inherit from [`VRFRequestResponseBase` abstract smart contract](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/RequestResponseConsumerBase.sol).
 
 <pre class="language-solidity"><code class="lang-solidity"><strong>import "@bisonai/orakl-contracts/src/v0.1/RequestResponseConsumerBase.sol";
 </strong>contract RequestResponseConsumer is RequestResponseConsumerBase {
@@ -54,7 +54,23 @@ contract RequestResponseConsumer is RequestResponseConsumerBase {
 
 ### Request data
 
-Request data (`requestData`) must be called from a contract that has been approved through `addConsumer` function of [`Prepayment` smart contract](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/Prepayment.sol). If the smart contract has not been approved, the request is rejected through `InvalidConsumer` error. If account (specified by `accId`) does not exist (`InvalidAccount` error) or does not have balance high enough request is rejected as well.
+Request data (`requestData`) must be called from a contract that has been approved through `addConsumer` function of [`Prepayment` smart contract](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/Prepayment.sol). If the smart contract has not been approved, the request is rejected with `InvalidConsumer` error. If account (specified by `accId`) does not exist (`InvalidAccount` error) or does not have balance high enough, request is rejected as well.
+
+The example code below encodes a request for an ETH/USD price feed from [https://min-api.cryptocompare.com/](https://min-api.cryptocompare.com/) API server. The request describes where to fetch data ([https://min-api.cryptocompare.com/data/pricemultifull?fsyms=ETH\&tsyms=USD](https://min-api.cryptocompare.com/data/pricemultifull?fsyms=ETH\&tsyms=USD)), and how to parse (`path` and `pow10`) the response from API server (shortened version displayed in listing below). The response comes as a nested JSON dictionary on which we want to access `RAW` key at first, then `ETH` key, `USD` key, and finally `PRICE` key.&#x20;
+
+```json
+{
+  "RAW": {
+    "ETH": {
+      "USD": {
+        "PRICE": 1754.02
+      }
+    }
+  }
+}    
+```
+
+After accessing the ETH/USD price, we notice that the price value is encoded in floating point. To simplify transition of floating point value from off-chain to on-chain, we decide to multiply the price value by 10e8 and keep the value in `uint256` data type. This final value is submitted by the off-chain oracle to `RequestResponseCoordinator` which consequently calls `fulfillDataRequest` function in your consumer smart contract. In the final section of this page, you can learn more about other ways [how to build a request and how to parse the response from off-chain API server](request-response.md#request).
 
 ```solidity
 function requestData(
@@ -69,6 +85,7 @@ function requestData(
     Orakl.Request memory req = buildRequest(jobId);
     req.add("get", "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=ETH&tsyms=USD");
     req.add("path", "RAW,ETH,USD,PRICE");
+    req.add("pow10", "8");
 
     requestId = COORDINATOR.requestData(
         req,
@@ -84,7 +101,7 @@ Below, you can find an explanation of `requestData` function and its arguments d
 * `accId`: a `uint64` value representing the ID of the account associated with the request.
 * `callbackGasLimit`: a `uint32` value representing the gas limit for the callback function that executes after the confirmations have been received.
 
-The function call `requestData()` on `COORDINATOR` contract passes `req`, `accId` and `callbackGasLimit` as arguments. After a successfull execution of this function, you obtain an ID (`requestId`) that uniquely defines your request. Later, when your request is fulfilled, the ID (`requestId`) is supplied together with response to be able to make a match between requests and fulfillments when there is more than one request.
+The function call `requestData()` on `COORDINATOR` contract passes `req`, `accId` and `callbackGasLimit` as arguments. After a successful execution of this function, you obtain an ID (`requestId`) that uniquely defines your request. Later, when your request is fulfilled, the ID (`requestId`) is supplied together with response to be able to make a match between requests and fulfillments when there is more than one request.
 
 ### Receive response
 
@@ -205,3 +222,42 @@ function requestData(
 ```
 
 This function first calculates a fee (`fee`) for the request by calling `estimateDirectPaymentFee()` function. `isDirectPayment` variable indicates whether the request is created through **Prepayment** or **Direct Payment** method. Then, it deposits the required fee (`fee`) to the account by calling `s_prepayment.deposit(accId)` and passing the fee (`fee`) as value. If the amount of $KLAY passed by `msg.value` to the `requestData` is larger than required fee (`fee`), the remaining amount is sent back to the caller using the `msg.sender.call()` method. Finally, the function returns `requestId` that is generated by the `requestDataInternal()` function.
+
+## Request & Response Post-Processing
+
+The **Orakl Network Request-Response** solution enables consumers to define their own requests on-chain, process them by off-chain oracle, and report the results back to consumer smart contract on chain.
+
+Requests are created with the help of the [Orakl library](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/libraries/Orakl.sol). Every request is associated with a job ID which describes what data type it expects to report. The list of currently supported report data types can be found in the table below.
+
+| Response Data Type | Job ID                                  |
+| ------------------ | --------------------------------------- |
+| `uint256`          | `keccak256(abi.encodePacked("uint256")` |
+
+### Request
+
+The job identifier is used to initialize the `Orakl.Request` data structure. Once the request is received by the off-chain oracle, it knows what data type to use for final reporting.
+
+```solidity
+bytes32 jobId = keccak256(abi.encodePacked("uint256"));
+Orakl.Request memory req = buildRequest(jobId);
+```
+
+Instance of the `Orakl.Request` holds all information about consumer's API request and how to post-process the API response. Both request, and post-processing details are inserted to the instance of `Orakl.Request` using `add` function. The `add` function accepts key-value pair parameters, where the first one represents the type of data passed, and the second one is the data itself. The first inserted key has to be `get`, and the value has to be a valid API URL.&#x20;
+
+```solidity
+req.add("get", "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=ETH&tsyms=USD");
+```
+
+> If the first key is not get with valid API URL link as a data, then the  request will fail and will not be processed.
+
+### Response Post-Processing
+
+The **Orakl Network Request-Response** currently supports five different post-processing operations that are listed in the table below.
+
+| Operation name | Explanation        | Example                  |
+| -------------- | ------------------ | ------------------------ |
+| `mul`          | Multiplication     | `req.add("mul", "2");`   |
+| `div`          | Division           | `req.add("div", "2");`   |
+| `pow10`        | Multiplication by  | `req.add("pow10", "8");` |
+| `round`        | Mathematical round |                          |
+| `index`        | Array index        | `req.add("index", "2");` |
