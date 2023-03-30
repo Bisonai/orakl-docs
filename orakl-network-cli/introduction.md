@@ -20,10 +20,10 @@ The **Orakl Network CLI** is a tool to configure and manage the **Orakl Network*
 We recommend to install the **Orakl Network CLI** globally using the command below.
 
 ```sh
-npm install -g @bisonai/orakl-cli
+npx @bisonai/orakl-cli
 ```
 
-After a successful installation, you can start using it with `npx @bisonai/orakl-cli` command. To list all of supported features, you can use the `--help` flag.
+After a successful installation, you can start using it with the same command `npx @bisonai/orakl-cli`. To list all of supported features, you can use the `--help` flag.
 
 ```sh
 npx @bisonai/orakl-cli --help
