@@ -36,7 +36,6 @@ operator <subcommand>
 
 where <subcommand> can be one of:
 
-- migrate
 - chain
 - service
 - listener
@@ -44,6 +43,8 @@ where <subcommand> can be one of:
 - adapter
 - aggregator
 - fetcher
+- reporter
+- version
 
 For more help, try running `operator <subcommand> --help`
 ```
