@@ -6,9 +6,9 @@ description: Brief Description Of The Orakl Network For Node Operators
 
 The Orakl Network is a service composed of [hybrid smart contracts](https://blog.chain.link/hybrid-smart-contracts-explained/) utilizing both on-chain and off-chain computation in order to deliver following solutions:
 
-* [Verifiable Random Function (VRF)](../developers-guide/verifiable-random-function-vrf.md)
-* [Request-Response](../developers-guide/request-response.md)
-* [Data Feed](../developers-guide/data-feed.md)
+- [Verifiable Random Function (VRF)](../developers-guide/verifiable-random-function-vrf.md)
+- [Request-Response](../developers-guide/request-response.md)
+- [Data Feed](../developers-guide/data-feed.md)
 
 ## On-Chain Orakl Network
 
@@ -18,19 +18,12 @@ On-chain implementation is located under [`contracts` directory](https://github.
 
 Off-chain part is split to several auxiliary micro services, and the main oracle solution:
 
-* [Orakl Network API](orakl-network-api.md)
-* [Orakl Network CLI](orakl-network-cli.md)
-* [Orakl Network Fetcher](orakl-network-fetcher.md)
-* Orakl Network Delegator
-* [Orakl Network VRF](orakl-network-vrf.md)
-* [Orakl Network Request-Response](orakl-network-request-response.md)
-* [Orakl Network Data Feed](orakl-network-data-feed.md)
+- [Orakl Network API](orakl-network-api.md)
+- [Orakl Network CLI](orakl-network-cli.md)
+- [Orakl Network Fetcher](orakl-network-fetcher.md)
+- [Orakl Network Delegator](orakl-delegator.md)
+- [Orakl Network VRF](orakl-network-vrf.md)
+- [Orakl Network Request-Response](orakl-network-request-response.md)
+- [Orakl Network Data Feed](orakl-network-data-feed.md)
 
 ###
-
-
-
-
-
-
-
