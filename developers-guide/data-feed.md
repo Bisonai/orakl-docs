@@ -21,18 +21,13 @@ The Orakl Data Feed includes various data feeds that can be used free of charge.
 
 ### Supported Data Feeds
 
-| Data Feed | Address | Heartbeat | Deviation threshold |
-| --------- | ------- | --------- | ------------------- |
-| BTC-USDT  |         |           |                     |
-| BTC-USD   |         |           |                     |
-| ETH-USD   |         |           |                     |
-| ETH-USDT  |         |           |                     |
-| KLAY-USDT |         |           |                     |
-| KLAY-USD  |         |           |                     |
+| Data Feed | Aggregator                                 | AggregatorProxy                            | Heartbeat (ms) |
+| --------- | ------------------------------------------ | ------------------------------------------ | -------------- |
+| BTC-USDT  | 0x640Ed61e261C545D7439bDBb27e1674a6F589e96 | 0x6492009c469373972710744eD34725D96D8c07B3 | 15,000         |
 
 ## Architecture
 
-The on-chain implementation of Data Feed is composed of two smart contracts: [`Aggregator`](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/Aggregator.sol) and [`AggregatorProxy`](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/AggregatorProxy.sol). At first,`Aggregator` and `AggregatorProxy` are deployed together in pair, representing a single data feed (e.g. temperature in Seoul or price of BTC/USD). `Aggregator` is being updated at regular intervals by off-chain oracles, and `AggregatorProxy` is used to access the submitted data to `Aggregator`.  Deployed `AggregatorProxy` contract represents a consistent API to read data from the feed, and `Aggregator` contract can be replaced with a newer version.
+The on-chain implementation of Data Feed is composed of two smart contracts: [`Aggregator`](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/Aggregator.sol) and [`AggregatorProxy`](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/AggregatorProxy.sol). At first,`Aggregator` and `AggregatorProxy` are deployed together in pair, representing a single data feed (e.g. temperature in Seoul or price of BTC/USD). `Aggregator` is being updated at regular intervals by off-chain oracles, and `AggregatorProxy` is used to access the submitted data to `Aggregator`. Deployed `AggregatorProxy` contract represents a consistent API to read data from the feed, and `Aggregator` contract can be replaced with a newer version.
 
 In the rest of the page, we will focus on [how to read from data feed](data-feed.md#how-to-read-from-data-feed) and [explain relation between `Aggregator` and `AggregatorProxy`](data-feed.md#relation-between-aggregatorproxy-and-aggregator).
 
@@ -48,7 +43,7 @@ The section is split into following topics:
 
 ### Initialization
 
-The access to data feed is provided through the `AggregatorProxy` address corresponding to a data feed of your choice, and [`AggregatorInterface`](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/interfaces/AggregatorInterface.sol)  from [`@bisonai/orakl-contracts`](https://www.npmjs.com/package/@bisonai/orakl-contracts).
+The access to data feed is provided through the `AggregatorProxy` address corresponding to a data feed of your choice, and [`AggregatorInterface`](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/interfaces/AggregatorInterface.sol) from [`@bisonai/orakl-contracts`](https://www.npmjs.com/package/@bisonai/orakl-contracts).
 
 ```solidity
 import {AggregatorInterface} from "@bisonai/orakl-contracts/src/v0.1/interfaces/AggregatorInterface.sol";
@@ -62,7 +57,7 @@ contract DataFeedConsumer {
 
 ### Read data
 
-Data can be queried from feed using following functions: `latestRoundData()` and `getRoundData(roundId)`.&#x20;
+Data can be queried from feed using following functions: `latestRoundData()` and `getRoundData(roundId)`.
 
 The `latestRoundData` function returns metadata about the latest submission.
 
@@ -97,7 +92,7 @@ The values returned from `latestRoundData()` and `getRoundData(roundId)` functio
 * `updatedAt`
 * `answeredInRound`
 
-`startedAt` represents the timestamp when the round was started. `updatedAt` represents the timestamp when the round was updated last time. `answeredInRound` is the round `id`  in which the answer was computed.
+`startedAt` represents the timestamp when the round was started. `updatedAt` represents the timestamp when the round was updated last time. `answeredInRound` is the round `id` in which the answer was computed.
 
 > We highly recommend you to keep track of all metadata returned by both `latestRoundData()` and `getRoundData(roundId)`. If your application is dependent on frequent updates, you have to make sure in application layer that data returned by any of these functions is not stale.
 
