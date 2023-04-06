@@ -47,9 +47,9 @@ In this section, we will explain how to integrate Orakl Network data feed to you
 
 The section is split into following topics:
 
-* Initialization
-* Request data
-* Process data
+* [Initialization](data-feed.md#initialization)
+* [Read Data](data-feed.md#read-data)
+* [Process Data](data-feed.md#process-data)
 
 ### Initialization
 
@@ -65,7 +65,7 @@ contract DataFeedConsumer {
 }
 ```
 
-### Read data
+### Read Data
 
 Data can be queried from feed using following functions: `latestRoundData()` and `getRoundData(roundId)`.
 
@@ -94,7 +94,7 @@ uint80 roundId =
 ) = dataFeed.getRoundData(roundId);
 ```
 
-### Process data
+### Process Data
 
 The values returned from `latestRoundData()` and `getRoundData(roundId)` functions do not include only the data feed value (=`answer`) at corresponding round `id` but also others:
 
