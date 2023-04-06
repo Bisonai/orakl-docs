@@ -13,7 +13,7 @@ The **Orakl Network CLI** provides commands to
 * [List VRF Keys](vrf-keys.md#list-vrf-keys)
 * [Generate VRF Keys](vrf-keys.md#generate-vrf-keys)
 * [Insert VRF Keys](vrf-keys.md#insert-vrf-keys)
-* [Remove VRF Keys Specified By `id`](vrf-keys.md#remove-vrf-keys-specified-by-id)``
+* [Remove VRF Keys Specified By `id`](vrf-keys.md#remove-vrf-keys-specified-by-id)
 
 ### List VRF Keys
 

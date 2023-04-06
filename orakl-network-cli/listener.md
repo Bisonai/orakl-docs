@@ -10,7 +10,7 @@ The **Orakl Network CLI** provides commands to modify both [permanent](listener.
 
 * [List Listeners](listener.md#list-listeners)
 * [Insert New Listener](listener.md#insert-new-listener)
-* [Remove Listener Specified By `id`](listener.md#remove-listener-specified-by-id)``
+* [Remove Listener Specified By `id`](listener.md#remove-listener-specified-by-id)
 * [List Active Listeners](listener.md#list-active-listeners)
 * [Activate Listener](listener.md#activate-listener)
 * [Deactivate Listener](listener.md#deactivate-listener)

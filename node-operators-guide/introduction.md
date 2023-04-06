@@ -21,9 +21,7 @@ Off-chain part is split to several auxiliary micro services, and the main oracle
 * [Orakl Network API](orakl-network-api.md)
 * [Orakl Network CLI](orakl-network-cli.md)
 * [Orakl Network Fetcher](orakl-network-fetcher.md)
-* Orakl Network Delegator
 * [Orakl Network VRF](orakl-network-vrf.md)
 * [Orakl Network Request-Response](orakl-network-request-response.md)
 * [Orakl Network Data Feed](orakl-network-data-feed.md)
-
-###
+* [Orakl Network Delegator](orakl-network-delegator.md)

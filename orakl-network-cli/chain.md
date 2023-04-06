@@ -10,7 +10,7 @@ The **Orakl Network CLI** provides commands to
 
 * [List Chains](chain.md#list-chains)
 * [Insert New Chain](chain.md#insert-new-chain)
-* [Remove Chain Specified By `id`](chain.md#remove-chain-specified-by-id)``
+* [Remove Chain Specified By `id`](chain.md#remove-chain-specified-by-id)
 
 ### List Chains
 

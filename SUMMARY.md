@@ -30,3 +30,7 @@
 * [Orakl Network Request-Response](node-operators-guide/orakl-network-request-response.md)
 * [Orakl Network Data Feed](node-operators-guide/orakl-network-data-feed.md)
 * [Orakl Network Delegator](node-operators-guide/orakl-network-delegator.md)
+
+## Other Resources
+
+* [Social Media](other-resources/social-media.md)

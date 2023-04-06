@@ -10,7 +10,7 @@ The **Orakl Network CLI** provides commands to modify both [permanent](reporter.
 
 * [List Reporters](reporter.md#list-reporters)
 * [Insert New Reporter](reporter.md#insert-new-reporter)
-* [Remove Reporter Specified By `id`](reporter.md#remove-reporter-specified-by-id)``
+* [Remove Reporter Specified By `id`](reporter.md#remove-reporter-specified-by-id)
 * [List Active Reporters](reporter.md#list-active-reporters)
 * [Activate Reporter](reporter.md#activate-reporter)
 * [Deactivate Reporter](reporter.md#deactivate-reporter)

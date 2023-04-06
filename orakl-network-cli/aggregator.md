@@ -10,7 +10,7 @@ The **Orakl Network CLI** provides commands to
 
 * [List Aggregators](aggregator.md#list-aggregators)
 * [Insert New Aggregator](aggregator.md#insert-new-aggregator)
-* [Remove Aggregator Specified By `id`](aggregator.md#remove-aggregator-specified-by-id)``
+* [Remove Aggregator Specified By `id`](aggregator.md#remove-aggregator-specified-by-id)
 
 ### What Is Aggregator?
 

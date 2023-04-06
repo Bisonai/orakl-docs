@@ -10,7 +10,7 @@ The **Orakl Network CLI** provides commands to
 
 * [List Adapters](adapter.md#list-adapters)
 * [Insert New Adapter](adapter.md#add-new-adapter)
-* [Remove Adapter Specified By `id`](adapter.md#remove-adapter-specified-by-id)``
+* [Remove Adapter Specified By `id`](adapter.md#remove-adapter-specified-by-id)
 
 ### What Is Adapter?
 
