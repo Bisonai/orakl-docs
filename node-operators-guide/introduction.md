@@ -19,7 +19,7 @@ On-chain implementation is located under [`contracts` directory](https://github.
 Off-chain part is split to several auxiliary micro services, and the main oracle solution:
 
 * [Orakl Network API](orakl-network-api.md)
-* [Orakl Network CLI](orakl-network-cli.md)
+* [Orakl Network CLI](broken-reference)
 * [Orakl Network Fetcher](orakl-network-fetcher.md)
 * [Orakl Network VRF](orakl-network-vrf.md)
 * [Orakl Network Request-Response](orakl-network-request-response.md)

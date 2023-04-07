@@ -2,9 +2,9 @@
 description: Take Control Of The Orakl Network With CLI
 ---
 
-# Introduction
+# Orakl Network CLI
 
-The **Orakl Network CLI** is a tool to configure and manage the **Orakl Network**. The configurable parts of the Orakl Network are listed below:
+The **Orakl Network CLI** is a tool to configure and manage the **Orakl Network**. The **Orakl Network CLI** enables access and modifications of the state of the Orakl Network, therefore it is very important tool for node operator. The code is located under [`cli` directory](../../developers-guide/data-feed.md). The configurable parts of the Orakl Network are listed below:
 
 * [Chain](chain.md)
 * [Service](service.md)
