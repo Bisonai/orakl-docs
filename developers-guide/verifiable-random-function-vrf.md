@@ -19,7 +19,7 @@ Orakl Network VRF allows smart contracts to use VRF to generate verifiably rando
 
 **Prepayment** requires user to create an account, deposit $KLAY and assign consumer before being able to request for VRF. It is more suitable for users that know that they will use VRF often and possibly from multiple smart contracts. You can learn more about **Prepayment** at Developer's guide for Prepayment.
 
-**Direct Payment** allows user to pay directly for VRF without any extra prerequisites. This approach is a great for infrequent use, or for users that do not want to hassle with **Prepayment** settings and want to use VRF as soon as possible.
+**Direct Payment** allows user to pay directly for VRF without any extra prerequisites. This approach is great for infrequent use, or for users that do not want to hassle with **Prepayment** settings and want to use VRF as soon as possible.
 
 In the rest of this document, we describe both **Prepayment** and **Direct Payment** approaches that can be used to request VRF.
 
@@ -155,7 +155,7 @@ contract VRFConsumer is VRFConsumerBase {
 
 ### Request random words with direct payment (consumer)
 
-The request for random words using **Direct Payment** is very similar to request using **Prepayment**. The only difference is that for **Direct Payment** user has to send $KLAY together with call using `value` property, and the name of function is `requestRandomWordsPayment` instead of `requestRandomWords` used for **Prepayment**. There are several checks that has to pass in order to successfully request for VRF. You can read about them in one of the previous subsections called Request random words.
+The request for random words using **Direct Payment** is very similar to request using **Prepayment**. The only difference is that for **Direct Payment** user has to send $KLAY together with call using `value` property, and the name of function is `requestRandomWordsPayment` instead of `requestRandomWords` used for **Prepayment**. There are several checks that have to pass in order to successfully request for VRF. You can read about them in one of the previous subsections called Request random words.
 
 ```solidity
 receive() external payable {}
@@ -180,7 +180,7 @@ function requestRandomWordsDirect(
 
 This function calls the `requestRandomWordsPayment()` function defined in `COORDINATOR` contract, and passes `keyHash`, `callbackGasLimit`, and `numWords` as arguments. The payment for service is sent through `msg.value` to the `requestRandomWordsPayment()` in `COORDINATOR` contract. If the payment is larger than expected payment, exceeding payment is returned to the caller of `requestRandomWordsPayment` function, therefore it requires the user contract to define [`receive()` function](https://docs.soliditylang.org/en/v0.8.16/contracts.html#receive-ether-function) as shown in the top of code listing. Eventually, it generates a request for random words.
 
-In the section below, you can find more detailed explanation how request for random words using direct payment works.
+In the section below, you can find more detailed explanation of how request for random words using direct payment works.
 
 ### Request random words with direct payment (coordinator)
 
