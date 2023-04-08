@@ -7,7 +7,7 @@
 The main components of **Prepayment** are **Account**, **Account Owner**, **Consumer** and **Coordinator**.
 
 * **Account owners** are entities that create an account (`createAccount`). They can also close the account (`cancelAccount`), add (`addConsumer`) or remove consumer (`removeConsumer`) from their account(s). $KLAY can be withdrawn from account only by the account owner, however anybody is allowed to deposit (`deposit`) $KLAY to any account.
-* **Consumers** assigned to account use the account's balance to pay for Orakl Network services. The ownership of account can be transfered to other entity through a two-step process (`requestAccountOwnerTransfer`, `acceptAccountOwnerTransfer`). Coordinators are smart contracts that can fulfill request issued by consumers, and they are rewarded for their work (`chargeFee`). Consequently, they can withdraw their earnings (`nodeWidthdraw`).
+* **Consumers** assigned to account use the account's balance to pay for Orakl Network services. The ownership of account can be transferred to other entity through a two-step process (`requestAccountOwnerTransfer`, `acceptAccountOwnerTransfer`). Coordinators are smart contracts that can fulfill request issued by consumers, and they are rewarded for their work (`chargeFee`). Consequently, they can withdraw their earnings (`nodeWidthdraw`).
 * **Coordinators** can be added (`addCoordinator`) or removed (`removeCoordinator`) only by the owner of `Prepayment` smart contract.
 
 ## How to use Prepayment?
@@ -16,7 +16,7 @@ In the current stage, it is possible to control **Prepayment** only directly thr
 
 There are prerequisites that you have to do before you can use your **Prepayment** account to pay for Orakl Network services. If you are already experienced with the basic prerequisites, you might be interested in other auxiliary functions defined on Prepayment smart contract.
 
-The rest of the page is a description functions defined on `Prepayment` smart contract that are split to two groups.
+The rest of the page is a description functions defined on `Prepayment` smart contract that are split into two groups.
 
 * [Prerequisites](prepayment.md#prerequisites)
 * [Other functions](prepayment.md#other-functions)
