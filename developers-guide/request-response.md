@@ -17,7 +17,7 @@ The **Orakl Network Request-Response** serves as a solution to cover a wide rang
 
 **Prepayment** requires user to create an account, deposit $KLAY and assign consumer before being able to request for data. It is more suitable for users that know that they will use Request-Response often and possibly from multiple smart contracts. You can learn more about **Prepayment** at Developer's guide for Prepayment.
 
-**Direct Payment** allows user to pay directly for Request-Response without any extra prerequisites. This approach is a great for infrequent use, or for users that do not want to hassle with **Prepayment** settings and want to use Request-Response as soon as possible.
+**Direct Payment** allows user to pay directly for Request-Response without any extra prerequisites. This approach is great for infrequent use, or for users that do not want to hassle with **Prepayment** settings and want to use Request-Response as soon as possible.
 
 In this document, we describe both payment approaches ([Prepayment](request-response.md#prepayment-recommended) and [Direct Payment](request-response.md#direct-payment)) for requesting data from off-chain. Finally, we explain [how to build an on-chain requests](request-response.md#request) and [how to post-process an API response](request-response.md#response-post-processing).
 
@@ -160,7 +160,7 @@ contract RequestResponseConsumer is RequestResponseConsumerBase {
 
 ### Request data with direct payment (consumer)
 
-The data request using **Direct Payment** is very similar to data request using **Prepayment**. The only difference is that for **Direct Payment** user has to send $KLAY together with call using `value` property, and does not have to specify account ID (`accId`) as in **Prepayment**. There are several checks that has to pass in order to successfully request data. You can read about about them in one of the previous subsections called Request data.
+The data request using **Direct Payment** is very similar to data request using **Prepayment**. The only difference is that for **Direct Payment** user has to send $KLAY together with call using `value` property, and does not have to specify account ID (`accId`) as in **Prepayment**. There are several checks that have to pass in order to successfully request data. You can read about them in one of the previous subsections called Request data.
 
 ```solidity
 receive() external payable {}
@@ -187,7 +187,7 @@ function requestDataDirectPayment(
 
 This function calls the `requestData()` function defined in `COORDINATOR` contract, and passes `req` and `callbackGasLimit` as arguments. The payment for service is sent through `msg.value` to the `requestData()` in `COORDINATOR` contract. If the payment is larger than expected payment, exceeding payment is returned to the caller of `requestData` function, therefore it requires the user contract to define [`receive()` function](https://docs.soliditylang.org/en/v0.8.16/contracts.html#receive-ether-function) as shown in the top of code listing. Eventually, it generates a data request.
 
-In the section below, you can find more detailed explanation how data request using direct payment works.
+In the section below, you can find more detailed explanation of how data request using direct payment works.
 
 ### Request data with direct payment (coordinator)
 
