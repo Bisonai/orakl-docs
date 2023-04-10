@@ -38,9 +38,42 @@ curl -X 'POST' \
 }'
 ```
 
-### Contract Whitelist
+### Organization
 
-The first step is to add a contract address of the service to the whitelist. Currently, [whitelist has to include function selector](orakl-network-delegator.md#function-whitelist) as well.
+The first step is to add a organization name.
+
+To add new organization name, you can use `api/v1/organization` endpoint.
+
+```shell
+curl -X 'POST' \
+  'http://localhost:3000/api/v1/organization' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "Bisonai"
+}'
+```
+
+### Reporter
+
+Next step is to connect reporter address with organization.
+
+To add a new reporter, you can use `api/v1/reporter` endpoint.
+
+```shell
+curl -X 'POST' \
+  'http://localhost:3000/api/reporter' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "address": "string",
+  "organizationId": 0
+}'
+```
+
+### Contract
+
+After defining Reporter next step is to add a contract address of the service to the whitelist. Currently, [whitelist has to include function selector](orakl-network-delegator.md#function-whitelist) as well.
 
 For adding a new contract, you can use `api/v1/contract` endpoint.
 
@@ -54,7 +87,7 @@ curl -X 'POST' \
 }'
 ```
 
-### Function Whitelist
+### Function
 
 After adding the contract address, the next step is to define which function methods are allowed to be executed inside of specific contract address.
 
@@ -72,37 +105,20 @@ curl -X 'POST' \
 }'
 ```
 
-### Organization
+### Connect Reporter
 
-Before we can add a reporter, we need to add an organization name.
+Last step is to connect Reporter with Contract.
 
-To add new organization name, you can use `api/v1/organization` endpoint.
-
-```shell
-curl -X 'POST' \
-  'http://localhost:3000/api/v1/organization' \
-  -H 'accept: */*' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Bisonai"
-}'
-```
-
-### Reporter
-
-The final step is to connect reporter address with organization and contract.
-
-To add a new reporter, you can use `api/v1/reporter` endpoint.
+To add new whitelist connection, you can use `api/v1/contract/connectReporter` endpoint.
 
 ```shell
 curl -X 'POST' \
-  'http://localhost:3000/api/reporter' \
+  'http://localhost:3000/api/v1/contract/connectReporter' \
   -H 'accept: */*' \
   -H 'Content-Type: application/json' \
   -d '{
-  "address": "string",
   "contractId": 0,
-  "organizationId": 0
+  "reporterId": 0
 }'
 ```
 
@@ -110,11 +126,11 @@ curl -X 'POST' \
 
 Before we launch the **Orakl Network Delegator**, we must specify [few environment variables](https://github.com/Bisonai/orakl/blob/master/delegator/.env.example). The environment variables are automatically loaded from an `.env` file.
 
-* `DATABASE_URL`
-* `PROVIDER_URL`
-* `APP_PORT`
-* `DELEGATOR_FEEPAYER_PK`
-* `DELEGATOR_REPORTER_PK`
+- `DATABASE_URL`
+- `PROVIDER_URL`
+- `APP_PORT`
+- `DELEGATOR_FEEPAYER_PK`
+- `DELEGATOR_REPORTER_PK`
 
 `DATABASE_URL` represents a [connection string](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING) to a database that will hold the **Orakl Network** state.
 
