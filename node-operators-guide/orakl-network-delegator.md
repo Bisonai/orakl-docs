@@ -40,9 +40,9 @@ curl -X 'POST' \
 
 ### Organization
 
-The first step is to add a organization name.
+The first step is to add an organization name.
 
-To add new organization name, you can use `api/v1/organization` endpoint.
+To add a new organization name, you can use `api/v1/organization` endpoint.
 
 ```shell
 curl -X 'POST' \
@@ -56,7 +56,7 @@ curl -X 'POST' \
 
 ### Reporter
 
-Next step is to connect reporter address with organization.
+Next step is to connect a reporter address with organization.
 
 To add a new reporter, you can use `api/v1/reporter` endpoint.
 
@@ -73,9 +73,9 @@ curl -X 'POST' \
 
 ### Contract
 
-After defining Reporter next step is to add a contract address of the service to the whitelist. Currently, [whitelist has to include function selector](orakl-network-delegator.md#function-whitelist) as well.
+After defining teporter, the next step is to add a contract address of the service to the whitelist. Currently, [whitelist has to include function selector](orakl-network-delegator.md#function-whitelist) as well.
 
-For adding a new contract, you can use `api/v1/contract` endpoint.
+To add a new contract, you can use `api/v1/contract` endpoint.
 
 ```shell
 curl -X 'POST' \
@@ -91,7 +91,7 @@ curl -X 'POST' \
 
 After adding the contract address, the next step is to define which function methods are allowed to be executed inside of specific contract address.
 
-To add new function name, you can use `api/v1/function` endpoint.
+To add a new function name, you can use `api/v1/function` endpoint.
 
 ```shell
 curl -X 'POST' \
@@ -107,9 +107,9 @@ curl -X 'POST' \
 
 ### Connect Reporter
 
-Last step is to connect Reporter with Contract.
+The last step is to connect reporter with contract.
 
-To add new whitelist connection, you can use `api/v1/contract/connectReporter` endpoint.
+To add a new whitelist connection, you can use `api/v1/contract/connectReporter` endpoint.
 
 ```shell
 curl -X 'POST' \
