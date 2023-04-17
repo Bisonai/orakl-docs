@@ -104,7 +104,7 @@ orakl-cli fetcher start \
 Data collection defined with an adapter-aggregator pair can be stopped anytime by executing a command below with appropriate `aggregatorHash`.
 
 ```sh
-orakl-cli fetcher start \
+orakl-cli fetcher stop \
     --id ${aggregatorHash} \
     --chain ${chainName}
 ```
