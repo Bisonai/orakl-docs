@@ -8,7 +8,7 @@ A detailed example of how to use the **Orakl Network Request-Response** can be f
 
 ## What is Request-Response?
 
-The **Orakl Network Request-Response** serves as a solution to cover a wide range of use cases. While it may not be possible to bring every data feed directly to the blockchain, the Request-Response allows users to specify within their smart contracts the specific data they require and how they should be processed before they are received on-chain. This feature returns data in several predefined formats such as **Single Word Response** and **Multi-Variable Word Responses**, providing users with greater flexibility and control over their data, and allowing them to access a wide range of external data sources.
+The **Orakl Network Request-Response** serves as a solution to cover a wide range of use cases. While it may not be possible to bring every data feed directly to the blockchain, the Request-Response allows users to specify within their smart contracts the specific data they require and how they should be processed before they are received on-chain. This feature returns data in Single Word Response format, providing users with greater flexibility and control over their data, and allowing them to access a wide range of external data sources.
 
 **Orakl Network Request-Response** can be used with two different payment approaches:
 
@@ -56,7 +56,7 @@ contract RequestResponseConsumer is RequestResponseConsumerBase {
 
 Request data (`requestData`) must be called from a contract that has been approved through `addConsumer` function of [`Prepayment` smart contract](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/Prepayment.sol). If the smart contract has not been approved, the request is rejected with `InvalidConsumer` error. If account (specified by `accId`) does not exist (`InvalidAccount` error) or does not have balance high enough, request is rejected as well.
 
-The example code below encodes a request for an ETH/USD price feed from [https://min-api.cryptocompare.com/](https://min-api.cryptocompare.com/) API server. The request describes where to fetch data ([https://min-api.cryptocompare.com/data/pricemultifull?fsyms=ETH\&tsyms=USD](https://min-api.cryptocompare.com/data/pricemultifull?fsyms=ETH\&tsyms=USD)), and how to parse (`path` and `pow10`) the response from API server (shortened version displayed in listing below). The response comes as a nested JSON dictionary on which we want to access `RAW` key at first, then `ETH` key, `USD` key, and finally `PRICE` key.&#x20;
+The example code below encodes a request for an ETH/USD price feed from [https://min-api.cryptocompare.com/](https://min-api.cryptocompare.com/) API server. The request describes where to fetch data ([https://min-api.cryptocompare.com/data/pricemultifull?fsyms=ETH\&tsyms=USD](https://min-api.cryptocompare.com/data/pricemultifull?fsyms=ETH\&tsyms=USD)), and how to parse (`path` and `pow10`) the response from API server (shortened version displayed in listing below). The response comes as a nested JSON dictionary on which we want to access `RAW` key at first, then `ETH` key, `USD` key, and finally `PRICE` key.
 
 ```json
 {
@@ -242,13 +242,13 @@ bytes32 jobId = keccak256(abi.encodePacked("uint256"));
 Orakl.Request memory req = buildRequest(jobId);
 ```
 
-Instance of the `Orakl.Request` holds all information about consumer's API request and how to post-process the API response. Both request, and post-processing details are inserted to the instance of `Orakl.Request` using `add` function. The `add` function accepts key-value pair parameters, where the first one represents the type of data passed, and the second one is the data itself. The first inserted key has to be `get`, and the value has to be a valid API URL.&#x20;
+Instance of the `Orakl.Request` holds all information about consumer's API request and how to post-process the API response. Both request, and post-processing details are inserted to the instance of `Orakl.Request` using `add` function. The `add` function accepts key-value pair parameters, where the first one represents the type of data passed, and the second one is the data itself. The first inserted key has to be `get`, and the value has to be a valid API URL.
 
 ```solidity
 req.add("get", "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=ETH&tsyms=USD");
 ```
 
-> If the first key is not get with valid API URL link as a data, then the  request will fail and will not be processed.
+> If the first key is not get with valid API URL link as a data, then the request will fail and will not be processed.
 
 ### Response Post-Processing
 
