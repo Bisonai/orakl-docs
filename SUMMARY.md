@@ -30,3 +30,4 @@
 ## Other Resources
 
 * [Social Media](other-resources/social-media.md)
+* [Terms of Use](other-resources/terms-of-use.md)
