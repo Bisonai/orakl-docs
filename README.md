@@ -18,7 +18,7 @@ The rest of this page describes [Products](./#products) and [Payment](./#payment
 
 ## Products
 
-* [Verifiable Random Function (VRF)](developers-guide/verifiable-random-function-vrf.md)
+* [Verifiable Random Function (VRF)](developers-guide/vrf.md)
 * [Request-Response](developers-guide/request-response.md)
 * [Data Feed](developers-guide/data-feed.md)
 
@@ -26,7 +26,7 @@ The rest of this page describes [Products](./#products) and [Payment](./#payment
 
 **Verifiable Random Function** allows for the generation of random numbers on the blockchain in a verifiable and transparent manner. This can be useful for a wide range of use cases, such as gaming and gambling applications, where a fair and unbiased random number generator is essential.
 
-The detailed information about Orakl VRF can be found at [developer's guide on how to use VRF](developers-guide/verifiable-random-function-vrf.md). If you want to start using VRF right away, we recommend to look at [an example Hardhat project using Orakl VRF](https://github.com/Bisonai/vrf-consumer).
+The detailed information about Orakl VRF can be found at [developer's guide on how to use VRF](developers-guide/vrf.md). If you want to start using VRF right away, we recommend to look at [an example Hardhat project using Orakl VRF](https://github.com/Bisonai/vrf-consumer).
 
 ### Request-Response
 

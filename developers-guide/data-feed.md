@@ -34,6 +34,7 @@ The Orakl Data Feed includes various data feeds that can be used free of charge.
 | BNB-USDT   | [0x4D92F10A23E28AB11d2d39325B9db0Fd0504520d](https://baobab.klaytnfinder.io/account/0x4D92F10A23E28AB11d2d39325B9db0Fd0504520d) | [0x694b6591bA06Ea48b9A07dB78B93cCdF5d144f38](https://baobab.klaytnfinder.io/account/0x694b6591bA06Ea48b9A07dB78B93cCdF5d144f38) | 15,000         |
 | TRX-USDT   | [0x50365C346BAd261a29ADd3Be7bA18B6c49E4f4Cf](https://baobab.klaytnfinder.io/account/0x50365C346BAd261a29ADd3Be7bA18B6c49E4f4Cf) | [0x9ED2D63D6af73b416E0a47B56899ddE8435d89a6](https://baobab.klaytnfinder.io/account/0x9ED2D63D6af73b416E0a47B56899ddE8435d89a6) | 15,000         |
 | BUSD-USDT  | [0xA3ca19bAE3dC93521Ff0a9A7DC78713e8bB55D0c](https://baobab.klaytnfinder.io/account/0xA3ca19bAE3dC93521Ff0a9A7DC78713e8bB55D0c) | [0x88DaE047193444aba53B316f40961528c326080d](https://baobab.klaytnfinder.io/account/0x88DaE047193444aba53B316f40961528c326080d) | 15,000         |
+| MNR-KRW    | [0x89CAddB33969797d008b64D3adB4E45D7d829D68](https://baobab.klaytnfinder.io/account/0x89CAddB33969797d008b64D3adB4E45D7d829D68) | [0xe9656248a3148f4cfed909fe4c79b386c9b2d595](https://baobab.klaytnfinder.io/account/0xe9656248A3148f4cfed909fE4c79B386c9b2d595) | 15,000         |
 
 ## Architecture
 

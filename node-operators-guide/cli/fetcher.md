@@ -8,8 +8,8 @@ description: Start And Stop Data Collection
 
 The **Orakl Network CLI** provides commands to
 
-* [Start Single Data Feed Collection](orakl-network-data-feed.md#start-single-data-feed-collection)
-* [Stop Single Data Feed Collection](orakl-network-data-feed.md#stop-single-data-feed-collection)
+* [Start Single Data Feed Collection](fetcher.md#start-single-data-feed-collection)
+* [Stop Single Data Feed Collection](fetcher.md#stop-single-data-feed-collection)
 
 The **Orakl Network Fetcher** is used to regularly collect data based on the definitions in adapter. Collected and aggregated data are available to the **Orakl Network Data Feed**.
 

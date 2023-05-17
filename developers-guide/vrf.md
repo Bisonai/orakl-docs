@@ -14,8 +14,8 @@ In the context of the blockchain, VRFs can be used to provide a source of random
 
 Orakl Network VRF allows smart contracts to use VRF to generate verifiably random values, which can be used in various dApps that require randomness. Orakl Network VRF can be used with two different payment approaches:
 
-* [Prepayment (recommended)](verifiable-random-function-vrf.md#prepayment-recommended)
-* [Direct Payment](verifiable-random-function-vrf.md#direct-payment)
+* [Prepayment (recommended)](vrf.md#prepayment-recommended)
+* [Direct Payment](vrf.md#direct-payment)
 
 **Prepayment** requires user to create an account, deposit $KLAY and assign consumer before being able to request for VRF. It is more suitable for users that know that they will use VRF often and possibly from multiple smart contracts. You can learn more about **Prepayment** at Developer's guide for Prepayment.
 
@@ -29,9 +29,9 @@ We assume that at this point you have already created account through [`Prepayme
 
 After you created account (and obtained `accId`), deposited some $KLAY and assigned at least one consumer, you can use it to request and fulfill random words.
 
-* [Initialization](verifiable-random-function-vrf.md#initialization)
-* [Request random words](verifiable-random-function-vrf.md#request-random-words-with-direct-payment-consumer)
-* [Fulfill-random words](verifiable-random-function-vrf.md#fulfill-random-words)
+* [Initialization](vrf.md#initialization)
+* [Request random words](vrf.md#request-random-words-with-direct-payment-consumer)
+* [Fulfill-random words](vrf.md#fulfill-random-words)
 
 User smart contract that wants to use Orakl Network VRF has to inherit from [`VRFConsumerBase` abstract smart contract](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/VRFConsumerBase.sol).
 
@@ -121,9 +121,9 @@ This function is executed from previously defined `COORDINATOR` contract. After 
 
 **Direct Payment** represents an alternative payment method which does not require a user to create account, deposit $KLAY, and assign consumer before being able to utilize VRF functionality. Request for VRF with **Direct Payment** is only a little bit different compared to **Prepayment**, however, fulfillment function is exactly same.
 
-* [Initialization for direct payment](verifiable-random-function-vrf.md#initialization-for-direct-payment)
-* [Request random words with direct payment (consumer)](verifiable-random-function-vrf.md#request-random-words-with-direct-payment-consumer)
-* [Request random words with direct payment (coordinator)](verifiable-random-function-vrf.md#request-random-words-with-direct-payment-coordinator)
+* [Initialization for direct payment](vrf.md#initialization-for-direct-payment)
+* [Request random words with direct payment (consumer)](vrf.md#request-random-words-with-direct-payment-consumer)
+* [Request random words with direct payment (coordinator)](vrf.md#request-random-words-with-direct-payment-coordinator)
 
 User smart contract that wants to use Orakl Network VRF has to inherit from [`VRFConsumerBase` abstract smart contract](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/VRFConsumerBase.sol).
 

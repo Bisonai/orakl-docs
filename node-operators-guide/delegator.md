@@ -73,7 +73,7 @@ curl -X 'POST' \
 
 ### Contract
 
-After defining teporter, the next step is to add a contract address of the service to the whitelist. Currently, [whitelist has to include function selector](orakl-network-delegator.md#function-whitelist) as well.
+After defining teporter, the next step is to add a contract address of the service to the whitelist. Currently, [whitelist has to include function selector](delegator.md#function-whitelist) as well.
 
 To add a new contract, you can use `api/v1/contract` endpoint.
 
@@ -126,11 +126,11 @@ curl -X 'POST' \
 
 Before we launch the **Orakl Network Delegator**, we must specify [few environment variables](https://github.com/Bisonai/orakl/blob/master/delegator/.env.example). The environment variables are automatically loaded from an `.env` file.
 
-- `DATABASE_URL`
-- `PROVIDER_URL`
-- `APP_PORT`
-- `DELEGATOR_FEEPAYER_PK`
-- `DELEGATOR_REPORTER_PK`
+* `DATABASE_URL`
+* `PROVIDER_URL`
+* `APP_PORT`
+* `DELEGATOR_FEEPAYER_PK`
+* `DELEGATOR_REPORTER_PK`
 
 `DATABASE_URL` represents a [connection string](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING) to a database that will hold the **Orakl Network** state.
 

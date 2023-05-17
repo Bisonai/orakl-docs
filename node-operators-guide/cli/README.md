@@ -13,7 +13,7 @@ The **Orakl Network CLI** is a tool to configure and manage the **Orakl Network*
 * [Adapter](adapter.md)
 * [Aggregator](aggregator.md)
 * [Reporter](reporter.md)
-* [Fetcher](orakl-network-data-feed.md)
+* [Fetcher](fetcher.md)
 
 ### Installation
 
