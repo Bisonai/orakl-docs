@@ -1,4 +1,4 @@
-# Installing Orakl Network with Helm Charts
+# Installing Orakl Network with Helm Chart
 
 ## Description
 
