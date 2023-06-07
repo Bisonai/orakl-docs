@@ -12,18 +12,18 @@ This document uses helm chart to deploy in cloud (AWS, GCP) environment.
 
 ## Installation
 
-### Register the Orakl Network helm chart repository
+### 01. Register the Orakl Network helm chart repository
 ```bash
 helm repo add orakl https://helm.orakl.network
 helm repo update
 ```
 
-### 01. Create namespace for kubernetes
+### 02. Create namespace for kubernetes
 ```bash
   kubectl create namespace orakl
   kubectl create namespace redis
 ```
-### 02. Storage
+### 03. Storage
 AWS Installation
 + You must first create an efs file storage in AWS and have an ID.
 ```bash
@@ -40,7 +40,7 @@ helm install storage -n orakl orakl/orakl-log-gcp-storage \
     --set "config.pdName=${your gcp storage name}" 
 ```
 
-### 03. Api
+### 04. Api
 Before installing the API, you must have a postgresql database ready.
 ```bash
 helm install api -n orakl orakl/orakl-api \ 
@@ -58,7 +58,7 @@ helm install api -n orakl orakl/orakl-api \
 + `ENCRYPT_PASSWORD` : You can set the key to any key you want as the conversion key. When the reporter's private key is stored in the database, it is encrypted and stored with this key.
   
 
-### 04. Fetcher
+### 05. Fetcher
 To install Orakl Fetcher, you need to have Redis set up beforehand. 
 ```bash
 helm install fetcher -n orakl orakl/orakl-fetcher \ 
@@ -78,7 +78,7 @@ Enable Fetcher with [aggregatorHash](https://config.orakl.network/#aggregator-ba
 ```
 
 
-### 05. Delegator
+### 06. Delegator
 ```bash
 helm install delegator -n orakl orakl/orakl-delegator  \
       --set "global.config.DATABASE_URL=${your database url}" \
@@ -96,7 +96,7 @@ helm install delegator -n orakl orakl/orakl-delegator  \
 + `DELEGATOR_FEEPAYER_PK` : If you don't have a balance in the account you need to report to, you'll need to pay through a payee account. You'll need to enter the `private key` of the payoff account.
 
 
-### 06. Cli
+### 07. Cli
 ```bash
 helm install cli -n orakl orakl/orakl-cli \
     --set "global.config.ORAKL_NETWORK_API_URL=http://orakl-api.orakl.svc.cluster.local:3030/api/v1" \
@@ -106,7 +106,7 @@ helm install cli -n orakl orakl/orakl-cli \
 
 + `ORAKL_NETWORK_API_URL`, `ORAKL_NETWORK_FETCHER_URL`, `ORAKL_NETWORK_DELEGATOR_URL` : These 3 URLs are the same convention we used to deploy the fetcher earlier, just make sure to include the service name and namespace.
 
-### 07. Basic Configuration
+### 08. Basic Configuration
 + list all pods in orakl namespace
   ```bash 
     kubectl get pods -n orakl 
@@ -116,7 +116,7 @@ helm install cli -n orakl orakl/orakl-cli \
     kubectl exec -it cli-7b8df47f-bdlzv -n orakl -- /bin/bash 
   ```
 
-### You can set the default settings through the [orakl cli part](https://docs.orakl.network/docs/node-operators-guide/cli). Here we'll show you an example.
+   You can set the default settings through the [orakl cli part](https://docs.orakl.network/docs/node-operators-guide/cli). Here we'll show you an example.
 
 + network setting
   ```bash
@@ -225,7 +225,7 @@ helm install cli -n orakl orakl/orakl-cli \
   ```
   This is the task that connects the contract and the reporter together. This can be used in the future if the contract and reporter are different or change. Reporter's id can be found `yarn cli delegator reporterList`
 
-### 08. Datafeed (aggregator)
+### 09. Datafeed (aggregator)
 
 ```bash
   helm install aggregator -n orakl orakl/orakl-aggregator \
