@@ -53,7 +53,7 @@ helm install api -n orakl orakl/orakl-api \
 
 + Typically, we'll create a database called `orakl` and proceed from there
 
-+ make sure for security reason not to use admin account. create new user for the databse.
++ make sure for security reason not to use admin account. create new user for the database.
 
 + `ENCRYPT_PASSWORD` : You can set the key to any key you want as the conversion key. When the reporter's private key is stored in the database, it is encrypted and stored with this key.
   
@@ -63,7 +63,7 @@ To install Orakl Fetcher, you need to have Redis set up beforehand.
 ```bash
 helm install fetcher -n orakl orakl/orakl-fetcher \ 
     --set "global.config.APP_PORT=4040" \ 
-    --set "global.config.REDIS_HOST=${your redis host addressd }" \ 
+    --set "global.config.REDIS_HOST=${your redis host address }" \ 
     --set "global.config.REDIS_PORT=${your redis port | 6379}" \ 
     --set "global.config.ORAKL_NETWORK_API_URL=http://orakl-api.orakl.svc.cluster.local:3030/api/v1" 
 ```
