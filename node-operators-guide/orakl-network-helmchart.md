@@ -165,7 +165,7 @@ helm install cli -n orakl orakl/orakl-cli \
     yarn cli listener insert \
     --chain baobab \
     --service DATA_FEED \
-    --address 0x731A5AFB6e021579138Ea469B25C2ab46ff44199 \
+    --address 0x731a5afb6e021579138ea469b25c2ab46ff44199 \
     --eventName NewRound
   ```
 
@@ -186,8 +186,8 @@ helm install cli -n orakl orakl/orakl-cli \
   --chain baobab \
   --service DATA_FEED \
   --address ${your reporter account address} \
-  --privateKey ${your reporter account password }
-  --oracleAddress 0x731A5AFB6e021579138Ea469B25C2ab46ff44199
+  --privateKey ${Your reporter account private key}
+  --oracleAddress 0x731a5afb6e021579138ea469b25c2ab46ff44199
   ```
   oracleAddress refer `BNB-USDT` contract address
 
@@ -202,15 +202,18 @@ helm install cli -n orakl orakl/orakl-cli \
       --address ${your reporter account address of BNB-USDT} \
       --organizationId 1
   ```    
-  The reporter address should be match with your BNB-USDT reporter's account address.
+
+  The reporter address should be match with your BNB-USDT   reporter's account address.
   The reporter's account address must be `lowercase`. Even if the reporter's account address is already mixed with capitalization, please make it lowercase here. We'll fix this in the future (issue caused by switching from ethers.js to caver.js)
 
+  ---
   ```bash
    yarn cli delegator contractInsert \
-        --address "0x731A5AFB6e021579138Ea469B25C2ab46ff44199"
+        --address "0x731a5afb6e021579138ea469b25c2ab46ff44199"
   ```
   The contract address is `BNB-USDT`'s contract
 
+  ---
   ```bash
     yarn cli delegator functionInsert \
       --name "submit(uint256,int256)" \
@@ -218,12 +221,14 @@ helm install cli -n orakl orakl/orakl-cli \
   ```
   contractId should match with contract id which deployed. If you want to check contract ID inserted in database `yarn cli delegator contractList`. You can find out `id` from list.
 
+  ---
   ```bash 
     yarn cli delegator contractConnect \
       --contractId 1 \
       --reporterId 1
   ```
   This is the task that connects the contract and the reporter together. This can be used in the future if the contract and reporter are different or change. Reporter's id can be found `yarn cli delegator reporterList`
+
 
 ### 09. Datafeed (aggregator)
 
