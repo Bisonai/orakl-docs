@@ -243,6 +243,7 @@ helm install cli -n orakl orakl/orakl-cli \
 ```
   + `CHAIN`: baobab | cypress
   + `ORAKL_NETWORK_API_URL`, `ORAKL_NETWORK_DELEGATOR_URL` : These 2 URLs are the same convention we used to deploy the fetcher earlier, just make sure to include the service name and namespace.
-  + `PROVIDER_URL` : The JSON RPC address of the node to use ex) https://api.baobab.klaytn.net:8651
-  + `SLACK_WEBHOOK_URL₩ : If there is no value, you can leave it blank.
+  + `PROVIDER_URL` : The JSON RPC address of the node to use 
+    ex) `https://api.baobab.klaytn.net:8651`
+  + `SLACK_WEBHOOK_URL` : If there is no value, you can leave it blank.
   + `REDIS_HOST`, `REDIS_PORT`: You can use a fresh deployment of Redis in Kubernetes, or you can use your own Redis if you have one
