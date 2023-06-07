@@ -27,25 +27,25 @@ helm repo update
 AWS Installation
 + You must first create an efs file storage in AWS and have an ID.
 ```bash
-helm install storage -n orakl orakl/orakl-log-aws-storage \ 
-    --set "config.efsFileSystemId=${your efs file system id}" \ 
-    --set "config.region=${your aws resion}" \ 
+helm install storage -n orakl orakl/orakl-log-aws-storage \
+    --set "config.efsFileSystemId=${your efs file system id}" \
+    --set "config.region=${your aws resion}" \
     --set "config.size=100Gi" 
 ```
 GCP Installation
 + In GCP, you must first create a file storage and have a name for the storage
 ```bash
-helm install storage -n orakl orakl/orakl-log-gcp-storage \ 
-    --set "config.size=100Gi" \ 
-    --set "config.pdName=${your gcp storage name}" 
+helm install storage -n orakl orakl/orakl-log-gcp-storage \
+    --set "config.size=100Gi" \
+    --set "config.pdName=${your gcp storage name}"
 ```
 
 ### 04. Api
 Before installing the API, you must have a postgresql database ready.
 ```bash
-helm install api -n orakl orakl/orakl-api \ 
-    --set "global.config.DATABASE_URL=${your database url}" \ 
-    --set "global.config.ENCRYPT_PASSWORD=${your key password}" \ 
+helm install api -n orakl orakl/orakl-api \
+    --set "global.config.DATABASE_URL=${your database url}" \
+    --set "global.config.ENCRYPT_PASSWORD=${your key password}" \
     --set "global.config.APP_PORT=3030"
 ```
 
@@ -61,10 +61,10 @@ helm install api -n orakl orakl/orakl-api \
 ### 05. Fetcher
 To install Orakl Fetcher, you need to have Redis set up beforehand. 
 ```bash
-helm install fetcher -n orakl orakl/orakl-fetcher \ 
-    --set "global.config.APP_PORT=4040" \ 
-    --set "global.config.REDIS_HOST=${your redis host address }" \ 
-    --set "global.config.REDIS_PORT=${your redis port | 6379}" \ 
+helm install fetcher -n orakl orakl/orakl-fetcher \
+    --set "global.config.APP_PORT=4040" \
+    --set "global.config.REDIS_HOST=${your redis host address }" \
+    --set "global.config.REDIS_PORT=${your redis port | 6379}" \
     --set "global.config.ORAKL_NETWORK_API_URL=http://orakl-api.orakl.svc.cluster.local:3030/api/v1" 
 ```
 
@@ -72,17 +72,12 @@ helm install fetcher -n orakl orakl/orakl-fetcher \
 
 + `REDIS_HOST`, `REDIS_PORT`: You can use a fresh deployment of Redis in Kubernetes, or you can use your own Redis if you have one
 
-Enable Fetcher with [aggregatorHash](https://config.orakl.network/#aggregator-baobab)
-```bash 
-  yarn cli fetcher start --id ${aggregatorHash} --chain ${chainName}
-```
-
 
 ### 06. Delegator
 ```bash
 helm install delegator -n orakl orakl/orakl-delegator  \
       --set "global.config.DATABASE_URL=${your database url}" \
-      --set "global.config.APP_PORT=5050" \ 
+      --set "global.config.APP_PORT=5050" \
       --set "global.config.PROVIDER_URL=${your Json Rpc node address}"\
       --set "global.config.DELEGATOR_FEEPAYER_PK=${your delegator account private key}"
 ```
@@ -163,18 +158,27 @@ helm install cli -n orakl orakl/orakl-cli \
   To set up a listener, you need to know the contract address of the listener associated with the DATA FEED. In this article, we will focus on `BNB-USDT`. This contract is already deployed on Bisonai and the contract address can be found in the [Address section of the Aggregator Baobab](https://config.orakl.network/#aggregator-baobab) in the Orakl Config documentation. 
   ```bash
     yarn cli listener insert \
-    --chain baobab \
-    --service DATA_FEED \
-    --address 0x731a5afb6e021579138ea469b25c2ab46ff44199 \
-    --eventName NewRound
+      --chain baobab \
+      --service DATA_FEED \
+      --address 0x731a5afb6e021579138ea469b25c2ab46ff44199 \
+      --eventName NewRound
   ```
+
++ setting adapter
+  ```bash
+    yarn cli adapter insert \
+  	  --source https://config.orakl.network/adapter/bnb-usdt.adapter.json
+	    --chain baobab
+  ```
+
+  source address can be found [Orakl Config](https://config.orakl.network/)
 
 + setting aggregator
 
   ```bash
     yarn cli aggregator insert \
-    --source https://config.orakl.network/adapter/bnb-usdt.adapter.json \
-    --chain baobab
+      --source https://config.orakl.network/aggregator/baobab/bnb-usdt.aggregator.json \
+      --chain baobab
     ```
 
   source address can be found [Orakl Config](https://config.orakl.network/)
@@ -183,11 +187,11 @@ helm install cli -n orakl orakl/orakl-cli \
 + setting reporter
   ```bash
   yarn cli reporter insert \ 
-  --chain baobab \
-  --service DATA_FEED \
-  --address ${your reporter account address} \
-  --privateKey ${Your reporter account private key}
-  --oracleAddress 0x731a5afb6e021579138ea469b25c2ab46ff44199
+    --chain baobab \
+    --service DATA_FEED \
+    --address ${your reporter account address} \
+    --privateKey ${Your reporter account private key}
+    --oracleAddress 0x731a5afb6e021579138ea469b25c2ab46ff44199
   ```
   oracleAddress refer `BNB-USDT` contract address
 
@@ -195,7 +199,7 @@ helm install cli -n orakl orakl/orakl-cli \
 + setting delegator
   ```bash
    yarn cli delegator organizationInsert --name ${your organazation name}
-  ```  
+  ```
 
   ```bash
    yarn cli delegator reporterInsert \
@@ -229,6 +233,11 @@ helm install cli -n orakl orakl/orakl-cli \
   ```
   This is the task that connects the contract and the reporter together. This can be used in the future if the contract and reporter are different or change. Reporter's id can be found `yarn cli delegator reporterList`
 
+  ---
+  Enable Fetcher with [aggregatorHash](https://config.orakl.network/#aggregator-baobab)
+  ```bash 
+    yarn cli fetcher start --id ${aggregatorHash} --chain ${chainName}
+  ```
 
 ### 09. Datafeed (aggregator)
 
