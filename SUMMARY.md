@@ -30,6 +30,7 @@
 
 ## Other Resources
 
+* [Audit](other-resources/audit.md)
 * [White paper](other-resources/white-paper.md)
 * [Social Media](other-resources/social-media.md)
 * [Terms of Use](other-resources/terms-of-use.md)
