@@ -10,43 +10,54 @@ A detailed example of how to use the **Orakl Network Request-Response** can be f
 
 The **Orakl Network Request-Response** serves as a solution to cover a wide range of use cases. While it may not be possible to bring every data feed directly to the blockchain, the Request-Response allows users to specify within their smart contracts the specific data they require and how they should be processed before they are received on-chain. This feature returns data in Single Word Response format, providing users with greater flexibility and control over their data, and allowing them to access a wide range of external data sources.
 
-**Orakl Network Request-Response** can be used with two different payment approaches:
+**Orakl Network Request-Response** can be used with two different account types that support [prepayment](prepayment.md) method:
 
-* Prepayment (recommended)
-* Direct Payment
+* [Permanent Account (recommended)](request-response.md#permanent-account-recommended)
+* [Temporary Account](request-response.md#temporary-account)
 
-**Prepayment** requires user to create an account, deposit $KLAY and assign consumer before being able to request for data. It is more suitable for users that know that they will use Request-Response often and possibly from multiple smart contracts. You can learn more about **Prepayment** at Developer's guide for Prepayment.
+**Permanent Account** allows consumers to prepay for Request-Response services, and then use those funds when interacting with Orakl Network. Permanent account is currently a recommended way to request for Request-Response. You can learn more about prepayment payment method or permanent account, go to [developer's guide on how to use Prepayment](prepayment.md).
 
-**Direct Payment** allows user to pay directly for Request-Response without any extra prerequisites. This approach is great for infrequent use, or for users that do not want to hassle with **Prepayment** settings and want to use Request-Response as soon as possible.
+**Temporary Account** allows user to pay directly for Request-Response without any extra prerequisites. This approach is great for infrequent use, or for users that do not want to hassle with **Temporary Account** settings and want to use Request-Response as soon as possible.
 
-In this document, we describe both payment approaches ([Prepayment](request-response.md#prepayment-recommended) and [Direct Payment](request-response.md#direct-payment)) for requesting data from off-chain. Finally, we explain [how to build an on-chain requests](request-response.md#request) and [how to post-process an API response](request-response.md#response-post-processing).
+In this document, we describe both **Permanent Account** and **Temporary Account** approaches that can be used for requesting data from off-chain. Finally, we explain [how to build an on-chain requests](request-response.md#request) and [how to post-process an API response](request-response.md#response-post-processing).
 
-## Prepayment (recommended)
+## Permanent Account (recommended)
 
-We assume that at this point you have already created account through [`Prepayment` smart contract](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/Prepayment.sol), deposited $KLAY, and assigned consumer(s) to it. If not, please read how to do all the above, in order to be able to continue in this guide.
+We assume that at this point you have already created permanent account through [`Prepayment` smart contract](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/Prepayment.sol), deposited $KLAY, and assigned consumer(s) to it. If not, [please read how to do all the above](prepayment.md), in order to be able to continue in this guide.
 
 After you created account (and obtained `accId`), deposited some $KLAY and assigned at least one consumer, you can use it to request data and receive response.
 
-* Initialization
-* Request data
-* Receive response
+* [Initialization](request-response.md#initialization)
+* [Request data](request-response.md#request-data)
+* [Receive response](request-response.md#receive-response)
 
-User smart contract that wants to utilize **Orakl Network Request-Response** has to inherit from [`VRFRequestResponseBase` abstract smart contract](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/RequestResponseConsumerBase.sol).
+User smart contract that wants to utilize **Orakl Network Request-Response** has to inherit from abstract fulfillment contracts to support a specific return data type. Currently, we provide the following:
 
-<pre class="language-solidity"><code class="lang-solidity"><strong>import "@bisonai/orakl-contracts/src/v0.1/RequestResponseConsumerBase.sol";
-</strong>contract RequestResponseConsumer is RequestResponseConsumerBase {
+* `uint128` with `RequestResponseConsumerFulfillUint128`
+* `int256` with `RequestResponseConsumerFulfillInt256`
+* `bool` with `RequestResponseConsumerFulfillBool`
+* `string` with `RequestResponseConsumerFulfillString`
+* `bytes32` with `RequestResponseConsumerFulfillBytes32`
+* `bytes` with `RequestResponseConsumerFulfillBytes`
+
+All of the above are defined within a [RequestResponseConsumerFulfill](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/RequestResponseConsumerFulfill.sol) file. For the sake of this tutorial, we will demonstrate with `RequestResponseConsumerFulfillUint128` only, but the same principles can be applied to other return data types.
+
+```solidity
+import { RequestResponseConsumerFulfillUint128 } from "@bisonai/orakl-contracts/src/v0.1/RequestResponseConsumerFulfill.sol";
+contract RequestResponseConsumer is RequestResponseConsumerFulfillUint128 {
     ...
 }
-</code></pre>
+```
 
 ### Initialization
 
-Request-Response smart contract ([`RequestResponseCoordinator`](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/RequestResponseCoordinator.sol)) is used both for requesting and receiving data. Address of deployed `RequestResponseCoordinator` is used for initialization of parent class `RequestResponseConsumerBase` from which consumer's contract has to inherit.
+Request-Response smart contract ([`RequestResponseCoordinator`](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/RequestResponseCoordinator.sol)) is used both for requesting and receiving data. Address of deployed `RequestResponseCoordinator` is used for initialization of parent class `RequestResponseConsumerBase`.
 
 ```solidity
-import "@bisonai/orakl-contracts/src/v0.1/RequestResponseConsumerBase.sol";
+import { RequestResponseConsumerFulfillUint128 } from "@bisonai/orakl-contracts/src/v0.1/RequestResponseConsumerFulfill.sol";
+import { RequestResponseConsumerBase } from "@bisonai/orakl-contracts/src/v0.1/RequestResponseConsumerBase.sol";
 
-contract RequestResponseConsumer is RequestResponseConsumerBase {
+contract RequestResponseConsumer is RequestResponseConsumerFulfillUint128 {
   constructor(address coordinator) RequestResponseConsumerBase(coordinator) {
   }
 }
@@ -54,7 +65,7 @@ contract RequestResponseConsumer is RequestResponseConsumerBase {
 
 ### Request data
 
-Request data (`requestData`) must be called from a contract that has been approved through `addConsumer` function of [`Prepayment` smart contract](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/Prepayment.sol). If the smart contract has not been approved, the request is rejected with `InvalidConsumer` error. If account (specified by `accId`) does not exist (`InvalidAccount` error) or does not have balance high enough, request is rejected as well.
+Data request (`requestData`) must be called from a contract that has been approved through `addConsumer` function of [`Prepayment` smart contract](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/Prepayment.sol). If the smart contract has not been approved, the request is rejected with `InvalidConsumer` error. If account (specified by `accId`) does not exist (`InvalidAccount` error) or does not have balance high enough, request is rejected as well.
 
 The example code below encodes a request for an ETH/USD price feed from [https://min-api.cryptocompare.com/](https://min-api.cryptocompare.com/) API server. The request describes where to fetch data ([https://min-api.cryptocompare.com/data/pricemultifull?fsyms=ETH\&tsyms=USD](https://min-api.cryptocompare.com/data/pricemultifull?fsyms=ETH\&tsyms=USD)), and how to parse (`path` and `pow10`) the response from API server (shortened version displayed in listing below). The response comes as a nested JSON dictionary on which we want to access `RAW` key at first, then `ETH` key, `USD` key, and finally `PRICE` key.
 
@@ -81,7 +92,8 @@ function requestData(
     onlyOwner
     returns (uint256 requestId)
 {
-    bytes32 jobId = keccak256(abi.encodePacked("any-api-uint256"));
+    bytes32 jobId = keccak256(abi.encodePacked("uint128"));
+    uint8 numSubmission = 1;
     Orakl.Request memory req = buildRequest(jobId);
     req.add("get", "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=ETH&tsyms=USD");
     req.add("path", "RAW,ETH,USD,PRICE");
@@ -90,7 +102,8 @@ function requestData(
     requestId = COORDINATOR.requestData(
         req,
         callbackGasLimit,
-        accId
+        accId,
+        numSubmission
     );
 }
 ```
@@ -100,39 +113,40 @@ Below, you can find an explanation of `requestData` function and its arguments d
 * `req`: a `Request` structure that holds encoded user request
 * `accId`: a `uint64` value representing the ID of the account associated with the request.
 * `callbackGasLimit`: a `uint32` value representing the gas limit for the callback function that executes after the confirmations have been received.
+* `numSubmission`: requested number of submission from off-chain oracles
 
-The function call `requestData()` on `COORDINATOR` contract passes `req`, `accId` and `callbackGasLimit` as arguments. After a successful execution of this function, you obtain an ID (`requestId`) that uniquely defines your request. Later, when your request is fulfilled, the ID (`requestId`) is supplied together with response to be able to make a match between requests and fulfillments when there is more than one request.
+The function call `requestData()` on `COORDINATOR` contract passes `req`, `accId`, `callbackGasLimit` and `numSubmission` as arguments. After a successful execution of this function, you obtain an ID (`requestId`) that uniquely defines your request. Later, when your request is fulfilled, the ID (`requestId`) is supplied together with response to be able to make a match between requests and fulfillments when there is more than one request.
 
 ### Receive response
 
-`fulfillDataRequest` is a virtual function of [`RequestResponseConsumerBase` smart contract](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/RequestResponseConsumerBase.sol), and therefore must be overridden. This function is called by `RequestResponseCoordinator` when fulfilling the request. `callbackGasLimit` parameter defined during data request denotes the amount of gas required for execution of this function.
+`fulfillDataRequest` is a virtual function of `RequestResponseConsumerFulfillUint128` abstract smart contract, and therefore must be overridden. This function is called by `RequestResponseCoordinator` when fulfilling the request. `callbackGasLimit` parameter defined during data request denotes the amount of gas required for execution of this function.
 
 ```solidity
 function fulfillDataRequest(
     uint256 /*requestId*/,
-    uint256 response
+    uint128 response
 )
     internal
     override
 {
-    s_response = response;
+    sResponse = response;
 }
 ```
 
 The arguments of `fulfillDataRequest` function are explained below:
 
 * `requestId`: a `uint256` value representing the ID of the request
-* `response`: an `uint256` value that was obtained after processing data request sent from `requestData` function
+* `response`: an `uint128` value that was obtained after processing data request sent from `requestData` function
 
-This function is executed from `RequestResponseCoordinator` contract defined during smart contract initialization. The result is saved in the storage variable `s_response`.
+This function is executed from `RequestResponseCoordinator` contract defined during smart contract initialization. The result is saved in the storage variable `sResponse`.
 
-## Direct Payment
+## Temporary Account
 
-**Direct Payment** represents an alternative payment method which does not require a user to create account, deposit $KLAY, and assign consumer before being able to utilize VRF functionality. Request-Response with **Direct Payment** is only a little bit different compared to **Prepayment**, however, fulfillment function is exactly same.
+**Temporary Account** is an alternative type of account which does not require a user to create account, deposit $KLAY, and assign consumer before being able to utilize Request-Response functionality. Request-Response with **Temporary Account** is only a little bit different compared to **Permanent Account**, however, the fulfillment function is exactly same.
 
-* Initialization for direct payment
-* Request data with direct payment (consumer)
-* Request data with direct payment (coordinator)
+* [Initialization with Temporary Account](request-response.md#initialization-with-temporary-account)
+* [Request data with Temporary Account (consumer)](request-response.md#request-data-with-temporary-account-consumer)
+* [Request data with Temporary Account (coordinator)](request-response.md#request-data-with-temporary-account-coordinator)
 
 User smart contract that wants to utilize Orakl Network Request-Response has to inherit from [`VRFRequestResponseBase` abstract smart contract](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/ReqeustResponseConsumerBase.sol).
 
@@ -143,53 +157,59 @@ contract RequestResponseConsumer is RequestResponseConsumerBase {
 }
 ```
 
-### Initialization for direct payment
+### Initialization with Temporary Account
 
 There is no difference in initializing Request-Response user contract that request for data with **Prepayment** or **Direct Payment**.
 
 Request-Response smart contract ([`RequestResponseCoordinator`](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/RequestResponseCoordinator.sol)) is used both for requesting and receiving data. Address of deployed `RequestResponseCoordinator` is used for initialization of parent class `RequestResponseConsumerBase` from which consumer's contract has to inherit.
 
 ```solidity
-import "@bisonai/orakl-contracts/src/v0.1/RequestResponseConsumerBase.sol";
+import { RequestResponseConsumerFulfillUint128 } from "@bisonai/orakl-contracts/src/v0.1/RequestResponseConsumerFulfill.sol";
+import { RequestResponseConsumerBase } from "@bisonai/orakl-contracts/src/v0.1/RequestResponseConsumerBase.sol";
 
-contract RequestResponseConsumer is RequestResponseConsumerBase {
+contract RequestResponseConsumer is RequestResponseConsumerFulfillUint128 {
   constructor(address coordinator) RequestResponseConsumerBase(coordinator) {
   }
 }
 ```
 
-### Request data with direct payment (consumer)
+### Request data with Temporary Account (consumer)
 
-The data request using **Direct Payment** is very similar to data request using **Prepayment**. The only difference is that for **Direct Payment** user has to send $KLAY together with call using `value` property, and does not have to specify account ID (`accId`) as in **Prepayment**. There are several checks that have to pass in order to successfully request data. You can read about them in one of the previous subsections called Request data.
+The data request using **Temporary Account** is very similar to request using **Permanent Account**. The only difference is that for **Temporary Account** user has to send $KLAY together with call using `value` property, and does not have to specify account ID (`accId`) as in **Permanent Account**. There are several checks that have to pass in order to successfully request data. You can read about them in one of the previous subsections called Request data.
 
 ```solidity
 receive() external payable {}
 
-function requestDataDirectPayment(
-  uint32 callbackGasLimit
+function requestData(
+  uint32 callbackGasLimit,
+  address refundRecipient
 )
     public
     payable
     onlyOwner
     returns (uint256 requestId)
 {
-    bytes32 jobId = keccak256(abi.encodePacked("any-api-uint256"));
+    bytes32 jobId = keccak256(abi.encodePacked("uint128"));
+    uint8 numSubmission = 1;
+    
     Orakl.Request memory req = buildRequest(jobId);
     req.add("get", "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=ETH&tsyms=USD");
     req.add("path", "RAW,ETH,USD,PRICE");
 
     requestId = COORDINATOR.requestData{value: msg.value}(
         req,
-        callbackGasLimit
+        callbackGasLimit,
+        numSubmission,
+        refundRecipient
     );
 }
 ```
 
-This function calls the `requestData()` function defined in `COORDINATOR` contract, and passes `req` and `callbackGasLimit` as arguments. The payment for service is sent through `msg.value` to the `requestData()` in `COORDINATOR` contract. If the payment is larger than expected payment, exceeding payment is returned to the caller of `requestData` function, therefore it requires the user contract to define [`receive()` function](https://docs.soliditylang.org/en/v0.8.16/contracts.html#receive-ether-function) as shown in the top of code listing. Eventually, it generates a data request.
+This function calls the `requestData()` function defined in `COORDINATOR` contract, and passes `req` , `callbackGasLimit`, `numSubmission` and `refundRecipient` as arguments. The payment for service is sent through `msg.value` to the `requestData()` in `COORDINATOR` contract. If the payment is larger than expected payment, exceeding payment is returned to the `refundRecipient` address. Eventually, it generates a data request.
 
 In the section below, you can find more detailed explanation of how data request using direct payment works.
 
-### Request data with direct payment (coordinator)
+### Request data with Temporary Account (coordinator)
 
 The following function is defined in [`RequestResponseCoordinator` contract](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/RequestResponseCoordinator.sol).
 

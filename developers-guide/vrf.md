@@ -17,7 +17,7 @@ Orakl Network VRF allows smart contracts to use VRF to generate verifiably rando
 * [Permanent Account (recommended)](vrf.md#permanent-account-recommended)
 * [Temporary Account](vrf.md#temporary-account)
 
-**Permanent Account** allows consumers to prepay for VRF services, and then use those funds when interacting with Orakl Network. Permanent account is currently a recommended way to request for both VRF. You can learn more about prepayment payment method or permanent account, go to [developer's guide on how to use Prepayment](prepayment.md).
+**Permanent Account** allows consumers to prepay for VRF services, and then use those funds when interacting with Orakl Network. Permanent account is currently a recommended way to request for VRF. You can learn more about prepayment payment method or permanent account, go to [developer's guide on how to use Prepayment](prepayment.md).
 
 **Temporary Account** allows user to pay directly for VRF without any extra prerequisites. This approach is great for infrequent use, or for users that do not want to hassle with **Temporary Account** settings and want to use VRF as soon as possible.
 
