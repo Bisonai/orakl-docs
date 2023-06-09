@@ -12,25 +12,25 @@ A Verifiable Random Function (VRF) is a cryptographic function that generates a 
 
 In the context of the blockchain, VRFs can be used to provide a source of randomness that is unpredictable and unbiased. This can be useful in various decentralized applications (dApps) that require randomness as a key component, such as in randomized auctions or as part of a decentralized games.
 
-Orakl Network VRF allows smart contracts to use VRF to generate verifiably random values, which can be used in various dApps that require randomness. Orakl Network VRF can be used with two different payment approaches:
+Orakl Network VRF allows smart contracts to use VRF to generate verifiably random values, which can be used in various dApps that require randomness. Orakl Network VRF can be used with two different account types that support [prepayment](prepayment.md) method:
 
-* [Prepayment (recommended)](vrf.md#prepayment-recommended)
-* [Direct Payment](vrf.md#direct-payment)
+* [Permanent Account (recommended)](vrf.md#permanent-account-recommended)
+* [Temporary Account](vrf.md#temporary-account)
 
-**Prepayment** requires user to create an account, deposit $KLAY and assign consumer before being able to request for VRF. It is more suitable for users that know that they will use VRF often and possibly from multiple smart contracts. You can learn more about **Prepayment** at Developer's guide for Prepayment.
+**Permanent Account** allows consumers to prepay for VRF services, and then use those funds when interacting with Orakl Network. Permanent account is currently a recommended way to request for both VRF. You can learn more about prepayment payment method or permanent account, go to [developer's guide on how to use Prepayment](prepayment.md).
 
-**Direct Payment** allows user to pay directly for VRF without any extra prerequisites. This approach is great for infrequent use, or for users that do not want to hassle with **Prepayment** settings and want to use VRF as soon as possible.
+**Temporary Account** allows user to pay directly for VRF without any extra prerequisites. This approach is great for infrequent use, or for users that do not want to hassle with **Temporary Account** settings and want to use VRF as soon as possible.
 
-In the rest of this document, we describe both **Prepayment** and **Direct Payment** approaches that can be used to request VRF.
+In the rest of this document, we describe both **Permanent Account** and **Temporary Account** approaches that can be used to request VRF.
 
-## Prepayment (recommended)
+## Permanent Account (recommended)
 
-We assume that at this point you have already created account through [`Prepayment` smart contract](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/Prepayment.sol), deposited $KLAY, and assigned consumer(s) to it. If not, please read how to do all the above, in order to be able to continue in this guide.
+We assume that at this point you have already created permanent account through [`Prepayment` smart contract](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/Prepayment.sol), deposited $KLAY, and assigned consumer(s) to it. If not, [please read how to do all the above](prepayment.md), in order to be able to continue in this guide.
 
 After you created account (and obtained `accId`), deposited some $KLAY and assigned at least one consumer, you can use it to request and fulfill random words.
 
 * [Initialization](vrf.md#initialization)
-* [Request random words](vrf.md#request-random-words-with-direct-payment-consumer)
+* [Request random words](vrf.md#request-random-words)
 * [Fulfill-random words](vrf.md#fulfill-random-words)
 
 User smart contract that wants to use Orakl Network VRF has to inherit from [`VRFConsumerBase` abstract smart contract](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/VRFConsumerBase.sol).
@@ -44,17 +44,17 @@ contract VRFConsumer is VRFConsumerBase {
 
 ### Initialization
 
-VRF smart contract ([`VRFCoordinator`](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/VRFCoordinator.sol)) is used both for requesting random words and also for request fulfillments. We recommend you to bond `VRFCoordinator` interface with `VRFCoordinator` address supplied through a constructor parameter, and use it for random words requests (`requestRandomWords`).
+VRF smart contract ([`VRFCoordinator`](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/VRFCoordinator.sol)) is used both for requesting random words and for request fulfillments as well. We recommend you to bond `IVRFCoordinator` interface with `VRFCoordinator` address passed as a constructor parameter, and use it for random words requests (`requestRandomWords`).
 
 ```solidity
 import "@bisonai/orakl-contracts/src/v0.1/VRFConsumerBase.sol";
-import "@bisonai/orakl-contracts/src/v0.1/interfaces/VRFCoordinatorInterface.sol";
+import "@bisonai/orakl-contracts/src/v0.1/interfaces/IVRFCoordinator.sol";
 
 contract VRFConsumer is VRFConsumerBase {
-  VRFCoordinatorInterface COORDINATOR;
+  IVRFCoordinator COORDINATOR;
 
   constructor(address coordinator) VRFConsumerBase(coordinator) {
-      COORDINATOR = VRFCoordinatorInterface(coordinator);
+      COORDINATOR = IVRFCoordinator(coordinator);
   }
 }
 ```
@@ -104,9 +104,9 @@ function fulfillRandomWords(
     internal
     override
 {
-    // requestId should be checked if it matches the expected request
+    // requestId should be checked if it matches the expected request.
     // Generate random value between 1 and 50.
-    s_randomResult = (randomWords[0] % 50) + 1;
+    sRandomWord = (randomWords[0] % 50) + 1;
 }
 ```
 
@@ -115,15 +115,15 @@ The arguments of `fulfillRandomWords` function are explained below:
 * `requestId`: a `uint256` value representing the ID of the request
 * `randomWords`: an array of `uint256` values representing the random words generated in response to the request
 
-This function is executed from previously defined `COORDINATOR` contract. After receiving random value(s) (`randomWords`) which can be any number in range of `uint256` data type, it takes the first random element and limits it to a range between 1 and 50. The result is saved in the storage variable `s_randomResult`.
+This function is executed from previously defined `COORDINATOR` contract. After receiving random value(s) (`randomWords`) in range of `uint256` data type, it takes the first random element and limits it to a range between 1 and 50. The result is saved in the storage variable `s_randomResult`.
 
-## Direct Payment
+## Temporary Account
 
-**Direct Payment** represents an alternative payment method which does not require a user to create account, deposit $KLAY, and assign consumer before being able to utilize VRF functionality. Request for VRF with **Direct Payment** is only a little bit different compared to **Prepayment**, however, fulfillment function is exactly same.
+**Temporary Account** is an alternative type of account which does not require a user to create account, deposit $KLAY, and assign consumer before being able to utilize VRF functionality. Request for VRF with **Temporary Account** is only a little bit different compared to **Permanent Account**, however, the fulfillment function is exactly same.
 
-* [Initialization for direct payment](vrf.md#initialization-for-direct-payment)
-* [Request random words with direct payment (consumer)](vrf.md#request-random-words-with-direct-payment-consumer)
-* [Request random words with direct payment (coordinator)](vrf.md#request-random-words-with-direct-payment-coordinator)
+* [Initialization with Temporary Account](vrf.md#initialization-with-temporary-account)
+* [Request random words with Temporary Account (consumer)](vrf.md#request-random-words-with-temporary-account-consumer)
+* [Request random words with Temporary Account (coordinator)](vrf.md#request-random-words-with-temporary-account-coordinator)
 
 User smart contract that wants to use Orakl Network VRF has to inherit from [`VRFConsumerBase` abstract smart contract](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/VRFConsumerBase.sol).
 
@@ -134,84 +134,87 @@ contract VRFConsumer is VRFConsumerBase {
 }
 ```
 
-### Initialization for direct payment
+### Initialization With Temporary Account
 
-There is no difference in initializing VRF user contract that request for VRF with **Prepayment** or **Direct Payment**.
+There is no difference in initializing VRF user contract that request for VRF with **Permanent Account** or **Temporary Account**.
 
-VRF smart contract ([`VRFCoordinator`](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/VRFCoordinator.sol)) is used both for requesting random words and also for request fulfillments. We recommend you to bond `VRFCoordinator` interface with `VRFCoordinator` address supplied through a constructor parameter, and use it for random words requests (`requestRandomWordsPayment`).
+VRF smart contract ([`VRFCoordinator`](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/VRFCoordinator.sol)) is used both for requesting random words and for request fulfillments as well. We recommend you to bond `IVRFCoordinator` interface with `VRFCoordinator` address passes as a constructor parameter, and use it for random words requests (`requestRandomWords`).
 
 ```solidity
 import "@bisonai/orakl-contracts/src/v0.1/VRFConsumerBase.sol";
-import "@bisonai/orakl-contracts/src/v0.1/interfaces/VRFCoordinatorInterface.sol";
+import "@bisonai/orakl-contracts/src/v0.1/interfaces/IVRFCoordinator.sol";
 
 contract VRFConsumer is VRFConsumerBase {
-  VRFCoordinatorInterface COORDINATOR;
+  IVRFCoordinator COORDINATOR;
 
   constructor(address coordinator) VRFConsumerBase(coordinator) {
-      COORDINATOR = VRFCoordinatorInterface(coordinator);
+      COORDINATOR = IVRFCoordinator(coordinator);
   }
 }
 ```
 
-### Request random words with direct payment (consumer)
+### Request random words with Temporary Account (consumer)
 
-The request for random words using **Direct Payment** is very similar to request using **Prepayment**. The only difference is that for **Direct Payment** user has to send $KLAY together with call using `value` property, and the name of function is `requestRandomWordsPayment` instead of `requestRandomWords` used for **Prepayment**. There are several checks that have to pass in order to successfully request for VRF. You can read about them in one of the previous subsections called Request random words.
+The request for random words using **Temporary Account** is very similar to request using **Permanent Account**. The only difference is that with a **Temporary Account** user has to send $KLAY together with call using `value` property. There are several checks that have to pass in order to successfully request for VRF. You can read about them in one of the previous subsections called Request random words.
 
 ```solidity
-receive() external payable {}
-
-function requestRandomWordsDirect(
+function requestRandomWords(
     bytes32 keyHash,
     uint32 callbackGasLimit,
-    uint32 numWords
+    uint32 numWords,
+    address refundRecipient
 )
     public
     payable
     onlyOwner
     returns (uint256 requestId)
 {
-  requestId = COORDINATOR.requestRandomWordsPayment{value: msg.value}(
+  requestId = COORDINATOR.requestRandomWords{value: msg.value}(
     keyHash,
     callbackGasLimit,
-    numWords
+    numWords,
+    refundRecipient
   );
 }
 ```
 
-This function calls the `requestRandomWordsPayment()` function defined in `COORDINATOR` contract, and passes `keyHash`, `callbackGasLimit`, and `numWords` as arguments. The payment for service is sent through `msg.value` to the `requestRandomWordsPayment()` in `COORDINATOR` contract. If the payment is larger than expected payment, exceeding payment is returned to the caller of `requestRandomWordsPayment` function, therefore it requires the user contract to define [`receive()` function](https://docs.soliditylang.org/en/v0.8.16/contracts.html#receive-ether-function) as shown in the top of code listing. Eventually, it generates a request for random words.
+This function calls the `requestRandomWords()` function defined in `COORDINATOR` contract, and passes `keyHash`, `callbackGasLimit`, `numWords` and `refundRecipient` as arguments. The payment for service is sent through `msg.value` to the `requestRandomWords()` in `COORDINATOR` contract. If the payment is larger than expected payment, exceeding payment is returned to the `refundRecipient` address. Eventually, it generates a request for random words.
 
-In the section below, you can find more detailed explanation of how request for random words using direct payment works.
+In the section below, you can find more detailed explanation of how request for random words using temporary account works.
 
-### Request random words with direct payment (coordinator)
+### Request random words with Temporary Account (coordinator)
 
 The following function is defined in [`VRFCoordinator` contract](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/VRFCoordinator.sol).
 
 ```solidity
-function requestRandomWordsPayment(
+function requestRandomWords(
     bytes32 keyHash,
     uint32 callbackGasLimit,
-    uint32 numWords
+    uint32 numWords,
+    address refundRecipient
 ) external payable nonReentrant onlyValidKeyHash(keyHash) returns (uint256) {
-    uint256 vrfFee = estimateDirectPaymentFee();
-    if (msg.value < vrfFee) {
-        revert InsufficientPayment(msg.value, vrfFee);
+    uint64 reqCount = 0;
+    uint8 numSubmission = 1;
+    uint256 fee = estimateFee(reqCount, numSubmission, callbackGasLimit);
+    if (msg.value < fee) {
+        revert InsufficientPayment(msg.value, fee);
     }
 
-    uint64 accId = s_prepayment.createAccount();
-    s_prepayment.addConsumer(accId, msg.sender);
+    uint64 accId = sPrepayment.createTemporaryAccount(msg.sender);
     bool isDirectPayment = true;
-    uint256 requestId = requestRandomWordsInternal(
+    uint256 requestId = requestRandomWords(
         keyHash,
         accId,
         callbackGasLimit,
         numWords,
         isDirectPayment
     );
-    s_prepayment.deposit{value: vrfFee}(accId);
+    sPrepayment.depositTemporary{value: fee}(accId);
 
-    uint256 remaining = msg.value - vrfFee;
+    // Refund extra $KLAY
+    uint256 remaining = msg.value - fee;
     if (remaining > 0) {
-        (bool sent, ) = msg.sender.call{value: remaining}("");
+        (bool sent, ) = refundRecipient.call{value: remaining}("");
         if (!sent) {
             revert RefundFailure();
         }
@@ -221,4 +224,4 @@ function requestRandomWordsPayment(
 }
 ```
 
-This function first calculates a fee (`vrfFee`) for the request by calling `estimateDirectPaymentFee()` function. `isDirectPayment` variable indicates whether the request is created through **Prepayment** or **Direct Payment** method. Then, it deposits the required fee (`vrfFee`) to the account by calling `s_prepayment.deposit(accId)` and passing the fee (`vrfFee`) as value. If the amount of $KLAY passed by `msg.value` to the `requestRandomWordsPayment` is larger than required fee (`vrfFee`), the remaining amount is sent back to the caller using the `msg.sender.call()` method. Finally, the function returns `requestId` that is generated by the `requestRandomWordsInternal()` function.
+This function first calculates a fee for the request by calling `estimateFee()` function. Then, it create a temporary account inside of Prepayment contract with `sPrepayment.createTemporaryAccount(msg.sender)` call. In the next step, we request for random words by `requestRandomWords` function. The function has several validation steps, therefore we included requesting for random words before depositing the required fee to the account (`sPrepayment.depositTemporary{value: fee}(accId)`). If the amount of $KLAY passed by `msg.value` to the `requestRandomWords` is larger than required fee, the remaining amount is sent back to  the `refundRecipient` address. Finally, the function returns `requestId` that is generated by the internal `requestRandomWords()` call.
