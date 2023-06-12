@@ -33,6 +33,19 @@ orakl-cli listener insert \
     --eventName NewRound
 ```
 
+### Reporter
+
+The **Orakl Network API** holds information about all reporters. The command below adds a single DATA\_FEED reporter to the Orakl Network state to report to `oracleAddress`. The chain parameter specifies a chain on which we expect to operate. Reporter is defined by an `address` and a `privateKey` parameters.
+
+```sh
+orakl-cli reporter insert \
+  --service DATA_FEED \
+  --chain ${chain} \
+  --address  ${address} \
+  --privateKey ${privateKey} \
+  --oracleAddress ${oracleAddress}
+```
+
 ### Adapter & Aggregator
 
 ```sh
@@ -52,8 +65,6 @@ Before we launch the **Orakl Network Data Feed**, we must specify [several envir
 * `CHAIN`
 * `PROVIDER_URL`
 * `ORAKL_NETWORK_API_URL`
-* `PUBLIC_KEY`
-* `PRIVATE_KEY`
 * `LOG_LEVEL`
 * `LOG_DIR`
 * `REDIS_HOST`&#x20;
@@ -69,8 +80,6 @@ The **Orakl Network Data Feed** is implemented in Node.js which uses `NODE_ENV` 
 `PROVIDER_URL` defines an URL string representing a JSON-RPC endpoint that listener, worker, and reporter communicate through.
 
 `ORAKL_NETWORK_API_URL` corresponds to url where the **Orakl Network API** is running. The **Orakl Network API** interface is used to access Orakl Network state such as listener, worker, and reporter configuration.
-
-`PUBLIC_KEY` and `PRIVATE_KEY` environment variables are necessary for reporter to fulfill incoming request.
 
 Setting a level of logs emitted by a running instance is set through `LOG_LEVEL` environment variable, and can be one of the following: `error`, `warning`, `info`, `debug` and `trace`, ordered from the most restrictive to the least. By selecting any of the available options you subscribe to the specified level and all levels with lower restrictiveness.
 
