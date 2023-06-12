@@ -20,13 +20,13 @@ To list all serviced registered in the Orakl Network state, run the command belo
 orakl-cli service list
 ```
 
-The example output after listing all services can be seen in the listing below. In this case, there are three services: `VRF`, `Aggregator` and `RequestResponse`.
+The example output after listing all services can be seen in the listing below. In this case, there are three services: `VRF`, `DATA_FEED` and `REQUEST_RESPONSE`.
 
 ```json
 [
   { id: 1, name: 'VRF' },
-  { id: 2, name: 'Aggregator' },
-  { id: 3, name: 'RequestResponse' }
+  { id: 2, name: 'DATA_FEED' },
+  { id: 3, name: 'REQUEST_RESPONSE' }
 ]
 ```
 
