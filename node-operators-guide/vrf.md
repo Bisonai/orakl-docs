@@ -22,6 +22,19 @@ orakl-cli listener insert \
     --eventName RandomWordsRequested
 ```
 
+### Reporter
+
+The **Orakl Network API** holds information about all reporters. The command below adds a single VRF reporter to the Orakl Network state to report to `oracleAddress`. The chain parameter specifies a chain on which we expect to operate. Reporter is defined by an `address` and a `privateKey` parameters.
+
+```sh
+orakl-cli reporter insert \
+  --service VRF \
+  --chain ${chain} \
+  --address  ${address} \
+  --privateKey ${privateKey} \
+  --oracleAddress ${oracleAddress}
+```
+
 ### VRF Keys
 
 To be able to run VRF as a node operator, one must have registered VRF keys in [`VRFCoordinator`](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/VRFCoordinator.sol), and VRF keys has to be in Orakl Network state as well. VRF worker will load them from the **Orakl Network API** when it is launched.
