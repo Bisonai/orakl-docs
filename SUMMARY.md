@@ -26,7 +26,7 @@
 * [Orakl Network Request-Response](node-operators-guide/request-response.md)
 * [Orakl Network Data Feed](node-operators-guide/data-feed.md)
 * [Orakl Network Delegator](node-operators-guide/delegator.md)
-* [Installation With Helm Chart](node-operators-guide/orakl-network-helmchart.md)
+* [Helm Chart Infra Setup](node-operators-guide/orakl-network-helmchart.md)
 
 ## Other Resources
 

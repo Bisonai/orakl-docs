@@ -25,3 +25,4 @@ Off-chain part is split to several auxiliary micro services, and the main oracle
 * [Orakl Network Request-Response](request-response.md)
 * [Orakl Network Data Feed](data-feed.md)
 * [Orakl Network Delegator](delegator.md)
+* [Helm Chart Infra Setup](orakl-network-helmchart.md)

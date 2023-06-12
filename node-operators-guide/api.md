@@ -12,12 +12,15 @@ Before we launch the **Orakl Network API**, we must specify [few environment var
 
 * `DATABASE_URL`
 * `APP_PORT`
+* `ENCRYPT_PASSWORD`
 
 `DATABASE_URL` represents a [connection string](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING) to a database that will hold the Orakl Network state.
 
 > The format of `DATABASE_URL` should be `postgresql://[userspec@][hostspec][/dbname][?paramspec]`. An example string can look as follows `postgresql://bisonai@localhost:5432/orakl?schema=public.`&#x20;
 
 `APP_PORT` represents a port on which the **Orakl Network API** will be running. This port will be necessary when we connect to **Orakl Network API** from other services.
+
+`ENCRYPT_PASSWORD` is an encryption key used for encryption and decryption of private keys inserted to Orakl Network API.
 
 ## Launch
 
