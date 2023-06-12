@@ -62,8 +62,6 @@ Before we launch the **Orakl Network VRF**, we must specify [several environment
 * `CHAIN`
 * `PROVIDER_URL`
 * `ORAKL_NETWORK_API_URL`
-* `PUBLIC_KEY`
-* `PRIVATE_KEY`
 * `LOG_LEVEL`
 * `LOG_DIR`
 * `REDIS_HOST`
@@ -79,8 +77,6 @@ The **Orakl Network VRF** is implemented in Node.js which uses `NODE_ENV` enviro
 `PROVIDER_URL` defines an URL string representing a JSON-RPC endpoint that listener and reporter communicate through.
 
 `ORAKL_NETWORK_API_URL` corresponds to url where the **Orakl Network API** is running. The **Orakl Network API** interface is used to access Orakl Network state such as listener and VRF key configuration.
-
-`PUBLIC_KEY` and `PRIVATE_KEY` environment variables are necessary for reporter to fulfill incoming request.
 
 Setting a level of logs emitted by a running instance is set through `LOG_LEVEL` environment variable, and can be one of the following: `error`, `warning`, `info`, `debug` and `trace`, ordered from the most restrictive to the least. By selecting any of the available options you subscribe to the specified level and all levels with lower restrictiveness.
 
