@@ -4,7 +4,7 @@ description: Continuous stream of off-chain data to your smart contract
 
 # Data Feed
 
-A detailed example of how to use Orakl Network Data Feed can be found at example repository [`data-feed-consumer`](https://github.com/Bisonai/data-feed-consumer).
+A detailed example of how to use **Orakl Network Data Feed** can be found at example repository [`data-feed-consumer`](https://github.com/Bisonai/data-feed-consumer).
 
 ## What is Data Feed?
 
@@ -21,8 +21,8 @@ The Orakl Data Feed includes various data feeds that can be used free of charge.
 
 ### Supported Data Feeds on Baobab
 
-| Data Feed  | Aggregator                                  | AggregatorProxy                             | Heartbeat (ms) |
-|------------|---------------------------------------------|---------------------------------------------|----------------|
+| Data Feed  | Aggregator                                                                                                                      | AggregatorProxy                                                                                                                 | Heartbeat (ms) |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | -------------- |
 | BTC-USDT   | [0xE747418f2fe0F5794c5105f718b59b283E1B5e07](https://baobab.klaytnfinder.io/account/0xE747418f2fe0F5794c5105f718b59b283E1B5e07) | [0x4b0687ce6eC3Fe6c019467c744D0C563643BdFa4](https://baobab.klaytnfinder.io/account/0x4b0687ce6eC3Fe6c019467c744D0C563643BdFa4) | 15,000         |
 | ETH-USDT   | [0xf1AF997ffA9b43CcA41078d74C3F897DB998e9bd](https://baobab.klaytnfinder.io/account/0xf1AF997ffA9b43CcA41078d74C3F897DB998e9bd) | [0xAEc43Fc8D4684b6A6577c3B18A1c1c6d3D55C28E](https://baobab.klaytnfinder.io/account/0xAEc43Fc8D4684b6A6577c3B18A1c1c6d3D55C28E) | 15,000         |
 | KLAY-USDT  | [0xf0d6Ccdd18B8A7108b901af872021109C27095bA](https://baobab.klaytnfinder.io/account/0xf0d6Ccdd18B8A7108b901af872021109C27095bA) | [0xC874f389A3F49C5331490145f77c4eFE202d72E1](https://baobab.klaytnfinder.io/account/0xC874f389A3F49C5331490145f77c4eFE202d72E1) | 15,000         |
@@ -54,14 +54,15 @@ The section is split into following topics:
 
 ### Initialization
 
-The access to data feed is provided through the `AggregatorProxy` address corresponding to a data feed of your choice, and [`AggregatorInterface`](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/interfaces/AggregatorInterface.sol) from [`@bisonai/orakl-contracts`](https://www.npmjs.com/package/@bisonai/orakl-contracts).
+The access to data feed is provided through the `AggregatorProxy` address corresponding to a data feed of your choice, and [`IAggregator`](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/interfaces/IAggregator.sol) from [`@bisonai/orakl-contracts`](https://www.npmjs.com/package/@bisonai/orakl-contracts).
 
 ```solidity
-import {AggregatorInterface} from "@bisonai/orakl-contracts/src/v0.1/interfaces/AggregatorInterface.sol";
+import { IAggregator } from "@bisonai/orakl-contracts/src/v0.1/interfaces/IAggregator.sol";
+
 contract DataFeedConsumer {
-    AggregatorInterface internal dataFeed;
+    IAggregator internal dataFeed;
     constructor(address aggregatorProxy) {
-        dataFeed = AggregatorInterface(aggregatorProxy);
+        dataFeed = IAggregator(aggregatorProxy);
     }
 }
 ```
@@ -123,7 +124,7 @@ address currentAggregator = dataFeed.aggregator()
 
 ## Relation between `AggregatorProxy` and `Aggregator`
 
-When deploying an`AggregatorProxy` , `Aggregator`'s address has to be specified to create a connection between contracts. Consumer can then requests data through `latestRoundData` or `getRoundData` functions, and data will be fetched from `Aggregator` that is represented by the `aggregatorAddress`.
+When deploying an`AggregatorProxy` , `Aggregator`'s address has to be specified to create a connection between the contracts. Consumer can then request data through `latestRoundData` or `getRoundData` functions, and data will be fetched from `Aggregator` that is represented by the `aggregatorAddress`.
 
 ```solidity
 constructor(address aggregatorAddress) {
@@ -137,20 +138,20 @@ At times, it might be necessary to update the address of `Aggregator.` If the `A
 
 ```solidity
  function proposeAggregator(address aggregatorAddress) external onlyOwner {
-     s_proposedAggregator = AggregatorProxyInterface(aggregatorAddress);
-     emit AggregatorProposed(address(s_currentPhase.aggregator), aggregatorAddress);
+     sProposedAggregator = AggregatorProxyInterface(aggregatorAddress);
+     emit AggregatorProposed(address(sCurrentPhase.aggregator), aggregatorAddress);
  }
 ```
 
 After the new `Aggregator` is proposed, one can query a new data feed through a special functions: `proposedLatestRoundData` and `proposedGetRoundData`. These functions are useful for testing a new data feed, before accepting the new proposed `Aggregator`.
 
-The function `confirmAggregator` is used to finalize the transition to a new proposed `Aggregator`, and can be executed only with account that has `onlyOwner` privilege. New aggregator is finalized through `setAggregator` (called also inside of `constructor` of `AggregatorProxy`). Finally, the new aggregator is announced through emitted event.
+The function `confirmAggregator` is used to finalize the transition to the new proposed `Aggregator`, and can be executed only with account that has `onlyOwner` privilege. New aggregator is finalized through `setAggregator` (called also inside of `constructor` of `AggregatorProxy`). Finally, the new aggregator is announced through emitted event.
 
 ```solidity
 function confirmAggregator(address aggregatorAddress) external onlyOwner {
-    require(aggregatorAddress == address(s_proposedAggregator), "Invalid proposed aggregator");
-    address previousAggregator = address(s_currentPhase.aggregator);
-    delete s_proposedAggregator;
+    require(aggregatorAddress == address(sProposedAggregator), "Invalid proposed aggregator");
+    address previousAggregator = address(sCurrentPhase.aggregator);
+    delete sProposedAggregator;
     setAggregator(aggregatorAddress);
     emit AggregatorConfirmed(previousAggregator, aggregatorAddress);
 }
