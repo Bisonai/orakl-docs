@@ -44,14 +44,14 @@ The example output of `listener list` command is displayed below. It includes th
     id: '2',
     address: '0xa513E6E4b8f2a923D98304ec87F64353C4D5C853',
     eventName: 'NewRound',
-    service: 'Aggregator',
+    service: 'DATA_FEED',
     chain: 'baobab'
   },
   {
     id: '3',
     address: '0x45778c29A34bA00427620b937733490363839d8C',
     eventName: 'DataRequested',
-    service: 'RequestResponse',
+    service: 'REQUEST_RESPONSE',
     chain: 'baobab'
   }
 ]
