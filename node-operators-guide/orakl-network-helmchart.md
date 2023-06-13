@@ -1,11 +1,11 @@
-# Installation With Helm Chart
+# Helm Chart Infra Setup
 
 ## Description
 
 This section describes how to install Orakl Network Services through the Helm Chart. This document uses helm chart to deploy in cloud (AWS, GCP) environment.
 
 * Kubernetes
-* Postgresql
+* PostgreSQL
 * Redis
 * Persistent Volumes
 

@@ -14,6 +14,7 @@ The **Orakl Network CLI** is a tool to configure and manage the **Orakl Network*
 * [Aggregator](aggregator.md)
 * [Reporter](reporter.md)
 * [Fetcher](fetcher.md)
+* [Delegator](delegator.md)
 
 ### Installation
 

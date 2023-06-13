@@ -35,7 +35,7 @@ orakl-cli listener insert \
 
 ### Reporter
 
-The **Orakl Network API** holds information about all reporters. The command below adds a single DATA\_FEED reporter to the Orakl Network state to report to `oracleAddress`. The chain parameter specifies a chain on which we expect to operate. Reporter is defined by an `address` and a `privateKey` parameters.
+The **Orakl Network API** holds information about all reporters. The command below adds a single Data  Feed reporter to the Orakl Network state to report to `oracleAddress`. The chain parameter specifies a chain on which we expect to operate. Reporter is defined by an `address` and a `privateKey` parameters.
 
 ```sh
 orakl-cli reporter insert \
