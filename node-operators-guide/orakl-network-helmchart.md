@@ -4,10 +4,10 @@
 
 This section describes how to install Orakl Network Services through the Helm Chart. This document uses helm chart to deploy in cloud (AWS, GCP) environment.
 
-* Kubernetes
-* PostgreSQL
-* Redis
-* Persistent Volumes
++ Kubernetes
++ Postgresql (V.14)
++ Redis (latest)
++ Persistent Volumes
 
 ## Installation
 
@@ -76,26 +76,11 @@ helm install fetcher -n orakl orakl/orakl-fetcher \
     --set "global.config.ORAKL_NETWORK_API_URL=http://orakl-api.orakl.svc.cluster.local:3030/api/v1" 
 ```
 
-* `ORAKL_NETWORK_API_URL`: This is the address to communicate with the Pod you installed in step 03. It uses the usual Kubernetes domain for communication, which is `http://{api pod's service name}.{namespace}.svc.cluster.local:3030/api/v1` So if you installed in a namespace other than the orakl namespace, the address of the API server will need to be changed, for example, if the namespace is default, it will be `http://orakl-api.default.svc.cluster.local:3030/api/v1`
-* `REDIS_HOST`, `REDIS_PORT`: You can use a fresh deployment of Redis in Kubernetes, or you can use your own Redis if you have one
++ `ORAKL_NETWORK_API_URL`: This is the address to communicate with the Pod you installed in step 03. It uses the usual Kubernetes domain for communication, which is `http://{api pod's service name}.{namespace}.svc.cluster.local:3030/api/v1` So if you installed in a namespace other than the orakl namespace, the address of the API server will need to be changed, for example, if the namespace is default, it will be `http://orakl-api.default.svc.cluster.local:3030/api/v1`
 
-### 06. Delegator
++ `REDIS_HOST`, `REDIS_PORT`: You can use a fresh deployment of Redis in Kubernetes, or you can use your own Redis if you have one
 
-```bash
-helm install delegator -n orakl orakl/orakl-delegator  \
-      --set "global.config.DATABASE_URL=${your database url}" \
-      --set "global.config.APP_PORT=5050" \
-      --set "global.config.PROVIDER_URL=${your Json Rpc node address}"\
-      --set "global.config.DELEGATOR_FEEPAYER_PK=${your delegator account private key}"
-```
-
-* `DATABASE_URL` : postgresql://{user\_id}:{user\_password}@{host\_name}:{port}/{database\_name}
-* The database you create here should be a new database, different from the one you created in step 01. This database will be named `orakl_delegator`
-* `PROVIDER_URL` : The JSON RPC address of the node to use ex) https://api.baobab.klaytn.net:8651
-* `DELEGATOR_FEEPAYER_PK` : If you don't have a balance in the account you need to report to, you'll need to pay through a payee account. You'll need to enter the `private key` of the payoff account.
-
-### 07. CLI
-
+### 06. Cli
 ```bash
 helm install cli -n orakl orakl/orakl-cli \
     --set "global.config.ORAKL_NETWORK_API_URL=http://orakl-api.orakl.svc.cluster.local:3030/api/v1" \
@@ -103,20 +88,23 @@ helm install cli -n orakl orakl/orakl-cli \
     --set "global.config.ORAKL_NETWORK_DELEGATOR_URL=http://orakl-delegator.orakl.svc.cluster.local:5050/api/v1" 
 ```
 
-* `ORAKL_NETWORK_API_URL`, `ORAKL_NETWORK_FETCHER_URL`, `ORAKL_NETWORK_DELEGATOR_URL` : These 3 URLs are the same convention we used to deploy the fetcher earlier, just make sure to include the service name and namespace.
++ `ORAKL_NETWORK_API_URL`, `ORAKL_NETWORK_FETCHER_URL` : These 2 URLs are the same convention we used to deploy the fetcher earlier, just make sure to include the service name and namespace.
++ 
++ `ORAKL_NETWORK_DELEGATOR_URL` : This URL will be available soon. The parts related to Delegator are in the process of being migrated.
 
-### 08. Basic Configuration
 
-*   list all pods in orakl namespace
+### 07. Basic Configuration
 
-    ```bash
-      kubectl get pods -n orakl 
-    ```
-*   access to cli pod
+If you look at the aggregator Baobab at https://config.orakl.network/, there are 12 contracts and each contract has an address. There will be more later. We have to have 12 accounts to whitelist in this contract if you want to activate reporters account.
 
-    ```bash
-      kubectl exec -it cli-7b8df47f-bdlzv -n orakl -- /bin/bash 
-    ```
++ list all pods in orakl namespace
+  ```bash 
+    kubectl get pods -n orakl 
+  ```
++ access to cli pod
+  ```bash
+    kubectl exec -it cli-7b8df47f-bdlzv -n orakl -- /bin/bash 
+  ```
 
     You can set the default settings through the [orakl cli part](https://docs.orakl.network/docs/node-operators-guide/cli). Here we'll show you an example.
 *   network setting
@@ -251,7 +239,7 @@ helm install cli -n orakl orakl/orakl-cli \
       yarn cli fetcher start --id ${aggregatorHash} --chain ${chainName}
     ```
 
-### 09. Data Feed (aggregator)
+### 08. Datafeed (aggregator)
 
 ```bash
   helm install aggregator -n orakl orakl/orakl-aggregator \
