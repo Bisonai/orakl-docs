@@ -95,7 +95,7 @@ helm install cli -n orakl orakl/orakl-cli \
 
 ### 07. Basic Configuration
 
-If you look at the aggregator Baobab at https://config.orakl.network/, there are 12 contracts and each contract has an address. There will be more later. We have to have 12 accounts to whitelist in this contract if you want to activate reporters account. 
+If you look at the aggregator Baobab at https://config.orakl.network/, there are 12 contracts and each contract has an address. There will be more later. We have to have 12 accounts to whitelist in this contract if you want to activate reporters account. To activate your account, kindly reach out to us at business@orakl.network.
 
 + list all pods in orakl namespace
   ```bash 
