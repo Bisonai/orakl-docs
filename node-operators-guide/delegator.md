@@ -129,8 +129,6 @@ Before we launch the **Orakl Network Delegator**, we must specify [few environme
 * `DATABASE_URL`
 * `PROVIDER_URL`
 * `APP_PORT`
-* `DELEGATOR_FEEPAYER_PK`
-* `DELEGATOR_REPORTER_PK`
 
 `DATABASE_URL` represents a [connection string](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING) to a database that will hold the **Orakl Network** state.
 
@@ -146,12 +144,16 @@ Before we launch the **Orakl Network Delegator**, we must specify [few environme
 
 ## Launch
 
-To launch the **Orakl Network Delegator** from source code in the production, one must first build the service, and then it can be launched.
+Before launching the **Orakl Network Delegator**, one must add delegator's private key to `privateKey` column inside of `fee_payers` table. This private key will be used to sign [delegated fee transactions](https://docs.klaytn.foundation/content/klaytn/design/transactions/fee-delegation) as a fee payer.
+
+To launch the Orakl Network Delegator from source code in the production, first build the service, and then launch it.
 
 ```sh
 yarn build
 yarn start:prod
 ```
+
+Once the Orakl Network Delegator is launched, we must load the `privateKey` to be able able to sign transactions. `privateKey` can be loaded by calling `/api/v1/sign/initialize` endpoint.
 
 ## Architecture
 
