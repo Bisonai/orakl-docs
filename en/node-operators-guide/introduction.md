@@ -19,10 +19,10 @@ On-chain implementation is located under [`contracts` directory](https://github.
 Off-chain part is split to several auxiliary micro services, and the main oracle solution:
 
 * [Orakl Network API](api.md)
-* [Orakl Network CLI](broken-reference)
-* [Orakl Network Fetcher](orakl-network-fetcher.md)
+* [Orakl Network CLI](broken-reference/)
+* [Orakl Network Fetcher](fetcher.md)
 * [Orakl Network VRF](vrf.md)
 * [Orakl Network Request-Response](request-response.md)
 * [Orakl Network Data Feed](data-feed.md)
 * [Orakl Network Delegator](delegator.md)
-* [Helm Chart Infra Setup](orakl-network-helmchart.md)
+* [Helm Chart Infra Setup](helmchart.md)

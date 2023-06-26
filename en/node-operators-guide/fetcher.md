@@ -2,7 +2,7 @@
 
 ## Description
 
-The Orakl Network Fetcher is an auxiliary service for Data Feed solution to collect the most up-to-date data from various sources.&#x20;
+The Orakl Network Fetcher is an auxiliary service for Data Feed solution to collect the most up-to-date data from various sources.
 
 The code is located under [`fetcher` directory](https://github.com/Bisonai/orakl/tree/master/fetcher).
 
@@ -12,7 +12,7 @@ The code is located under [`fetcher` directory](https://github.com/Bisonai/orakl
 
 The **Orakl Network Fetcher** and the [**Orakl Network Data Feed**](data-feed.md) are configured with **adapter** and **aggregator** abstractions. Every data feed collected by the **Orakl Network Fetcher** and then submitted to on-chain by the **Orakl Network Data Feed** is defined with an adapter-aggregator pair. Adapters and aggregators are defined in JSON format. You can find a detailed description of them below.
 
-An **adapter** is a set of data sources (`feeds`) and post-processing rules (`reducers`) that are applied on data received from `feeds`. Additionally, every adapter has a `name`, `decimals` and an `adapterHash`. `decimals` property represents a number of decimal points in which the post processed values are  encoded. The values itself are in an `integer` format and decimal points are stored separately. Lastly, `adapterHash` is computed from all properties of adapter except the `adapterHash` itself. It was defined for safety reasons so nobody can accidentally modify the adapter without anybody noticing.
+An **adapter** is a set of data sources (`feeds`) and post-processing rules (`reducers`) that are applied on data received from `feeds`. Additionally, every adapter has a `name`, `decimals` and an `adapterHash`. `decimals` property represents a number of decimal points in which the post processed values are encoded. The values itself are in an `integer` format and decimal points are stored separately. Lastly, `adapterHash` is computed from all properties of adapter except the `adapterHash` itself. It was defined for safety reasons so nobody can accidentally modify the adapter without anybody noticing.
 
 ```json
 {
@@ -118,7 +118,7 @@ Before we launch the **Orakl Network Fetcher**, we must specify [several environ
 * `ORAKL_NETWORK_API_URL`
 * `APP_PORT`
 
-`REDIS_HOST` and `REDIS_PORT` represent host and port of [Redis](https://redis.io/) to which the **Orakl Network Fetcher** connect to. The default values are `localhost` and `6379`, respectively. Redis is used indirectly through [BullMQ](https://docs.bullmq.io/) to collect data in regular predefined intervals.&#x20;
+`REDIS_HOST` and `REDIS_PORT` represent host and port of [Redis](https://redis.io/) to which the **Orakl Network Fetcher** connect to. The default values are `localhost` and `6379`, respectively. Redis is used indirectly through [BullMQ](https://docs.bullmq.io/) to collect data in regular predefined intervals.
 
 `ORAKL_NETWORK_API_URL` corresponds to url where the **Orakl Network API** is running. Collected and aggregated data by the **Orakl Network Fetcher** will be send to [PostgreSQL](https://www.postgresql.org/) through the **Orakl Network API** interface.
 
@@ -138,7 +138,7 @@ After the **Orakl Network Fetcher** is launched, all active aggregators will sta
 * collect data for each data source defined in adapter feeds of activated aggregator, and
 * compute and store their aggregate.
 
-The collected and computed data are sent through the **Orakl Network API** to PostgreSQL. Aggregators can be [actived](orakl-network-fetcher.md#activate-aggregator) and [deactivated](orakl-network-fetcher.md#deactivate-aggregator) while the **Orakl Network Fetcher** is running.
+The collected and computed data are sent through the **Orakl Network API** to PostgreSQL. Aggregators can be [actived](fetcher.md#activate-aggregator) and [deactivated](fetcher.md#deactivate-aggregator) while the **Orakl Network Fetcher** is running.
 
 ## Architecture
 
