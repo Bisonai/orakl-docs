@@ -147,6 +147,7 @@ This function is executed from `RequestResponseCoordinator` contract defined dur
 
 * [Initialization with Temporary Account](request-response.md#initialization-with-temporary-account)
 * [Request data with Temporary Account (consumer)](request-response.md#request-data-with-temporary-account-consumer)
+* [Cancel request and receive refund (consumer)](request-response.md#cancel-request-and-receive-refund-consumer)
 * [Request data with Temporary Account (coordinator)](request-response.md#request-data-with-temporary-account-coordinator)
 
 User smart contract that wants to utilize Orakl Network Request-Response has to inherit from [one of the following abstract smart contracts](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/RequestResponseConsumerFulfill.sol) that define what data type we expect as a response.
@@ -217,6 +218,26 @@ function requestData(
 This function calls the `requestData()` function defined in `COORDINATOR` contract, and passes `req` , `callbackGasLimit`, `numSubmission` and `refundRecipient` as arguments. The payment for service is sent through `msg.value` to the `requestData()` in `COORDINATOR` contract. If the payment is larger than expected, the exceeding amount is returned to the `refundRecipient` address. Eventually, it generates a data request.
 
 In the section below, you can find more detailed explanation of how data request using temporary account works.
+
+### Cancel request and receive refund (consumer)
+
+In the previous section, we explained that $KLAY is sent together with request for data to `RequestResponseCoordinator` which passes the $KLAY deposit to `Prepayment` contract. The $KLAY payment stays in the `Prepayment` contract until the request is fulfilled.
+
+In rare cases, it is possible that request cannot be fulfilled, and consumer does not receive requested data. To refund deposited $KLAY in such cases, one must first cancel request by calling `cancelRequest` inside of `RequestResponseCoordinator` and then withdraw $KLAY (`withdrawTemporary`) from temporary account inside of `Prepayment` contract. In both cases, consumer smart contract has to be the sender (`msg.sender`). Our consumer smart contract therefore has to include such auxiliary function(s) to make appropriate calls. If we do not add such functions to consumer contract, it will not be possible to cancel request and withdraw funds deposited to temporary account. Deposited funds will be then forever locked inside of `Prepayment` contract.
+
+The code listing below is an example of function inside of consumer contract to cancel and withdraw funds from temporary account.
+
+```solidity
+function cancelAndWithdraw(
+    uint256 requestId,
+    uint64 accId,
+    address refundRecipient
+) external onlyOwner {
+    COORDINATOR.cancelRequest(requestId);
+    address prepaymentAddress = COORDINATOR.getPrepaymentAddress();
+    IPrepayment(prepaymentAddress).withdrawTemporary(accId, payable(refundRecipient));
+}
+```
 
 ### Request data with Temporary Account (coordinator)
 

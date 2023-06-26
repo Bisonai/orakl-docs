@@ -123,6 +123,7 @@ This function is executed from previously defined `COORDINATOR` contract. After 
 
 * [Initialization with Temporary Account](vrf.md#initialization-with-temporary-account)
 * [Request random words with Temporary Account (consumer)](vrf.md#request-random-words-with-temporary-account-consumer)
+* [Cancel request and receive refund (consumer)](vrf.md#cancel-request-and-receive-refund-consumer)
 * [Request random words with Temporary Account (coordinator)](vrf.md#request-random-words-with-temporary-account-coordinator)
 
 User smart contract that wants to use Orakl Network VRF has to inherit from [`VRFConsumerBase` abstract smart contract](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/VRFConsumerBase.sol).
@@ -138,7 +139,7 @@ contract VRFConsumer is VRFConsumerBase {
 
 There is no difference in initializing VRF user contract that request for VRF with **Permanent Account** or **Temporary Account**.
 
-VRF smart contract ([`VRFCoordinator`](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/VRFCoordinator.sol)) is used both for requesting random words and for request fulfillments as well. We recommend you to bond `IVRFCoordinator` interface with `VRFCoordinator` address passes as a constructor parameter, and use it for random words requests (`requestRandomWords`).
+VRF smart contract ([`VRFCoordinator`](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/VRFCoordinator.sol)) is used both for requesting random words and for request fulfillments as well. We recommend you to bond `IVRFCoordinator` interface with `VRFCoordinator` address passed as a constructor parameter, and use it for random words requests (`requestRandomWords`).
 
 ```solidity
 import "@bisonai/orakl-contracts/src/v0.1/VRFConsumerBase.sol";
@@ -181,6 +182,25 @@ function requestRandomWords(
 This function calls the `requestRandomWords()` function defined in `COORDINATOR` contract, and passes `keyHash`, `callbackGasLimit`, `numWords` and `refundRecipient` as arguments. The payment for service is sent through `msg.value` to the `requestRandomWords()` in `COORDINATOR` contract. If the payment is larger than expected payment, exceeding payment is returned to the `refundRecipient` address. Eventually, it generates a request for random words.
 
 In the section below, you can find more detailed explanation of how request for random words using temporary account works.
+
+### Cancel request and receive refund (consumer)
+
+In the previous section, we explained that $KLAY is sent together with request for VRF to `VRFCoordinator` which passes the $KLAY deposit to `Prepayment` contract. The $KLAY payment stays in the `Prepayment` contract until the request is fulfilled.
+
+In rare cases, it is possible that request cannot be fulfilled, and consumer does not receive requested random words. To refund deposited $KLAY in such cases, one must first cancel request by calling `cancelRequest` inside of `VRFCoordinator` and then withdraw $KLAY (`withdrawTemporary`) from temporary account inside of `Prepayment` contract. In both cases, consumer smart contract has to be the sender (`msg.sender`). Our consumer smart contract therefore has to include such auxiliary function(s) to make appropriate calls. If we do not add such functions to consumer contract, it will not be possible to cancel request and withdraw funds deposited to temporary account. Deposited funds will be then forever locked inside of `Prepayment` contract.
+
+The code listing below is an example of function inside of consumer contract to cancel and withdraw funds from temporary account.
+
+<pre class="language-solidity"><code class="lang-solidity"><strong>function cancelAndWithdraw(
+</strong>    uint256 requestId,
+    uint64 accId,
+    address refundRecipient
+) external onlyOwner {
+    COORDINATOR.cancelRequest(requestId);
+    address prepaymentAddress = COORDINATOR.getPrepaymentAddress();
+    IPrepayment(prepaymentAddress).withdrawTemporary(accId, payable(refundRecipient));
+}
+</code></pre>
 
 ### Request random words with Temporary Account (coordinator)
 
