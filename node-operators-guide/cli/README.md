@@ -68,5 +68,18 @@ To fully configure the **Orakl Network CLI**, setup the following environment va
 
 * `ORAKL_NETWORK_API_URL`
 * `ORAKL_NETWORK_FETCHER_URL`
+* `ORAKL_NETWORK_DELEGATOR_URL`
+* `LISTENER_SERVICE_HOST`
+* `LISTENER_SERVICE_PORT`
+* `WORKER_SERVICE_HOST`
+* `WORKER_SERVICE_PORT`
+* `REPORTER_SERVICE_HOST`
+* `REPORTER_SERVICE_PORT`
 
-`ORAKL_NETWORK_API_URL` and `ORAKL_NETWORK_FETCHER_URL` environment variables represent URLs for communication with the **Orakl Network API** and the **Orakl Network Fetcher**, respectively.
+`ORAKL_NETWORK_API_URL` , `ORAKL_NETWORK_FETCHER_URL` and `ORAKL_NETWORK_DELEGATOR_URL` environment variables represent URLs for communication with the **Orakl Network API**, **Orakl Network Fetcher** and **Orakl Network Delegator**, respectively.
+
+The **Orakl Network CLI** is able to communicate with a specific listener, worker and reporter through **Orakl Network Watchman**. To enable this feature, the **Orakl Network CLI** has to setup environment variables for each service as shown below.
+
+* Listener (`LISTENER_SERVICE_HOST`, `LISTENER_SERVICE_PORT)`
+* Worker (`WORKER_SERVICE_HOST`, `WORKER_SERVICE_PORT`)
+* Reporter (`REPORTER_SERVICE_HOST`, `REPORTER_SERVICE_PORT)`
