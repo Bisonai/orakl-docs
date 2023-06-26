@@ -2,7 +2,7 @@
 
 ## Description
 
-Orakl Network Fetcher는 Data Feed 솔루션을 위한 보조 서비스로, 다양한 소스에서 최신 데이터를 수집합니다.&#x20;
+Orakl Network Fetcher는 Data Feed 솔루션을 위한 보조 서비스로, 다양한 소스에서 최신 데이터를 수집합니다.
 
 해당 코드는 [`fetcher` 디렉토리](https://github.com/Bisonai/orakl/tree/master/fetcher)에 위치해 있습니다.
 
@@ -12,8 +12,7 @@ Orakl Network Fetcher는 Data Feed 솔루션을 위한 보조 서비스로, 다�
 
 **Orakl Network Fetcher** 와 [**Orakl Network Data Feed**](data-feed.md)는 **adapter** 와 **aggregator** 추상화로 구성됩니다. **Orakl Network Fetcher** 가 수집한 모든 데이터 피드는 adapter-aggregator 쌍으로 정의되며, 이후 **Orakl Network Data Feed** 가 해당 데이터를 on-chain에 제출합니다. Adapter와 Aggregator는 JSON 형식으로 정의됩니다. 아래에 자세한 설명을 찾으실 수 있습니다.
 
-**Adapter**는 데이터 소스(`feeds`)와 피드로부터 수신된 데이터에 적용되는 후 처리 규칙(`reducers`)의 집합입니다. 또한, 각 adapter에는 `이름` , `소수점 자리수(decimals)` 및 `어댑터 해시(adapterHash)` 가 있습니다. `decimals` 속성은 후 처리된 값이 인코딩된 소수점 자리수를 나타냅니다.
-값 자체는`integer` 형식으로 저장되며 소수점은 별도로 저장됩니다. 마지막으로, `adapterHash` 는 `adapterHash` 자체를 제외한 모든 속성으로부터 계산됩니다. 이는 어댑터를 누구도 알아차리지 못하게 무단으로 수정되는 것을 방지하기 위해 안전상의 이유로 정의되었습니다.
+**Adapter**는 데이터 소스(`feeds`)와 피드로부터 수신된 데이터에 적용되는 후 처리 규칙(`reducers`)의 집합입니다. 또한, 각 adapter에는 `이름` , `소수점 자리수(decimals)` 및 `어댑터 해시(adapterHash)` 가 있습니다. `decimals` 속성은 후 처리된 값이 인코딩된 소수점 자리수를 나타냅니다. 값 자체는`integer` 형식으로 저장되며 소수점은 별도로 저장됩니다. 마지막으로, `adapterHash` 는 `adapterHash` 자체를 제외한 모든 속성으로부터 계산됩니다. 이는 어댑터를 누구도 알아차리지 못하게 무단으로 수정되는 것을 방지하기 위해 안전상의 이유로 정의되었습니다.
 
 ```json
 {
@@ -112,12 +111,12 @@ orakl-cli fetcher stop \
 
 **Orakl Network Fetcher** 를 시작하기 전에 [여러 환경 변수](https://github.com/Bisonai/orakl/blob/master/fetcher/.env.example)를 지정해야 합니다.환경 변수는 자동으로 `.env` 파일에서 로드됩니다.
 
-- `REDIS_HOST`
-- `REDIS_PORT`
-- `ORAKL_NETWORK_API_URL`
-- `APP_PORT`
+* `REDIS_HOST`
+* `REDIS_PORT`
+* `ORAKL_NETWORK_API_URL`
+* `APP_PORT`
 
-`REDIS_HOST` 와 `REDIS_PORT`는 **Orakl Network Fetcher** 가 연결하는 [Redis](https://redis.io/)의 호스트와 포트를 나타냅니다. 기본 값은 각각 `localhost`와 `6379`입니다. Redis는 [BullMQ](https://docs.bullmq.io/)를 통해 정기적으로 미리 정의된 간격으로 데이터를 수집하는 데 사용됩니다.&#x20;
+`REDIS_HOST` 와 `REDIS_PORT`는 **Orakl Network Fetcher** 가 연결하는 [Redis](https://redis.io/)의 호스트와 포트를 나타냅니다. 기본 값은 각각 `localhost`와 `6379`입니다. Redis는 [BullMQ](https://docs.bullmq.io/)를 통해 정기적으로 미리 정의된 간격으로 데이터를 수집하는 데 사용됩니다.
 
 `ORAKL_NETWORK_API_URL`은 **Orakl Network API** 가 실행 중인 URL에 해당합니다. **Orakl Network Fetcher** 가 수집하고 집계한 데이터는 **Orakl Network API** 인터페이스를 통해 [PostgreSQL](https://www.postgresql.org/)로 전송됩니다.
 
@@ -134,10 +133,10 @@ yarn start:prod
 
 **Orakl Network Fetcher** 가 시작되면, 모든 활성화된 aggregator는 다음과 같은 작업을 수행합니다:
 
-- 활성화된 aggregator 어댑터 피드에 정의된 각 데이터 소스에서 데이터를 수집합니다.
-- 수집된 데이터를 계산하여 집계 결과를 저장합니다.
+* 활성화된 aggregator 어댑터 피드에 정의된 각 데이터 소스에서 데이터를 수집합니다.
+* 수집된 데이터를 계산하여 집계 결과를 저장합니다.
 
-수집된 데이터와 계산된 데이터는 **Orakl Network API** 를 통해 PostgreSQL로 전송됩니다. **Orakl Network Fetcher** 가 실행중일 때 aggregators를 [활성화](orakl-network-fetcher.md#activate-aggregator) 하거나 [비활성화](orakl-network-fetcher.md#deactivate-aggregator)할 수 있습니다.
+수집된 데이터와 계산된 데이터는 **Orakl Network API** 를 통해 PostgreSQL로 전송됩니다. **Orakl Network Fetcher** 가 실행중일 때 aggregators를 [활성화](fetcher.md#activate-aggregator) 하거나 [비활성화](fetcher.md#deactivate-aggregator)할 수 있습니다.
 
 ## Architecture
 

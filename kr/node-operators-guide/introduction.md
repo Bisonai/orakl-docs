@@ -6,9 +6,9 @@ description: Brief Description Of The Orakl Network For Node Operators
 
 Orakl Network는 온체인(on-chain) 및 오프체인(off-chain) 계산을 활용하여 다음과 같은 솔루션을 제공하는 [하이브리드 스마트 계약](https://blog.chain.link/hybrid-smart-contracts-explained/) 으로 구성된 서비스입니다:
 
-- [Verifiable Random Function (VRF)](../developers-guide/vrf.md)
-- [Request-Response](../developers-guide/request-response.md)
-- [Data Feed](../developers-guide/data-feed.md)
+* [Verifiable Random Function (VRF)](../developers-guide/vrf.md)
+* [Request-Response](../developers-guide/request-response.md)
+* [Data Feed](../developers-guide/data-feed.md)
 
 ## On-Chain Orakl Network
 
@@ -18,11 +18,11 @@ Orakl Network는 온체인(on-chain) 및 오프체인(off-chain) 계산을 활�
 
 오프체인 부분은 다양한 보조 마이크로 서비스와 주요 오라클 솔루션으로 이루어져 있습니다:
 
-- [Orakl Network API](api.md)
-- [Orakl Network CLI](broken-reference)
-- [Orakl Network Fetcher](orakl-network-fetcher.md)
-- [Orakl Network VRF](vrf.md)
-- [Orakl Network Request-Response](request-response.md)
-- [Orakl Network Data Feed](data-feed.md)
-- [Orakl Network Delegator](delegator.md)
-- [Helm Chart Infra Setup](orakl-network-helmchart.md)
+* [Orakl Network API](api.md)
+* [Orakl Network CLI](broken-reference/)
+* [Orakl Network Fetcher](fetcher.md)
+* [Orakl Network VRF](vrf.md)
+* [Orakl Network Request-Response](request-response.md)
+* [Orakl Network Data Feed](data-feed.md)
+* [Orakl Network Delegator](delegator.md)
+* [Helm Chart Infra Setup](helmchart.md)

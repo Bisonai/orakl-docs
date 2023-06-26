@@ -24,10 +24,10 @@
   * [Delegator](node-operators-guide/cli/delegator.md)
 * [Orakl Network VRF](node-operators-guide/vrf.md)
 * [Orakl Network Request-Response](node-operators-guide/request-response.md)
-* [Orakl Network Fetcher](node-operators-guide/orakl-network-fetcher.md)
+* [Orakl Network Fetcher](node-operators-guide/fetcher.md)
 * [Orakl Network Data Feed](node-operators-guide/data-feed.md)
 * [Orakl Network Delegator](node-operators-guide/delegator.md)
-* [Helm Chart Infra Setup](node-operators-guide/orakl-network-helmchart.md)
+* [Helm Chart Infra Setup](node-operators-guide/helmchart.md)
 
 ## Other Resources
 
