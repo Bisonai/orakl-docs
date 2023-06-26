@@ -1,6 +1,0 @@
----
-description: hihihi
----
-
-# Korean page
-
