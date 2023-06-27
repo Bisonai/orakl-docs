@@ -68,5 +68,18 @@ echo "alias orakl-cli='npx @bisonai/orakl-cli'" >> ~/.zshrc
 
 - `ORAKL_NETWORK_API_URL`
 - `ORAKL_NETWORK_FETCHER_URL`
+- `ORAKL_NETWORK_DELEGATOR_URL`
+- `LISTENER_SERVICE_HOST`
+- `LISTENER_SERVICE_PORT`
+- `WORKER_SERVICE_HOST`
+- `WORKER_SERVICE_PORT`
+- `REPORTER_SERVICE_HOST`
+- `REPORTER_SERVICE_PORT`
 
-`ORAKL_NETWORK_API_URL` 과 `ORAKL_NETWORK_FETCHER_URL` 환경 변수는 각각 **Orakl Network API** 와 **Orakl Network Fetcher** 와의 통신을 위한 URL을 나타냅니다.
+`ORAKL_NETWORK_API_URL` , `ORAKL_NETWORK_FETCHER_URL` 및 `ORAKL_NETWORK_DELEGATOR_URL` 환경 변수는 각각 **Orakl Network API**, **Orakl Network Fetcher** 및 **Orakl Network Delegator** 와의 통신을 위한 URL을 나타냅니다.
+
+**Orakl Network CLI** 는 **Orakl Network Watchman** 을 통해 특정 리스너, 워커 및 리포터와 통신할 수 있습니다. 이 기능을 활성화하기 위해서는 **Orakl Network CLI** 가 아래에 나와 있는 각 서비스를 위한 환경 변수를 설정해야 합니다.
+
+- Listener (`LISTENER_SERVICE_HOST`, `LISTENER_SERVICE_PORT)`
+- Worker (`WORKER_SERVICE_HOST`, `WORKER_SERVICE_PORT`)
+- Reporter (`REPORTER_SERVICE_HOST`, `REPORTER_SERVICE_PORT)`
