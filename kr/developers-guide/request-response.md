@@ -147,6 +147,7 @@ function fulfillDataRequest(
 
 - [Initialization with Temporary Account](request-response.md#initialization-with-temporary-account)
 - [Request data with Temporary Account (consumer)](request-response.md#request-data-with-temporary-account-consumer)
+- [Cancel request and receive refund (consumer)](request-response.md#cancel-request-and-receive-refund-consumer)
 - [Request data with Temporary Account (coordinator)](request-response.md#request-data-with-temporary-account-coordinator)
 
 Orakl Network Request-Response를 활용하려는 사용자 스마트 계약은 다음과 같은 [추상 스마트 계약 중 하나](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/RequestResponseConsumerFulfill.sol)를 상속해야 합니다. 이 추상 스마트 계약들은 우리가 응답으로 예상하는 데이터 유형을 정의합니다.
@@ -217,6 +218,26 @@ function requestData(
 이 함수는 `COORDINATOR` 계약에서 정의된 `requestData()` 함수를 호출하며, `req` , `callbackGasLimit`, `numSubmission` 및 `refundRecipient`를 인수로 전달합니다.서비스에 대한 지불은 `msg.value`를 통해 `COORDINATOR` 계약의 `requestData()로 전송됩니다. 지불이 예상 금액보다 큰 경우 초과된 지불은 `refundRecipient` 주소로 반환됩니다. 최종적으로 데이터 요청이 생성됩니다.
 
 아래 섹션에서는 임시 계정을 사용하여 데이터 요청하는 방법에 대한 보다 자세한 설명을 찾을 수 있습니다.
+
+### Cancel request and receive refund (consumer)
+
+이전 섹션에서는 $KLAY는 데이터 요청과 함께 `RequestResponseCoordinator` 에 전송되고, `RequestResponseCoordinator` 는 $KLAY 예치금을 `Prepayment` 컨트랙트에 전달하는 것을 설명했습니다. 요청이 완료될 때까지 $KLAY 지불액은 `Prepayment` 컨트랙트에 보관됩니다.
+
+드물게도, 요청이 충족되지 못하고 소비자가 원하는 데이터를 받지 못하는 경우가 발생할 수 있습니다. 이러한 경우 예치된 $KLAY를 환불하기 위해서는 먼저 `RequestResponseCoordinator` 내부에서 `cancelRequest` 를 호출하여 요청을 취소한 다음, `Prepayment` 컨트랙트 내의 임시 계정에서 $KLAY (`withdrawTemporary`) 인출해야 합니다. 양쪽 모두에서 소비자 스마트 컨트랙트가 호출자 (`msg.sender`)이어야 합니다. 따라서 소비자 스마트 컨트랙트에 이와 같은 보조 함수를 포함해야 적절한 호출을 수행할 수 있습니다.소비자 컨트랙트에 이러한 함수를 추가하지 않으면 요청을 취소하고 임시 계정에 예치된 자금을 인출하는 것이 불가능하며, 예치된 자금은 영구적으로 `Prepayment` 컨트랙트에 잠긴 채로 남게 됩니다
+
+다음은 소비자 컨트랙트 내에서 요청을 취소하고 임시 계정에서 자금을 인출하는 함수의 예시 코드입니다.
+
+```solidity
+function cancelAndWithdraw(
+    uint256 requestId,
+    uint64 accId,
+    address refundRecipient
+) external onlyOwner {
+    COORDINATOR.cancelRequest(requestId);
+    address prepaymentAddress = COORDINATOR.getPrepaymentAddress();
+    IPrepayment(prepaymentAddress).withdrawTemporary(accId, payable(refundRecipient));
+}
+```
 
 ### Request data with Temporary Account (coordinator)
 

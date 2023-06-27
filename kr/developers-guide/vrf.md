@@ -123,6 +123,7 @@ function fulfillRandomWords(
 
 - [Initialization with Temporary Account](vrf.md#initialization-with-temporary-account)
 - [Request random words with Temporary Account (consumer)](vrf.md#request-random-words-with-temporary-account-consumer)
+- [Cancel request and receive refund (consumer)](vrf.md#cancel-request-and-receive-refund-consumer)
 - [Request random words with Temporary Account (coordinator)](vrf.md#request-random-words-with-temporary-account-coordinator)
 
 Orakl Network VRF를 사용하려는 사용자 스마트 계약은 [`VRFConsumerBase` 추상 스마트 계약](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/VRFConsumerBase.sol)을 상속해야 합니다.
@@ -181,6 +182,25 @@ function requestRandomWords(
 이 함수는 `COORDINATOR` 계약에 정의된 `requestRandomWords()` 함수를 호출하며, `keyHash`, `callbackGasLimit`, `numWords` 및 `refundRecipient`를 인수로 전달합니다. 서비스에 대한 지불은 `msg.value`를 통해 `COORDINATOR` 계약의 `requestRandomWords()` 함수로 전송됩니다. 지불 금액이 예상 지불보다 큰 경우 초과 지불액은 `refundRecipient` 주소로 반환됩니다. 이를 통해 무작위 단어 요청이 생성됩니다.
 
 아래 섹션에서는 임시 계정을 사용하여 무작위 단어를 요청하는 방법에 대한 더 자세한 설명을 확인하실 수 있습니다.
+
+### Cancel request and receive refund (consumer)
+
+이전 섹션에서 설명한 대로, VRF 요청과 함께 $KLAY가 `VRFCoordinator` 에게 전송되고, `VRFCoordinator` 는 이를 `Prepayment` 컨트랙트로 전달합니다. $KLAY 지불은 요청이 이행될 때까지 `Prepayment` 컨트랙트에 보관됩니다.
+
+드물게도 요청이 이행되지 않을 수 있으며, 소비자는 요청한 난수를 받지 못할 수도 있습니다. 이러한 경우 예치된 $KLAY를 환불받으려면, 먼저 `VRFCoordinator` 내부에서 `cancelRequest` 를 호출하여 요청을 취소하고, 그런 다음 `Prepayment` 컨트랙트 내의 임시 계정에서 $KLAY (`withdrawTemporary`) 를 인출해야 합니다. 두 경우 모두, 소비자 스마트 컨트랙트가 호출자 (`msg.sender`)여야 합니다. 따라서 소비자 스마트 컨트랙트에 이와 같은 보조 함수를 포함해야 적절한 호출을 수행할 수 있습니다. 소비자 컨트랙트에 이러한 함수를 추가하지 않으면 요청을 취소하고 임시 계정에 예치된 자금을 인출하는 것이 불가능하며, 예치된 자금은 영구적으로 `Prepayment` 컨트랙트에 잠긴 채로 남게 됩니다
+
+다음은 소비자 컨트랙트 내에서 요청을 취소하고 임시 계정에서 자금을 인출하는 함수의 예시 코드입니다.
+
+<pre class="language-solidity"><code class="lang-solidity"><strong>function cancelAndWithdraw(
+</strong>    uint256 requestId,
+    uint64 accId,
+    address refundRecipient
+) external onlyOwner {
+    COORDINATOR.cancelRequest(requestId);
+    address prepaymentAddress = COORDINATOR.getPrepaymentAddress();
+    IPrepayment(prepaymentAddress).withdrawTemporary(accId, payable(refundRecipient));
+}
+</code></pre>
 
 ### Request random words with Temporary Account (coordinator)
 
