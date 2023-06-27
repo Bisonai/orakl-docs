@@ -19,7 +19,7 @@ Orakl Network는 온체인(on-chain) 및 오프체인(off-chain) 계산을 활�
 오프체인 부분은 다양한 보조 마이크로 서비스와 주요 오라클 솔루션으로 이루어져 있습니다:
 
 * [Orakl Network API](api.md)
-* [Orakl Network CLI](broken-reference/)
+* [Orakl Network CLI](cli/)
 * [Orakl Network Fetcher](fetcher.md)
 * [Orakl Network VRF](vrf.md)
 * [Orakl Network Request-Response](request-response.md)
