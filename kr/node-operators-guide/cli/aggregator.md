@@ -46,7 +46,7 @@ orakl-cli aggregator list \
 
 `aggregator list` command로 표시되는 Aggregator들은 **Orakl Network** 의 영구 저장소에 저장됩니다. **Orakl Network Data Feed Worker** 가 실행될 때, 모든 Aggregator들은 일시적인 저장소에 복제됩니다. 모든 활성 Aggregator를 확인하려면 `aggregator active` command를 사용하세요.
 
-이 command에는 `--host` 와 `--port` 라는 두 가지 변수가 필요합니다. 이는 각각 **Orakl Network Data Feed Worker** 의 watchman 호스트와 포트를 나타냅니다. 이 값들은 `WORKER_SERVICE_HOST` 와 `WORKER_SERVICE_PORT` 환경 변수를 통해 미리 정의할 수 있습니다.
+이 command에는 `--host` 와 `--port` 두 가지 변수가 필요합니다. 이는 각각 **Orakl Network Data Feed Worker** 의 watchman 호스트와 포트를 나타냅니다. 이 값들은 `WORKER_SERVICE_HOST` 와 `WORKER_SERVICE_PORT` 환경 변수를 통해 미리 정의할 수 있습니다.
 
 ```bash
 orakl-cli aggregator active \
@@ -81,7 +81,7 @@ orakl-cli aggregator remove \
 
 **Orakl Network Data Feed Worker** 가 이미 실행 중이라면, Orakl Network의 영구 저장소만을 수정하는 `aggregator insert` command를 사용하는 것으로는 충분하지 않습니다. Aggregator의 정의를 영구 저장소에서 일시적 저장소로 전송해야 합니다. 실행 중인 **Orakl Network Data Feed Worker** 서비스에서 aggregator를 활성화하려면 `aggregator activate` command를 사용하세요.
 
-이 command에는 `--host` 와 `--port` 라는 두 가지 변수가 필요합니다. 이는 각각 **Orakl Network Data Feed Worker** 의 watchman 호스트와 포트를 나타냅니다. 이 값들은 `WORKER_SERVICE_HOST` 와 `WORKER_SERVICE_PORT` 환경 변수를 통해 미리 정의할 수 있습니다.
+이 command에는 `--host` 와 `--port` 두 가지 변수가 필요합니다. 이는 각각 **Orakl Network Data Feed Worker** 의 watchman 호스트와 포트를 나타냅니다. 이 값들은 `WORKER_SERVICE_HOST` 와 `WORKER_SERVICE_PORT` 환경 변수를 통해 미리 정의할 수 있습니다.
 
 ```bash
 orakl-cli aggregator activate \
@@ -94,7 +94,7 @@ orakl-cli aggregator activate \
 
 **Orakl Network Data Feed Worker** 가 실행 중이고 데이터 피드 중 일부를 중지해야 할 경우, `aggregator deactivate` command를 사용하세요. 이 command는 `aggregatorHash` 로 정의된 단일 aggregator를 일시적 저장소에서 제거하며, 다른 활성 데이터 피드에는 영향을 주지 않습니다.
 
-이 command에는 `--host` 와 `--port` 라는 두 가지 변수가 필요합니다. 이는 각각 **Orakl Network Data Feed Worker** 의 watchman 호스트와 포트를 나타냅니다. 이 값들은 `WORKER_SERVICE_HOST` 와 `WORKER_SERVICE_PORT` 환경 변수를 통해 미리 정의할 수 있습니다.
+이 command에는 `--host` 와 `--port` 두 가지 변수가 필요합니다. 이는 각각 **Orakl Network Data Feed Worker** 의 watchman 호스트와 포트를 나타냅니다. 이 값들은 `WORKER_SERVICE_HOST` 와 `WORKER_SERVICE_PORT` 환경 변수를 통해 미리 정의할 수 있습니다.
 
 ```bash
 orakl-cli aggregator deactivate \
