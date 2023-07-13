@@ -78,7 +78,7 @@ function estimateFee(
 
 Let's understand the purpose and arguments of this function:
 
-- `reqCount`: This is a `uint64` value representing the number of previous requests made. By providing the `accId`, you can obtain the `reqCount` by invoking the external function `getReqCount` of the [`Prepayment contract`](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/Prepayment.sol#L212-L214)
+- `reqCount`: This is a `uint64` value representing the number of previous requests made. By providing the `accId`, you can obtain the `reqCount` by invoking the external function `getReqCount()` of the [`Prepayment contract`](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/Prepayment.sol#L212-L214)
 - `numSubmission`: This is a `uint8` value representing the number of submissions for the request. The value of `numSubmission` for a VRF request is always `1`.
 - `callbackGasLimit`: This is a `uint32` value representing the gas limit allocated for the callback function.
 
