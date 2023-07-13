@@ -30,6 +30,7 @@ We assume that at this point you have already created permanent account through 
 After you created account (and obtained `accId`), deposited some $KLAY and assigned at least one consumer, you can use it to request and fulfill random words.
 
 - [Initialization](vrf.md#initialization)
+- [Get estimated service fee](vrf.md#get-estimated-service-fee)
 - [Request random words](vrf.md#request-random-words)
 - [Fulfill-random words](vrf.md#fulfill-random-words)
 
@@ -77,8 +78,8 @@ function estimateFee(
 
 Let's understand the purpose and arguments of this function:
 
-- `reqCount`: This is a `uint64` value representing the number of previous requests made. It is used to calculate the service fee based on historical data or specific logic defined in the `calculateServiceFee` function.
-- `numSubmission`: This is a `uint8` value representing the number of submissions for the request.
+- `reqCount`: This is a `uint64` value representing the number of previous requests made. By providing the `accId`, you can obtain the `reqCount` by invoking the external function `getReqCount` of the [`Prepayment contract`](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/Prepayment.sol#L212-L214)
+- `numSubmission`: This is a `uint8` value representing the number of submissions for the request. The value of `numSubmission` for a VRF request is always `1`.
 - `callbackGasLimit`: This is a `uint32` value representing the gas limit allocated for the callback function.
 
 By calling the `estimateFee` function with the appropriate arguments, users can get an estimation of the total fee required for their request. This can be useful for spending required amount for each request.
@@ -203,7 +204,7 @@ function requestRandomWords(
 }
 ```
 
-This function calls the `requestRandomWords()` function defined in `COORDINATOR` contract, and passes `keyHash`, `callbackGasLimit`, `numWords` and `refundRecipient` as arguments. The payment for service is sent through `msg.value` to the `requestRandomWords()` in `COORDINATOR` contract. If the payment is larger than expected payment, exceeding payment is returned to the `refundRecipient` address. Eventually, it generates a request for random words.
+This function calls the `requestRandomWords()` function defined in `COORDINATOR` contract, and passes `keyHash`, `callbackGasLimit`, `numWords` and `refundRecipient` as arguments. The payment for service is sent through `msg.value` to the `requestRandomWords()` in `COORDINATOR` contract. If the payment is larger than expected payment, exceeding payment is returned to the `refundRecipient` address. Eventually, it generates a request for random words. To accurately specify msg.value for the requestRandomWords function, please refer to the explanation on how to [`estimate the service fee`](vrf.md#get-estimated-service-fee).
 
 In the section below, you can find more detailed explanation of how request for random words using temporary account works.
 
