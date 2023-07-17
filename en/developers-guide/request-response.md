@@ -12,8 +12,8 @@ The **Orakl Network Request-Response** serves as a solution to cover a wide rang
 
 **Orakl Network Request-Response** can be used with two different account types that support [prepayment](prepayment.md) method:
 
-* [Permanent Account (recommended)](request-response.md#permanent-account-recommended)
-* [Temporary Account](request-response.md#temporary-account)
+- [Permanent Account (recommended)](request-response.md#permanent-account-recommended)
+- [Temporary Account](request-response.md#temporary-account)
 
 **Permanent Account** allows consumers to prepay for Request-Response services, and then use those funds when interacting with Orakl Network. Permanent account is currently a recommended way to request for Request-Response. You can learn more about prepayment payment method or permanent account, go to [developer's guide on how to use Prepayment](prepayment.md).
 
@@ -27,18 +27,19 @@ We assume that at this point you have already created permanent account through 
 
 After you created account (and obtained `accId`), deposited some $KLAY and assigned at least one consumer, you can use it to request data and receive response.
 
-* [Initialization](request-response.md#initialization)
-* [Request data](request-response.md#request-data)
-* [Receive response](request-response.md#receive-response)
+- [Initialization](request-response.md#initialization)
+- [Get estimated service fee](request-response.md#get-estimated-service-fee)
+- [Request data](request-response.md#request-data)
+- [Receive response](request-response.md#receive-response)
 
 User smart contract that wants to utilize **Orakl Network Request-Response** has to inherit from abstract fulfillment contracts to support a specific return data type. Currently, we provide the following:
 
-* `uint128` with `RequestResponseConsumerFulfillUint128`
-* `int256` with `RequestResponseConsumerFulfillInt256`
-* `bool` with `RequestResponseConsumerFulfillBool`
-* `string` with `RequestResponseConsumerFulfillString`
-* `bytes32` with `RequestResponseConsumerFulfillBytes32`
-* `bytes` with `RequestResponseConsumerFulfillBytes`
+- `uint128` with `RequestResponseConsumerFulfillUint128`
+- `int256` with `RequestResponseConsumerFulfillInt256`
+- `bool` with `RequestResponseConsumerFulfillBool`
+- `string` with `RequestResponseConsumerFulfillString`
+- `bytes32` with `RequestResponseConsumerFulfillBytes32`
+- `bytes` with `RequestResponseConsumerFulfillBytes`
 
 All of the above are defined within a [RequestResponseConsumerFulfill](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/RequestResponseConsumerFulfill.sol) file. For the sake of this tutorial, we will demonstrate with `RequestResponseConsumerFulfillUint128` only, but the same principles can be applied to other return data types.
 
@@ -64,11 +65,35 @@ contract RequestResponseConsumer is RequestResponseConsumerFulfillUint128 {
 }
 ```
 
+### Get estimated service fee
+
+The `estimateFee` function calculates the estimated service fee for a request based on the provided parameters.
+
+```solidity
+function estimateFee(
+    uint64 reqCount,
+    uint8 numSubmission,
+    uint32 callbackGasLimit
+) public view returns (uint256) {
+    uint256 serviceFee = calculateServiceFee(reqCount) * numSubmission;
+    uint256 maxGasCost = tx.gasprice * callbackGasLimit;
+    return serviceFee + maxGasCost;
+}
+```
+
+Let's understand the purpose and arguments of this function:
+
+- `reqCount`: This is a `uint64` value representing the number of previous requests made. By providing the `accId`, you can obtain the `reqCount` by invoking the external function `getReqCount()` of the [`Prepayment contract`](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/Prepayment.sol#L212-L214)
+- `numSubmission`: This is a `uint8` value representing the number of submissions for the request.
+- `callbackGasLimit`: This is a `uint32` value representing the gas limit allocated for the callback function.
+
+By calling the `estimateFee()` function with the appropriate arguments, users can get an estimation of the total fee required for their request. This can be useful for spending required amount for each request.
+
 ### Request data
 
 Data request (`requestData`) must be called from a contract that has been approved through `addConsumer` function of [`Prepayment` smart contract](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/Prepayment.sol). If the smart contract has not been approved, the request is rejected with `InvalidConsumer` error. If account (specified by `accId`) does not exist (`InvalidAccount` error) or does not have balance high enough, request is rejected as well.
 
-The example code below encodes a request for an ETH/USD price feed from [https://min-api.cryptocompare.com/](https://min-api.cryptocompare.com/) API server. The request describes where to fetch data ([https://min-api.cryptocompare.com/data/pricemultifull?fsyms=ETH\&tsyms=USD](https://min-api.cryptocompare.com/data/pricemultifull?fsyms=ETH\&tsyms=USD)), and how to parse (`path` and `pow10`) the response from API server (shortened version displayed in listing below). The response comes as a nested JSON dictionary on which we want to access `RAW` key at first, then `ETH` key, `USD` key, and finally `PRICE` key.
+The example code below encodes a request for an ETH/USD price feed from [https://min-api.cryptocompare.com/](https://min-api.cryptocompare.com/) API server. The request describes where to fetch data ([https://min-api.cryptocompare.com/data/pricemultifull?fsyms=ETH\&tsyms=USD](https://min-api.cryptocompare.com/data/pricemultifull?fsyms=ETH&tsyms=USD)), and how to parse (`path` and `pow10`) the response from API server (shortened version displayed in listing below). The response comes as a nested JSON dictionary on which we want to access `RAW` key at first, then `ETH` key, `USD` key, and finally `PRICE` key.
 
 ```json
 {
@@ -79,7 +104,7 @@ The example code below encodes a request for an ETH/USD price feed from [https:/
       }
     }
   }
-}    
+}
 ```
 
 After accessing the ETH/USD price, we notice that the price value is encoded in floating point. To simplify transition of floating point value from off-chain to on-chain, we decide to multiply the price value by 10e8 and keep the value in `uint256` data type. This final value is submitted by the off-chain oracle to `RequestResponseCoordinator` which consequently calls `fulfillDataRequest` function in your consumer smart contract. In the final section of this page, you can learn more about other ways [how to build a request and how to parse the response from off-chain API server](request-response.md#request).
@@ -111,10 +136,10 @@ function requestData(
 
 Below, you can find an explanation of `requestData` function and its arguments defined at [`RequestResponseCoordinator` smart contract](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/RequestResponseCoordinator.sol):
 
-* `req`: a `Request` structure that holds encoded user request
-* `callbackGasLimit`: a `uint32` value representing the gas limit for the callback function that executes after the confirmations have been received.
-* `accId`: a `uint64` value representing the ID of the account associated with the request.
-* `numSubmission`: requested number of submission from off-chain oracles
+- `req`: a `Request` structure that holds encoded user request
+- `callbackGasLimit`: a `uint32` value representing the gas limit for the callback function that executes after the confirmations have been received.
+- `accId`: a `uint64` value representing the ID of the account associated with the request.
+- `numSubmission`: requested number of submission from off-chain oracles
 
 The function call `requestData()` on `COORDINATOR` contract passes `req`, `accId`, `callbackGasLimit` and `numSubmission` as arguments. After a successful execution of this function, you obtain an ID (`requestId`) that uniquely defines your request. Later, when your request is fulfilled, the ID (`requestId`) is supplied together with response to be able to make a match between requests and fulfillments when there is more than one request.
 
@@ -136,8 +161,8 @@ function fulfillDataRequest(
 
 The arguments of `fulfillDataRequest` function are explained below:
 
-* `requestId`: a `uint256` value representing the ID of the request
-* `response`: an `uint128` value that was obtained after processing data request sent from `requestData` function
+- `requestId`: a `uint256` value representing the ID of the request
+- `response`: an `uint128` value that was obtained after processing data request sent from `requestData` function
 
 This function is executed from `RequestResponseCoordinator` contract defined during smart contract initialization. The result is saved in the storage variable `sResponse`.
 
@@ -145,19 +170,19 @@ This function is executed from `RequestResponseCoordinator` contract defined dur
 
 **Temporary Account** is an alternative type of account which does not require a user to create account, deposit $KLAY, or assign consumer before being able to utilize Request-Response functionality. Request-Response with **Temporary Account** is only a little bit different compared to **Permanent Account**, however, the fulfillment function is exactly same.
 
-* [Initialization with Temporary Account](request-response.md#initialization-with-temporary-account)
-* [Request data with Temporary Account (consumer)](request-response.md#request-data-with-temporary-account-consumer)
-* [Cancel request and receive refund (consumer)](request-response.md#cancel-request-and-receive-refund-consumer)
-* [Request data with Temporary Account (coordinator)](request-response.md#request-data-with-temporary-account-coordinator)
+- [Initialization with Temporary Account](request-response.md#initialization-with-temporary-account)
+- [Request data with Temporary Account (consumer)](request-response.md#request-data-with-temporary-account-consumer)
+- [Cancel request and receive refund (consumer)](request-response.md#cancel-request-and-receive-refund-consumer)
+- [Request data with Temporary Account (coordinator)](request-response.md#request-data-with-temporary-account-coordinator)
 
 User smart contract that wants to utilize Orakl Network Request-Response has to inherit from [one of the following abstract smart contracts](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/RequestResponseConsumerFulfill.sol) that define what data type we expect as a response.
 
-* `uint128` with `RequestResponseConsumerFulfillUint128`
-* `int256` with `RequestResponseConsumerFulfillInt256`
-* `bool` with `RequestResponseConsumerFulfillBool`
-* `string` with `RequestResponseConsumerFulfillString`
-* `bytes32` with `RequestResponseConsumerFulfillBytes32`
-* `bytes` with `RequestResponseConsumerFulfillBytes`
+- `uint128` with `RequestResponseConsumerFulfillUint128`
+- `int256` with `RequestResponseConsumerFulfillInt256`
+- `bool` with `RequestResponseConsumerFulfillBool`
+- `string` with `RequestResponseConsumerFulfillString`
+- `bytes32` with `RequestResponseConsumerFulfillBytes32`
+- `bytes` with `RequestResponseConsumerFulfillBytes`
 
 ```solidity
 import { RequestResponseConsumerFulfillUint128 } from "@bisonai/orakl-contracts/src/v0.1/RequestResponseConsumerFulfill.sol";
@@ -201,7 +226,7 @@ function requestData(
 {
     bytes32 jobId = keccak256(abi.encodePacked("uint128"));
     uint8 numSubmission = 1;
-    
+
     Orakl.Request memory req = buildRequest(jobId);
     req.add("get", "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=ETH&tsyms=USD");
     req.add("path", "RAW,ETH,USD,PRICE");
@@ -282,9 +307,7 @@ function requestData(
 
 This function first calculates a fee (`fee`) for the request by calling `estimateDirectPaymentFee()` function. `isDirectPayment` variable indicates whether the request is created through **Prepayment** or **Direct Payment** method. Then, it deposits the required fee (`fee`) to the account by calling `s_prepayment.deposit(accId)` and passing the fee (`fee`) as value. If the amount of $KLAY passed by `msg.value` to the `requestData` is larger than required fee (`fee`), the remaining amount is sent back to the caller using the `msg.sender.call()` method. Finally, the function returns `requestId` that is generated by the `requestDataInternal()` function.
 
-
-
-This function first calculates a fee for the request by calling `estimateFee()` function. Then, it create a temporary account inside of Prepayment contract with `sPrepayment.createTemporaryAccount(msg.sender)` call. In the next step, we request data by calling `requestData` function. The function has several validation steps, therefore we included requesting for data before depositing the required fee to the account (`sPrepayment.depositTemporary{value: fee}(accId)`). If the amount of $KLAY passed by `msg.value` to the `requestData` is larger than a required fee, the remaining amount is sent back to  the `refundRecipient` address. Finally, the function returns `requestId` that is generated by the internal `requestData()` call.
+This function first calculates a fee for the request by calling `estimateFee()` function. Then, it create a temporary account inside of Prepayment contract with `sPrepayment.createTemporaryAccount(msg.sender)` call. In the next step, we request data by calling `requestData` function. The function has several validation steps, therefore we included requesting for data before depositing the required fee to the account (`sPrepayment.depositTemporary{value: fee}(accId)`). If the amount of $KLAY passed by `msg.value` to the `requestData` is larger than a required fee, the remaining amount is sent back to the `refundRecipient` address. Finally, the function returns `requestId` that is generated by the internal `requestData()` call.
 
 ## Request & Response Post-Processing
 
