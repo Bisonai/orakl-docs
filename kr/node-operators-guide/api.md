@@ -16,9 +16,9 @@
 
 `DATABASE_URL` 은 Orakl Network 상태를 저장할 데이터베이스에 대한 [연결 문자열](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING) 을 나타냅니다.
 
-> `DATABASE_URL` 의 형식은 `postgresql://[userspec@][hostspec][/dbname][?paramspec]` 입니다. 예를 들어, 다음과 같은 형식의 문자열이 될 수 있습니다: `postgresql://bisonai@localhost:5432/orakl?schema=public.`&#x20;
+> `DATABASE_URL` 의 형식은 `postgresql://[userspec@][hostspec][/dbname][?paramspec]` 입니다. 예를 들어 다음과 같은 형식의 문자열이 될 수 있습니다: `postgresql://bisonai@localhost:5432/orakl?schema=public.`&#x20;
 
-`APP_PORT`는 **Orakl Network API** 가 실행될 포트를 나타냅니다. 다른 서비스에서 **Orakl Network API** 에 연결할 때 이 포트가 필요합니다.
+`APP_PORT` 는 **Orakl Network API** 가 실행될 포트를 나타냅니다. 다른 서비스에서 **Orakl Network API** 에 연결할 때 이 포트가 필요합니다.
 
 `ENCRYPT_PASSWORD` 는 Orakl Network API에 삽입된 개인 키의 암호화 및 복호화에 사용되는 암호화 키입니다.
 
