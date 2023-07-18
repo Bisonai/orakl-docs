@@ -80,7 +80,7 @@ function estimateFee(
 
 - `reqCount`: 이전에 수행된 요청의 수를 나타내는 `uint64` 값입니다. `accId` 를 제공함으로써 [`Prepayment 계약`](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/Prepayment.sol#L212-L214)의 `getReqCount()` 외부 함수를 호출하여 `reqCount` 값을 얻을 수 있습니다.
 - `numSubmission`: 요청에 대한 제출 횟수를 나타내는 `uint8` 값입니다. VRF 요청의 경우 `numSubmission` 값은 항상 `1` 입니다.
-- `callbackGasLimit`: 콜백 함수에 할당된 가스 제한을 나타내는 `uint32` 값입니다
+- `callbackGasLimit`: 콜백 함수에 할당된 가스 한도를 나타내는 `uint32` 값입니다
 
 적절한 매개변수로 `estimateFee` 함수를 호출함으로써 사용자는 요청에 필요한 총 수수료의 예상치를 얻을 수 있습니다. 이는 각 요청에 필요한 금액을 지출하는 데 유용할 수 있습니다.
 
