@@ -87,12 +87,6 @@ function estimateFee(
 - `numSubmission`: 요청에 대한 제출 횟수를 나타내는 `uint8` 값입니다. VRF 요청의 경우 `numSubmission` 값은 항상 `1` 입니다.
 - `callbackGasLimit`: 콜백 함수에 할당된 가스 제한을 나타내는 `uint32` 값입니다
 
-이 함수의 목적과 매개변수를 이해해봅시다:
-
-reqCount: 이 값은 이전에 수행된 요청의 수를 나타내는 uint64 형식의 값입니다. accId를 제공하여 Prepayment 계약의 외부 함수인 getReqCount()를 호출함으로써 reqCount를 얻을 수 있습니다.
-numSubmission: 이 값은 요청에 대한 제출 횟수를 나타내는 uint8 형식의 값입니다.
-callbackGasLimit: 이 값은 콜백 함수에 할당된 가스 제한을 나타내는 uint32 형식의 값입니다.
-
 적절한 매개변수로 `estimateFee` 함수를 호출함으로써 사용자는 요청에 필요한 총 수수료의 예상치를 얻을 수 있습니다. 이는 각 요청에 필요한 금액을 지출하는 데 유용할 수 있습니다.
 
 ### Request data
