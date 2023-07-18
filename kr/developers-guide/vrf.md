@@ -4,7 +4,7 @@ description: Undeniably random numbers in your smart contract
 
 # Verifiable Random Function (VRF)
 
-Orakl Network VRF의 사용 예제에 대한 자세한 내용은[`vrf-consumer`](https://github.com/Bisonai/vrf-consumer) 예제 리포지토리에서 확인하실 수 있습니다.
+Orakl Network VRF의 사용 예제에 대한 자세한 내용은 [`vrf-consumer`](https://github.com/Bisonai/vrf-consumer) 예제 리포지토리에서 확인하실 수 있습니다.
 
 ## Verifiable Random Function이란?
 
@@ -25,11 +25,12 @@ Orakl Network VRF는 스마트 계약에서 VRF를 사용하여 검증 가능한
 
 ## Permanent Account (recommended)
 
-이 시점에서 이미 [`Prepayment` 스마트 계약](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/Prepayment.sol),을 통해 영구 계정을 생성하고 $KLAY를 예치하고 consumer를 할당한 것으로 가정합니다. 아직 해당 단계를 완료하지 않았다면,[위 해당 단계를 완료하는 방법](prepayment.md)에 대해 읽어보시고 이후에 계속 진행해주세요.
+이 시점에서 이미 [`Prepayment` 스마트 계약](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/Prepayment.sol) 을 통해 영구 계정을 생성하고 $KLAY를 예치하고 consumer를 할당한 것으로 가정합니다. 아직 해당 단계를 완료하지 않았다면, [위 해당 단계를 완료하는 방법](prepayment.md)에 대해 읽어보시고 이후에 계속 진행해주세요.
 
 계정을 생성하고 (accId를 얻었다고 가정), 일정량의 $KLAY를 예치하고 최소한 하나의 consumer를 할당한 후, 해당 계정을 사용하여 무작위 단어를 요청하고 완료할 수 있습니다.
 
 - [Initialization](vrf.md#initialization)
+- [Get estimated service fee](vrf.md#get-estimated-service-fee)
 - [Request random words](vrf.md#request-random-words)
 - [Fulfill-random words](vrf.md#fulfill-random-words)
 
@@ -58,6 +59,30 @@ contract VRFConsumer is VRFConsumerBase {
   }
 }
 ```
+
+### Get estimated service fee
+
+`estimateFee` 함수는 제공된 매개변수를 기반으로 랜덤 단어 요청에 대한 예상 서비스 수수료를 계산합니다.
+
+```solidity
+function estimateFee(
+    uint64 reqCount,
+    uint8 numSubmission,
+    uint32 callbackGasLimit
+) public view returns (uint256) {
+    uint256 serviceFee = calculateServiceFee(reqCount) * numSubmission;
+    uint256 maxGasCost = tx.gasprice * callbackGasLimit;
+    return serviceFee + maxGasCost;
+}
+```
+
+이 함수의 목적과 인수를 이해해 보겠습니다:
+
+- `reqCount`: 이전에 수행된 요청의 수를 나타내는 `uint64` 값입니다. `accId` 를 제공함으로써 [`Prepayment 계약`](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/Prepayment.sol#L212-L214)의 `getReqCount()` 외부 함수를 호출하여 `reqCount` 값을 얻을 수 있습니다.
+- `numSubmission`: 요청에 대한 제출 횟수를 나타내는 `uint8` 값입니다. VRF 요청의 경우 `numSubmission` 값은 항상 `1` 입니다.
+- `callbackGasLimit`: 콜백 함수에 할당된 가스 제한을 나타내는 `uint32` 값입니다
+
+적절한 매개변수로 `estimateFee` 함수를 호출함으로써 사용자는 요청에 필요한 총 수수료의 예상치를 얻을 수 있습니다. 이는 각 요청에 필요한 금액을 지출하는 데 유용할 수 있습니다.
 
 ### Request random words
 
@@ -179,7 +204,7 @@ function requestRandomWords(
 }
 ```
 
-이 함수는 `COORDINATOR` 계약에 정의된 `requestRandomWords()` 함수를 호출하며, `keyHash`, `callbackGasLimit`, `numWords` 및 `refundRecipient`를 인수로 전달합니다. 서비스에 대한 지불은 `msg.value`를 통해 `COORDINATOR` 계약의 `requestRandomWords()` 함수로 전송됩니다. 지불 금액이 예상 지불보다 큰 경우 초과 지불액은 `refundRecipient` 주소로 반환됩니다. 이를 통해 무작위 단어 요청이 생성됩니다.
+이 함수는 `COORDINATOR` 계약에 정의된 `requestRandomWords()` 함수를 호출하며, `keyHash`, `callbackGasLimit`, `numWords` 및 `refundRecipient`를 인수로 전달합니다. 서비스에 대한 지불은 `msg.value`를 통해 `COORDINATOR` 계약의 `requestRandomWords()` 함수로 전송됩니다. 지불 금액이 예상 지불보다 큰 경우 초과 지불액은 `refundRecipient` 주소로 반환됩니다. 이를 통해 무작위 단어 요청이 생성됩니다. requestRandomWords 함수에 대한 msg.value를 정확하게 지정하려면, [`서비스 수수료를 추정`](vrf.md#get-estimated-service-fee)하는 방법에 대한 설명을 참조해주세요.
 
 아래 섹션에서는 임시 계정을 사용하여 무작위 단어를 요청하는 방법에 대한 더 자세한 설명을 확인하실 수 있습니다.
 
