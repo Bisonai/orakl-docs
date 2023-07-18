@@ -59,7 +59,7 @@ orakl-cli reporter insert \
 
 `PUBLIC_KEY` 와 `PRIVATE_KEY` 환경 변수는 reporter가 수신된 요청을 처리하는 데 필요합니다.
 
-실행 중인 인스턴스에서 발생하는 로그의 수준은 `LOG_LEVEL` 환경 변수를 통해 설정되며 다음 중 하나일 수 있습니다: `error`, `warning`, `info`, `debug` , `trace` 입니다. 이용 가능한 옵션 중 하나를 선택하면 해당 수준과 더 낮은 제한 수준의 모든 로그를 구독하게 됩니다.
+실행 중인 인스턴스에서 발생하는 로그의 수준은 `LOG_LEVEL` 환경 변수를 통해 설정되며 다음 중 하나일 수 있습니다: `error`, `warning`, `info`, `debug`, `trace` 입니다. 이용 가능한 옵션 중 하나를 선택하면 해당 수준과 더 낮은 제한 수준의 모든 로그를 구독하게 됩니다.
 
 로그들은 콘솔과 `LOG_DIR` 디렉토리에 있는 파일로 전송됩니다.
 
@@ -69,7 +69,7 @@ orakl-cli reporter insert \
 
 `HOST_SETTINGS_LOG_DIR` 은 [Docker Compose 파일](https://github.com/Bisonai/orakl/blob/master/core/docker-compose.request-response.yaml)에서 사용되며, 수집된 로그 파일이 호스트에서 저장될 위치를 나타냅니다.
 
-**Orakl Network Data Request-Response** 에서 발생하는 오류와 경고를 [Slack 웹훅을 통해 Slack 채널로 전송](https://api.slack.com/messaging/webhooks)할 수 있습니다. 웹훅 URL은 `SLACK_WEBOOK_URL` 환경 변수를 사용하여 설정할 수 있습니다.
+**Orakl Network Request-Response** 에서 발생하는 오류와 경고를 [Slack 웹훅을 통해 Slack 채널로 전송](https://api.slack.com/messaging/webhooks)할 수 있습니다. 웹훅 URL은 `SLACK_WEBOOK_URL` 환경 변수를 사용하여 설정할 수 있습니다.
 
 ## Launch
 
