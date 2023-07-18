@@ -19,7 +19,7 @@ description: Arbitrary Off-Chain Data Available To Your Smart Contract
 
 **Temporary Account(임시 계정)** 은 사용자가 추가적인 사전 준비 없이 직접 Request-Response에 대한 지불을 할 수 있도록 합니다. 이 접근 방식은 사용 빈도가 낮거나 **Temporary Account**설정에 신경을 쓰기 원하지 않는 사용자에게 적합합니다.
 
-본 문서에서는 **Permanent Account** 와 **Temporary Account** 두 가지 접근 방식을 설명하며, 마지막으로 [온체인 요청을 생성하는 방법](request-response.md#request) and [API 응답을 후처리하는 방법](request-response.md#response-post-processing)을 설명합니다.
+본 문서에서는 **Permanent Account** 와 **Temporary Account** 두 가지 접근 방식을 설명하며, 마지막으로, [온체인 요청을 생성하는 방법](request-response.md#request) 및 [API 응답을 후처리하는 방법](request-response.md#response-post-processing)을 설명합니다.
 
 ## Permanent Account (recommended)
 
@@ -85,7 +85,7 @@ function estimateFee(
 
 - `reqCount`: 이전에 수행된 요청의 수를 나타내는 `uint64` 값입니다. `accId` 를 제공함으로써 [`Prepayment 계약`](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/Prepayment.sol#L212-L214)의 `getReqCount()` 외부 함수를 호출하여 `reqCount` 값을 얻을 수 있습니다.
 - `numSubmission`: 요청에 대한 제출 횟수를 나타내는 `uint8` 값입니다.
-- `callbackGasLimit`: 콜백 함수에 할당된 가스 제한을 나타내는 `uint32` 값입니다
+- `callbackGasLimit`: 콜백 함수에 할당된 가스 한도를 나타내는 `uint32` 값입니다
 
 적절한 매개변수로 `estimateFee` 함수를 호출함으로써 사용자는 요청에 필요한 총 수수료의 예상치를 얻을 수 있습니다. 이는 각 요청에 필요한 금액을 지출하는 데 유용할 수 있습니다.
 
