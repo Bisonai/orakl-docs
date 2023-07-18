@@ -87,11 +87,11 @@ orakl-cli aggregator insert \
 
 `REDIS_HOST` 와 `REDIS_PORT`는 **Orakl Network Data Feed** 마이크로서비스가 연결하는 [Redis](https://redis.io/)의 호스트와 포트를 나타냅니다. 기본값은 각각 `localhost` 와 `6379` 입니다.&#x20;
 
-**Orakl Network Data Feed** 는 풍부한 REST API를 제공하지 않지만,`HEALTH_CHECK_PORT` 로 지정된 포트에서 제공되는 헬스 체크 엔드포인트 (`/`) 를 정의합니다.
+**Orakl Network VRF** 는 풍부한 REST API를 제공하지 않지만, `HEALTH_CHECK_PORT` 로 지정된 포트에서 제공되는 헬스 체크 엔드포인트 (`/`) 를 정의합니다.
 
-`HOST_SETTINGS_LOG_DIR` 은 [Docker Compose 파일](https://github.com/Bisonai/orakl/blob/master/core/docker-compose.data-feed.yaml)에서 사용되며, 수집된 로그 파일이 호스트에서 저장될 위치를 나타냅니다.
+`HOST_SETTINGS_LOG_DIR` 은 [Docker Compose 파일](https://github.com/Bisonai/orakl/blob/master/core/docker-compose.vrf.yaml)에서 사용되며, 수집된 로그 파일이 호스트에서 저장될 위치를 나타냅니다.
 
-**Orakl Network Data Feed** 에서 발생하는 오류와 경고를 [Slack 웹훅을 통해 Slack 채널로 전송](https://api.slack.com/messaging/webhooks). 웹훅 URL은 `SLACK_WEBOOK_URL` 환경 변수로 설정할 수 있습니다.
+**Orakl Network Data VRF** 에서 발생하는 오류와 경고를 [Slack 웹훅을 통해 Slack 채널로 전송](https://api.slack.com/messaging/webhooks)할 수 있습니다. 웹훅 URL은 `SLACK_WEBOOK_URL` 환경 변수를 사용하여 설정할 수 있습니다.
 
 ## Launch
 

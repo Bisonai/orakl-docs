@@ -93,7 +93,7 @@ helm install cli -n orakl orakl/orakl-cli \
 
 ### 07. 기본 구성
 
-Aggregator Baobab에서 https://config.orakl.network/을 확인해보면 12개의 컨트랙트가 있고 각 컨트랙트에는 주소가 있습니다. 이후에는 더 많은 컨트랙트가 추가될 예정입니다. 리포터 계정을 활성화하려면 이 컨트랙트에 화이트리스트에 등록해야 할 12개의 계정이 필요합니다. 계정을 활성화하려면 business@orakl.network로 연락주시기 바랍니다.
+Aggregator Baobab에서 https://config.orakl.network/ 을 확인해보면 12개의 컨트랙트가 있고 각 컨트랙트에는 주소가 있습니다. 이후에는 더 많은 컨트랙트가 추가될 예정입니다. 리포터 계정을 활성화하려면 이 컨트랙트에 화이트리스트에 등록해야 할 12개의 계정이 필요합니다. 계정을 활성화하려면 business@orakl.network로 연락주시기 바랍니다.
 
 - list all pods in orakl namespace
   ```bash

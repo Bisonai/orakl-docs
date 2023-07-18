@@ -21,7 +21,7 @@ description: List, Inser, Remove, Activate And Deactivate Orakl Network Listener
 
 ### List Listeners
 
-영구 상태로 유지되는 리스너들은 `listener list` command를 사용하여 표시할 수 있습니다. Y선택적 매개변수인 [`--chain`](chain.md) 또는 [`--service`](service.md) 를 사용하여 리스너를 필터링할 수도 있습니다.
+영구 상태로 유지되는 리스너들은 `listener list` command를 사용하여 표시할 수 있습니다. 선택적 매개변수인 [`--chain`](chain.md) 또는 [`--service`](service.md) 를 사용하여 리스너를 필터링할 수도 있습니다.
 
 ```sh
 orakl-cli listener list \
@@ -123,7 +123,7 @@ orakl-cli listener activate \
 
 새로운 활성 리스너는 추가적인 계산 자원이 필요하지만, 일반적으로 오버헤드가 낮게 작동합니다. 리스너가 기다리고 있던 이벤트를 감지하면 **Orakl Network Worker**를 위한 새로운 작업을 생성하고,그 작업은 **Orakl Network Reporter**에게 전달됩니다. 필요하지 않은 리스너를 추가하면 전체 시스템에 불필요하게 높은 부하를 야기할 수 있습니다.
 
-To deactivate listener, and therefore to lower the load on the system, you can use `listener deactivate` command.&#x20;
+시스템 부하를 낮추기 위해 리스너를 비활성화하려면 `listener deactivate` command를 사용할 수 있습니다.
 
 ```sh
 orakl-cli listener deactivate \
