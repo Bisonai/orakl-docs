@@ -4,7 +4,7 @@
 
 **Orakl Network VRF** 는 Orakl Network의 주요 솔루션 중 하나입니다. 이는 검증 가능한 난수 생성기에 대한 접근을 제공합니다.
 
-해당 코드는 [`core` 디렉토리](https://github.com/Bisonai/orakl/tree/master/core)에 위치하며, listener, worker, reporter 세 개의 독립적인 마이크로서비스로 분리되어 있습니다.
+해당 코드는 [`core` 디렉토리](https://github.com/Bisonai/orakl/tree/master/core)에 위치하며, listener, worker 및 reporter 세 개의 독립적인 마이크로 서비스로 분리되어 있습니다.
 
 ## State Setup
 
@@ -12,7 +12,7 @@
 
 ### Listener
 
-**Orakl Network API**는 모든 listener에 대한 정보를 보유하고 있습니다. 아래 command는 하나의 VRF listener를 Orakl Network 상태에 추가하여 `vrfCoordinatorAddress` 에서 `RandomWordsRequested` 이벤트를 수신하도록 합니다. `chain` 매개변수는 **Orakl Network VRF Listener**를 사용할 체인을 지정합니다.
+**Orakl Network API** 는 모든 listener에 대한 정보를 보유하고 있습니다. 아래 command는 하나의 VRF listener를 Orakl Network 상태에 추가하여 `vrfCoordinatorAddress` 에서 `RandomWordsRequested` 이벤트를 수신하도록 합니다. `chain` 매개변수는 **Orakl Network VRF Listener**를 사용할 체인을 지정합니다.
 
 ```sh
 orakl-cli listener insert \
