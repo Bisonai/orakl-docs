@@ -45,7 +45,7 @@ Orakl 데이터 피드에는 무료로 사용할 수 있는 다양한 데이터 
 
 ### Initialization
 
-데이터 피드에 대한 액세스는 선택한 데이터 피드에 해당하는 `AggregatorProxy` 주소 및 [`@bisonai/orakl-contracts`](https://www.npmjs.com/package/@bisonai/orakl-contracts) 의[`IAggregator`](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/interfaces/IAggregator.sol) 를 통해 제공됩니다.
+데이터 피드에 대한 액세스는 선택한 데이터 피드에 해당하는 `AggregatorProxy` 주소 및 [`@bisonai/orakl-contracts`](https://www.npmjs.com/package/@bisonai/orakl-contracts) 의 [`IAggregator`](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/interfaces/IAggregator.sol) 를 통해 제공됩니다.
 
 ```solidity
 import { IAggregator } from "@bisonai/orakl-contracts/src/v0.1/interfaces/IAggregator.sol";

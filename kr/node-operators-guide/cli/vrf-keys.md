@@ -6,7 +6,7 @@ description: List, Generate, Insert and Remove Orakl Network VRF Keys
 
 > 만약 **Orakl Network VRF Node Operator**가 아니신 경우, 이 페이지의 설명을 참고하실 필요는 없습니다.
 
-**Orakl Network VRF Worker**는 소비자의 seed(체인에서 받은 값)를 기반으로 한 증명 가능한 무작위 숫자를 생성하기 위해 개인 VRF 키(`sk`)에 접근해야 합니다. **Orakl Network VRF Listener**는 VRF 키를 고유하게 식별하는 키 해시(`keyHash`)가 필요합니다. 일반적으로 **Orakl Network VRF Node Operator** 는 하나의 VRF 키 세트(`pk`, `sk`, `pkX`, `pkY` 및 `keyHash`)이상을 필요로하지 않습니다.
+**Orakl Network VRF Worker**는 소비자의 seed(체인에서 받은 값)를 기반으로 한 증명 가능한 무작위 숫자를 생성하기 위해 개인 VRF 키(`sk`)에 접근해야 합니다. **Orakl Network VRF Listener**는 VRF 키를 고유하게 식별하는 키 해시(`keyHash`)가 필요합니다. 일반적으로 **Orakl Network VRF Node Operator** 는 하나의 VRF 키 세트(`pk`, `sk`, `pkX`, `pkY` 및 `keyHash`) 이상을 필요로하지 않습니다.
 
 다음은 **Orakl Network CLI** 에서 제공하는 command입니다:
 
@@ -17,7 +17,7 @@ description: List, Generate, Insert and Remove Orakl Network VRF Keys
 
 ### List VRF Keys
 
-Orakl Network 상태에 등록된 모든 VRF 키를나열하려면 `vrf list` command를 사용할 수 있습니다.
+Orakl Network 상태에 등록된 모든 VRF 키를 나열하려면 `vrf list` command를 사용할 수 있습니다.
 
 ```sh
 orakl-cli vrf list

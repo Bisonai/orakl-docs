@@ -23,9 +23,9 @@ yarn add @bisonai/orakl-contracts@v1.0.0
 
 ### Verifiable Random Function (VRF)
 
-**Verifiable Random Function (VRF)**은 블록체인 상에서 검증 가능하고 투명한 방식으로 난수를 생성할 수 있게 해줍니다. 이는 게임 및 도박 애플리케이션과 같은 다양한 사용 사례에서 공정하고 편향되지 않은 난수 생성기가 필수적인 경우에 유용합니다.
+**Verifiable Random Function (VRF)** 은 블록체인 상에서 검증 가능하고 투명한 방식으로 난수를 생성할 수 있게 해줍니다. 이는 게임 및 도박 애플리케이션과 같은 다양한 사용 사례에서 공정하고 편향되지 않은 난수 생성기가 필수적인 경우에 유용합니다.
 
-Orakl Network VRF에 대한 자세한 정보는 [VRF 사용 개발자 가이드](developers-guide/vrf.md)에서 확인하실 수 있습니다. VRF를 즉시 사용하시려는 경우[Orakl Network VRF를 사용한 예제 Hardhat 프로젝트](https://github.com/Bisonai/vrf-consumer) 를 참고하시기 바랍니다.
+Orakl Network VRF에 대한 자세한 정보는 [VRF 사용 개발자 가이드](developers-guide/vrf.md)에서 확인하실 수 있습니다. VRF를 즉시 사용하시려는 경우 [Orakl Network VRF를 사용한 예제 Hardhat 프로젝트](https://github.com/Bisonai/vrf-consumer) 를 참고하시기 바랍니다.
 
 ### Request-Response
 
@@ -37,7 +37,7 @@ Orakl Network Request-Response에 대한 자세한 정보는 [Request-Response �
 
 **Data Feed** 는 최신 오프체인 정보에 직접적인 온체인 액세스를 제공합니다. 데이터는 분산되고 안전한 방식으로 일련의 분산 및 신뢰할 수 있는 운영자들을 통해 수집됩니다.
 
-Orakl Network Data Feed에 대한 자세한 정보는 [Data Feed 사용에 대한 개발자 안내서](developers-guide/data-feed.md)에서 확인하실 수 있습니다. 실제로 Orakl Network Data Feed를 체험해보시려면, we recommend to explore [Orakl Network Data Feed를 활용한 예제 Hardhat 프로젝트](https://github.com/Bisonai/data-feed-consumer)를 살펴보시는 것을 권장해드립니다.
+Orakl Network Data Feed에 대한 자세한 정보는 [Data Feed 사용에 대한 개발자 안내서](developers-guide/data-feed.md)에서 확인하실 수 있습니다. 실제로 Orakl Network Data Feed를 체험해보시려면, [Orakl Network Data Feed를 활용한 예제 Hardhat 프로젝트](https://github.com/Bisonai/data-feed-consumer)를 살펴보시는 것을 권장해드립니다.
 
 ## Payment & Account Types
 

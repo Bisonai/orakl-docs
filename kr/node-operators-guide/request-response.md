@@ -37,7 +37,7 @@ orakl-cli reporter insert \
 
 ## Configuration
 
-**Orakl Network Request-Response** 를 시작하기 전에[여러 환경 변수](https://github.com/Bisonai/orakl/blob/master/core/.env.example)를 지정해야 합니다. 환경 변수는 자동으로 `.env` 파일에서 로드됩니다.
+**Orakl Network Request-Response** 를 시작하기 전에 [여러 환경 변수](https://github.com/Bisonai/orakl/blob/master/core/.env.example)를 지정해야 합니다. 환경 변수는 자동으로 `.env` 파일에서 로드됩니다.
 
 - `NODE_ENV=production`&#x20;
 - `CHAIN`&#x20;
@@ -59,17 +59,17 @@ orakl-cli reporter insert \
 
 `PUBLIC_KEY` 와 `PRIVATE_KEY` 환경 변수는 reporter가 수신된 요청을 처리하는 데 필요합니다.
 
-실행 중인 인스턴스에서 발생하는 로그의 수준은 `LOG_LEVEL` 환경 변수를 통해 설정되며 다음 중 하나일 수 있습니다: `error`, `warning`, `info`, `debug` , `trace` 입니다. 이용 가능한 옵션 중 하나를 선택하면 해당 수준과 더 낮은 제한 수준의 모든 로그를 구독하게 됩니다.
+실행 중인 인스턴스에서 발생하는 로그의 수준은 `LOG_LEVEL` 환경 변수를 통해 설정되며 다음 중 하나일 수 있습니다: `error`, `warning`, `info`, `debug` 또는 `trace` 입니다. 가장 제한적인 것부터 가장 제한적이지 않은 것까지 순서대로 정렬되어 있습니다. 이용 가능한 옵션 중 하나를 선택하면 해당 수준과 더 낮은 제한 수준의 모든 로그를 구독하게 됩니다.
 
 로그들은 콘솔과 `LOG_DIR` 디렉토리에 있는 파일로 전송됩니다.
 
 `REDIS_HOST` 와 `REDIS_PORT`는 **Orakl Network Request-Response** 마이크로서비스가 연결하는 [Redis](https://redis.io/)의 호스트와 포트를 나타냅니다. 기본값은 각각 `localhost` 와 `6379` 입니다.&#x20;
 
-**Orakl Network Request-Response** 는 풍부한 REST API를 제공하지 않지만,`HEALTH_CHECK_PORT` 로 지정된 포트에서 제공되는 헬스 체크 엔드포인트 (`/`) 를 정의합니다.
+**Orakl Network Request-Response** 는 풍부한 REST API를 제공하지 않지만, `HEALTH_CHECK_PORT` 로 지정된 포트에서 제공되는 헬스 체크 엔드포인트 (`/`) 를 정의합니다.
 
 `HOST_SETTINGS_LOG_DIR` 은 [Docker Compose 파일](https://github.com/Bisonai/orakl/blob/master/core/docker-compose.request-response.yaml)에서 사용되며, 수집된 로그 파일이 호스트에서 저장될 위치를 나타냅니다.
 
-**Orakl Network Data Request-Response** 에서 발생하는 오류와 경고를 [Slack 웹훅을 통해 Slack 채널로 전송](https://api.slack.com/messaging/webhooks). 웹훅 URL은 `SLACK_WEBOOK_URL` 환경 변수로 설정할 수 있습니다.
+**Orakl Network Request-Response** 에서 발생하는 오류와 경고를 [Slack 웹훅을 통해 Slack 채널로 전송](https://api.slack.com/messaging/webhooks)할 수 있습니다. 웹훅 URL은 `SLACK_WEBOOK_URL` 환경 변수를 사용하여 설정할 수 있습니다.
 
 ## Launch
 

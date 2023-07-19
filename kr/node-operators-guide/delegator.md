@@ -6,7 +6,7 @@ description: Whitelist Fee Delegation Service
 
 ## Description
 
-**Orakl Network Delegator** 사용자 정의 화이트리스트 규칙에 따라 들어오는 트랜잭션을 확인하고, 조건을 만족하는 경우 수수료 지불자로서 서명하는 [수수료 위임](https://docs.klaytn.foundation/content/klaytn/design/transactions/fee-delegation) 마이크로 서비스입니다. 해당 코드는[`delegator` 디렉토리](https://github.com/Bisonai/orakl/tree/master/delegator)에 위치해 있습니다.
+**Orakl Network Delegator** 사용자 정의 화이트리스트 규칙에 따라 들어오는 트랜잭션을 확인하고, 조건을 만족하는 경우 수수료 지불자로서 서명하는 [수수료 위임](https://docs.klaytn.foundation/content/klaytn/design/transactions/fee-delegation) 마이크로 서비스입니다. 해당 코드는 [`delegator` 디렉토리](https://github.com/Bisonai/orakl/tree/master/delegator)에 위치해 있습니다.
 
 ## API Endpoints
 

@@ -19,15 +19,16 @@ description: Arbitrary Off-Chain Data Available To Your Smart Contract
 
 **Temporary Account(임시 계정)** 은 사용자가 추가적인 사전 준비 없이 직접 Request-Response에 대한 지불을 할 수 있도록 합니다. 이 접근 방식은 사용 빈도가 낮거나 **Temporary Account**설정에 신경을 쓰기 원하지 않는 사용자에게 적합합니다.
 
-본 문서에서는 **Permanent Account** 와 **Temporary Account** 두 가지 접근 방식을 설명하며, 마지막으로, [온체인 요청을 생성하는 방법](request-response.md#request) and [API 응답을 후처리하는 방법](request-response.md#response-post-processing)을 설명합니다.
+본 문서에서는 **Permanent Account** 와 **Temporary Account** 두 가지 접근 방식을 설명하며, 마지막으로, [온체인 요청을 생성하는 방법](request-response.md#request) 및 [API 응답을 후처리하는 방법](request-response.md#response-post-processing)을 설명합니다.
 
 ## Permanent Account (recommended)
 
-현재 시점에서는 이미 [`Prepayment` 스마트 계약](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/Prepayment.sol), 을 통해 영구 계정을 생성하고 $KLAY를 예치하고 하나 이상의 consumer를 할당한 상태로 가정하겠습니다. 만약 아직 해당 단계를 완료하지 않으셨다면, 계속 진행하기 위해 [위 해당 단계를 완료하는 방법](prepayment.md)을 읽어보시기 바랍니다.
+현재 시점에서는 이미 [`Prepayment` 스마트 계약](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/Prepayment.sol) 을 통해 영구 계정을 생성하고 $KLAY를 예치하고 하나 이상의 consumer를 할당한 상태로 가정하겠습니다. 만약 아직 해당 단계를 완료하지 않으셨다면, 계속 진행하기 위해 [위 해당 단계를 완료하는 방법](prepayment.md)을 읽어보시기 바랍니다.
 
-계정을 생성한 후 (`accId`를 얻은 후), , 일정량의 $KLAY를 예치하고 하나 이상의 consumer를 할당한 경우, 해당 계정을 사용하여 데이터를 요청하고 응답을 받을 수 있습니다.
+계정을 생성한 후(`accId`를 얻은 후) 일정량의 $KLAY를 예치하고 하나 이상의 consumer를 할당한 경우, 해당 계정을 사용하여 데이터를 요청하고 응답을 받을 수 있습니다.
 
 - [Initialization](request-response.md#initialization)
+- [Get estimated service fee](request-response.md#get-estimated-service-fee)
 - [Request data](request-response.md#request-data)
 - [Receive response](request-response.md#receive-response)
 
@@ -64,11 +65,35 @@ contract RequestResponseConsumer is RequestResponseConsumerFulfillUint128 {
 }
 ```
 
+### Get estimated service fee
+
+`estimateFee` 함수는 제공된 매개변수를 기반으로 요청에 대한 예상 서비스 수수료를 계산합니다.
+
+```solidity
+function estimateFee(
+    uint64 reqCount,
+    uint8 numSubmission,
+    uint32 callbackGasLimit
+) public view returns (uint256) {
+    uint256 serviceFee = calculateServiceFee(reqCount) * numSubmission;
+    uint256 maxGasCost = tx.gasprice * callbackGasLimit;
+    return serviceFee + maxGasCost;
+}
+```
+
+이 함수의 목적과 인수를 이해해 보겠습니다:
+
+- `reqCount`: 이전에 수행된 요청의 수를 나타내는 `uint64` 값입니다. `accId` 를 제공함으로써 [`Prepayment 계약`](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/Prepayment.sol#L212-L214)의 `getReqCount()` 외부 함수를 호출하여 `reqCount` 값을 얻을 수 있습니다.
+- `numSubmission`: 요청에 대한 제출 횟수를 나타내는 `uint8` 값입니다.
+- `callbackGasLimit`: 콜백 함수에 할당된 가스 한도를 나타내는 `uint32` 값입니다
+
+적절한 매개변수로 `estimateFee` 함수를 호출함으로써 사용자는 요청에 필요한 총 수수료의 예상치를 얻을 수 있습니다. 이는 각 요청에 필요한 금액을 지출하는 데 유용할 수 있습니다.
+
 ### Request data
 
 데이터 요청(`requestData`)은 [`Prepayment` 스마트 계약](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/Prepayment.sol)의 `addConsumer` 함수를 통해 승인된 계약에서 호출되어야 합니다. 스마트 계약이 승인되지 않은 경우, 요청은 `InvalidConsumer` 오류로 거부됩니다. 계정(`accId`로 지정된)이 존재하지 않거나 충분한 잔액이 없는 경우에도 요청이 거부됩니다.
 
-아래의 예시 코드는 [https://min-api.cryptocompare.com/](https://min-api.cryptocompare.com/) API 서버에서 ETH/USD 가격 정보를 요청하는 코드입니다. 요청에는 데이터를 가져올 위치 ([https://min-api.cryptocompare.com/data/pricemultifull?fsyms=ETH\&tsyms=USD](https://min-api.cryptocompare.com/data/pricemultifull?fsyms=ETH&tsyms=USD)), 와 API 서버로부터의 응답을 어떻게 파싱해야 하는지 (`path`와`pow10`)에 대한 정보가 포함됩니다 (아래 목록에 표시된 것은 축약된 버전입니다).응답은 중첩된 JSON 딕셔너리 형태로 제공되며, 먼저 `RAW` 키에 접근한 후, `ETH` 키, `USD` 키, 그리고 마지막으로 `PRICE` 키에 접근하고자 합니다.
+아래의 예시 코드는 [https://min-api.cryptocompare.com/](https://min-api.cryptocompare.com/) API 서버에서 ETH/USD 가격 정보를 요청하는 코드입니다. 요청에는 데이터를 가져올 위치 ([https://min-api.cryptocompare.com/data/pricemultifull?fsyms=ETH\&tsyms=USD](https://min-api.cryptocompare.com/data/pricemultifull?fsyms=ETH&tsyms=USD)), 와 API 서버로부터의 응답을 어떻게 파싱해야 하는지 (`path` 와 `pow10`)에 대한 정보가 포함됩니다 (아래 목록에 표시된 것은 축약된 버전입니다).응답은 중첩된 JSON 딕셔너리 형태로 제공되며, 먼저 `RAW` 키에 접근한 후, `ETH` 키, `USD` 키, 그리고 마지막으로 `PRICE` 키에 접근하고자 합니다.
 
 ```json
 {
@@ -82,7 +107,7 @@ contract RequestResponseConsumer is RequestResponseConsumerFulfillUint128 {
 }
 ```
 
-ETH/USD 가격에 접근한 후, 해당 가격 값이 부동 소수점으로 인코딩되어 있다는 것을 알게 됩니다. 부동 소수점 값을 오프체인에서 온체인으로 간편하게 전환하기 위해, 가격 값을 10의 8승(10e8)으로 곱하고 uint256 데이터 형식으로 값을 유지하기로 결정합니다. 이 최종 값은 오프체인 오라클에 의해 `RequestResponseCoordinator`에 제출되며,이는 결과적으로 consumer 스마트 계약 내에서`fulfillDataRequest`함수를 호출합니다. 이 페이지의 마지막 섹션에서는 요청을 구성하는 다른 방법과 [오프체인 API 서버로부터 응답을 구문 분석하는 방법](request-response.md#request)에 대해 자세히 알아보실 수 있습니다.
+ETH/USD 가격에 접근한 후, 해당 가격 값이 부동 소수점으로 인코딩되어 있다는 것을 알게 됩니다. 부동 소수점 값을 오프체인에서 온체인으로 간편하게 전환하기 위해, 가격 값을 10의 8승(10e8)으로 곱하고 uint256 데이터 형식으로 값을 유지하기로 결정합니다. 이 최종 값은 오프체인 오라클에 의해 `RequestResponseCoordinator`에 제출되며,이는 결과적으로 consumer 스마트 계약 내에서 `fulfillDataRequest`함수를 호출합니다. 이 페이지의 마지막 섹션에서는 요청을 구성하는 다른 방법과 [오프체인 API 서버로부터 응답을 구문 분석하는 방법](request-response.md#request) 에 대해 자세히 알아보실 수 있습니다.
 
 ```solidity
 function requestData(
@@ -109,7 +134,7 @@ function requestData(
 }
 ```
 
-아래에는[`RequestResponseCoordinator` 스마트 계약](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/RequestResponseCoordinator.sol)에서 정의된 `requestData` 함수와 해당 인수에 대한 설명이 나와 있습니다:
+아래에는 [`RequestResponseCoordinator` 스마트 계약](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/RequestResponseCoordinator.sol) 에서 정의된 `requestData` 함수와 해당 인수에 대한 설명이 나와 있습니다:
 
 - `req`: 사용자 요청을 포함하는 `Request` 구조체
 - `callbackGasLimit`: 확인이 완료된 후에 실행되는 콜백 함수의 가스 한도를 나타내는 `uint32` 값
