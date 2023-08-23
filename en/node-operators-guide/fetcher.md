@@ -117,6 +117,7 @@ Before we launch the **Orakl Network Fetcher**, we must specify [several environ
 * `REDIS_PORT`
 * `ORAKL_NETWORK_API_URL`
 * `APP_PORT`
+* `CHAIN`
 
 `REDIS_HOST` and `REDIS_PORT` represent host and port of [Redis](https://redis.io/) to which the **Orakl Network Fetcher** connect to. The default values are `localhost` and `6379`, respectively. Redis is used indirectly through [BullMQ](https://docs.bullmq.io/) to collect data in regular predefined intervals.
 
