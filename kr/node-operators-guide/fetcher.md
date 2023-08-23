@@ -115,6 +115,7 @@ orakl-cli fetcher stop \
 * `REDIS_PORT`
 * `ORAKL_NETWORK_API_URL`
 * `APP_PORT`
+* `CHAIN`
 
 `REDIS_HOST` 와 `REDIS_PORT`는 **Orakl Network Fetcher** 가 연결하는 [Redis](https://redis.io/)의 호스트와 포트를 나타냅니다. 기본 값은 각각 `localhost`와 `6379`입니다. Redis는 [BullMQ](https://docs.bullmq.io/)를 통해 정기적으로 미리 정의된 간격으로 데이터를 수집하는 데 사용됩니다.
 
