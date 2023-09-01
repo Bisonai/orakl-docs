@@ -31,9 +31,7 @@ An **adapter** is a set of data sources (`feeds`) and post-processing rules (`re
         "reducers": [
           {
             "function": "PARSE",
-            "args": [
-              "price"
-            ]
+            "args": ["price"]
           },
           {
             "function": "POW10",
@@ -118,12 +116,17 @@ Before we launch the **Orakl Network Fetcher**, we must specify [several environ
 * `ORAKL_NETWORK_API_URL`
 * `APP_PORT`
 * `CHAIN`
+* `FETCHER_TYPE`
 
 `REDIS_HOST` and `REDIS_PORT` represent host and port of [Redis](https://redis.io/) to which the **Orakl Network Fetcher** connect to. The default values are `localhost` and `6379`, respectively. Redis is used indirectly through [BullMQ](https://docs.bullmq.io/) to collect data in regular predefined intervals.
 
 `ORAKL_NETWORK_API_URL` corresponds to url where the **Orakl Network API** is running. Collected and aggregated data by the **Orakl Network Fetcher** will be send to [PostgreSQL](https://www.postgresql.org/) through the **Orakl Network API** interface.
 
 `APP_PORT` represents a port on which the **Orakl Network Fetcher** will be running. This port will be necessary when we connect to **Orakl Network API** from other services (e.g. **Orakl Network CLI**).
+
+`CHAIN` represents name of chain for which data are collected.
+
+`FETCHER_TYPE` represents type of fetcher will be used for the current fetcher.
 
 ## Launch
 
