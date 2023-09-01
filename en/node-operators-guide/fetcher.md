@@ -124,7 +124,7 @@ Before we launch the **Orakl Network Fetcher**, we must specify [several environ
 
 `APP_PORT` represents a port on which the **Orakl Network Fetcher** will be running. This port will be necessary when we connect to **Orakl Network API** from other services (e.g. **Orakl Network CLI**).
 
-`CHAIN` designates the specific chain that will comminucate with the **Orakl Network API** to retrieve data relevant to that chain.
+`CHAIN` represents name of chain for which data are collected.
 
 `FETCHER_TYPE` represents type of fetcher will be used for the current fetcher.
 
