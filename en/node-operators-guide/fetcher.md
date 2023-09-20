@@ -107,7 +107,6 @@ An example to add proxi with host:`127.0.0.1`, and port:`88`
 orakl-cli proxy insert --protocol "http" --host "127.0.0.1" --port 88
 ```
 
-
 ### Activate Aggregator
 
 After the adapters and aggregators are registered to Orakl Network state, they are in an inactive state at first. If we want them to use for data collection, we have to activate them. Activation can be performed through the **Orakl Network CLI**.

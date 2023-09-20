@@ -4,7 +4,7 @@ description: List, Insert And Remove Orakl Network Proxies
 
 # Proxy
 
-The **Orakl Network Listener** state can store information about deployments to multiple proxies. Proxies are can be utilized to fetch data by making requests through defined proxy configurations
+The **Orakl Network ** state can store information about the multiple proxies. Proxies are can be utilized to fetch data by making requests through defined proxy configurations
 
 The **Orakl Network CLI** provides commands to
 
