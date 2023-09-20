@@ -35,7 +35,7 @@ orakl-cli listener insert \
 
 ### Reporter
 
-The **Orakl Network API** holds information about all reporters. The command below adds a single Data  Feed reporter to the Orakl Network state to report to `oracleAddress`. The chain parameter specifies a chain on which we expect to operate. Reporter is defined by an `address` and a `privateKey` parameters.
+The **Orakl Network API** holds information about all reporters. The command below adds a single Data Feed reporter to the Orakl Network state to report to `oracleAddress`. The chain parameter specifies a chain on which we expect to operate. Reporter is defined by an `address` and a `privateKey` parameters.
 
 ```sh
 orakl-cli reporter insert \
@@ -55,6 +55,18 @@ orakl-cli adapter insert \
 orakl-cli aggregator insert \
     --chain ${chain} \
     --file-path ${aggregatorJsonFile}
+```
+
+### Proxies (Optional)
+
+The Orakl Network offers an optional proxy feature that allows data fetching through proxy resources. The following command adds a single proxy to the Orakl Network state. The chain parameter specifies the blockchain network on which the operation is expected to occur. It is essential to provide values for all three parameters: `host`, `port`, and `protocol`.
+
+
+```sh
+orakl-cli proxy insert \
+    --protocol ${protocol} \
+    --host ${host} \
+    --port ${port}
 ```
 
 ## Configuration

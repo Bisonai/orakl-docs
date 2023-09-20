@@ -4,7 +4,7 @@ description: List, Insert And Remove Orakl Network Proxies
 
 # Proxy
 
-The Orakl Network state can hold information about deployments to multiple proxies. The proxy is a fundamental configuration which is used in all other Orakl Network settings.
+The **Orakl Network Listener** state can store information about deployments to multiple proxies. Proxies are can be utilized to fetch data by making requests through defined proxy configurations
 
 The **Orakl Network CLI** provides commands to
 
@@ -21,7 +21,7 @@ orakl-cli proxy list
 ```json
 [
   { id: '1', protocol: 'http', host: '127.0.0.1', port: 80},
-  { id: '1', protocol: 'http', host: '127.0.0.1', port: 88},
+  { id: '1', protocol: 'http', host: '127.0.0.1', port: 88'},
 ]
 ```
 
