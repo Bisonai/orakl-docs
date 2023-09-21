@@ -95,13 +95,13 @@ In addition to configuring adapters and aggregators, the Orakl Network also prov
 orakl-cli proxy list
 ```
 
-How to add new proxy
+### Add proxy
 
 ```sh
 orakl-cli proxy insert --protocol protocol --host host --port port
 ```
 
-An example to add proxi with host:`127.0.0.1`, and port:`88`
+An example to add proxy with host:`127.0.0.1`, with port:`88`
 
 ```sh
 orakl-cli proxy insert --protocol "http" --host "127.0.0.1" --port 88

@@ -4,7 +4,7 @@ description: List, Insert And Remove Orakl Network Proxies
 
 # Proxy
 
-The **Orakl Network ** state can store information about the multiple proxies. Proxies are can be utilized to fetch data by making requests through defined proxy configurations
+The **Orakl Network ** state can store information about the multiple proxies. Proxies are can be utilized to fetch data by making requests through defined proxy configurations.
 
 The **Orakl Network CLI** provides commands to
 
@@ -27,7 +27,7 @@ orakl-cli proxy list
 
 ### Insert New Proxy
 
-If there are not proxies set, we can add a new proxy using `proxy insert` command of the **Orakl Network CLI**.
+Proxies can be added with a `proxy insert` command. A unique proxy can be added only once.
 
 ```sh
 orakl-cli proxy insert \
