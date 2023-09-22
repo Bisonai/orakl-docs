@@ -65,7 +65,7 @@ An **aggregator** is described with on-chain metadata (`address`), off-chain met
 
 If there are no adapters and aggregators in Orakl Network state, you can create them through the **Orakl Network CLI**. To find out, if there are any adapter and aggregator in Orakl Network state, you can execute the command below.
 
-```
+```sh
 orakl-cli adapter list
 orakl-cli aggregator list
 ```
@@ -85,6 +85,26 @@ orakl-cli adapter insert \
 orakl-cli aggregator insert \
     --file-path [path/to/aggregator.json] \
     --chain localhost
+```
+
+### Proxies (Optional)
+
+In addition to configuring adapters and aggregators, the Orakl Network also provides the option to add proxies, which can be used for data fetching through defined proxy configurations.
+
+```sh
+orakl-cli proxy list
+```
+
+### Add proxy
+
+```sh
+orakl-cli proxy insert --protocol protocol --host host --port port
+```
+
+An example to add proxy with host:`127.0.0.1`, with port:`88`
+
+```sh
+orakl-cli proxy insert --protocol "http" --host "127.0.0.1" --port 88
 ```
 
 ### Activate Aggregator

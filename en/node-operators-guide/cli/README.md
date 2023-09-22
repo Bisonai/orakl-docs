@@ -13,9 +13,10 @@ The **Orakl Network CLI** is a tool to configure and manage the **Orakl Network*
 * [Adapter](adapter.md)
 * [Aggregator](aggregator.md)
 * [Reporter](reporter.md)
+* [Proxy](proxy.md)
 * [Fetcher](fetcher.md)
 * [Delegator](delegator.md)
-
+  
 ### Installation
 
 We recommend to install the **Orakl Network CLI** globally using the command below.
@@ -46,6 +47,8 @@ where <subcommand> can be one of:
 - fetcher
 - reporter
 - version
+- delegator
+- proxy
 
 For more help, try running `operator <subcommand> --help`
 ```
