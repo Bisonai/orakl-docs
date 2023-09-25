@@ -180,3 +180,81 @@ function withdraw(uint64 accId, uint256 amount) external onlyAccountOwner(accId)
 ```
 
 This function subtracts the `amount` from the account's balance and transfers the withdrawn amount to the owner of the account using the external call. Finally, it emits an event `AccountBalanceDecreased` with the account ID, old balance and new balance as arguments. `AccountBalanceDecreased` event indicates that the withdrawal has been completed.
+
+#### Other Account types for Fiat and Klay Subsription
+
+We also have some other account types, which can only be created and updated by our operators. These account types are for fiat (or Klay) subscription plan.
+
+```solidity
+    function createFiatSubscriptionAccount(
+        uint256 startDate,
+        uint256 period,
+        uint256 reqPeriodCount,
+        address accOwner
+    ) external onlyOwner returns (uint64) {
+        uint64 currentAccId = sCurrentAccId + 1;
+        sCurrentAccId = currentAccId;
+
+        Account acc = new Account(currentAccId, accOwner, IAccount.AccountType.FIAT_SUBSCRIPTION);
+        sAccIdToAccount[currentAccId] = acc;
+
+        acc.updateAccountDetail(startDate, period, reqPeriodCount, 0);
+
+        emit AccountCreated(
+            currentAccId,
+            address(acc),
+            accOwner,
+            IAccount.AccountType.FIAT_SUBSCRIPTION
+        );
+        return currentAccId;
+    }
+```
+
+```solidity
+    function createKlaySubscriptionAccount(
+        uint256 startDate,
+        uint256 period,
+        uint256 reqPeriodCount,
+        uint256 subscriptionPrice,
+        address accOwner
+    ) external onlyOwner returns (uint64) {
+        uint64 currentAccId = sCurrentAccId + 1;
+        sCurrentAccId = currentAccId;
+
+        Account acc = new Account(currentAccId, accOwner, IAccount.AccountType.KLAY_SUBSCRIPTION);
+        sAccIdToAccount[currentAccId] = acc;
+        acc.updateAccountDetail(startDate, period, reqPeriodCount, subscriptionPrice);
+        emit AccountCreated(
+            currentAccId,
+            address(acc),
+            accOwner,
+            IAccount.AccountType.KLAY_SUBSCRIPTION
+        );
+        return currentAccId;
+    }
+```
+
+```solidity
+   function createKlayDiscountAccount(
+        uint256 feeRatio,
+        address accOwner
+    ) external onlyOwner returns (uint64) {
+        uint64 currentAccId = sCurrentAccId + 1;
+        sCurrentAccId = currentAccId;
+        Account acc = new Account(currentAccId, accOwner, IAccount.AccountType.KLAY_DISCOUNT);
+        sAccIdToAccount[currentAccId] = acc;
+        acc.setFeeRatio(feeRatio);
+        emit AccountCreated(
+            currentAccId,
+            address(acc),
+            accOwner,
+            IAccount.AccountType.KLAY_DISCOUNT
+        );
+        return currentAccId;
+    }
+```
+
+
+
+
+
