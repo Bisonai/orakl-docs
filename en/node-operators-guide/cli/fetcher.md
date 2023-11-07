@@ -16,11 +16,10 @@ The **Orakl Network Fetcher** is used to regularly collect data based on the def
 
 ### List Active Aggregators
 
-The **Orakl Network Fetcher** can show the list of active Aggregators with `fetcher active` command. We need to specify chain through the `--chain` parameter to specify which chain value will be used to make a request.
+The **Orakl Network Fetcher** can show the list of active Aggregators with `fetcher active` command.
 
 ```sh
 orakl-cli fetcher active \
-    --chain ${chainName} \
     --host ${host} \
     --port ${port}
 ```
