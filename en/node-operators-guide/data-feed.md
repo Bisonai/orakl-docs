@@ -112,9 +112,9 @@ Before launching the Data Feed solution, the **Orakl Network API** has to be acc
 After the **Orakl Network API** is healthy, Data Feed microservices (listener, worker, reporter) can be launched in an arbitrary order. Microservices communicate with each other through the BullMQ - job queue.
 
 ```sh
-yarn start:listener:aggregator
-yarn start:worker:aggregator
-yarn start:reporter:aggregator
+yarn start:listener:data_feed
+yarn start:worker:data_feed
+yarn start:reporter:data_feed
 ```
 
 ## Architecture

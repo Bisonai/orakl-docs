@@ -100,9 +100,9 @@ Data Feed 솔루션을 시작하기 전에 **Orakl Network API** 가 **Orakl Net
 **Orakl Network API** 가 정상적으로 동작하는 경우, Data Feed 마이크로서비스 (listener, worker, reporter)를 임의의 순서로 시작할 수 있습니다. 마이크로서비스는 BullMQ - job queue를 통해 서로 통신합니다.
 
 ```sh
-yarn start:listener:aggregator
-yarn start:worker:aggregator
-yarn start:reporter:aggregator
+yarn start:listener:data_feed
+yarn start:worker:data_feed
+yarn start:reporter:data_feed
 ```
 
 ## Architecture
