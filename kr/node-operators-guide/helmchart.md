@@ -254,7 +254,6 @@ Aggregator Baobab에서 https://config.orakl.network/ 을 확인해보면 12개�
 ```bash
   helm install aggregator -n orakl orakl/orakl-aggregator \
     --set "global.config.CHAIN=${your network name}" \
-    --set "global.config.LOG_DIR=/app/log" \
     --set "global.config.LOG_LEVEL=info" \
     --set "global.config.HEALTH_CHECK_PORT=8080" \
     --set "global.config.NODE_ENV=production" \

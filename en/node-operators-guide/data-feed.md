@@ -78,11 +78,9 @@ Before we launch the **Orakl Network Data Feed**, we must specify [several envir
 * `PROVIDER_URL`
 * `ORAKL_NETWORK_API_URL`
 * `LOG_LEVEL`
-* `LOG_DIR`
-* `REDIS_HOST`&#x20;
+* `REDIS_HOST`
 * `REDIS_PORT`
 * `HEALTH_CHECK_PORT`
-* `HOST_SETTINGS_LOG_DIR`
 * `SLACK_WEBHOOK_URL`
 
 The **Orakl Network Data Feed** is implemented in Node.js which uses `NODE_ENV` environment variable to signal the execution environment (e.g. `production`, `development`). [Setting the environment to `production`](https://nodejs.dev/en/learn/nodejs-the-difference-between-development-and-production/) generally ensures that logging is kept to a minimum, and more caching levels take place to optimize performance.
@@ -95,13 +93,9 @@ The **Orakl Network Data Feed** is implemented in Node.js which uses `NODE_ENV` 
 
 Setting a level of logs emitted by a running instance is set through `LOG_LEVEL` environment variable, and can be one of the following: `error`, `warning`, `info`, `debug` and `trace`, ordered from the most restrictive to the least. By selecting any of the available options you subscribe to the specified level and all levels with lower restrictiveness.
 
-Logs are sent to console, and to file which is located at `LOG_DIR` directory.
-
 `REDIS_HOST` and `REDIS_PORT` represent host and port of [Redis](https://redis.io/) to which all **Orakl Network Data Feed** microservices connect. The default values are `localhost` and `6379`, respectively.&#x20;
 
 The **Orakl Network Data Feed** does not offer a rich REST API, but defines a health check endpoint (`/`) served under a port denoted as `HEALTH_CHECK_PORT`.
-
-`HOST_SETTINGS_LOG_DIR` is used in [Docker Compose file](https://github.com/Bisonai/orakl/blob/master/core/docker-compose.data-feed.yaml), and represents a location at host where collected log files will be stored.
 
 Errors and warnings emitted by the **Orakl Network Data Feed** can be [sent to Slack channels through a slack webhook](https://api.slack.com/messaging/webhooks). The webhook URL can be set with the `SLACK_WEBOOK_URL` environment variable.
 
