@@ -35,7 +35,7 @@ AWS Installation
 helm install storage -n orakl orakl/orakl-log-aws-storage \
     --set "config.efsFileSystemId=${your efs file system id}" \
     --set "config.region=${your aws resion}" \
-    --set "config.size=100Gi" 
+    --set "config.size=100Gi"
 ```
 
 GCP Installation
@@ -73,7 +73,7 @@ helm install fetcher -n orakl orakl/orakl-fetcher \
     --set "global.config.APP_PORT=4040" \
     --set "global.config.REDIS_HOST=${your redis host address }" \
     --set "global.config.REDIS_PORT=${your redis port | 6379}" \
-    --set "global.config.ORAKL_NETWORK_API_URL=http://orakl-api.orakl.svc.cluster.local:3030/api/v1" 
+    --set "global.config.ORAKL_NETWORK_API_URL=http://orakl-api.orakl.svc.cluster.local:3030/api/v1"
 ```
 
 + `ORAKL_NETWORK_API_URL`: This is the address to communicate with the Pod you installed in step 03. It uses the usual Kubernetes domain for communication, which is `http://{api pod's service name}.{namespace}.svc.cluster.local:3030/api/v1` So if you installed in a namespace other than the orakl namespace, the address of the API server will need to be changed, for example, if the namespace is default, it will be `http://orakl-api.default.svc.cluster.local:3030/api/v1`
@@ -85,11 +85,11 @@ helm install fetcher -n orakl orakl/orakl-fetcher \
 helm install cli -n orakl orakl/orakl-cli \
     --set "global.config.ORAKL_NETWORK_API_URL=http://orakl-api.orakl.svc.cluster.local:3030/api/v1" \
     --set "global.config.ORAKL_NETWORK_FETCHER_URL=http://orakl-fetcher.orakl.svc.cluster.local:4040/api/v1" \
-    --set "global.config.ORAKL_NETWORK_DELEGATOR_URL=http://orakl-delegator.orakl.svc.cluster.local:5050/api/v1" 
+    --set "global.config.ORAKL_NETWORK_DELEGATOR_URL=http://orakl-delegator.orakl.svc.cluster.local:5050/api/v1"
 ```
 
 + `ORAKL_NETWORK_API_URL`, `ORAKL_NETWORK_FETCHER_URL` : These 2 URLs are the same convention we used to deploy the fetcher earlier, just make sure to include the service name and namespace.
-+ 
++
 + `ORAKL_NETWORK_DELEGATOR_URL` : This URL will be available soon. The parts related to Delegator are in the process of being migrated.
 
 
@@ -98,12 +98,12 @@ helm install cli -n orakl orakl/orakl-cli \
 If you look at the aggregator Baobab at https://config.orakl.network/, there are 12 contracts and each contract has an address. There will be more later. We have to have 12 accounts to whitelist in this contract if you want to activate reporters account. To activate your account, kindly reach out to us at business@orakl.network.
 
 + list all pods in orakl namespace
-  ```bash 
-    kubectl get pods -n orakl 
+  ```bash
+    kubectl get pods -n orakl
   ```
 + access to cli pod
   ```bash
-    kubectl exec -it cli-7b8df47f-bdlzv -n orakl -- /bin/bash 
+    kubectl exec -it cli-7b8df47f-bdlzv -n orakl -- /bin/bash
   ```
 
     You can set the default settings through the [orakl cli part](https://docs.orakl.network/docs/node-operators-guide/cli). Here we'll show you an example.
@@ -179,7 +179,7 @@ If you look at the aggregator Baobab at https://config.orakl.network/, there are
 *   setting reporter
 
     ```bash
-    yarn cli reporter insert \ 
+    yarn cli reporter insert \
       --chain baobab \
       --service DATA_FEED \
       --address ${your reporter account address} \
@@ -244,12 +244,11 @@ If you look at the aggregator Baobab at https://config.orakl.network/, there are
 ```bash
   helm install aggregator -n orakl orakl/orakl-aggregator \
     --set "global.config.CHAIN=${your network name}" \
-    --set "global.config.LOG_DIR=/app/log" \    
-    --set "global.config.LOG_LEVEL=info" \        
+    --set "global.config.LOG_LEVEL=info" \
     --set "global.config.HEALTH_CHECK_PORT=8080" \
-    --set "global.config.NODE_ENV=production" \            
-    --set "global.config.ORAKL_NETWORK_API_URL=http://orakl-api.orakl.svc.cluster.local:3030/api/v1" \                
-    --set "global.config.ORAKL_NETWORK_DELEGATOR_URL=http://orakl-delegator.orakl.svc.cluster.local:5050/api/v1" \                    
+    --set "global.config.NODE_ENV=production" \
+    --set "global.config.ORAKL_NETWORK_API_URL=http://orakl-api.orakl.svc.cluster.local:3030/api/v1" \
+    --set "global.config.ORAKL_NETWORK_DELEGATOR_URL=http://orakl-delegator.orakl.svc.cluster.local:5050/api/v1" \
     --set "global.config.PROVIDER_URL=${your network provider url}" \
     --set "global.config.REDIS_HOST=${your redis host}" \
     --set "global.config.REDIS_PORT=${your redis port}" \

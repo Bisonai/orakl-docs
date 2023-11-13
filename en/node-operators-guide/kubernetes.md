@@ -37,15 +37,9 @@ helm install \
  --set CHAIN=localhost \
  --set ORAKL_DIR=/app/db \
  --set LOG_LEVEL=debug \
- --set LOG_DIR=/app/log \
  orakl-cli orakl/orakl-cli
 ```
-
-
 
 After the successful deployment of `orakl-cli`, set up the configuration before installing VRF or Request-Response.
 
 #### 3) Setting configuration
-
-
-
