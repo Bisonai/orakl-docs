@@ -27,6 +27,7 @@
 * [Orakl Network Fetcher](node-operators-guide/fetcher.md)
 * [Orakl Network Data Feed](node-operators-guide/data-feed.md)
 * [Orakl Network Delegator](node-operators-guide/delegator.md)
+* [Orakl Network Proof of Reserve](node-operators-guide/proof-of-reserve.md)
 * [Helm Chart Infra Setup](node-operators-guide/helmchart.md)
 
 ## Other Resources
