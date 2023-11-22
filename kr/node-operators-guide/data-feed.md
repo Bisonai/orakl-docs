@@ -71,7 +71,7 @@ orakl-cli aggregator insert \
 - `HEALTH_CHECK_PORT`
 - `SLACK_WEBHOOK_URL`
 
-**Orakl Network Data Feed** 는 Node.js로 구현되어 있으며, 실행 환경을 나타내는 `NODE_ENV` 환경 변수를 사용합니다 (예: `production`, `development`). [환경을 `production` 으로 설정](https://nodejs.dev/en/learn/nodejs-the-difference-between-development-and-production/)하면 일반적으로 로깅이 최소화되고 성능을 최적화하기 위해 더 많은 캐싱 수준이 적용됩니다.
+**Orakl Network Data Feed** 는 Node.js로 구현되어 있으며, 실행 환경을 나타내는 `NODE_ENV` 환경 변수를 사용합니다 (예: `production`, `development`). [환경을 `production` 으로 설정](https://nodejs.org/en/learn/getting-started/nodejs-the-difference-between-development-and-production)하면 일반적으로 로깅이 최소화되고 성능을 최적화하기 위해 더 많은 캐싱 수준이 적용됩니다.
 
 `CHAIN` 환경 변수는 **Orakl Network Data Feed** 가 실행될 체인을 지정하며, **Orakl Network API** 에서 수집할 리소스를 결정합니다.
 
