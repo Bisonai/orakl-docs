@@ -50,11 +50,11 @@ orakl-cli reporter insert \
 
 ```sh
 orakl-cli adapter insert \
-    --file-path ${adapterJsonFile}
+    --source ${adapterJsonFile}
 
 orakl-cli aggregator insert \
     --chain ${chain} \
-    --file-path ${aggregatorJsonFile}
+    --source ${aggregatorJsonFile}
 ```
 
 ### Proxies (Optional)
