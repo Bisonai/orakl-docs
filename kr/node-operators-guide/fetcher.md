@@ -80,10 +80,10 @@ orakl-cli chain insert --name localhost
 
 ```sh
 orakl-cli adapter insert \
-    --file-path [path/to/adapter.json]
+    --source [path/to/adapter.json]
 
 orakl-cli aggregator insert \
-    --file-path [path/to/aggregator.json] \
+    --source [path/to/aggregator.json] \
     --chain localhost
 ```
 
