@@ -24,5 +24,6 @@ Orakl Network는 온체인(on-chain) 및 오프체인(off-chain) 계산을 활�
 * [Orakl Network VRF](vrf.md)
 * [Orakl Network Request-Response](request-response.md)
 * [Orakl Network Data Feed](data-feed.md)
+* [Orakl Network Proof of Reserve](proof-of-reserve.md)
 * [Orakl Network Delegator](delegator.md)
 * [Helm Chart Infra Setup](helmchart.md)
