@@ -21,6 +21,7 @@ The rest of this page describes [Services](./#services) and [Payment](./#payment
 * [Verifiable Random Function (VRF)](developers-guide/vrf.md)
 * [Request-Response](developers-guide/request-response.md)
 * [Data Feed](developers-guide/data-feed.md)
+* [Proof of Reserve](developers-guide/proof-of-reserve.md)
 
 ### Verifiable Random Function (VRF)
 
