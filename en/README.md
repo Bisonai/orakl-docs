@@ -41,6 +41,12 @@ The detailed information about Orakl Network Request-Response can be found at [d
 
 The detailed information about Orakl Network Data Feed can be found at [developer's guide on how to use Data Feed](developers-guide/data-feed.md). To get a hands-on experience with Orakl Network Data Feed, we recommend to explore [an example Hardhat project using Orakl Network Data Feed](https://github.com/Bisonai/data-feed-consumer).
 
+### Proof of Reserve
+
+**Proof of Reserve** methods function as security checks for financial institutions, particularly those involved in decentralized finance (DeFi) and blockchain systems.
+
+The detailed information about Orakl Network Proof of Reserve can be found at [developer's guide on how to use Proof of Reserve](developers-guide/proof-of-reserve.md). To get a hands-on experience with Orakl Network Proof of Reserve, we recommend to explore [an example Hardhat project using Orakl Network Data Feed](https://github.com/Bisonai/data-feed-consumer).
+
 ## Payment & Account Types
 
 The main payment method in Orakl Network is called a [Prepayment](developers-guide/prepayment.md). It allows users to deposit $KLAY to their Orakl Network account, and use it to request Orakl Network VRF or Orakl Network Request-Response. We provide two different account types that support the prepayment method:

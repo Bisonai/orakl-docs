@@ -1,5 +1,5 @@
 ---
-description: Ongoing proof of reserve validation for your financial entity.
+description: Ongoing proof of reserve for your financial entity.
 ---
 
 # Proof of Reserve
