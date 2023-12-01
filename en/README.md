@@ -21,6 +21,7 @@ The rest of this page describes [Services](./#services) and [Payment](./#payment
 * [Verifiable Random Function (VRF)](developers-guide/vrf.md)
 * [Request-Response](developers-guide/request-response.md)
 * [Data Feed](developers-guide/data-feed.md)
+* [Proof of Reserve](developers-guide/proof-of-reserve.md)
 
 ### Verifiable Random Function (VRF)
 
@@ -39,6 +40,12 @@ The detailed information about Orakl Network Request-Response can be found at [d
 **Data Feed** provides a direct on-chain access to the latest off-chain information. The data are collected in a decentralized and secure way through a set of decentralized and reliable operators.
 
 The detailed information about Orakl Network Data Feed can be found at [developer's guide on how to use Data Feed](developers-guide/data-feed.md). To get a hands-on experience with Orakl Network Data Feed, we recommend to explore [an example Hardhat project using Orakl Network Data Feed](https://github.com/Bisonai/data-feed-consumer).
+
+### Proof of Reserve
+
+**Proof of Reserve** methods function as security checks for financial institutions, particularly those involved in decentralized finance (DeFi) and blockchain systems.
+
+The detailed information about Orakl Network Proof of Reserve can be found at [developer's guide on how to use Proof of Reserve](developers-guide/proof-of-reserve.md). To get a hands-on experience with Orakl Network Proof of Reserve, we recommend to explore [an example Hardhat project using Orakl Network Data Feed](https://github.com/Bisonai/data-feed-consumer).
 
 ## Payment & Account Types
 
