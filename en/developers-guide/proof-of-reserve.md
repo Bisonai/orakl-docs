@@ -23,6 +23,7 @@ The GPC Proof of Reserve refers to a reserved quantity of non-fungible tokens (N
         <td>60</td></tr></tr></tbody></table>
 
 ### Supported Proof of Reserve on Baobab
+**Disclaimer:** The data submitted to Baobab chain and is only for testing purposes. It does not always represent real-world data.
 
 <table><thead><tr><th width="157">PoR</th><th>Aggregator</th><th>AggregatorProxy</th><th>Heartbeat (m)</th></tr></thead><tbody>
     <tr>
@@ -30,7 +31,6 @@ The GPC Proof of Reserve refers to a reserved quantity of non-fungible tokens (N
         <td><a href="https://baobab.klaytnfinder.io/account/0x821179a6d4F62fa6979BF42bEb9eE16a1F14C4eD">0x821179a6d4F62fa6979BF42bEb9eE16a1F14C4eD</a></td>
         <td>60</td></tr></tr></tbody></table>
 
-</tbody></table>
 
 ## How to read from Aggregator contract of PoR
 
