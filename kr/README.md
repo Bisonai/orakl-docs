@@ -39,6 +39,12 @@ Orakl Network Request-Response에 대한 자세한 정보는 [Request-Response �
 
 Orakl Network Data Feed에 대한 자세한 정보는 [Data Feed 사용에 대한 개발자 안내서](developers-guide/data-feed.md)에서 확인하실 수 있습니다. 실제로 Orakl Network Data Feed를 체험해보시려면, [Orakl Network Data Feed를 활용한 예제 Hardhat 프로젝트](https://github.com/Bisonai/data-feed-consumer)를 살펴보시는 것을 권장해드립니다.
 
+### Proof Of Reserve
+
+**예비 자금 증명** 방법은 특히 탈중앙화 금융(DeFi) 및 블록체인 시스템에 참여하는 금융 기관들에 의한 검증으로 작동합니다.
+
+Orakl Network 예비 자금 증명에 대한 자세한 정보는 [예비 자금 증명 사용 방법에 대한 개발자 가이드](developers-guide/proof-of-reserve.md)에서 찾을 수 있습니다. Orakl Network 예비 자금 증명을 실제로 경험해보려면 [Orakl Network 데이터 피드를 사용한 Hardhat 프로젝트의 예제](https://github.com/Bisonai/data-feed-consumer)를 확인하는 것을 권장드립니다.
+
 ## Payment & Account Types
 
 Orakl Network에서는 [Prepayment](developers-guide/prepayment.md) 라는 주요 결제 방법을 제공하고 있습니다. 이 방법을 통해 사용자는 Orakl Network 계정에 일정 금액의 $KLAY를 예치하고, 이를 사용하여 Orakl Network VRF 또는 Orakl Network Request-Response를 요청할 수 있습니다. Orakl Network는 Prepayment 방법을 지원하는 두 가지 다른 계정 유형을 제공합니다:
