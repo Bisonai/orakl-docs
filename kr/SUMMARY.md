@@ -6,6 +6,7 @@
 - [Verifiable Random Function (VRF)](developers-guide/vrf.md)
 - [Request-Response](developers-guide/request-response.md)
 - [Data Feed](developers-guide/data-feed.md)
+- [Proof of Reserve](developers-guide/proof-of-reserve.md)
 - [Prepayment](developers-guide/prepayment.md)
 
 ## 노드 운영자 가이드 <a href="#node-operators-guide" id="node-operators-guide"></a>
