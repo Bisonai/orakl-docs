@@ -3,7 +3,7 @@ description: How to integrate and use Orakl network on other networks
 ---
 
 ## Registry contract on Klaytn
-This contracts allows you to manage new chain and services for Orakl network
+This contract allows you to manage new chain and services for Orakl network
 # Manage new chains:
 1. propsose a new chain and pay for propose fee:
 
@@ -232,7 +232,87 @@ function requestData(
         return requestId;
     }
 ```
+## How to integrate datafeeds, VRF, RR on L2
+# VRF
+1. Inherit our `VRFConsumerBase` contract `contract L2VRFConsumerMock is VRFConsumerBase`
+2. In the constructor, specify the l2Enpoint contract adderss as a parameter
+```
+constructor(address l2Endpoint) VRFConsumerBase(l2Endpoint) {
+        sOwner = msg.sender;
+        L2ENDPOINT = IL2Endpoint(l2Endpoint);
+    }
+```
+3. implement the `requestRandomWords` function
+```
+ function requestRandomWords(
+        bytes32 keyHash,
+        uint64 accId,
+        uint32 callbackGasLimit,
+        uint32 numWords
+    ) public onlyOwner returns (uint256 requestId) {
+        requestId = L2ENDPOINT.requestRandomWords(keyHash, accId, callbackGasLimit, numWords);
+    }
+```
+4. implement the `fulfillRandomWords` functions
+```
+    function fulfillRandomWords(
+        uint256 /* requestId */,
+        uint256[] memory randomWords
+    ) internal override {
+        sRandomWord = (randomWords[0] % 50) + 1;
+    }
+```
+**you can refer to our mockup contract for VRF consumer here: https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/mocks/L2VRFConsumerMock.sol**
 
+# Request - Response
+1. Inherit from the set of our abstract contracts for each datatype
+```
+contract L2RequestResponseConsumerMock is
+    RequestResponseConsumerFulfillUint128,
+    RequestResponseConsumerFulfillInt256,
+    RequestResponseConsumerFulfillBool,
+    RequestResponseConsumerFulfillString,
+    RequestResponseConsumerFulfillBytes32,
+    RequestResponseConsumerFulfillBytes
+```
+2. Specify the `L2Endpoint` contract in the constructor
+```
+ constructor(address l2Endpoint) RequestResponseConsumerBase(l2Endpoint) {
+        sOwner = msg.sender;
+        L2ENDPOINT = IL2Endpoint(l2Endpoint);
+    }
+```
+3. Implement the `RequestData` function for your appropriate datatype. Eg.
+```
+    //request for uint128
+    function requestDataUint128(
+        uint64 accId,
+        uint32 callbackGasLimit,
+        uint8 numSubmission
+    ) public onlyOwner returns (uint256 requestId) {
+        bytes32 jobId = keccak256(abi.encodePacked("uint128"));
+        Orakl.Request memory req = buildRequest(jobId);
+        //change here for your expected data
+        req.add(
+            "get",
+            "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=KLAY&tsyms=USD"
+        );
+        req.add("path", "RAW,KLAY,USD,PRICE");
+        req.add("pow10", "8");
+        requestId = L2ENDPOINT.requestData(req, callbackGasLimit, accId, numSubmission);
+    }
+```
+4. Implement the `fulfillDataRequest` function
+```
+    function fulfillDataRequest(uint256 /*requestId*/, uint128 response) internal override {
+        sResponseUint128 = response;
+    }
+```
+**you can refer to our mockup contract for VRF consumer here:https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/mocks/L2RequestResponseConsumerMock.sol**
+
+# Datafeed
+Implementations of datafeed on L2 is the same as on Klaytn. Please refer to this repo:
+**https://github.com/Bisonai/data-feed-consumer**
 
 
 
