@@ -311,6 +311,11 @@ contract L2RequestResponseConsumerMock is
 **you can refer to our mockup contract for VRF consumer here:https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/mocks/L2RequestResponseConsumerMock.sol**
 
 # Datafeed
+1. You need to have have aggragator and aggregator proxy contracts to start integrating into yours contract
+for testing purpose, please refer to our aggregator and aggregator proxy contract address here:
+
+**https://github.com/Bisonai/orakl/tree/master/contracts/deployments/l2node**
+
 Implementations of datafeed on L2 is the same as on Klaytn. Please refer to this repo:
 **https://github.com/Bisonai/data-feed-consumer**
 
