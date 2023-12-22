@@ -8,6 +8,7 @@
 * [Data Feed](developers-guide/data-feed.md)
 * [Proof of Reserve](developers-guide/proof-of-reserve.md)
 * [Prepayment](developers-guide/prepayment.md)
+* [L2 Services](developers-guide/l2-services.md)
 
 ## Node Operator's Guide
 
