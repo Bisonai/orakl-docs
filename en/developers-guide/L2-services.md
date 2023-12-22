@@ -2,7 +2,7 @@
 description: How to integrate and use Orakl network on other networks
 ---
 
-# `Registry` contract
+# Registry Contract
 
 This contract allows you to manage new chain and Orakl Network services.
 
@@ -32,7 +32,8 @@ function proposeNewChain(
 ```
 
 ### 2. Edit Chain Info
-```
+
+```Solidity
 function editChainInfo(
     uint256 _chainID,
     string memory _jsonRpc,
@@ -160,7 +161,7 @@ function removeConsumer(
 
 > The consumer address to add or remove to this account is on L2 chain, not mainnet.
 
-# Endpoint contracts
+# Endpoint Contracts
 
 ## `L2Endpoint`
 
