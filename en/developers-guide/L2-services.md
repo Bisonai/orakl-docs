@@ -2,15 +2,17 @@
 description: How to integrate and use Orakl network on other networks
 ---
 
-# Registry Contract
+# L2 Services
+
+## Registry Contract
 
 This contract allows you to manage new chain and Orakl Network services.
 
-## L2 Chain Management
+### L2 Chain Management
 
 > Please contact [Orakl Network](mailto:business@orakl.network) after you propose a new chain. We will support you to set things up.
 
-### 1. Propose New Chain and Pay `proposeFee`
+1. Propose New Chain and Pay `proposeFee`
 
 ```Solidity
 function proposeNewChain(
@@ -31,7 +33,7 @@ function proposeNewChain(
 }
 ```
 
-### 2. Edit Chain Info
+2. Edit Chain Info
 
 ```Solidity
 function editChainInfo(
@@ -49,9 +51,9 @@ function editChainInfo(
 }
 ```
 
-## L2 Data Feeds Management
+### L2 Data Feeds Management
 
-### 1. Add Data Feed
+1. Add Data Feed
 
 ```Solidity
 function addAggregator(
@@ -69,7 +71,7 @@ function addAggregator(
 }
 ```
 
-### 2. Remove Data Feed
+2. Remove Data Feed
 
 ```Solidity
 function removeAggregator(
@@ -92,11 +94,11 @@ function removeAggregator(
 }
 ```
 
-## Account and Payment Functions
+### Account and Payment Functions
 
 Before you can make a request from L2 chain, you need to create and your account.
 
-### 1. Create Account
+1. Create Account
 
 ```Solidity
 function createAccount(uint256 _chainId) external onlyConfirmedChain(_chainId) {
@@ -110,7 +112,7 @@ function createAccount(uint256 _chainId) external onlyConfirmedChain(_chainId) {
 }
 ```
 
-### 2. Deposit Funds Into the Acount
+2. Deposit Funds Into the Acount
 
 ```Solidity
 function deposit(uint256 _accId) public payable {
@@ -119,7 +121,7 @@ function deposit(uint256 _accId) public payable {
 }
 ```
 
-### 3. Add Consumer Into Account
+3. Add Consumer Into Account
 
 ```Solidity
 function addConsumer(
@@ -136,7 +138,7 @@ function addConsumer(
 }
 ```
 
-### 4. Remove Consumer From Account
+4. Remove Consumer From Account
 
 ```Solidity
 function removeConsumer(
@@ -161,13 +163,13 @@ function removeConsumer(
 
 > The consumer address to add or remove to this account is on L2 chain, not mainnet.
 
-# Endpoint Contracts
+## Endpoint Contracts
 
-## `L2Endpoint`
+### `L2Endpoint`
 
 You need to deploy this contract on your chain; it acts as a coordinator for VRF and Request-Response.
 
-### 1. Add L2 Data Feed
+1. Add L2 Data Feed
 
 ```Solidity
 function addAggregator(address _newAggregator) external onlyOwner {
@@ -178,7 +180,7 @@ function addAggregator(address _newAggregator) external onlyOwner {
 }
 ```
 
-### 2. Remove L2 Data Feed
+2. Remove L2 Data Feed
 
 ```Solidity
 function removeAggregator(address _aggregator) external onlyOwner {
@@ -189,7 +191,7 @@ function removeAggregator(address _aggregator) external onlyOwner {
 }
 ```
 
-### 3. Add L2 Data Feed Reporter
+3. Add L2 Data Feed Reporter
 
 ```Solidity
 function addSubmitter(address _newSubmitter) external onlyOwner {
@@ -200,7 +202,7 @@ function addSubmitter(address _newSubmitter) external onlyOwner {
 }
 ```
 
-### 4. Add L2 Data Feed Reporter
+4. Add L2 Data Feed Reporter
 
 ```Solidity
 function removeSubmitter(address _submitter) external onlyOwner {
@@ -211,7 +213,7 @@ function removeSubmitter(address _submitter) external onlyOwner {
     }
 ```
 
-### 5. Request Random Words From L2
+5. Request Random Words From L2
 
 ```Solidity
 function requestRandomWords(
@@ -240,8 +242,8 @@ function requestRandomWords(
 }
 ```
 
-### 6. Request Data From L2
-   
+6. Request Data From L2
+
 ```Solidity
 function requestData(
     Orakl.Request memory req,
@@ -269,28 +271,28 @@ function requestData(
 }
 ```
 
-# How to Integrate Data Feed, VRF and Request-Response on L2
+## How to Integrate Data Feed, VRF and Request-Response on L2
 
 * [Data Feed](#Data-Feed)
 * [VRF](#VRF)
 * [Request-Response](#Request-Response)
 
-## Data Feed
+### Data Feed
 
 The use of `Aggregator` and `AggregatorProxy` smart contracts on L2 is the same as on the mainnet.
 Please refer to our [Data Feed mock consumer](https://github.com/Bisonai/data-feed-consumer).
 
-## VRF
+### VRF
 
 > Refer to [L2 VRF mockup consumer contract](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/mocks/L2VRFConsumerMock.sol).
 
-### 1. Inherit from the `VRFConsumerBase` Contract
+1. Inherit from the `VRFConsumerBase` Contract
 
 ```Solidity
 contract L2VRFConsumerMock is VRFConsumerBase
 ```
 
-### 2. Specify `l2Endpoint` in the Constructor
+2. Specify `l2Endpoint` in the Constructor
 
 ```Solidity
 constructor(address l2Endpoint) VRFConsumerBase(l2Endpoint) {
@@ -299,8 +301,8 @@ constructor(address l2Endpoint) VRFConsumerBase(l2Endpoint) {
 }
 ```
 
-### 3. Implement the `requestRandomWords` Function
-   
+3. Implement the `requestRandomWords` Function
+
 ```Solidity
  function requestRandomWords(
     bytes32 keyHash,
@@ -312,7 +314,7 @@ constructor(address l2Endpoint) VRFConsumerBase(l2Endpoint) {
 }
 ```
 
-### 4. Implement the `fulfillRandomWords` Function
+4. Implement the `fulfillRandomWords` Function
 
 ```Solidity
 function fulfillRandomWords(
@@ -323,12 +325,12 @@ function fulfillRandomWords(
 }
 ```
 
-## Request-Response
+### Request-Response
 
 > Refer to [L2 Request-Response mockup consumer contract](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/mocks/L2RequestResponseConsumerMock.sol).
 
-### 1. Inherit from the Base Contract for Request Data Types
-   
+1. Inherit from the Base Contract for Request Data Types
+
 ```Solidity
 contract L2RequestResponseConsumerMock is
     RequestResponseConsumerFulfillUint128,
@@ -339,7 +341,7 @@ contract L2RequestResponseConsumerMock is
     RequestResponseConsumerFulfillBytes
 ```
 
-### 2. Specify `l2Endpoint` in the Constructor
+2. Specify `l2Endpoint` in the Constructor
 
 ```Solidity
 constructor(address l2Endpoint) RequestResponseConsumerBase(l2Endpoint) {
@@ -348,7 +350,7 @@ constructor(address l2Endpoint) RequestResponseConsumerBase(l2Endpoint) {
 }
 ```
 
-### 3. Implement `requestData*` Function
+3. Implement `requestData*` Function
 
 ```Solidity
 //request for uint128
@@ -370,7 +372,7 @@ function requestDataUint128(
 }
 ```
 
-### 4. Implement the `fulfillDataRequest` Function
+4. Implement the `fulfillDataRequest` Function
 
 ```Solidity
 function fulfillDataRequest(uint256 /*requestId*/, uint128 response) internal override {
