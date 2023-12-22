@@ -1,8 +1,12 @@
 ---
-description: How to integrate and use Orakl network on other networks
+description: Registering and Using Oracle Network Services on L2 Chains
 ---
 
 # L2 Services
+
+* [Registry Contract](l2-services.md#registry-contract)
+* [Endpoint Contracts](l2-services.md#endpoint-contracts)
+* [How to Integrate Data Feed, VRF and Request-Response on L2](l2-services.md#how-to-integrate-data-feed-vrf-and-request-response-on-l2)
 
 ## Registry Contract
 
@@ -14,7 +18,7 @@ This contract allows you to manage new chain and Orakl Network services.
 
 1. Propose New Chain and Pay `proposeFee`
 
-```Solidity
+```solidity
 function proposeNewChain(
     uint256 _chainID,
     string memory _jsonRpc,
@@ -35,7 +39,7 @@ function proposeNewChain(
 
 2. Edit Chain Info
 
-```Solidity
+```solidity
 function editChainInfo(
     uint256 _chainID,
     string memory _jsonRpc,
@@ -55,7 +59,7 @@ function editChainInfo(
 
 1. Add Data Feed
 
-```Solidity
+```solidity
 function addAggregator(
     uint256 chainID,
     address l1Aggregator,
@@ -73,7 +77,7 @@ function addAggregator(
 
 2. Remove Data Feed
 
-```Solidity
+```solidity
 function removeAggregator(
     uint256 chainID,
     uint256 aggregatorID
@@ -100,7 +104,7 @@ Before you can make a request from L2 chain, you need to create and your account
 
 1. Create Account
 
-```Solidity
+```solidity
 function createAccount(uint256 _chainId) external onlyConfirmedChain(_chainId) {
     Account storage newAccount = accounts[nextAccountId];
     newAccount.accId = nextAccountId;
@@ -114,7 +118,7 @@ function createAccount(uint256 _chainId) external onlyConfirmedChain(_chainId) {
 
 2. Deposit Funds Into the Acount
 
-```Solidity
+```solidity
 function deposit(uint256 _accId) public payable {
     accounts[_accId].balance += msg.value;
     emit BalanceIncreased(_accId, msg.value);
@@ -123,7 +127,7 @@ function deposit(uint256 _accId) public payable {
 
 3. Add Consumer Into Account
 
-```Solidity
+```solidity
 function addConsumer(
     uint256 _accId,
     address _consumerAddress
@@ -140,7 +144,7 @@ function addConsumer(
 
 4. Remove Consumer From Account
 
-```Solidity
+```solidity
 function removeConsumer(
     uint256 _accId,
     address _consumerAddress
@@ -171,7 +175,7 @@ You need to deploy this contract on your chain; it acts as a coordinator for VRF
 
 1. Add L2 Data Feed
 
-```Solidity
+```solidity
 function addAggregator(address _newAggregator) external onlyOwner {
     if (sAggregators[_newAggregator]) revert InvalidAggregator(_newAggregator);
     sAggregators[_newAggregator] = true;
@@ -182,7 +186,7 @@ function addAggregator(address _newAggregator) external onlyOwner {
 
 2. Remove L2 Data Feed
 
-```Solidity
+```solidity
 function removeAggregator(address _aggregator) external onlyOwner {
     if (!sAggregators[_aggregator]) revert InvalidAggregator(_aggregator);
     delete sAggregators[_aggregator];
@@ -193,7 +197,7 @@ function removeAggregator(address _aggregator) external onlyOwner {
 
 3. Add L2 Data Feed Reporter
 
-```Solidity
+```solidity
 function addSubmitter(address _newSubmitter) external onlyOwner {
     if (sSubmitters[_newSubmitter]) revert InvalidSubmitter(_newSubmitter);
     sSubmitters[_newSubmitter] = true;
@@ -204,7 +208,7 @@ function addSubmitter(address _newSubmitter) external onlyOwner {
 
 4. Add L2 Data Feed Reporter
 
-```Solidity
+```solidity
 function removeSubmitter(address _submitter) external onlyOwner {
         if (!sSubmitters[_submitter]) revert InvalidSubmitter(_submitter);
         delete sSubmitters[_submitter];
@@ -215,7 +219,7 @@ function removeSubmitter(address _submitter) external onlyOwner {
 
 5. Request Random Words From L2
 
-```Solidity
+```solidity
 function requestRandomWords(
     bytes32 keyHash,
     uint64 accId,
@@ -244,7 +248,7 @@ function requestRandomWords(
 
 6. Request Data From L2
 
-```Solidity
+```solidity
 function requestData(
     Orakl.Request memory req,
     uint32 callbackGasLimit,
@@ -273,28 +277,27 @@ function requestData(
 
 ## How to Integrate Data Feed, VRF and Request-Response on L2
 
-* [Data Feed](#Data-Feed)
-* [VRF](#VRF)
-* [Request-Response](#Request-Response)
+* [Data Feed](l2-services.md#data-feed)
+* [VRF](l2-services.md#vrf)
+* [Request-Response](l2-services.md#request-response)
 
 ### Data Feed
 
-The use of `Aggregator` and `AggregatorProxy` smart contracts on L2 is the same as on the mainnet.
-Please refer to our [Data Feed mock consumer](https://github.com/Bisonai/data-feed-consumer).
+The use of `Aggregator` and `AggregatorProxy` smart contracts on L2 is the same as on the mainnet. Please refer to our [Data Feed mock consumer contract](https://github.com/Bisonai/data-feed-consumer).
 
 ### VRF
 
-> Refer to [L2 VRF mockup consumer contract](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/mocks/L2VRFConsumerMock.sol).
+> Refer to [L2 VRF mock consumer contract](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/mocks/L2VRFConsumerMock.sol).
 
 1. Inherit from the `VRFConsumerBase` Contract
 
-```Solidity
+```solidity
 contract L2VRFConsumerMock is VRFConsumerBase
 ```
 
 2. Specify `l2Endpoint` in the Constructor
 
-```Solidity
+```solidity
 constructor(address l2Endpoint) VRFConsumerBase(l2Endpoint) {
     sOwner = msg.sender;
     L2ENDPOINT = IL2Endpoint(l2Endpoint);
@@ -303,7 +306,7 @@ constructor(address l2Endpoint) VRFConsumerBase(l2Endpoint) {
 
 3. Implement the `requestRandomWords` Function
 
-```Solidity
+```solidity
  function requestRandomWords(
     bytes32 keyHash,
     uint64 accId,
@@ -316,7 +319,7 @@ constructor(address l2Endpoint) VRFConsumerBase(l2Endpoint) {
 
 4. Implement the `fulfillRandomWords` Function
 
-```Solidity
+```solidity
 function fulfillRandomWords(
     uint256 /* requestId */,
     uint256[] memory randomWords
@@ -327,11 +330,11 @@ function fulfillRandomWords(
 
 ### Request-Response
 
-> Refer to [L2 Request-Response mockup consumer contract](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/mocks/L2RequestResponseConsumerMock.sol).
+> Refer to [L2 Request-Response mock consumer contract](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/mocks/L2RequestResponseConsumerMock.sol).
 
 1. Inherit from the Base Contract for Request Data Types
 
-```Solidity
+```solidity
 contract L2RequestResponseConsumerMock is
     RequestResponseConsumerFulfillUint128,
     RequestResponseConsumerFulfillInt256,
@@ -343,7 +346,7 @@ contract L2RequestResponseConsumerMock is
 
 2. Specify `l2Endpoint` in the Constructor
 
-```Solidity
+```solidity
 constructor(address l2Endpoint) RequestResponseConsumerBase(l2Endpoint) {
     sOwner = msg.sender;
     L2ENDPOINT = IL2Endpoint(l2Endpoint);
@@ -352,7 +355,7 @@ constructor(address l2Endpoint) RequestResponseConsumerBase(l2Endpoint) {
 
 3. Implement `requestData*` Function
 
-```Solidity
+```solidity
 //request for uint128
 function requestDataUint128(
     uint64 accId,
@@ -374,7 +377,7 @@ function requestDataUint128(
 
 4. Implement the `fulfillDataRequest` Function
 
-```Solidity
+```solidity
 function fulfillDataRequest(uint256 /*requestId*/, uint128 response) internal override {
     sResponseUint128 = response;
 }
