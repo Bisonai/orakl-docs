@@ -8,6 +8,7 @@
 - [Data Feed](developers-guide/data-feed.md)
 - [Proof of Reserve](developers-guide/proof-of-reserve.md)
 - [Prepayment](developers-guide/prepayment.md)
+- [L2-services](developers-guide/l2-services.md)
 
 ## 노드 운영자 가이드 <a href="#node-operators-guide" id="node-operators-guide"></a>
 
