@@ -6,7 +6,7 @@ description: L2체인에서 오라클 서비스를 등록하고 사용하는 방
 
 - [Registry 컨트랙트](l2-services.md#registry-contract)
 - [Endpoint 컨트랙트](l2-services.md#endpoint-contracts)
-- [L2에서 데이터피드, VRF, RR사용하는 방법](l2-services.md#how-to-integrate-data-feed-vrf-and-request-response-on-l2)
+- [L2에서 데이터 피드, VRF, RR사용하는 방법](l2-services.md#how-to-integrate-data-feed-vrf-and-request-response-on-l2)
 
 ## Registry 컨트랙트
 
@@ -171,7 +171,7 @@ function removeConsumer(
 
 ### `L2Endpoint`
 
-체인에 이 컨트랙트가 배포되어야 합니다; 이것은 VRF와 Request-Response의 coordinator로서 작동합니다.
+체인에 이 컨트랙트가 배포되어야 합니다. 이것은 VRF와 Request-Response의 coordinator로서 작동합니다.
 
 1. L2 데이터 피드 추가하기
 
