@@ -1,22 +1,22 @@
 ---
-description: Registering and Using Oracle Network Services on L2 Chains
+description: L2체인에서 오라클 서비스를 등록하고 사용하는 방법
 ---
 
-# L2 Services
+# L2 서비스
 
-- [Registry Contract](l2-services.md#registry-contract)
-- [Endpoint Contracts](l2-services.md#endpoint-contracts)
-- [How to Integrate Data Feed, VRF and Request-Response on L2](l2-services.md#how-to-integrate-data-feed-vrf-and-request-response-on-l2)
+- [Registry 컨트랙트](l2-services.md#registry-contract)
+- [Endpoint 컨트랙트](l2-services.md#endpoint-contracts)
+- [L2에서 데이터 피드, VRF, RR사용하는 방법](l2-services.md#how-to-integrate-data-feed-vrf-and-request-response-on-l2)
 
-## Registry Contract
+## Registry 컨트랙트
 
-This contract allows you to manage new chain and Orakl Network services.
+이 컨트랙트를 통해 체인과 오라클서비스를 관리할 수 있습니다.
 
-### L2 Chain Management
+### L2 Chain 관리
 
-> Please contact [Orakl Network](mailto:business@orakl.network) after you propose a new chain. We will support you to set things up.
+> 신규체인을 제안 해주신 뒤 [오라클 네트워크](mailto:business@orakl.network)로 연락주세요. 환경 세팅을 지원해드립니다.
 
-1. Propose New Chain and Pay `proposeFee`
+1. 신규 체인을 제안하고 `proposeFee`를 지불하세요
 
 ```solidity
 function proposeNewChain(
@@ -37,7 +37,7 @@ function proposeNewChain(
 }
 ```
 
-2. Edit Chain Info
+2. 체인 정보를 수정하세요
 
 ```solidity
 function editChainInfo(
@@ -55,9 +55,9 @@ function editChainInfo(
 }
 ```
 
-### L2 Data Feeds Management
+### L2 데이터 피드 관리
 
-1. Add Data Feed
+1. 데이터 피드 추가하기
 
 ```solidity
 function addAggregator(
@@ -75,7 +75,7 @@ function addAggregator(
 }
 ```
 
-2. Remove Data Feed
+2. 데이터 피드 제거하기
 
 ```solidity
 function removeAggregator(
@@ -98,11 +98,11 @@ function removeAggregator(
 }
 ```
 
-### Account and Payment Functions
+### 계정과 지불 기능
 
-Before you can make a request from L2 chain, you need to create and deposit to your account.
+L2 체인에서 요청을 하기 전에, 계정을 만들고 입금해야합니다.
 
-1. Create Account
+1. 계정 생성
 
 ```solidity
 function createAccount(uint256 _chainId) external onlyConfirmedChain(_chainId) {
@@ -116,7 +116,7 @@ function createAccount(uint256 _chainId) external onlyConfirmedChain(_chainId) {
 }
 ```
 
-2. Deposit Funds Into the Account
+2. 계정에 입금하기
 
 ```solidity
 function deposit(uint256 _accId) public payable {
@@ -125,7 +125,7 @@ function deposit(uint256 _accId) public payable {
 }
 ```
 
-3. Add Consumer Into Account
+3. 계정에 Consumer 추가하기
 
 ```solidity
 function addConsumer(
@@ -142,7 +142,7 @@ function addConsumer(
 }
 ```
 
-4. Remove Consumer From Account
+4. 계정에서 Consumer 제거하기
 
 ```solidity
 function removeConsumer(
@@ -165,15 +165,15 @@ function removeConsumer(
 }
 ```
 
-> The consumer address to add or remove to this account is on L2 chain, not mainnet.
+> 이 account에 추가되거나 제거되는 consumer는 메인넷이 아니라 L2 chain에 있어야 합니다
 
-## Endpoint Contracts
+## 엔드포인트 Contracts
 
 ### `L2Endpoint`
 
-You need to deploy this contract on your chain; it acts as a coordinator for VRF and Request-Response.
+체인에 이 컨트랙트가 배포되어야 합니다. 이것은 VRF와 Request-Response의 coordinator로서 작동합니다.
 
-1. Add L2 Data Feed
+1. L2 데이터 피드 추가하기
 
 ```solidity
 function addAggregator(address _newAggregator) external onlyOwner {
@@ -184,7 +184,7 @@ function addAggregator(address _newAggregator) external onlyOwner {
 }
 ```
 
-2. Remove L2 Data Feed
+2. L2 데이터 피드 제거하기
 
 ```solidity
 function removeAggregator(address _aggregator) external onlyOwner {
@@ -195,7 +195,7 @@ function removeAggregator(address _aggregator) external onlyOwner {
 }
 ```
 
-3. Add L2 Data Feed Reporter
+3. L2 데이터 피드 리포터 추가하기
 
 ```solidity
 function addSubmitter(address _newSubmitter) external onlyOwner {
@@ -206,7 +206,7 @@ function addSubmitter(address _newSubmitter) external onlyOwner {
 }
 ```
 
-4. Add L2 Data Feed Reporter
+4. L2 데이터 피드 리포터 제거하기
 
 ```solidity
 function removeSubmitter(address _submitter) external onlyOwner {
@@ -217,7 +217,7 @@ function removeSubmitter(address _submitter) external onlyOwner {
     }
 ```
 
-5. Request Random Words From L2
+5. L2애서 random words 요청하기
 
 ```solidity
 function requestRandomWords(
@@ -246,7 +246,7 @@ function requestRandomWords(
 }
 ```
 
-6. Request Data From L2
+6. L2에서 데이터 요청하기
 
 ```solidity
 function requestData(
@@ -275,27 +275,27 @@ function requestData(
 }
 ```
 
-## How to Integrate Data Feed, VRF and Request-Response on L2
+## L2에서 데이터피드, VRF, RR 사용하기
 
 - [Data Feed](l2-services.md#data-feed)
 - [VRF](l2-services.md#vrf)
 - [Request-Response](l2-services.md#request-response)
 
-### Data Feed
+### 데이터피드
 
-The use of `Aggregator` and `AggregatorProxy` smart contracts on L2 is the same as on the mainnet. Please refer to our [Data Feed mock consumer contract](https://github.com/Bisonai/data-feed-consumer).
+L2에서는 `Aggregator`와 `AggregatorProxy` 컨트랙트가 메인넷과 동일하게 사용됩니다. [Data Feed consumer contract](https://github.com/Bisonai/data-feed-consumer)를 참고하여주세요.
 
 ### VRF
 
-> Refer to [L2 VRF mock consumer contract](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/mocks/L2VRFConsumerMock.sol).
+> [L2 VRF mock consumer contract](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/mocks/L2VRFConsumerMock.sol)를 참고해주세요.
 
-1. Inherit from the `VRFConsumerBase` Contract
+1. `VRFConsumerBase` 컨트랙트를 상속받습니다
 
 ```solidity
 contract L2VRFConsumerMock is VRFConsumerBase
 ```
 
-2. Specify `l2Endpoint` in the Constructor
+2. Constructor에서 `l2Endpoint`를 지정해주세요
 
 ```solidity
 constructor(address l2Endpoint) VRFConsumerBase(l2Endpoint) {
@@ -304,7 +304,7 @@ constructor(address l2Endpoint) VRFConsumerBase(l2Endpoint) {
 }
 ```
 
-3. Implement the `requestRandomWords` Function
+3. `requestRandomWords` function을 구현해주세요
 
 ```solidity
  function requestRandomWords(
@@ -317,7 +317,7 @@ constructor(address l2Endpoint) VRFConsumerBase(l2Endpoint) {
 }
 ```
 
-4. Implement the `fulfillRandomWords` Function
+4. `fulfillRandomWords` function을 구현해주세요
 
 ```solidity
 function fulfillRandomWords(
@@ -330,9 +330,9 @@ function fulfillRandomWords(
 
 ### Request-Response
 
-> Refer to [L2 Request-Response mock consumer contract](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/mocks/L2RequestResponseConsumerMock.sol).
+> [L2 Request-Response mock consumer contract](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/mocks/L2RequestResponseConsumerMock.sol)를 참고해주세요.
 
-1. Inherit from the Base Contract for Request Data Types
+1. 요청 데이터 타입에 따라 컨트랙트를 상속해주세요
 
 ```solidity
 contract L2RequestResponseConsumerMock is
@@ -344,7 +344,7 @@ contract L2RequestResponseConsumerMock is
     RequestResponseConsumerFulfillBytes
 ```
 
-2. Specify `l2Endpoint` in the Constructor
+2. Constructor에서 `l2Endpoint`를 지정해주세요
 
 ```solidity
 constructor(address l2Endpoint) RequestResponseConsumerBase(l2Endpoint) {
@@ -353,7 +353,7 @@ constructor(address l2Endpoint) RequestResponseConsumerBase(l2Endpoint) {
 }
 ```
 
-3. Implement `requestData*` Function
+3. `requestData*` Function을 구현해주세요
 
 ```solidity
 //request for uint128
@@ -375,7 +375,7 @@ function requestDataUint128(
 }
 ```
 
-4. Implement the `fulfillDataRequest` Function
+4. `fulfillDataRequest` Function을 구현해주세요
 
 ```solidity
 function fulfillDataRequest(uint256 /*requestId*/, uint128 response) internal override {
