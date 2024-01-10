@@ -32,8 +32,8 @@ The Orakl Data Feed includes various data feeds that can be used free of charge.
 
 ### Supported Data Feed Routers
 
-- Baobab:
-- Cypress:
+- Baobab: <a href="https://baobab.klaytnfinder.io/account/0xAF821aaaEdeF65b3bC1668c0b910c5b763dF6354">0xAF821aaaEdeF65b3bC1668c0b910c5b763dF6354</a>
+- Cypress: <a href="https://www.klaytnfinder.io/account/0x16937CFc59A8Cd126Dc70A75A4bd3b78f690C861">0x16937CFc59A8Cd126Dc70A75A4bd3b78f690C861</a>
 
 ## Architecture
 

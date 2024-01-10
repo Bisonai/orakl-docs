@@ -27,6 +27,11 @@ Orakl 데이터 피드에는 무료로 사용할 수 있는 다양한 데이터 
 
 <table><thead><tr><th width="159">Data Feed</th><th width="218">Aggregator</th><th width="255">AggregatorProxy</th><th>Heartbeat (ms)</th></tr></thead><tbody><tr><td>BTC-USDT</td><td><a href="https://baobab.klaytnfinder.io/account/0xE747418f2fe0F5794c5105f718b59b283E1B5e07">0xE747418f2fe0F5794c5105f718b59b283E1B5e07</a></td><td><a href="https://baobab.klaytnfinder.io/account/0x4b0687ce6eC3Fe6c019467c744D0C563643BdFa4">0x4b0687ce6eC3Fe6c019467c744D0C563643BdFa4</a></td><td>15,000</td></tr><tr><td>ETH-USDT</td><td><a href="https://baobab.klaytnfinder.io/account/0xf1AF997ffA9b43CcA41078d74C3F897DB998e9bd">0xf1AF997ffA9b43CcA41078d74C3F897DB998e9bd</a></td><td><a href="https://baobab.klaytnfinder.io/account/0xAEc43Fc8D4684b6A6577c3B18A1c1c6d3D55C28E">0xAEc43Fc8D4684b6A6577c3B18A1c1c6d3D55C28E</a></td><td>15,000</td></tr><tr><td>KLAY-USDT</td><td><a href="https://baobab.klaytnfinder.io/account/0xf0d6Ccdd18B8A7108b901af872021109C27095bA">0xf0d6Ccdd18B8A7108b901af872021109C27095bA</a></td><td><a href="https://baobab.klaytnfinder.io/account/0xC874f389A3F49C5331490145f77c4eFE202d72E1">0xC874f389A3F49C5331490145f77c4eFE202d72E1</a></td><td>15,000</td></tr><tr><td>MATIC-USDT</td><td><a href="https://baobab.klaytnfinder.io/account/0x7970d00F24e65F1BC757896e32Db820A8e9260F0">0x7970d00F24e65F1BC757896e32Db820A8e9260F0</a></td><td><a href="https://baobab.klaytnfinder.io/account/0x311Ec6D3a9db944aE0e92B083F1dbDe0cECcAA1C">0x311Ec6D3a9db944aE0e92B083F1dbDe0cECcAA1C</a></td><td>15,000</td></tr><tr><td>SOL-USDT</td><td><a href="https://baobab.klaytnfinder.io/account/0xBd01EdC16597f68E03607ba4b941596729ec78f7">0xBd01EdC16597f68E03607ba4b941596729ec78f7</a></td><td><a href="https://baobab.klaytnfinder.io/account/0x3C39209e85c1a27f1B992Bcf3416f5fC84764F2e">0x3C39209e85c1a27f1B992Bcf3416f5fC84764F2e</a></td><td>15,000</td></tr><tr><td>USDC-USDT</td><td><a href="https://baobab.klaytnfinder.io/account/0x49e47b1149149CAEc5384427E41A387Bbc17698c">0x49e47b1149149CAEc5384427E41A387Bbc17698c</a></td><td><a href="https://baobab.klaytnfinder.io/account/0xd46Ca83fdC20641ce2e225E930FBfb8CE8334660">0xd46Ca83fdC20641ce2e225E930FBfb8CE8334660</a></td><td>15,000</td></tr><tr><td>DAI-USDT</td><td><a href="https://baobab.klaytnfinder.io/account/0x219BAD3A896964A2B28Ef4dE6Ae6E6D72B646745">0x219BAD3A896964A2B28Ef4dE6Ae6E6D72B646745</a></td><td><a href="https://baobab.klaytnfinder.io/account/0xdE2aA055F8DA4d2a4A5063b8736C8455AEa8aB3F">0xdE2aA055F8DA4d2a4A5063b8736C8455AEa8aB3F</a></td><td>15,000</td></tr><tr><td>DOT-USDT</td><td><a href="https://baobab.klaytnfinder.io/account/0x2b062807C6B3F8Ca5C366545d50aA19c114E9d7b">0x2b062807C6B3F8Ca5C366545d50aA19c114E9d7b</a></td><td><a href="https://baobab.klaytnfinder.io/account/0x7dc55064b6ea6B75F8A73DC142707aAd0A37541c">0x7dc55064b6ea6B75F8A73DC142707aAd0A37541c</a></td><td>15,000</td></tr><tr><td>BNB-USDT</td><td><a href="https://baobab.klaytnfinder.io/account/0x731A5AFB6e021579138Ea469B25C2ab46ff44199">0x731A5AFB6e021579138Ea469B25C2ab46ff44199</a></td><td><a href="https://baobab.klaytnfinder.io/account/0xFA4CfAD7DBB1a0b3e85d0b736cf00289edDDDd5F">0xFA4CfAD7DBB1a0b3e85d0b736cf00289edDDDd5F</a></td><td>15,000</td></tr><tr><td>TRX-USDT</td><td><a href="https://baobab.klaytnfinder.io/account/0xb4de9C81eaA329E1E7161E9a235D795E29eec60D">0xb4de9C81eaA329E1E7161E9a235D795E29eec60D</a></td><td><a href="https://baobab.klaytnfinder.io/account/0x37c7Aac954e721eaBA28c58BeF496529Cde32d5f">0x37c7Aac954e721eaBA28c58BeF496529Cde32d5f</a></td><td>15,000</td></tr><tr><td>BUSD-USDT</td><td><a href="https://baobab.klaytnfinder.io/account/0xc820F6E9ab1A9321d22720A0986088A9298563ed">0xc820F6E9ab1A9321d22720A0986088A9298563ed</a></td><td><a href="https://baobab.klaytnfinder.io/account/0x6727E828CCa9b5cB639e740d5A275Cd7CdB0b647">0x6727E828CCa9b5cB639e740d5A275Cd7CdB0b647</a></td><td>15,000</td></tr><tr><td>MNR-KRW</td><td><a href="https://baobab.klaytnfinder.io/account/0x22ddDb9749cB5941DdEc5fD50B12CfDdB8E259c9">0x22ddDb9749cB5941DdEc5fD50B12CfDdB8E259c9</a></td><td><a href="https://baobab.klaytnfinder.io/account/0x6DEbE43FD00D3Dcc93D8695a3031fC8887242dee">0x6DEbE43FD00D3Dcc93D8695a3031fC8887242dee</a></td><td>15,000</td></tr><tr><td>ADA-USDT</td><td><a href="https://baobab.klaytnfinder.io/account/0x70cDE6bE67486017C52215Ad5d6740ce8EaBC9b8">0x70cDE6bE67486017C52215Ad5d6740ce8EaBC9b8</a></td><td><a href="https://baobab.klaytnfinder.io/account/0xB9C1839A40cED59Fb9e55Eb52a3B8B7E62aF1568">0xB9C1839A40cED59Fb9e55Eb52a3B8B7E62aF1568</a></td><td>15,000</td></tr><tr><td>ATOM-USDT</td><td><a href="https://baobab.klaytnfinder.io/account/0xD84659b5e6d7123e21ee80f13685D733a9a9a0b0">0xD84659b5e6d7123e21ee80f13685D733a9a9a0b0</a></td><td><a href="https://baobab.klaytnfinder.io/account/0x886703ebE4E18645B708b3fC9f528d2a9aed8D8b">0x886703ebE4E18645B708b3fC9f528d2a9aed8D8b</a></td><td>15,000</td></tr><tr><td>AVAX-USDT</td><td><a href="https://baobab.klaytnfinder.io/account/0xf467B6cF8ED8c3E49c2ED5154b0Bf471c6911529">0xf467B6cF8ED8c3E49c2ED5154b0Bf471c6911529</a></td><td><a href="https://baobab.klaytnfinder.io/account/0xeae732C571aEdB41d58Db5390D96691E6B54a580">0xeae732C571aEdB41d58Db5390D96691E6B54a580</a></td><td>15,000</td></tr><tr><td>DOGE-USDT</td><td><a href="https://baobab.klaytnfinder.io/account/0x98F4BC9fE125c725423deda5418681aB7c8F2CF3">0x98F4BC9fE125c725423deda5418681aB7c8F2CF3</a></td><td><a href="https://baobab.klaytnfinder.io/account/0x464fBa38a41526fc61Ca6Ed2C9cD7B38d822B72a">0x464fBa38a41526fc61Ca6Ed2C9cD7B38d822B72a</a></td><td>15,000</td></tr><tr><td>FTM-USDT</td><td><a href="https://baobab.klaytnfinder.io/account/0x88E3CD567754A0f5068aa4053F9887e97539F764">0x88E3CD567754A0f5068aa4053F9887e97539F764</a></td><td><a href="https://baobab.klaytnfinder.io/account/0x271ce3EB7cb9124aEaa26D18E2c448b10f2C2D21">0x271ce3EB7cb9124aEaa26D18E2c448b10f2C2D21</a></td><td>15,000</td></tr><tr><td>LTC-USDT</td><td><a href="https://baobab.klaytnfinder.io/account/0x151A407169e1B594fb26F002A4c3c9fc41f1deef">0x151A407169e1B594fb26F002A4c3c9fc41f1deef</a></td><td><a href="https://baobab.klaytnfinder.io/account/0x597a5ab68296d4dEC1296d8A96eFb3FC8b2BaE3f">0x597a5ab68296d4dEC1296d8A96eFb3FC8b2BaE3f</a></td><td>15,000</td></tr><tr><td>PAXG-USDT</td><td><a href="https://baobab.klaytnfinder.io/account/0xbD07592c082A40e25a78Fd6a3d9C075B2d36BF5D">0xbD07592c082A40e25a78Fd6a3d9C075B2d36BF5D</a></td><td><a href="https://baobab.klaytnfinder.io/account/0x555E072996d0335Ec63B448ddD507CB99379C723">0x555E072996d0335Ec63B448ddD507CB99379C723</a></td><td>15,000</td></tr><tr><td>SHIB-USDT</td><td><a href="https://baobab.klaytnfinder.io/account/0xA317038414a275365ED4a085B786E83E761d20a5">0xA317038414a275365ED4a085B786E83E761d20a5</a></td><td><a href="https://baobab.klaytnfinder.io/account/0x51Ec645B728c6882D362677c90A6D51bb0998AD1">0x51Ec645B728c6882D362677c90A6D51bb0998AD1</a></td><td>15,000</td></tr><tr><td>UNI-USDT</td><td><a href="https://baobab.klaytnfinder.io/account/0x82aC2966dD5843e718D0EaeC7108bb4778eeF66B">0x82aC2966dD5843e718D0EaeC7108bb4778eeF66B</a></td><td><a href="https://baobab.klaytnfinder.io/account/0xa7A93c5eaabD1c458522F00a53897D5f32Da232d">0xa7A93c5eaabD1c458522F00a53897D5f32Da232d</a></td><td>15,000</td></tr><tr><td>XRP-USDT</td><td><a href="https://baobab.klaytnfinder.io/account/0x92dD2d62513bC4811666C4EF27248E902e41f18c">0x92dD2d62513bC4811666C4EF27248E902e41f18c</a></td><td><a href="https://baobab.klaytnfinder.io/account/0xDcb088788722198aaED3F4F7a396558eC98cfCD0">0xDcb088788722198aaED3F4F7a396558eC98cfCD0</a></td><td>15,000</td></tr><tr><td>JOY-USDT</td><td><a href="https://baobab.klaytnfinder.io/account/0x836518342A3226479Ec448E18e1cc15ff2517362">0x836518342A3226479Ec448E18e1cc15ff2517362</a></td><td><a href="https://baobab.klaytnfinder.io/account/0x9b8B4Ea7c3934E278430fa9F9b83466fE9387a19">0x9b8B4Ea7c3934E278430fa9F9b83466fE9387a19</a></td><td>15,000</td></tr></tbody></table>
 
+### Supported Data Feed Routers
+
+- Baobab: <a href="https://baobab.klaytnfinder.io/account/0xAF821aaaEdeF65b3bC1668c0b910c5b763dF6354">0xAF821aaaEdeF65b3bC1668c0b910c5b763dF6354</a>
+- Cypress: <a href="https://www.klaytnfinder.io/account/0x16937CFc59A8Cd126Dc70A75A4bd3b78f690C861">0x16937CFc59A8Cd126Dc70A75A4bd3b78f690C861</a>
+
 ## Architecture
 
 데이터 피드의 온체인 구현은 [`Aggregator`](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/Aggregator.sol) 와 [`AggregatorProxy`](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/AggregatorProxy.sol) 두 개의 스마트 계약으로 구성됩니다. 처음에는 `Aggregator` 와 `AggregatorProxy` 가 함께 쌍으로 배포되어 단일 데이터 피드 (예: 서울의 온도 또는 BTC/USD의 가격)를 나타냅니다. `Aggregator` 는 오프체인 오라클에 의해 정기적으로 업데이트되며, and `AggregatorProxy` 는 `Aggregator` 에 제출된 데이터에 액세스하는 데 사용됩니다. 배포된 `AggregatorProxy` 계약은 데이터 피드에서 읽기 위한 일관된 API를 제공하며, `Aggregator` 계약은 더 최신 버전으로 대체될 수 있습니다.
@@ -111,6 +116,45 @@ uint8 decimals = dataFeed.decimals();
 
 ```solidity
 address currentAggregator = dataFeed.aggregator()
+```
+
+### Use Aggregator Router
+
+- Router Contract를 통해 편리하게 적용할 수 있습니다
+- 호출함수에 가격 페어 이름(ex.BTC-USDT)을 전달하고 모든 aggregator기능에 접근해보세요
+
+```solidity
+// initialize
+import { IAggregatorRouter } from "@bisonai/orakl-contracts/src/v0.1/interfaces/IAggregatorRouter.sol";
+
+contract DataFeedConsumer {
+    IAggregatorRouter internal router;
+    constructor(address _router) {
+        router = IAggregatorRouter(_router);
+    }
+}
+
+// read
+(
+   uint80 id,
+    int256 answer,
+    uint startedAt,
+    uint updatedAt,
+    uint80 answeredInRound
+) = router.latestRoundData("BTC-USDT");
+
+uint80 roundId =
+(
+    uint80 id,
+    int256 answer,
+    uint startedAt,
+    uint updatedAt,
+    uint80 answeredInRound
+) = router.getRoundData("BTC-USDT", roundId);
+
+// process
+uint8 decimals = router.decimals("BTC-USDT");
+address currentAggregator = router.aggregator("BTC-USDT")
 ```
 
 ## Relation between `AggregatorProxy` and `Aggregator`
