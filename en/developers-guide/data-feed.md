@@ -123,21 +123,24 @@ address currentAggregator = dataFeed.aggregator()
 
 ### Use Aggregator Router
 
-- Conviniently implement datafeed by using router contracts
-- Access all functions in aggregator by including price pair name to function parameters
+- Conveniently access data feeds using `AggregatorRouter` contract
+- Access all functions in `AggregatorProxy` by including price pair name as parameter
+
+Initialize AggregatorRouter that enables access to all supported data feeds.
 
 ```solidity
-// initialize
 import { IAggregatorRouter } from "@bisonai/orakl-contracts/src/v0.1/interfaces/IAggregatorRouter.sol";
-
 contract DataFeedConsumer {
     IAggregatorRouter internal router;
     constructor(address _router) {
         router = IAggregatorRouter(_router);
     }
 }
+```
 
-// read
+Read the latest submitted value of given data feed (e.g. "BTC-USDT")
+
+```solidity
 (
    uint80 id,
     int256 answer,
@@ -145,7 +148,11 @@ contract DataFeedConsumer {
     uint updatedAt,
     uint80 answeredInRound
 ) = router.latestRoundData("BTC-USDT");
+```
 
+Read value submitted to a given data feed (e.g. "BTC-USDT") for specific roundId.
+
+```solidity
 uint80 roundId =
 (
     uint80 id,
@@ -154,9 +161,17 @@ uint80 roundId =
     uint updatedAt,
     uint80 answeredInRound
 ) = router.getRoundData("BTC-USDT", roundId);
+```
 
-// process
+Get decimals for given data feed (e.g. "BTC-USDT")
+
+```solidity
 uint8 decimals = router.decimals("BTC-USDT");
+```
+
+Get Aggregator address associated with given data feed (e.g. "BTC-USDT").
+
+```solidity
 address currentAggregator = router.aggregator("BTC-USDT")
 ```
 

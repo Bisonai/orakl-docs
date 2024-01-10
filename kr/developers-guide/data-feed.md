@@ -123,18 +123,21 @@ address currentAggregator = dataFeed.aggregator()
 - Router Contract를 통해 편리하게 적용할 수 있습니다
 - 호출함수에 가격 페어 이름(ex.BTC-USDT)을 전달하고 모든 aggregator기능에 접근해보세요
 
-```solidity
-// initialize
-import { IAggregatorRouter } from "@bisonai/orakl-contracts/src/v0.1/interfaces/IAggregatorRouter.sol";
+모든 피드에 접근 가능한 AggregatorRouter를 초기화합니다
 
+```solidity
+import { IAggregatorRouter } from "@bisonai/orakl-contracts/src/v0.1/interfaces/IAggregatorRouter.sol";
 contract DataFeedConsumer {
     IAggregatorRouter internal router;
     constructor(address _router) {
         router = IAggregatorRouter(_router);
     }
 }
+```
 
-// read
+주어진 데이터피드의 최신 데이터에 접근합니다 (ex. "BTC-USDT")
+
+```solidity
 (
    uint80 id,
     int256 answer,
@@ -142,7 +145,11 @@ contract DataFeedConsumer {
     uint updatedAt,
     uint80 answeredInRound
 ) = router.latestRoundData("BTC-USDT");
+```
 
+주어진 데이터피드의 특정 roundId의 가격 정보를 가져옵니다 (ex. "BTC-USDT")
+
+```solidity
 uint80 roundId =
 (
     uint80 id,
@@ -151,9 +158,17 @@ uint80 roundId =
     uint updatedAt,
     uint80 answeredInRound
 ) = router.getRoundData("BTC-USDT", roundId);
+```
 
-// process
+주어진 데이터피드의 decimals값을 가져옵니다
+
+```solidity
 uint8 decimals = router.decimals("BTC-USDT");
+```
+
+주어진 데이터피드의 aggregator주소를 가져옵니다
+
+```solidity
 address currentAggregator = router.aggregator("BTC-USDT")
 ```
 
