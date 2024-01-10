@@ -30,6 +30,11 @@ The Orakl Data Feed includes various data feeds that can be used free of charge.
 
 </tbody></table>
 
+### Supported Data Feed Routers
+
+- Baobab: <a href="https://baobab.klaytnfinder.io/account/0xAF821aaaEdeF65b3bC1668c0b910c5b763dF6354">0xAF821aaaEdeF65b3bC1668c0b910c5b763dF6354</a>
+- Cypress: <a href="https://www.klaytnfinder.io/account/0x16937CFc59A8Cd126Dc70A75A4bd3b78f690C861">0x16937CFc59A8Cd126Dc70A75A4bd3b78f690C861</a>
+
 ## Architecture
 
 The on-chain implementation of Data Feed is composed of two smart contracts: [`Aggregator`](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/Aggregator.sol) and [`AggregatorProxy`](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/AggregatorProxy.sol). At first,`Aggregator` and `AggregatorProxy` are deployed together in pair, representing a single data feed (e.g. temperature in Seoul or price of BTC/USD). `Aggregator` is being updated at regular intervals by off-chain oracles, and `AggregatorProxy` is used to access the submitted data to `Aggregator`. Deployed `AggregatorProxy` contract represents a consistent API to read data from the feed, and `Aggregator` contract can be replaced with a newer version.
@@ -114,6 +119,60 @@ uint8 decimals = dataFeed.decimals();
 
 ```solidity
 address currentAggregator = dataFeed.aggregator()
+```
+
+### Use Aggregator Router
+
+- Conveniently access data feeds using `AggregatorRouter` contract
+- Access all functions in `AggregatorProxy` by including price pair name as parameter
+
+Initialize AggregatorRouter that enables access to all supported data feeds.
+
+```solidity
+import { IAggregatorRouter } from "@bisonai/orakl-contracts/src/v0.1/interfaces/IAggregatorRouter.sol";
+contract DataFeedConsumer {
+    IAggregatorRouter internal router;
+    constructor(address _router) {
+        router = IAggregatorRouter(_router);
+    }
+}
+```
+
+Read the latest submitted value of given data feed (e.g. "BTC-USDT")
+
+```solidity
+(
+   uint80 id,
+    int256 answer,
+    uint startedAt,
+    uint updatedAt,
+    uint80 answeredInRound
+) = router.latestRoundData("BTC-USDT");
+```
+
+Read value submitted to a given data feed (e.g. "BTC-USDT") for specific roundId.
+
+```solidity
+uint80 roundId =
+(
+    uint80 id,
+    int256 answer,
+    uint startedAt,
+    uint updatedAt,
+    uint80 answeredInRound
+) = router.getRoundData("BTC-USDT", roundId);
+```
+
+Get decimals for given data feed (e.g. "BTC-USDT")
+
+```solidity
+uint8 decimals = router.decimals("BTC-USDT");
+```
+
+Get Aggregator address associated with given data feed (e.g. "BTC-USDT").
+
+```solidity
+address currentAggregator = router.aggregator("BTC-USDT")
 ```
 
 ## Relation between `AggregatorProxy` and `Aggregator`
