@@ -13,6 +13,8 @@
 - `DATABASE_URL`
 - `APP_PORT`
 - `ENCRYPT_PASSWORD`
+- `REDIS_HOST`
+- `REDIS_PORT`
 
 `DATABASE_URL` 은 Orakl Network 상태를 저장할 데이터베이스에 대한 [연결 문자열](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING) 을 나타냅니다.
 
@@ -21,6 +23,8 @@
 `APP_PORT` 는 **Orakl Network API** 가 실행될 포트를 나타냅니다. 다른 서비스에서 **Orakl Network API** 에 연결할 때 이 포트가 필요합니다.
 
 `ENCRYPT_PASSWORD` 는 Orakl Network API에 삽입된 개인 키의 암호화 및 복호화에 사용되는 암호화 키입니다.
+
+`REDIS_HOST` 와 `REDIS_PORT`는 **Orakl Network API** 가 연결하는 [Redis](https://redis.io/)의 호스트와 포트를 나타냅니다. 기본 값은 각각 `localhost`와 `6379`입니다. 이는 단기 데이터를 효과적으로 저장 및 조회하기 위해 사용됩니다.
 
 ## Launch
 
