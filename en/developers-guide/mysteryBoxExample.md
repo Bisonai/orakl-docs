@@ -1,70 +1,59 @@
----
-Description: This is a very popular use case for GameFi projects
-You sell a nftbox
-User buy the box and open the box for a random nft
-In this demo dapp, you can claim the box for free
-The nft contract uses orakl VRF service to generate a random number from 1 - 10, this is th ID of the reward Nft
----
 
-1. The NFT box contract
+Project Description:
 
-This is a typical ERC 721 NFT contract, with extra functions
+This project represents a prevalent use case within GameFi projects where NFT (Non-Fungible Token) boxes are sold to users who can then claim the box for a chance to receive a random NFT. In this demonstration DApp, users have the opportunity to claim the NFT box for free.
 
-+ The `openBox` function implements the `requestRandomWords` from orakl VRF service and burn the NFT
+The NFT contract utilizes the Orakl VRF (Verifiable Random Function) service to generate a random number within the range of 1 to 10, which corresponds to the ID of the rewarded NFT.
+
+1. NFT Box Contract:
+
+This contract adheres to the ERC-721 standard for NFTs but includes additional functionalities.
+
+The openBox function is responsible for initiating a request to the Orakl VRF service to obtain a random number and then burns the NFT.
+```
+function openBox(uint256 _tokenId) public {
+    _requireOwned(_tokenId);
+    uint256 requestId = requestRandomWords();
+    requestIdToPlayer[requestId] = msg.sender;
+    _burn(_tokenId);
+}
+```
+The fulfillRandomWords function receives the random number from the Orakl VRF service and mints an NFT with the corresponding ID.
+```
+function fulfillRandomWords(
+    uint256 requestId,
+    uint256[] memory randomWords
+) internal override {
+    uint id = randomWords[0] % 10;
+    address player = requestIdToPlayer[requestId];
+    delete requestIdToPlayer[requestId];
+    NFT.mint(player, id, 1, "0x");
+}
+```
+2. NFT Contract:
+
+This contract follows the ERC-1155 standard for NFTs and incorporates access control for the mint function.
 
 ```
-    function openBox(uint256 _tokenId) public {
-        _requireOwned(_tokenId);
-        uint256 requestId = requestRandomWords();
-        requestIdToPlayer[requestId] = msg.sender;
-        _burn(_tokenId);
-    }
+function mint(
+    address account,
+    uint256 id,
+    uint256 amount,
+    bytes memory data
+) public onlyRole(MINTER_ROLE) {
+    _mint(account, id, amount, data);
+}
 ```
-
-+ The function `fulfillRandomWords` mint an NFT with the random ID returned by VRF service
-
 ```
-    function fulfillRandomWords(
-        uint256 requestId /* requestId */,
-        uint256[] memory randomWords
-    ) internal override {
-        uint id = randomWords[0] % 10;
-        address player = requestIdToPlayer[requestId];
-        delete requestIdToPlayer[requestId];
-        NFT.mint(player, id, 1, "0x");
-    }
+function mintBatch(
+    address to,
+    uint256[] memory ids,
+    uint256[] memory amounts,
+    bytes memory data
+) public onlyRole(MINTER_ROLE) {
+    _mintBatch(to, ids, amounts, data);
+}
 ```
+Note: It's imperative to grant the minter role for the box contract to enable it to mint the rewarded NFT.
 
-2. The NFT contract
-
-This is a typical ERC 1155 contract, with access control for the mint function
-`import "@openzeppelin/contracts/access/AccessControl.sol";`
-
-Only users with minter role can `mint` or `mintBatch`
-
-```
-    function mint(
-        address account,
-        uint256 id,
-        uint256 amount,
-        bytes memory data
-    ) public onlyRole(MINTER_ROLE) {
-        _mint(account, id, amount, data);
-    }
-```
-
-```
-    function mintBatch(
-        address to,
-        uint256[] memory ids,
-        uint256[] memory amounts,
-        bytes memory data
-    ) public onlyRole(MINTER_ROLE) {
-        _mintBatch(to, ids, amounts, data);
-    }
-
-```
-
----
-Note: you need to grant minter role for the box contract in order for it to mint the reward
----
+This project exemplifies the integration of Orakl VRF to introduce randomness into NFT rewards within GameFi ecosystems, enhancing the gaming experience for users.

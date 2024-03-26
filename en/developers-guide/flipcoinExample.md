@@ -1,120 +1,40 @@
----
-description: A simple flip the coin game to demonstrate how to use orakl-vrf
----
 
-The code can be found here: https://github.com/Bisonai/flip-coin-orakl
-If you want to fork the whole game, please check the `readme.md` file
+Project Description:
 
-1. the Idea of the game
-This is simple flip-the-coin for all or nothing game.
-First, choose the amount you want to bet, 
-Then, choose head or tail
-If you win, you double you bet, if you lose, you lose the bet amount
+This project involves the development of a straightforward "flip the coin" game aimed at showcasing the utilization of the Orakl-VRF (Verifiable Random Function) service.
 
-2. How does it work:
-This game utilizes the VRF service of orakl network to get a random result for head or tail
+Code Repository: The code for this project can be accessed via the following GitHub repository: Flip Coin Orakl. For detailed instructions on how to fork the entire game, please refer to the readme.md file.
 
-All needed parameter to call VRF service are defined in the constructor
+1. Game Concept:
+The game is a simple "flip-the-coin" affair where participants wager an amount and select either heads or tails. If successful, the bet amount is doubled; otherwise, the entire bet is lost.
+
+2. Functionality:
+This game leverages the VRF service provided by the Orakl Network to obtain a random result for the coin flip.
+
+Parameters Setup:
+All necessary parameters required to call the VRF service are defined within the constructor as follows:
 
 ```
 constructor(
-        uint64 accountId,
-        address coordinator,
-        bytes32 keyHash
-    ) VRFConsumerBase(coordinator) {
-        COORDINATOR = IVRFCoordinator(coordinator);
-        sAccountId = accountId;
-        sKeyHash = keyHash;
-    }
-
+    uint64 accountId,
+    address coordinator,
+    bytes32 keyHash
+) VRFConsumerBase(coordinator) {
+    COORDINATOR = IVRFCoordinator(coordinator);
+    sAccountId = accountId;
+    sKeyHash = keyHash;
+}
 ```
+Coin Flip Execution:
+Within the flip() function, a request is made to the VRF for a random number to determine the outcome of the coin flip. The relevant details of the bet are recorded for tracking purposes.
 
-Inside the `flip()` function, we call to VRF to request a random number for even or odd
+Result Processing:
+The result from the Orakl VRF service is received via the fulfillRandomWords function. Depending on the outcome, winnings are calculated, and balances are adjusted accordingly.
 
-```
-function flip(uint256 bet) public payable {
-        uint256 amount = msg.value;
-        require(msg.sender.balance >= amount, "Insufficient account balance");
-        uint256 betAmount = (msg.value / (1000 + taxFee)) * 1000;
-        uint256 fee = betAmount * (taxFee / 1000);
-        uint256 neededBalance = (betAmount * 2 + fee + totalRemainBalance); // balance need to pay for player
-        require(
-            address(this).balance >= neededBalance,
-            "FlipCoin: Insufficient account balance"
-        );
-        uint256 requestid = requestRandomWords();
-        //uint256 requestid =1;
-        players[msg.sender].push(requestid);
-        requestInfors[requestid].player = msg.sender;
-        requestInfors[requestid].bet = bet;
-        requestInfors[requestid].betAmount = betAmount;
+Claiming Winnings:
+Players can claim their winnings using the claim() function. This function retrieves the winning balance associated with the player and transfers it to their account.
 
-        totalRequest += 1;
-        playerInfors[msg.sender].total += 1;
+Tax Fee Mechanism:
+The contract incorporates a tax fee mechanism, allowing the owner to set the fee via the setTaxFee function. Additionally, an option is provided for the owner to withdraw funds from the contract balance using the withdraw function.
 
-        emit Flip(msg.sender, bet, betAmount, requestid);
-    }
-
-```
-Orakl VRF service return the result via the `fulfillRandomWords`
-
-```
-function fulfillRandomWords(
-        uint256 requestId /* requestId */,
-        uint256[] memory randomWords
-    ) internal override {
-        uint result = randomWords[0] % 2;
-        requestInfors[requestId].result = result;
-        requestInfors[requestId].hasResult = true;
-        uint bet = requestInfors[requestId].bet;
-        uint256 betAmount = requestInfors[requestId].betAmount;
-        address player = requestInfors[requestId].player;
-        //
-        if (bet == result) //win
-        {
-            playerInfors[player].winCount += 1;
-            playerInfors[player].balance += betAmount * 2;
-            totalWinCount += 1;
-            totalRemainBalance += betAmount * 2;
-        }
-        emit Result(player, requestId, result, randomWords[0]);
-    }
-```
-The winning balance is stored under `playerInfor`, you can claim your winnings with the `claim` function
-
-```
-function claim() public {
-        playerInfor storage playerinfor = playerInfors[msg.sender];
-        uint256 amount = playerinfor.balance;
-        require(amount > 0, "Insufficient account balance");
-        require(
-            address(this).balance >= amount,
-            "FlipCoin: Insufficient account balance"
-        );
-        playerinfor.balance = 0;
-        totalRemainBalance -= amount;
-        payable(msg.sender).transfer(amount);
-        emit Claim(msg.sender, amount);
-    }
-```
-
-The contract also have a `taxfee` machanism which can be set by `owner`
-
-```
-function setTaxFee(uint256 newFee) public onlyOwner {
-        require(newFee <= taxFeeMax, "Fee out of range");
-        taxFee = newFee;
-        emit SetTaxFee(msg.sender, newFee);
-    }
-
-```
-```
-function withdraw(uint256 amount) public onlyOwner {
-        uint256 availableBalance = address(this).balance - totalRemainBalance;
-        require(
-            availableBalance >= amount,
-            "FlipCoin: Insufficient account balance"
-        );
-        payable(msg.sender).transfer(amount);
-    }
-```
+This project serves as an illustrative example of integrating Orakl-VRF into a gaming application, showcasing its ability to provide secure and verifiable random results.
