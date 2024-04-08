@@ -6,7 +6,7 @@ These Terms of Use (the "Terms" or "Terms of Use") set forth the relationship be
 
 ### 02. Definition of Terms
 
-1\. “Service” is a Klaytn native oracle that provides Data Feed, VRF and Request-Response solutions.&#x20;
+1\. “Service” is a Klaytn native oracle that provides Data Feed, VRF and Request-Response solutions.
 
 2\. “Blockchain” refers to technology that stores data in an electronic block and connects each block sequentially like a chain, and records the transaction details in a ledger that anyone can read and duplicates it on each computer participating in the blockchain network. It refers to a distributed data storage method that stores.
 
@@ -30,8 +30,6 @@ These Terms of Use (the "Terms" or "Terms of Use") set forth the relationship be
 
 12\. “Klaytn Wallet Key” refer to a unique combination of letters and numbers used or required for all smart contract operations such as transmission, transaction, and signing of digital assets held by the account address.
 
-
-
 The definitions of terms used in the Terms and Conditions are in accordance with relevant laws and general business practices, except for those specified in the preceding paragraph.
 
 ### 03. Modification of the Terms of Use
@@ -42,7 +40,7 @@ The definitions of terms used in the Terms and Conditions are in accordance with
 
 3\. Upon changing any part of these Terms of Use, the Company shall announce the plan to do so, along with the current Terms of Use and clearly indicating the date upon which the change is to take effect as well as the cause(s) for the change, on the main (initial) page of its Service 15 days before said change is to take effect. Should the Company change these Terms of Use in a way that disadvantages Users or significantly affects the rights and obligations of the Users, the Company shall publicly announce from no later than 30 days prior to the effective date until the day before the effective date, and individually inform the Users whose phone numbers or emails are collected through the relevant means.
 
-4.While the Company clearly and separately notified (or if the User whose individual notification means have not been collected is notified of the following during the period specified in Paragraph 3) that the a User who did not express their intention to object to the revised Terms of Use by the effective date notified or individually informed in accordance with the Paragraph 3 would be deemed to have provided its consent to the revised Terms of Use, if such User failed to explicitly indicate its intention to object  to such revised Terms of Use and continues to use the Service after the effective date of the revised Terms of Use, such User shall be deemed to have consented to the revised Terms of Use.&#x20;
+4.While the Company clearly and separately notified (or if the User whose individual notification means have not been collected is notified of the following during the period specified in Paragraph 3) that the a User who did not express their intention to object to the revised Terms of Use by the effective date notified or individually informed in accordance with the Paragraph 3 would be deemed to have provided its consent to the revised Terms of Use, if such User failed to explicitly indicate its intention to object to such revised Terms of Use and continues to use the Service after the effective date of the revised Terms of Use, such User shall be deemed to have consented to the revised Terms of Use.
 
 5\. If the User does not agree with the revised Terms of Use, the User may discontinue use of the Service and terminate the Use Agreement. Where there are exceptional circumstances making it impossible for a Company to continue to apply the old Terms of Use, the Company may first terminate the Use Agreements with users who refuse to accept the changed Terms of Use.
 
@@ -96,7 +94,7 @@ In the event that the Company collects personal information, the Company strives
 
 1\. When the Company notifies users of information related to the service in operating the service, the Company notifies users individually in a reasonable manner such as email of the user held by the company.
 
-2\. In the case of notification to all users, the Company can replace the notification in Paragraph 1 by posting it through service for more than 7 days. In the event of notification of content that adversely affects or significantly affects the rights and obligations of the Users, individual notice shall be given in accordance with Paragraph 1, 30 days prior to the effective date (or, if the Company has not collected individual notification means relating to the User, the notification may be replaced by making public announcement for more than 30 days).&#x20;
+2\. In the case of notification to all users, the Company can replace the notification in Paragraph 1 by posting it through service for more than 7 days. In the event of notification of content that adversely affects or significantly affects the rights and obligations of the Users, individual notice shall be given in accordance with Paragraph 1, 30 days prior to the effective date (or, if the Company has not collected individual notification means relating to the User, the notification may be replaced by making public announcement for more than 30 days).
 
 ### 09. Responsibilities of the Company
 
@@ -146,7 +144,7 @@ l. Other illicit, unethical and/or criminal acts.
 
 1\. The copyright of the Services and related programs provided by the Company belongs to the Company.
 
-2\. Users must not infringe the copyright of the Company or a third party when using the Service.&#x20;
+2\. Users must not infringe the copyright of the Company or a third party when using the Service.
 
 3\. Copyright or use rights for the results through the Service are not deemed to have been acquired by the User.
 
@@ -188,11 +186,11 @@ c. Generate random numbers via VRF (Verifiable Random Function)
 
 ### 14. Method of payment
 
-1\. The payment method for using the paid service can be made by any of the following methods.&#x20;
+1\. The payment method for using the paid service can be made by any of the following methods.
 
 Prepayment
 
-Prepayment allows consumers of Orakl Network to prepay for services in KLAY, and then using those funds when interacting with Orakl Network.&#x20;
+Prepayment allows consumers of Orakl Network to prepay for services in KLAY, and then using those funds when interacting with Orakl Network.
 
 Direct Payment
 
@@ -218,7 +216,7 @@ Direct Payment method allows to use Orakl Network's services without requiring t
 
 a. In case of service failure
 
-b. In case of inspection or failure of the payment&#x20;
+b. In case of inspection or failure of the payment
 
 4\. Members' use of paid services is applied after applying for automatic payment services (e.g., electronic payment service agreement, etc.).
 
@@ -266,7 +264,7 @@ g. Force majeure reasons such as natural disasters, national emergencies, regula
 
 The Use Agreement shall expire the moment Company’s decision to terminate has been communicated to the User.
 
-a. Although the Company requested a User who is restricted from using the Service pursuant to Article 20 of these Terms of Use to correct by setting a considerable amount of time, if the User did not correct it within the requested period or the reason cause to the User cannot be corrected from objective perspective;&#x20;
+a. Although the Company requested a User who is restricted from using the Service pursuant to Article 20 of these Terms of Use to correct by setting a considerable amount of time, if the User did not correct it within the requested period or the reason cause to the User cannot be corrected from objective perspective;
 
 b. Where the User has committed criminal acts, such as providing illegal programs, interrupting others’ services, hacking, distributing malicious programs, and attempting to access more information and resources than legally allowed;
 
@@ -384,7 +382,4 @@ c. Where the User is otherwise implicated in losses, whether by deliberate act o
 
 3\. Notwithstanding the foregoing, any litigation between a User with a foreign permanent or temporary address and the Company shall be presided over by the Seoul Central District Court in the Republic of Korea.
 
-\
-
-
-These Terms of Use is effective as of 6 April 2023.\
+These Terms of Use is effective as of 6 April 2023.
