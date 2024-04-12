@@ -23,8 +23,7 @@ The Orakl Data Feed includes various data feeds that can be used free of charge.
 
 Reference following link to check deployed addresses
 
-- [`Baobab`](https://github.com/Bisonai/orakl/tree/master/contracts/v0.1/deployments/baobab)
-- [`Cypress`](https://github.com/Bisonai/orakl/tree/master/contracts/v0.1/deployments/cypress)
+https://raw.githubusercontent.com/Bisonai/orakl/master/contracts/v0.1/deployments/datafeeds-addresses.json
 
 ## Architecture
 

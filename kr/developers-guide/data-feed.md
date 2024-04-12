@@ -23,8 +23,7 @@ Orakl 데이터 피드에는 무료로 사용할 수 있는 다양한 데이터 
 
 배포된 컨트랙트 주소는 다음을 참고하십시오.
 
-- [`Baobab`](https://github.com/Bisonai/orakl/tree/master/contracts/v0.1/deployments/baobab)
-- [`Cypress`](https://github.com/Bisonai/orakl/tree/master/contracts/v0.1/deployments/cypress)
+https://raw.githubusercontent.com/Bisonai/orakl/master/contracts/v0.1/deployments/datafeeds-addresses.json
 
 ## Architecture
 
