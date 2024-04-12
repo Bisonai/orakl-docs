@@ -23,7 +23,8 @@ Orakl 데이터 피드에는 무료로 사용할 수 있는 다양한 데이터 
 
 배포된 컨트랙트 주소는 다음을 참고하십시오.
 
-https://raw.githubusercontent.com/Bisonai/orakl/master/contracts/v0.1/deployments/datafeeds-addresses.json
+- [`Feeds`](https://raw.githubusercontent.com/Bisonai/orakl/master/contracts/v0.1/deployments/datafeeds-addresses.json)
+- [`Others`](https://raw.githubusercontent.com/Bisonai/orakl/master/contracts/v0.1/deployments/other-addresses.json)
 
 ## Architecture
 
