@@ -14,7 +14,7 @@ NFT 계약은 Orakl VRF(검증 가능한 랜덤 함수) 서비스를 활용하�
 
 ### 상자 열기
 
-openBox 함수는 Orakl VRF 서비스에서 무작위 숫자를 요청하고 NFT를 태우며 사용자에게 해당하는 NFT를 보상합니다.
+`openBox()` 함수는 Orakl VRF 서비스에서 무작위 숫자를 요청하고 NFT를 태우며 사용자에게 해당하는 NFT를 보상합니다.
 
 ```solidity
 function openBox(uint256 _tokenId) public {
@@ -27,7 +27,7 @@ function openBox(uint256 _tokenId) public {
 
 ### 무작위 숫자 처리
 
-fulfillRandomWords 함수는 Orakl VRF 서비스에서 무작위 숫자를 받아 해당하는 NFT를 생성합니다.
+`fulfillRandomWords()` 함수는 Orakl VRF 서비스에서 무작위 숫자를 받아 해당하는 NFT를 생성합니다.
 
 ```solidity
 function fulfillRandomWords(

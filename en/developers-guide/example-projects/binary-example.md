@@ -12,7 +12,7 @@ Please be aware that binary options trading may be illegal in some jurisdictions
 
 # Key Concept
 
-Upon connecting your wallet to the platform, users are allocated 30 points. These points are used to speculate on the price movements of specified pairs, predicting whether they will rise or fall. The DApp fetches the latestRoundData() and compares it with the price at the time of placing the bet.
+Upon connecting your wallet to the platform, users are allocated 30 points. These points are used to speculate on the price movements of specified pairs, predicting whether they will rise or fall. The DApp fetches the `latestRoundData()` and compares it with the price at the time of placing the bet.
 
 To access the latest price information for a pair, consult the list of proxy contracts available on the Orakl Network Data Feed.
 

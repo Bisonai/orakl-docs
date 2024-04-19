@@ -32,7 +32,7 @@ constructor(
 
 ## Coin Flip Execution
 
-The flip() function requests a random number from the VRF to determine the coin flip outcome and records bet details for tracking.
+The `flip()` function requests a random number from the VRF to determine the coin flip outcome and records bet details for tracking.
 
 ## Result Processing
 
@@ -40,7 +40,7 @@ The fulfillRandomWords function processes the result from the Orakl VRF service.
 
 ## Claiming Winnings
 
-Players can claim their winnings using the claim() function, which transfers the winning balance to their account.
+Players can claim their winnings using the `claim()` function, which transfers the winning balance to their account.
 
 ## Tax Fee Mechanism
 
