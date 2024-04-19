@@ -6,7 +6,7 @@ NFT 계약은 Orakl VRF(검증 가능한 랜덤 함수) 서비스를 활용하�
 
 ## 코드 저장소
 
-이 프로젝트의 코드는 [mystery box orakl](https://github.com/Bisonai/orakl-demo-mystery-box)에서 이용할 수 있습니다. 자세한 지침은 readme.md 파일을 참조하십시오.
+이 프로젝트의 코드는 [mystery box orakl](https://github.com/Bisonai/orakl-demo-mystery-box)에서 확인할 수 있습니다. 자세한 지침은 readme.md 파일을 참조하십시오.
 
 ## NFT 상자 계약
 
