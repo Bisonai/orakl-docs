@@ -113,7 +113,7 @@ function requestRandomWords(
 - `keyHash`: 무작위 단어를 생성하는 데 사용되는 키의 해시를 나타내는 bytes32 값으로, 신뢰할 수 있는 VRF 제공자를 선택하는 데에도 사용됩니다.
 - `accId`: 요청과 관련된 계정의 ID를 나타내는 `uint64` 값입니다.
 - `callbackGasLimit`: 컨펌이 수신된 후 실행되는 콜백 함수의 가스 한도를 나타내는 `uint32` 값입니다.
-- `numWords`: 요청된 무작위 단어의 수를 나타내는 `uint32` 값입니다.
+- `numWords`: 요청된 무작위 단어의 수를 나타내는 `uint32` 값입니다. (최대 500)
 
 `COORDINATOR` 계약에서 `requestRandomWords()`함수를 호출할 때, `keyHash`, `accId`, `callbackGasLimit`, 그리고 `numWords` 를 인수로 전달합니다. 이 함수가 성공적으로 실행된 후, 고유한 ID(`requestId`)를 얻게 됩니다. 이후, 요청이 완료되면, ID (`requestId`)는 여러 개의 요청이 있는 경우 요청과 완료 사이의 대응을 할 수 있도록 무작위 단어와 함께 제공됩니다.
 
