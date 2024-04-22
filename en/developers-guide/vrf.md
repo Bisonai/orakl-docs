@@ -113,7 +113,7 @@ Below, you can find an explanation of `requestRandomWords` function and its argu
 - `keyHash`: a `bytes32` value representing the hash of the key used to generate the random words, also used to choose a trusted VRF provider.
 - `accId`: a `uint64` value representing the ID of the account associated with the request.
 - `callbackGasLimit`: a `uint32` value representing the gas limit for the callback function that executes after the confirmations have been received.
-- `numWords`: a `uint32` value representing the number of random words requested.
+- `numWords`: a `uint32` value representing the number of random words requested. (maximum 500)
 
 The function call `requestRandomWords()` on `COORDINATOR` contract passes `keyHash`, `accId`, `callbackGasLimit`, and `numWords` as arguments. After a successful execution of this function, you obtain an ID (`requestId`) that uniquely defines your request. Later, when your request is fulfilled, the ID (`requestId`) is supplied together with random words to be able to make a match between requests and fulfillments when there is more than one request.
 
