@@ -9,6 +9,10 @@
 - [Proof of Reserve](developers-guide/proof-of-reserve.md)
 - [Prepayment](developers-guide/prepayment.md)
 - [L2-services](developers-guide/l2-services.md)
+- [Example Projects](developers-guide/example-projects/README.md)
+  - [Binary Option Example](developers-guide/example-projects/binary-example.md)
+  - [Flipcoin Example](developers-guide/example-projects/flipcoin-example.md)
+  - [Mystery Box Example](developers-guide/example-projects/mystery-box-example.md)
 
 ## 노드 운영자 가이드 <a href="#node-operators-guide" id="node-operators-guide"></a>
 
