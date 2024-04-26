@@ -10,7 +10,7 @@
 
 **Orakl Network Proof of Reserve** 는 간소화된 단일 프로세스 시스템으로 작동하며 크론 작업에 의해 실행됩니다. 먼저 Proof of Reserve `Aggregator contract` 컨트랙트에서 가장 최근의 `roundId` 와 `PoR value`를 검색합니다. 그 다음에는 `Heartbeat Check` 및 `Deviation Check` 의 조합을 통해 제출 대상 여부를 확인합니다. 어떤 조건이라도 충족되면 최종 단계는 `API resource` 에서 데이터를 가져와 다음 라운드를 `POR contract`에 보고합니다. 이 전체 과정은 `Proof of Reserve` 프로세스의 효율적이고 시기적절한 실행을 보장합니다.
 
-해당 코드는 [`core` 디렉터리](https://github.com/Bisonai/orakl/tree/master/core/src/por) 에 위치해 있습니다.
+코드는 [./node/pkg/por](https://github.com/Bisonai/orakl/tree/master/node/pkg/por) 디렉토리에 위치해 있습니다.
 
 ## Configuration
 
@@ -32,7 +32,7 @@ POR_PORT=
 
 ## Launch
 
-orakl 노드를 실행하기 전에 환경 변수를 설정하십시오. 자세한 내용은 [여기](https://github.com/Bisonai/orakl/blob/master/node/README.md)readme 파일에서 찾을 수 있습니다.
+orakl 노드를 실행하기 전에 환경 변수를 설정하십시오. 자세한 내용은 [여기](https://github.com/Bisonai/orakl/blob/master/node/README.md)에서 찾을 수 있습니다.
 
 ./node 경로에서 다음 명령을 실행하십시오.
 

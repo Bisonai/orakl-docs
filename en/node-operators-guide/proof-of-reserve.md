@@ -10,7 +10,7 @@ Every proof of reserve has configuration that describes the least frequent updat
 
 The **Orakl Network Proof of Reserve** operates as a streamlined, single-process system, easily triggered by a Cron job. The initial phase involves retrieving the most recent `roundId` and `PoR value` from the Proof of Reserve `Aggregator contract`. Subsequently, the process assesses eligibility for submission through a combination of the `Heartbeat Check` and `Deviation Check`. If either condition is met, the final step involves fetching data from the `API resource` and reporting the next round to the `POR contract`. This cohesive workflow ensures efficient and timely execution of the `Proof of Reserve` process.
 
-The code is located under [`core` directory](https://github.com/Bisonai/orakl/tree/master/core/src/por).
+The code is located under [./node/pkg/por](https://github.com/Bisonai/orakl/tree/master/node/pkg/por) directory
 
 ## Configuration
 
