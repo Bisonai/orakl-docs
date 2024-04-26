@@ -32,9 +32,9 @@ POR_PORT=
 
 ## Launch
 
-orakl 노드를 실행하기 전에 환경 변수를 설정하십시오. 자세한 내용은 [여기](https://github.com/Bisonai/orakl/blob/master/node/README.md)에서 찾을 수 있습니다.
+실행하기 전에, Orakl Node를 위한 환경변수를 설정하십시오. 자세한 내용은 [여기](https://github.com/Bisonai/orakl/blob/master/node/README.md)에서 찾을 수 있습니다.
 
-./node 경로에서 다음 명령을 실행하십시오.
+POR을 실행하기 위해 `node` 폴더의 루트 디렉토리로 이동한 뒤 다음 명령어를 입력하십시오.
 
 ```sh
 task local:por

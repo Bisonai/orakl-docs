@@ -32,9 +32,9 @@ POR_PORT=
 
 ## Launch
 
-Setup environment variable for orakl node before lunch, readme files can be found [here](https://github.com/Bisonai/orakl/blob/master/node/README.md)
+Before launch, setup environment variables required by Orakl Node. You can find detailed explanation at [Orakl Node README](https://github.com/Bisonai/orakl/blob/master/node/README.md).
 
-from ./node path run following command
+To launch Proof Of Reserve navigate to `node` directory and execute the command below.
 
 ```sh
 task local:por
