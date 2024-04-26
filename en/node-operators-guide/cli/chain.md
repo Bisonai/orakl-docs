@@ -8,9 +8,9 @@ The Orakl Network state can hold information about deployments to multiple chain
 
 The **Orakl Network CLI** provides commands to
 
-* [List Chains](chain.md#list-chains)
-* [Insert New Chain](chain.md#insert-new-chain)
-* [Remove Chain Specified By `id`](chain.md#remove-chain-specified-by-id)
+- [List Chains](chain.md#list-chains)
+- [Insert New Chain](chain.md#insert-new-chain)
+- [Remove Chain Specified By `id`](chain.md#remove-chain-specified-by-id)
 
 ### List Chains
 
@@ -20,9 +20,9 @@ orakl-cli chain list
 
 ```json
 [
-  { id: 1, name: 'localhost' },
-  { id: 2, name: 'baobab' },
-  { id: 3, name: 'cypress' }
+  { "id": 1, "name": "localhost" },
+  { "id": 2, "name": "baobab" },
+  { "id": 3, "name": "cypress" }
 ]
 ```
 
@@ -35,6 +35,12 @@ orakl-cli chain insert \
     --name ${chainName}
 ```
 
+- example
+
+```
+orakl-cli chain insert --name ethereum
+```
+
 ### Remove Chain Specified By `id`
 
 Chains can be removed when there are no association to them yet.
@@ -42,4 +48,10 @@ Chains can be removed when there are no association to them yet.
 ```sh
 orakl-cli chain remove \
     --id ${id}
+```
+
+- example
+
+```sh
+orakl-cli chain remove --id 10
 ```

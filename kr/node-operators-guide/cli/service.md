@@ -39,6 +39,12 @@ orakl-cli service insert \
     --name ${name}
 ```
 
+- example
+
+```sh
+orakl-cli service insert --name VRF
+```
+
 ### Remove Service Specified By `id`
 
 다른 구성과 연결되지 않은 서비스는 서비스 `id` 를 사용하여 삭제할 수 있습니다.
@@ -46,4 +52,10 @@ orakl-cli service insert \
 ```sh
 orakl-cli service remove \
     --id ${id}
+```
+
+- example
+
+```sh
+orakl-cli service remove --id 15
 ```

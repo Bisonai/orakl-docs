@@ -38,6 +38,12 @@ orakl-cli reporter list \
     [--service ${service}
 ```
 
+- example
+
+```sh
+orakl-cli reporter list --chain baobab --service VRF
+```
+
 ### Insert New Reporter
 
 새 reporter를 추가하려면 `reporter insert` command를 사용할 수 있습니다. 이 command에는 세 가지 그룹의 매개변수가 필요합니다: EOA 관련, oracle 관련 및 category 관련 매개변수입니다. EOA 매개변수 (`--address` 및 `--privateKey`) 는 이 reporter의 월렛을 생성하고 온체인 스마트 계약에 트랜잭션을 생성하고 전송하는 데 사용됩니다. Oracle 매개변수 (`oracleAddress`)는 이 reporter의 월렛이 실행할 수 있는 스마트 계약을 정의합니다. **Orakl Network** 는 동일한 월렛에서 동일한 시간대에 여러 트랜잭션이 발행될 때 확장성 문제를 제한하기 위해 각 스마트 계약마다 단일 EOA를 사용합니다. 마지막으로, category 매개변수 (`--chain` 및 `--service`) 는 체인 및 서비스별로 reporter를 구분하는 데 사용됩니다.
@@ -51,6 +57,12 @@ orakl-cli reporter insert \
   --oracleAddress ${oracleAddress}
 ```
 
+- example
+
+```sh
+orakl-cli reporter insert --chain baobab --service VRF --address 0x12 --privateKey abc12 --oracleAddress 0xab
+```
+
 ### Remove Reporter Specified By `id`
 
 Reporter는 언제든지 **Orakl Network** 상태에서 제거할 수 있지만, 이는 **Orakl Network**의 즉각적인 변화에 영향을 주지 않습니다. **Orakl Network Reporter service** 내에서 즉각적인 변경이 필요한 경우 `reporter deactivate` command를 사용하세요.
@@ -60,6 +72,12 @@ Reporter는 reporter의 식별자를 나타내는 추가 `--id` 매개변수와 
 ```sh
 orakl-cli reporter remove \
     --id ${id}
+```
+
+- example
+
+```sh
+orakl-cli reporter remove --id 15
 ```
 
 ## Ephemeral State
@@ -78,6 +96,12 @@ orakl-cli reporter active \
     --port ${port}
 ```
 
+- example
+
+```sh
+orakl-cli reporter active --host 127.0.0.1 --port 3030
+```
+
 ### Activate Reporter
 
 **Orakl Network Reporter** 서비스 시작 후 영구적인 reporter 상태에 추가된 리포터들은 기본적으로 비활성화 상태입니다. 비활성화된 reporter는 `reporter activate` command에 `--id` 매개변수를 사용하여 활성화할 수 있습니다. Reporter 식별자는 [`reporter list` command](reporter.md#list-reporters)을 통해 확인할 수 있습니다. Reporter 활성 상태가 되면 요청된 트랜잭션을 체인에 제출할 수 있습니다.
@@ -87,6 +111,12 @@ orakl-cli reporter activate \
     --id ${id}
     --host ${host} \
     --port ${port}
+```
+
+- example
+
+```sh
+orakl-cli reporter activate --id 15 --host 127.0.0.1 --port 3030
 ```
 
 ### Deactivate Reporter
@@ -100,6 +130,12 @@ orakl-cli reporter deactivate \
     --port ${port}
 ```
 
+- example
+
+```sh
+orakl-cli reporter deactivate --id 15 --host 127.0.0.1 --port 3030
+```
+
 > 만약 장기적으로 reporter를 사용하지 않는다면,[영구적인 reporter 상태에서 제거](reporter.md#remove-reporter-specified-by-id)해야 합니다. 그렇지 않으면 **Orakl Network Reporter** 가 재시작된 후에 활성화될 수 있습니다.
 
 ### Refresh Reporters
@@ -110,4 +146,10 @@ orakl-cli reporter deactivate \
 orakl-cli reporter refresh \
     --host ${host} \
     --port ${port}
+```
+
+- example
+
+```sh
+orakl-cli reporter refresh --host 127.0.0.1 --port 3030
 ```

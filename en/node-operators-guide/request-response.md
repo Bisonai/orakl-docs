@@ -22,6 +22,16 @@ orakl-cli listener insert \
     --eventName DataRequested
 ```
 
+- example
+
+```sh
+orakl-cli listener insert \
+    --service REQUEST_RESPONSE \
+    --chain baobab \
+    --address 0x12 \
+    --eventName DataRequested
+```
+
 ### Reporter
 
 The **Orakl Network API** holds information about all reporters. The command below adds a single Request-Response reporter to the Orakl Network state to report to `oracleAddress`. The chain parameter specifies a chain on which we expect to operate. Reporter is defined by an `address` and a `privateKey` parameters.
@@ -35,19 +45,30 @@ orakl-cli reporter insert \
   --oracleAddress ${oracleAddress}
 ```
 
+- example
+
+```sh
+orakl-cli reporter insert \
+  --service REQUEST_RESPONSE \
+  --chain baobab \
+  --address  0xab \
+  --privateKey abc \
+  --oracleAddress ${oracleAddress}
+```
+
 ## Configuration
 
 Before we launch the **Orakl Network Request-Response**, we must specify [several environment variables](https://github.com/Bisonai/orakl/blob/master/core/.env.example). The environment variables are automatically loaded from a `.env` file.
 
-* `NODE_ENV=production`&#x20;
-* `CHAIN`&#x20;
-* `PROVIDER_URL`
-* `ORAKL_NETWORK_API_URL`
-* `LOG_LEVEL`
-* `REDIS_HOST`
-* `REDIS_PORT`
-* `HEALTH_CHECK_PORT`
-* `SLACK_WEBHOOK_URL`
+- `NODE_ENV=production`&#x20;
+- `CHAIN`&#x20;
+- `PROVIDER_URL`
+- `ORAKL_NETWORK_API_URL`
+- `LOG_LEVEL`
+- `REDIS_HOST`
+- `REDIS_PORT`
+- `HEALTH_CHECK_PORT`
+- `SLACK_WEBHOOK_URL`
 
 The **Orakl Network Request-Response** is implemented in Node.js which uses `NODE_ENV` environment variable to signal the execution environment (e.g. `production`, `development`). [Setting the environment to `production`](https://nodejs.org/en/learn/getting-started/nodejs-the-difference-between-development-and-production) generally ensures that logging is kept to a minimum, and more caching levels take place to optimize performance.
 

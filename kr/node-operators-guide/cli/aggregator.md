@@ -54,6 +54,12 @@ orakl-cli aggregator active \
     [--port ${DATA_FEED_WORKER_PORT}]
 ```
 
+- example
+
+```sh
+orakl-cli aggregator active --host http://127.0.0.1 --port 5050
+```
+
 ### Insert New Aggregator
 
 aggregator 정의도 adapter와 마찬가지로 상당히 길어질 수 있습니다. 이를 위해 새로운 aggregator를 등록할 수 있도록 `--source` 매개변수를 지원합니다. 이 매개변수는 로컬 컴퓨터에 있는 JSON aggregator 파일이나 웹에서 호스팅된 JSON aggregator 파일을 가리킬 수 있습니다. 또한, 새로 추가된 aggregator 를 연결할 `체인`을 지정해야 합니다.
@@ -68,6 +74,12 @@ orakl-cli aggregator insert \
     --chain ${chain}
 ```
 
+- example
+
+```sh
+orakl-cli aggregator insert --source https://config.orakl.network/aggregator/baobab/atom-usdt.aggregator.json --chain baobab
+```
+
 ### Remove Aggregator Specified By `id`
 
 비활성화된 경우에만 **Orakl Network** 상태에서 aggregator를 제거할 수 있습니다. 비활성화된 aggregator는 aggregator 식별자를 나타내는 추가 `--id` 매개변수와 함께 제공되는 `aggregator remove` command로 제거할 수 있습니다.
@@ -75,6 +87,12 @@ orakl-cli aggregator insert \
 ```sh
 orakl-cli aggregator remove \
     --id ${id}
+```
+
+- example
+
+```sh
+orakl-cli aggregator remove --id 15
 ```
 
 ### Activate Aggregator
@@ -90,6 +108,12 @@ orakl-cli aggregator activate \
     [--port ${DATA_FEED_WORKER_PORT}]
 ```
 
+- example
+
+```sh
+orakl-cli aggregator activate --aggregatorHash 0x12 --host 127.0.0.1 --port 5050
+```
+
 ### Deactivate Aggregator
 
 **Orakl Network Data Feed Worker** 가 실행 중이고 데이터 피드 중 일부를 중지해야 할 경우, `aggregator deactivate` command를 사용하세요. 이 command는 `aggregatorHash` 로 정의된 단일 aggregator를 일시적 저장소에서 제거하며, 다른 활성 데이터 피드에는 영향을 주지 않습니다.
@@ -101,4 +125,10 @@ orakl-cli aggregator deactivate \
     --aggregatorHash ${aggregatorHash} \
     [--host ${DATA_FEED_WORKER_HOST}] \
     [--port ${DATA_FEED_WORKER_PORT}]
+```
+
+- example
+
+```sh
+orakl-cli aggregator deactivate --aggregatorHash 0x12 --host 127.0.0.1 --port 5050
 ```

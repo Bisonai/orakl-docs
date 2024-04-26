@@ -8,9 +8,9 @@ description: List, Insert And Remove Orakl Network Adapters
 
 The **Orakl Network CLI** provides commands to
 
-* [List Adapters](adapter.md#list-adapters)
-* [Insert New Adapter](adapter.md#add-new-adapter)
-* [Remove Adapter Specified By `id`](adapter.md#remove-adapter-specified-by-id)
+- [List Adapters](adapter.md#list-adapters)
+- [Insert New Adapter](adapter.md#add-new-adapter)
+- [Remove Adapter Specified By `id`](adapter.md#remove-adapter-specified-by-id)
 
 ### What Is Adapter?
 
@@ -60,8 +60,7 @@ The example of adapter for `BTC-USD` with a Binance as a single data source and 
 All registered adapters can be listed with `adapter list` command. If you want to see only adapters for a specific chain, you can use the `--chain` parameter.
 
 ```sh
-orakl-cli adapter list \
-    [--chain ${chain}]
+orakl-cli adapter list
 ```
 
 ### Insert New Adapter
@@ -75,6 +74,12 @@ orakl-cli adapter insert \
     --source ${pathOrUrlToAdapterJsonFile}
 ```
 
+- example
+
+```sh
+orakl-cli adapter insert --source https://config.orakl.network/adapter/baobab/dai-usdt.adapter.json
+```
+
 ### Remove Adapter Specified By `id`
 
 Adapter that is not associated with any aggregator can be removed. The adapter to remove is specified by its `id`. To remove adapter apply an `--id` parameter to `adapter remove` command.&#x20;
@@ -82,4 +87,10 @@ Adapter that is not associated with any aggregator can be removed. The adapter t
 ```sh
 orakl-cli adapter remove \
     --id ${id}
+```
+
+- example
+
+```sh
+orakl-cli adapter remove --id 15
 ```

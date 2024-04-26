@@ -87,6 +87,17 @@ orakl-cli aggregator insert \
     --chain localhost
 ```
 
+- example
+
+```sh
+orakl-cli adapter insert \
+    --source https://config.orakl.network/adapter/baobab/atom-usdt.adapter.json
+
+orakl-cli aggregator insert \
+    --source https://config.orakl.network/aggregator/baobab/atom-usdt.aggregator.json \
+    --chain localhost
+```
+
 ### Proxies (Optional)
 
 In addition to configuring adapters and aggregators, the Orakl Network also provides the option to add proxies, which can be used for data fetching through defined proxy configurations.
@@ -117,6 +128,12 @@ orakl-cli fetcher start \
     --chain ${chainName}
 ```
 
+- example
+
+```sh
+orakl-cli fetcher start --id 0x12 --chain baobab
+```
+
 ### Deactivate Aggregator
 
 Data collection defined with an adapter-aggregator pair can be stopped anytime by executing a command below with appropriate `aggregatorHash`.
@@ -127,16 +144,22 @@ orakl-cli fetcher stop \
     --chain ${chainName}
 ```
 
+- example
+
+```sh
+orakl-cli fetcher stop --id 0x12 --chain baobab
+```
+
 ## Configuration
 
 Before we launch the **Orakl Network Fetcher**, we must specify [several environment variables](https://github.com/Bisonai/orakl/blob/master/fetcher/.env.example). The environment variables are automatically loaded from a `.env` file.
 
-* `REDIS_HOST`
-* `REDIS_PORT`
-* `ORAKL_NETWORK_API_URL`
-* `APP_PORT`
-* `CHAIN`
-* `FETCHER_TYPE`
+- `REDIS_HOST`
+- `REDIS_PORT`
+- `ORAKL_NETWORK_API_URL`
+- `APP_PORT`
+- `CHAIN`
+- `FETCHER_TYPE`
 
 `REDIS_HOST` and `REDIS_PORT` represent host and port of [Redis](https://redis.io/) to which the **Orakl Network Fetcher** connect to. The default values are `localhost` and `6379`, respectively. Redis is used indirectly through [BullMQ](https://docs.bullmq.io/) to collect data in regular predefined intervals.
 
@@ -159,8 +182,8 @@ yarn start:prod
 
 After the **Orakl Network Fetcher** is launched, all active aggregators will start to
 
-* collect data for each data source defined in adapter feeds of activated aggregator, and
-* compute and store their aggregate.
+- collect data for each data source defined in adapter feeds of activated aggregator, and
+- compute and store their aggregate.
 
 The collected and computed data are sent through the **Orakl Network API** to PostgreSQL. Aggregators can be [actived](fetcher.md#activate-aggregator) and [deactivated](fetcher.md#deactivate-aggregator) while the **Orakl Network Fetcher** is running.
 

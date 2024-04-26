@@ -8,7 +8,7 @@ The **Orakl Network API** has to be reachable from every Orakl Network service, 
 
 ## Configuration
 
-Before we launch the **Orakl Network API**, we must specify [few environment variables](https://github.com/Bisonai/orakl/blob/master/api/.env.example). The environment variables are automatically loaded from a `.env` file.
+Before we launch the **Orakl Network API**, we must specify [few environment variables](https://github.com/Bisonai/orakl/blob/master/api/.env.example). The environment variables are automatically loaded from a `.env` file. Check example values from `.env.local` file
 
 - `DATABASE_URL`
 - `APP_PORT`

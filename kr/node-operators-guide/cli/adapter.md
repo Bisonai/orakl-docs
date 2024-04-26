@@ -75,6 +75,12 @@ orakl-cli adapter insert \
     --source ${pathOrUrlToAdapterJsonFile}
 ```
 
+- example
+
+```sh
+orakl-cli adapter insert --source https://config.orakl.network/adapter/baobab/dai-usdt.adapter.json
+```
+
 ### Remove Adapter Specified By `id`
 
 어댑터가 어떤 aggregator와도 연결되어 있지 않은 경우 해당 어댑터를 제거할 수 있습니다. 어댑터를 제거하려면 어댑터의 `id`를 지정하고 `adapter remove` command&#x20;에 `--id` 매개변수를 적용하면 됩니다.
@@ -82,4 +88,10 @@ orakl-cli adapter insert \
 ```sh
 orakl-cli adapter remove \
     --id ${id}
+```
+
+- example
+
+```sh
+orakl-cli adapter remove --id 15
 ```

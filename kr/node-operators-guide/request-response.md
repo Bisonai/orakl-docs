@@ -22,6 +22,16 @@ orakl-cli listener insert \
     --eventName DataRequested
 ```
 
+- example
+
+```sh
+orakl-cli listener insert \
+    --service REQUEST_RESPONSE \
+    --chain baobab \
+    --address 0x12 \
+    --eventName DataRequested
+```
+
 ### Reporter
 
 **Orakl Network API** 는 모든 리포터에 대한 정보를 보유하고 있습니다. 아래 command는 Orakl Network 상태에 단일 Request-Response 리포터를 추가하여 `oracleAddress`에 보고합니다. Chain 매개변수는 운영을 기대하는 체인을 지정합니다. 리포터는 `address` 와 `privateKey` 매개변수로 정의됩니다.
@@ -32,6 +42,17 @@ orakl-cli reporter insert \
   --chain ${chain} \
   --address  ${address} \
   --privateKey ${privateKey} \
+  --oracleAddress ${oracleAddress}
+```
+
+- example
+
+```sh
+orakl-cli reporter insert \
+  --service REQUEST_RESPONSE \
+  --chain baobab \
+  --address  0xab \
+  --privateKey abc \
   --oracleAddress ${oracleAddress}
 ```
 
