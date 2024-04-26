@@ -8,12 +8,12 @@ The **Orakl Network Listener** is a microservice that is part of every Orakl Net
 
 The **Orakl Network CLI** provides commands to modify both [permanent](listener.md#permanent-state) or [ephemeral state](listener.md#ephemeral-state) of **Orakl Network Listener**. The list of supported actions is shown below:
 
-* [List Listeners](listener.md#list-listeners)
-* [Insert New Listener](listener.md#insert-new-listener)
-* [Remove Listener Specified By `id`](listener.md#remove-listener-specified-by-id)
-* [List Active Listeners](listener.md#list-active-listeners)
-* [Activate Listener](listener.md#activate-listener)
-* [Deactivate Listener](listener.md#deactivate-listener)
+- [List Listeners](listener.md#list-listeners)
+- [Insert New Listener](listener.md#insert-new-listener)
+- [Remove Listener Specified By `id`](listener.md#remove-listener-specified-by-id)
+- [List Active Listeners](listener.md#list-active-listeners)
+- [Activate Listener](listener.md#activate-listener)
+- [Deactivate Listener](listener.md#deactivate-listener)
 
 ## Permanent State
 
@@ -29,30 +29,36 @@ orakl-cli listener list \
     [--service ${service}]
 ```
 
+- example
+
+```sh
+orakl-cli listener list --chain baobab --service DATA_FEED
+```
+
 The example output of `listener list` command is displayed below. It includes three different listeners that should listen on three addresses for three different events: `RandomWordsRequested`, `NewRound` and `DataRequested`.
 
 ```json
 [
   {
-    id: '1',
-    address: '0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0',
-    eventName: 'RandomWordsRequested',
-    service: 'VRF',
-    chain: 'baobab'
+    "id": "1",
+    "address": "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0",
+    "eventName": "RandomWordsRequested",
+    "service": "VRF",
+    "chain": "baobab"
   },
   {
-    id: '2',
-    address: '0xa513E6E4b8f2a923D98304ec87F64353C4D5C853',
-    eventName: 'NewRound',
-    service: 'DATA_FEED',
-    chain: 'baobab'
+    "id": "2",
+    "address": "0xa513E6E4b8f2a923D98304ec87F64353C4D5C853",
+    "eventName": "NewRound",
+    "service": "DATA_FEED",
+    "chain": "baobab"
   },
   {
-    id: '3',
-    address: '0x45778c29A34bA00427620b937733490363839d8C',
-    eventName: 'DataRequested',
-    service: 'REQUEST_RESPONSE',
-    chain: 'baobab'
+    "id": "3",
+    "address": "0x45778c29A34bA00427620b937733490363839d8C",
+    "eventName": "DataRequested",
+    "service": "REQUEST_RESPONSE",
+    "chain": "baobab"
   }
 ]
 ```
@@ -64,11 +70,23 @@ orakl-cli listener list \
     --chain ${chain}
 ```
 
+- example
+
+```sh
+orakl-cli listener list --chain baobab
+```
+
 To list listeners associated with a specific service, you can use the `--service` parameter.
 
 ```sh
 orakl-cli listener list \
     --service ${service}
+```
+
+- example
+
+```sh
+orakl-cli listener list --service VRF
 ```
 
 ### Insert New Listener
@@ -83,6 +101,12 @@ orakl-cli listener insert \
     --eventName ${eventName}
 ```
 
+- example
+
+```sh
+orakl-cli listener insert --chain baobab --service VRF --address 0x123 --eventName RandomWordsRequested
+```
+
 ### Remove Listener Specified By `id`
 
 Listeners can be removed from a permanent listener state by the `listener remove` command. The listener to remove is specified by its identifier (`--id`).
@@ -90,6 +114,12 @@ Listeners can be removed from a permanent listener state by the `listener remove
 ```sh
 orakl-cli listener remove \
     --id ${id}
+```
+
+- example
+
+```sh
+orakl-cli listener remove --id 72
 ```
 
 ## Ephemeral State
@@ -108,6 +138,12 @@ orakl-cli listener active \
     --port ${port}
 ```
 
+- example
+
+```sh
+orakl-cli listener active --host http://127.0.0.1 --port 3030
+```
+
 ### Activate Listener
 
 Listeners that are added to the permanent listener state after the launch of the **Orakl Network Listener** service are inactive by default. Inactive listeners can be activated by the `listener activate` command with `--id` parameter. The listener identifier can be found through the [`listener list` command](listener.md#list-listeners). After a listener becomes active, it starts listening for the events defined in its configuration.
@@ -117,6 +153,12 @@ orakl-cli listener activate \
     --id ${id}
     --host ${host} \
     --port ${port}
+```
+
+- example
+
+```sh
+orakl-cli listener activate --host http://127.0.0.1 --port 3030
 ```
 
 ### Deactivate Listener
@@ -130,6 +172,12 @@ orakl-cli listener deactivate \
     --id ${id}
     --host ${host} \
     --port ${port}
+```
+
+- example
+
+```sh
+orakl-cli listener deactivate --host http://127.0.0.1 --port 3030
 ```
 
 > If you do not want to use listener long-term, you should [remove it from the permanent listener state](listener.md#remove-listener-specified-by-id), otherwise it will become active after the **Orakl Network Listener** restarts.

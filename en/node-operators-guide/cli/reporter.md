@@ -8,13 +8,13 @@ description: List, Insert, Remove, Activate, Deactivate And Refresh Orakl Networ
 
 The **Orakl Network CLI** provides commands to modify both [permanent](reporter.md#permanent-state) or [ephemeral state](reporter.md#ephemeral-state) of **Orakl Network Reporter**. The list of supported actions is shown below:
 
-* [List Reporters](reporter.md#list-reporters)
-* [Insert New Reporter](reporter.md#insert-new-reporter)
-* [Remove Reporter Specified By `id`](reporter.md#remove-reporter-specified-by-id)
-* [List Active Reporters](reporter.md#list-active-reporters)
-* [Activate Reporter](reporter.md#activate-reporter)
-* [Deactivate Reporter](reporter.md#deactivate-reporter)
-* [Refresh Reporters](reporter.md#refresh-reporters)
+- [List Reporters](reporter.md#list-reporters)
+- [Insert New Reporter](reporter.md#insert-new-reporter)
+- [Remove Reporter Specified By `id`](reporter.md#remove-reporter-specified-by-id)
+- [List Active Reporters](reporter.md#list-active-reporters)
+- [Activate Reporter](reporter.md#activate-reporter)
+- [Deactivate Reporter](reporter.md#deactivate-reporter)
+- [Refresh Reporters](reporter.md#refresh-reporters)
 
 ## What Is Reporter?
 
@@ -22,7 +22,7 @@ Reporter is an abstraction for Externally Owned Account (EOA), as well as for an
 
 Reporter metadata are used in all the **Orakl Network** services (**Orakl Network Listener**, **Orakl Network Worker** and **Orakl Network Reporter**).
 
-## Permanent  State
+## Permanent State
 
 The permanent state of reporter is loaded on launch of the **Orakl Network Reporter** service, and accessed on-demand from the **Orakl Network Listener** and the **Orakl Network Worker**.
 
@@ -34,6 +34,12 @@ All registered reporters can be listed with `reporter list` command. If you want
 orakl-cli reporter list \
     [--chain ${chain}] \
     [--service ${service}
+```
+
+- example
+
+```sh
+orakl-cli reporter list --chain baobab --service VRF
 ```
 
 ### Insert New Reporter
@@ -49,6 +55,12 @@ orakl-cli reporter insert \
   --oracleAddress ${oracleAddress}
 ```
 
+- example
+
+```sh
+orakl-cli reporter insert --chain baobab --service VRF --address 0x12 --privateKey abc12 --oracleAddress 0xab
+```
+
 ### Remove Reporter Specified By `id`
 
 The reporter can be removed from the **Orakl Network** state anytime, however, it won't have an immediate impact on the ephemeral state of **Orakl Network**. If you need an immediate change inside of your **Orakl Network Reporter service**, use `reporter deactivate` command.
@@ -58,6 +70,12 @@ Reporter can be removed using the `reporter remove` command supplied with an ext
 ```sh
 orakl-cli reporter remove \
     --id ${id}
+```
+
+- example
+
+```sh
+orakl-cli reporter remove --id 15
 ```
 
 ## Ephemeral State
@@ -76,6 +94,12 @@ orakl-cli reporter active \
     --port ${port}
 ```
 
+- example
+
+```sh
+orakl-cli reporter active --host 127.0.0.1 --port 3030
+```
+
 ### Activate Reporter
 
 Reporters that are added to the permanent reporter state after the launch of the **Orakl Network Reporter** service are inactive by default. Inactive reporters can be activated by the `reporter activate` command with `--id` parameter. The reporter identifier can be found through the [`reporter list` command](reporter.md#list-reporters). After reporter becomes active, it can start submitting requested transaction to the chain.
@@ -85,6 +109,12 @@ orakl-cli reporter activate \
     --id ${id}
     --host ${host} \
     --port ${port}
+```
+
+- example
+
+```sh
+orakl-cli reporter activate --id 15 --host 127.0.0.1 --port 3030
 ```
 
 ### Deactivate Reporter
@@ -98,6 +128,12 @@ orakl-cli reporter deactivate \
     --port ${port}
 ```
 
+- example
+
+```sh
+orakl-cli reporter deactivate --id 15 --host 127.0.0.1 --port 3030
+```
+
 > If you do not want to use reporter long-term, you should [remove it from the permanent reporter state](reporter.md#remove-reporter-specified-by-id), otherwise it will become active after the **Orakl Network Reporter** restarts.
 
 ### Refresh Reporters
@@ -108,4 +144,10 @@ Sometimes, it might be faster to sync permanent reporter state with ephemeral re
 orakl-cli reporter refresh \
     --host ${host} \
     --port ${port}
+```
+
+- example
+
+```sh
+orakl-cli reporter refresh --host 127.0.0.1 --port 3030
 ```

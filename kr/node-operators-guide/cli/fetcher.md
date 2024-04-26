@@ -13,6 +13,22 @@ description: Start And Stop Data Collection
 
 **Orakl Network Fetcher** adapter의 정의에 기반하여 정기적으로 데이터를 수집하는 데 사용됩니다. 수집 및 집계된 데이터는 **Orakl Network Data Feed**에서 사용할 수 있습니다.
 
+### List Active Fetchers
+
+`fetcher active` 명령어를 통해 활성화된 fetcher를 확인할 수 있습니다.
+
+```sh
+orakl-cli fetcher active \
+    --host ${host} \
+    --port ${port}
+```
+
+- example
+
+```sh
+orakl-cli fetcher active --host http://127.0.0.1 --port 5050
+```
+
 ### Start Single Data Feed Collection
 
 **Orakl Network Fetcher**는 `fetcher start` 명령을 사용하여 등록된 aggregator의 즉시 데이터 수집을 시작할 수 있습니다. Aggregator 는 여러 `chains`에 등록될 수 있으므로 `--chain` 매개변수를 통해 적절한 체인을 지정해야 합니다.&#x20;
@@ -20,7 +36,15 @@ description: Start And Stop Data Collection
 ```sh
 orakl-cli fetcher start \
     --id ${aggregatorhash} \
-    --chain ${chainName}
+    --chain ${chainName} \
+    --host ${host} \
+    --port ${port}
+```
+
+- example
+
+```sh
+orakl-cli fetcher start --id 0x12 --chain baobab --host http://127.0.0.1 --port 3030
 ```
 
 ### Stop Single Data Feed Collection
@@ -30,5 +54,13 @@ Orakl Network Fetcher가 수행하는 데이터 수집은 `fetcher stop` 명령�
 ```sh
 orakl-cli fetcher stop \
     --id ${aggregatorhash} \
-    --chain ${chainName}
+    --chain ${chainName} \
+    --host ${host} \
+    --port ${port}
+```
+
+- example
+
+```sh
+orakl-cli fetcher stop --id 0x12 --chain baobab --host http://127.0.0.1 --port 3030
 ```

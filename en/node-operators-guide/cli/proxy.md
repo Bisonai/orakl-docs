@@ -8,9 +8,9 @@ The **Orakl Network ** state can store information about the multiple proxies. P
 
 The **Orakl Network CLI** provides commands to
 
-* [List Proxies](proxy.md#list-proxies)
-* [Insert New Proxy](proxy.md#insert-new-proxy)
-* [Remove Proxy Specified By `id`](proxy.md#remove-proxy-specified-by-id)
+- [List Proxies](proxy.md#list-proxies)
+- [Insert New Proxy](proxy.md#insert-new-proxy)
+- [Remove Proxy Specified By `id`](proxy.md#remove-proxy-specified-by-id)
 
 ### List Proxies
 
@@ -36,6 +36,12 @@ orakl-cli proxy insert \
     --port ${port}
 ```
 
+- example
+
+```sh
+orakl-cli proxy insert --protocol http --host 127.0.0.1 --port 80
+```
+
 ### Remove Proxy Specified By `id`
 
 Proxies can be removed when there are no association to them yet.
@@ -43,4 +49,10 @@ Proxies can be removed when there are no association to them yet.
 ```sh
 orakl-cli proxy remove \
     --id ${id}
+```
+
+- example
+
+```sh
+orakl-cli proxy remove --id 15
 ```

@@ -22,6 +22,12 @@ orakl-cli listener insert \
     --eventName RandomWordsRequested
 ```
 
+- example
+
+```sh
+orakl-cli listener insert --service VRF --chain baobab --address 0xDA8c0A00A372503aa6EC80f9b29Cc97C454bE499 --enventName RandomWordsRequested
+```
+
 ### Reporter
 
 The **Orakl Network API** holds information about all reporters. The command below adds a single VRF reporter to the Orakl Network state to report to `oracleAddress`. The chain parameter specifies a chain on which we expect to operate. Reporter is defined by an `address` and a `privateKey` parameters.
@@ -33,6 +39,17 @@ orakl-cli reporter insert \
   --address  ${address} \
   --privateKey ${privateKey} \
   --oracleAddress ${oracleAddress}
+```
+
+- example
+
+```sh
+orakl-cli reporter insert \
+  --service VRF \
+  --chain baobab \
+  --address  0x12 \
+  --privateKey abc \
+  --oracleAddress 0xDA
 ```
 
 ### VRF Keys
@@ -71,15 +88,15 @@ orakl-cli vrf insert \
 
 Before we launch the **Orakl Network VRF**, we must specify [several environment variables](https://github.com/Bisonai/orakl/blob/master/core/.env.example). The environment variables are automatically loaded from a `.env` file.
 
-* `NODE_ENV=production`
-* `CHAIN`
-* `PROVIDER_URL`
-* `ORAKL_NETWORK_API_URL`
-* `LOG_LEVEL`
-* `REDIS_HOST`
-* `REDIS_PORT`
-* `HEALTH_CHECK_PORT`
-* `SLACK_WEBHOOK_URL`
+- `NODE_ENV=production`
+- `CHAIN`
+- `PROVIDER_URL`
+- `ORAKL_NETWORK_API_URL`
+- `LOG_LEVEL`
+- `REDIS_HOST`
+- `REDIS_PORT`
+- `HEALTH_CHECK_PORT`
+- `SLACK_WEBHOOK_URL`
 
 The **Orakl Network VRF** is implemented in Node.js which uses `NODE_ENV` environment variable to signal the execution environment (e.g. `production`, `development`). [Setting the environment to `production`](https://nodejs.org/en/learn/getting-started/nodejs-the-difference-between-development-and-production) generally ensures that logging is kept to a minimum, and more caching levels take place to optimize performance.
 

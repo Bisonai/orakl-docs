@@ -13,6 +13,12 @@ yarn cli delegator organizationInsert \
     --name ${orgName}
 ```
 
+- example
+
+```sh
+yarn cli delegator organizationInsert --name bisonai
+```
+
 ### List organizations
 
 ```sh
@@ -25,6 +31,12 @@ yarn cli delegator organizationList
 yarn cli delegator reporterInsert \
       --address ${address} \
       --organizationId ${organizationId}
+```
+
+- example
+
+```sh
+yarn cli delegator reporterInsert --address 0xab --organizationId 10
 ```
 
 ### List reporters
@@ -40,6 +52,12 @@ yarn cli delegator contractInsert \
       --address ${address}
 ```
 
+- example
+
+```sh
+yarn cli delegator contractInsert --address 0x23
+```
+
 ### List contracts
 
 ```sh
@@ -52,6 +70,12 @@ yarn cli delegator contractList
 yarn cli delegator functionInsert \
       --name ${functionSignature} \
       --contractId ${contractId}
+```
+
+- example
+
+```sh
+yarn cli delegator functionInsert --name "submit(int256,uint256)" --contractId 15
 ```
 
 ### List functions

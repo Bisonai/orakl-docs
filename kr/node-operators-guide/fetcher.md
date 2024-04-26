@@ -87,6 +87,37 @@ orakl-cli aggregator insert \
     --chain localhost
 ```
 
+- example
+
+```sh
+orakl-cli adapter insert \
+    --source https://config.orakl.network/adapter/baobab/atom-usdt.adapter.json
+
+orakl-cli aggregator insert \
+    --source https://config.orakl.network/aggregator/baobab/atom-usdt.aggregator.json \
+    --chain localhost
+```
+
+### Proxies (Optional)
+
+어댑터 및 어그리게이터 설정 외에도, 프록시 설정 옵션도 제공됩니다. 이는 데이터 수집시 참조됩니다.
+
+```sh
+orakl-cli proxy list
+```
+
+### Add proxy
+
+```sh
+orakl-cli proxy insert --protocol protocol --host host --port port
+```
+
+An example to add proxy with host:`127.0.0.1`, with port:`88`
+
+```sh
+orakl-cli proxy insert --protocol "http" --host "127.0.0.1" --port 88
+```
+
 ### Activate Aggregator
 
 Adapter 와 aggregator가 Orakl Network 상태에 등록되면 처음에는 비활성화 상태가 됩니다. 데이터 수집에 사용하려면 활성화해야 합니다. 활성화는 **Orakl Network CLI** 를 통해 수행할 수 있습니다.
@@ -111,11 +142,11 @@ orakl-cli fetcher stop \
 
 **Orakl Network Fetcher** 를 시작하기 전에 [여러 환경 변수](https://github.com/Bisonai/orakl/blob/master/fetcher/.env.example)를 지정해야 합니다.환경 변수는 자동으로 `.env` 파일에서 로드됩니다.
 
-* `REDIS_HOST`
-* `REDIS_PORT`
-* `ORAKL_NETWORK_API_URL`
-* `APP_PORT`
-* `CHAIN`
+- `REDIS_HOST`
+- `REDIS_PORT`
+- `ORAKL_NETWORK_API_URL`
+- `APP_PORT`
+- `CHAIN`
 
 `REDIS_HOST` 와 `REDIS_PORT`는 **Orakl Network Fetcher** 가 연결하는 [Redis](https://redis.io/)의 호스트와 포트를 나타냅니다. 기본 값은 각각 `localhost`와 `6379`입니다. Redis는 [BullMQ](https://docs.bullmq.io/)를 통해 정기적으로 미리 정의된 간격으로 데이터를 수집하는 데 사용됩니다.
 
@@ -134,8 +165,8 @@ yarn start:prod
 
 **Orakl Network Fetcher** 가 시작되면, 모든 활성화된 aggregator는 다음과 같은 작업을 수행합니다:
 
-* 활성화된 aggregator 어댑터 피드에 정의된 각 데이터 소스에서 데이터를 수집합니다.
-* 수집된 데이터를 계산하여 집계 결과를 저장합니다.
+- 활성화된 aggregator 어댑터 피드에 정의된 각 데이터 소스에서 데이터를 수집합니다.
+- 수집된 데이터를 계산하여 집계 결과를 저장합니다.
 
 수집된 데이터와 계산된 데이터는 **Orakl Network API** 를 통해 PostgreSQL로 전송됩니다. **Orakl Network Fetcher** 가 실행중일 때 aggregators를 [활성화](fetcher.md#activate-aggregator) 하거나 [비활성화](fetcher.md#deactivate-aggregator)할 수 있습니다.
 

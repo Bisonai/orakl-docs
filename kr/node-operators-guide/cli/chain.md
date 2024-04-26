@@ -35,6 +35,12 @@ orakl-cli chain insert \
     --name ${chainName}
 ```
 
+- example
+
+```
+orakl-cli chain insert --name ethereum
+```
+
 ### Remove Chain Specified By `id`
 
 아직 체인에 연결된 항목이 없는 경우 체인을 제거할 수 있습니다.
@@ -42,4 +48,10 @@ orakl-cli chain insert \
 ```sh
 orakl-cli chain remove \
     --id ${id}
+```
+
+- example
+
+```sh
+orakl-cli chain remove --id 10
 ```

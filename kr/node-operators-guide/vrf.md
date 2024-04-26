@@ -22,6 +22,12 @@ orakl-cli listener insert \
     --eventName RandomWordsRequested
 ```
 
+- example
+
+```sh
+orakl-cli listener insert --service VRF --chain baobab --address 0xDA8c0A00A372503aa6EC80f9b29Cc97C454bE499 --enventName RandomWordsRequested
+```
+
 ### Reporter
 
 **Orakl Network API** 는 모든 리포터에 대한 정보를 보유하고 있습니다. 아래 command는 Orakl Network 상태에 단일 VRF 리포터를 추가하여 `oracleAddress`에 보고합니다. Chain 매개변수는 운영을 기대하는 체인을 지정합니다. 리포터는 `address` 와 `privateKey` 매개변수로 정의됩니다.
@@ -33,6 +39,17 @@ orakl-cli reporter insert \
   --address  ${address} \
   --privateKey ${privateKey} \
   --oracleAddress ${oracleAddress}
+```
+
+- example
+
+```sh
+orakl-cli reporter insert \
+  --service VRF \
+  --chain baobab \
+  --address  0x12 \
+  --privateKey abc \
+  --oracleAddress 0xDA
 ```
 
 ### VRF Keys

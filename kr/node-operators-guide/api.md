@@ -8,7 +8,7 @@
 
 ## Configuration
 
-**Orakl Network API** 를 시작하기 전에 [몇 가지 환경 변수](https://github.com/Bisonai/orakl/blob/master/api/.env.example)를 지정해야 합니다. 환경 변수는 자동으로 `.env` 파일에서 로드됩니다.
+**Orakl Network API** 를 시작하기 전에 [몇 가지 환경 변수](https://github.com/Bisonai/orakl/blob/master/api/.env.example)를 지정해야 합니다. 환경 변수는 자동으로 `.env` 파일에서 로드됩니다. 예시값은 `.env.local`파일에서 확인할 수 있습니다.
 
 - `DATABASE_URL`
 - `APP_PORT`

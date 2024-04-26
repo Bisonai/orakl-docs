@@ -8,12 +8,12 @@ description: List, Insert And Remove Orakl Network Aggregators
 
 The **Orakl Network CLI** provides commands to
 
-* [List Aggregators](aggregator.md#list-aggregators)
-* [List Active Aggregators](aggregator.md#list-active-aggregators)
-* [Insert New Aggregator](aggregator.md#insert-new-aggregator)
-* [Remove Aggregator Specified By `id`](aggregator.md#remove-aggregator-specified-by-id)
-* [Activate Aggregator](aggregator.md#activate-aggregator)
-* [Deactivate Aggregator](aggregator.md#deactivate-aggregator)
+- [List Aggregators](aggregator.md#list-aggregators)
+- [List Active Aggregators](aggregator.md#list-active-aggregators)
+- [Insert New Aggregator](aggregator.md#insert-new-aggregator)
+- [Remove Aggregator Specified By `id`](aggregator.md#remove-aggregator-specified-by-id)
+- [Activate Aggregator](aggregator.md#activate-aggregator)
+- [Deactivate Aggregator](aggregator.md#deactivate-aggregator)
 
 ### What Is Aggregator?
 
@@ -42,6 +42,12 @@ orakl-cli aggregator list \
     --chain ${chain}
 ```
 
+- example
+
+```sh
+orakl-cli aggregator list --chain baobab
+```
+
 ### List Active Aggregators
 
 Aggregators displayed with `aggregator list` command are stored in a permanent storage of the **Orakl Network**. When the **Orakl Network Data Feed Worker** is launched, all aggregators are duplicated to ephemeral storage. To see all active aggregators use `aggregator active` command.
@@ -52,6 +58,12 @@ The command requires two optional parameters `--host` and `--port` which describ
 orakl-cli aggregator active \
     [--host ${DATA_FEED_WORKER_HOST}] \
     [--port ${DATA_FEED_WORKER_PORT}]
+```
+
+- example
+
+```sh
+orakl-cli aggregator active --host http://127.0.0.1 --port 5050
 ```
 
 ### Insert New Aggregator
@@ -68,6 +80,12 @@ orakl-cli aggregator insert \
     --chain ${chain}
 ```
 
+- example
+
+```sh
+orakl-cli aggregator insert --source https://config.orakl.network/aggregator/baobab/atom-usdt.aggregator.json --chain baobab
+```
+
 ### Remove Aggregator Specified By `id`
 
 The aggregator can be removed from the **Orakl Network** state only when it is inactive. Inactive aggregators can be removed with the `aggregator remove` command supplied with an extra `--id` parameter that represents an identifier of the aggregator.
@@ -75,6 +93,12 @@ The aggregator can be removed from the **Orakl Network** state only when it is i
 ```sh
 orakl-cli aggregator remove \
     --id ${id}
+```
+
+- example
+
+```sh
+orakl-cli aggregator remove --id 15
 ```
 
 ### Activate Aggregator
@@ -90,6 +114,12 @@ orakl-cli aggregator activate \
     [--port ${DATA_FEED_WORKER_PORT}]
 ```
 
+- example
+
+```sh
+orakl-cli aggregator activate --aggregatorHash 0x12 --host 127.0.0.1 --port 5050
+```
+
 ### Deactivate Aggregator
 
 When the **Orakl Network Data Feed Worker** is running and you need to stop some of the data feeds, use `aggregator deactivate` command. This command will remove a single aggregator defined by `aggregatorHash` from ephemeral storage, and it will not have any effect on other active data feeds.
@@ -101,4 +131,10 @@ orakl-cli aggregator deactivate \
     --aggregatorHash ${aggregatorHash} \
     [--host ${DATA_FEED_WORKER_HOST}] \
     [--port ${DATA_FEED_WORKER_PORT}]
+```
+
+- example
+
+```sh
+orakl-cli aggregator deactivate --aggregatorHash 0x12 --host 127.0.0.1 --port 5050
 ```

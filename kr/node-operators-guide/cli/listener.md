@@ -29,6 +29,12 @@ orakl-cli listener list \
     [--service ${service}]
 ```
 
+- example
+
+```sh
+orakl-cli listener list --chain baobab --service DATA_FEED
+```
+
 아래에는 `listener list` command의 예시 입니다. 세 가지 다른 리스너를 가지고 있으며, 각각은 세 가지 다른 이벤트 `RandomWordsRequested`, `NewRound` 및 `DataRequested` 를 위해 세 개의 주소에서 수신을 해야 합니다.
 
 ```json
@@ -64,11 +70,23 @@ orakl-cli listener list \
     --chain ${chain}
 ```
 
+- example
+
+```sh
+orakl-cli listener list --chain baobab
+```
+
 특정 서비스와 연관된 리스너를 나열하려면 `--service` 매개변수를 사용할 수 있습니다.
 
 ```sh
 orakl-cli listener list \
     --service ${service}
+```
+
+- example
+
+```sh
+orakl-cli listener list --service VRF
 ```
 
 ### Insert New Listener
@@ -83,6 +101,12 @@ orakl-cli listener insert \
     --eventName ${eventName}
 ```
 
+- example
+
+```sh
+orakl-cli listener insert --chain baobab --service VRF --address 0x123 --eventName RandomWordsRequested
+```
+
 ### Remove Listener Specified By `id`
 
 영구적인 리스너 상태에서 리스너를 제거하기 위해 `listener remove` 명령을 사용할 수 있습니다. 제거할 리스너는 식별자 (`--id`)로 지정됩니다. 이를 통해 특정 리스너를 식별하여 영구적인 리스너 상태에서 제거할 수 있습니다.
@@ -90,6 +114,12 @@ orakl-cli listener insert \
 ```sh
 orakl-cli listener remove \
     --id ${id}
+```
+
+- example
+
+```sh
+orakl-cli listener remove --id 72
 ```
 
 ## Ephemeral State
@@ -108,6 +138,12 @@ orakl-cli listener active \
     --port ${port}
 ```
 
+- example
+
+```sh
+orakl-cli listener active --host http://127.0.0.1 --port 3030
+```
+
 ### Activate Listener
 
 **Orakl Network Listener** 서비스 시작 후 영구 리스너 상태에 추가된 리스너는 기본적으로 비활성화됩니다. 비활성화된 리스너는 `listener activate` 명령과 `--id` 매개변수를 사용하여 활성화할 수 있습니다. 리스너 식별자는 [`listener list` command](listener.md#list-listeners)를 통해 확인할 수 있습니다. 리스너가 활성화되면 해당 구성에서 정의된 이벤트를 수신하기 시작합니다.
@@ -117,6 +153,12 @@ orakl-cli listener activate \
     --id ${id}
     --host ${host} \
     --port ${port}
+```
+
+- example
+
+```sh
+orakl-cli listener activate --host http://127.0.0.1 --port 3030
 ```
 
 ### Deactivate Listener
@@ -130,6 +172,12 @@ orakl-cli listener deactivate \
     --id ${id}
     --host ${host} \
     --port ${port}
+```
+
+- example
+
+```sh
+orakl-cli listener deactivate --host http://127.0.0.1 --port 3030
 ```
 
 > 만약 리스너를 장기적으로 사용하지 않을 경우, [영구 리스너 상태에서 제거](listener.md#remove-listener-specified-by-id)해야 합니다. 그렇지 않으면 **Orakl Network Listener** 가 재시작되면 활성화될 수 있습니다.
