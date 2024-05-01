@@ -30,7 +30,7 @@ Reference following link to check deployed addresses
 
 The on-chain implementation of Data Feed is composed of two smart contracts: [`Feed`](https://github.com/Bisonai/orakl/blob/master/contracts/v0.2/src/Feed.sol) and [`FeedProxy`](https://github.com/Bisonai/orakl/blob/master/contracts/v0.2/src/FeedProxy.sol). At first,`Feed` and `FeedProxy` are deployed together in pair, representing a single data feed (e.g. temperature in Seoul or price of BTC/USD). `Feed` is being updated at regular intervals by off-chain oracles, and `FeedProxy` is used to access the submitted data to `Feed`. Deployed `FeedProxy` contract represents a consistent API to read data from the feed, and `Feed` contract can be replaced with a newer version.
 
-In the rest of the page, we will focus on [how to read from data feed](data-feed.md#how-to-read-from-data-feed) and [explain relation between `Feed` and `FeedProxy`](data-feed.md#relation-between-aggregatorproxy-and-aggregator).
+In the rest of the page, we will focus on [how to read from data feed](data-feed.md#how-to-read-from-data-feed) and [explain relation between `Feed` and `FeedProxy`](data-feed.md#relation-between-feedproxy-and-feed).
 
 ## How to read from data feed?
 
@@ -86,7 +86,7 @@ uint80 roundId =
 
 The values returned from `latestRoundData()` and `getRoundData(roundId)` functions do not include only the data feed value (=`answer`) at corresponding round `id` but also `updatedAt`
 
-`updatedAt` represents the timestamp when the round was updated last time. `id` is the round `id` in which the answer was computed.
+`updatedAt` represents the timestamp when the round was updated last time.
 
 > We highly recommend you to keep track of all metadata returned by both `latestRoundData()` and `getRoundData(roundId)`. If your application is dependent on frequent updates, you have to make sure in application layer that data returned by any of these functions is not stale.
 
@@ -148,10 +148,10 @@ Get decimals for given data feed (e.g. "BTC-USDT")
 uint8 decimals = router.decimals("BTC-USDT");
 ```
 
-Get Aggregator address associated with given data feed (e.g. "BTC-USDT").
+Get Feed address associated with given data feed (e.g. "BTC-USDT").
 
 ```solidity
-address currentAggregator = router.aggregator("BTC-USDT")
+address currentFeed = router.feed("BTC-USDT")
 ```
 
 ## Relation between `FeedProxy` and `Feed`
