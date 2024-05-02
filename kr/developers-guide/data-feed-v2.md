@@ -30,7 +30,7 @@ Orakl 데이터 피드에는 무료로 사용할 수 있는 다양한 데이터 
 
 데이터 피드의 온체인 구현은 [`Feed`](https://github.com/Bisonai/orakl/blob/master/contracts/v0.2/src/Feed.sol) 와 [`FeedProxy`](https://github.com/Bisonai/orakl/blob/master/contracts/v0.2/src/FeedProxy.sol) 두 개의 스마트 계약으로 구성됩니다. 처음에는 `Feed` 와 `FeedProxy` 가 함께 쌍으로 배포되어 단일 데이터 피드 (예: 서울의 온도 또는 BTC/USD의 가격)를 나타냅니다. `Feed` 는 오프체인 오라클에 의해 정기적으로 업데이트되며, and `FeedProxy` 는 `Feed` 에 제출된 데이터에 액세스하는 데 사용됩니다. 배포된 `FeedProxy` 계약은 데이터 피드에서 읽기 위한 일관된 API를 제공하며, `Feed` 컨트랙트는 더 최신 버전으로 대체될 수 있습니다.
 
-나머지 페이지에서는 [데이터 피드에서 읽는 방법](data-feed.md#how-to-read-from-data-feed) 에 중점을 두고 [`Feed` 와 `FeedProxy` 간의 관계](data-feed.md#relation-between-feedproxy-and-feed) 를 설명하겠습니다.
+나머지 페이지에서는 [데이터 피드에서 읽는 방법](data-feed-v2.md#how-to-read-from-data-feed) 에 중점을 두고 [`Feed` 와 `FeedProxy` 간의 관계](data-feed-v2.md#relation-between-feedproxy-and-feed) 를 설명하겠습니다.
 
 ## How to read from data feed?
 
@@ -38,9 +38,9 @@ Orakl 데이터 피드에는 무료로 사용할 수 있는 다양한 데이터 
 
 이 섹션은 다음과 같은 주제로 구성됩니다:
 
-- [Initialization](data-feed.md#initialization)
-- [Read Data](data-feed.md#read-data)
-- [Process Data](data-feed.md#process-data)
+- [Initialization](data-feed-v2.md#initialization)
+- [Read Data](data-feed-v2.md#read-data)
+- [Process Data](data-feed-v2.md#process-data)
 
 ### Initialization
 
@@ -103,7 +103,6 @@ uint8 decimals = dataFeed.decimals();
 ```solidity
 address currentAggregator = dataFeed.getFeed()
 ```
-
 
 ### Use Feed Router
 
