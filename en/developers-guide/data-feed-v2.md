@@ -23,8 +23,8 @@ The Orakl Data Feed includes various data feeds that can be used free of charge.
 
 Reference following link to check deployed addresses
 
-- [Feeds](https://raw.githubusercontent.com/Bisonai/orakl/master/contracts/v0.1/deployments/datafeeds-addresses.json)
-- [Others](https://raw.githubusercontent.com/Bisonai/orakl/master/contracts/v0.1/deployments/other-addresses.json)
+- [Feeds](https://raw.githubusercontent.com/Bisonai/orakl/master/contracts/v0.2/addresses/datafeeds-addresses.json)
+- [Others](https://raw.githubusercontent.com/Bisonai/orakl/master/contracts/v0.2/addresses/others-addresses.json)
 
 ## Architecture
 
