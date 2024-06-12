@@ -267,6 +267,6 @@ Aggregator Baobab에서 https://config.orakl.network/ 을 확인해보면 12개�
 
 - `CHAIN`: baobab | cypress
 - `ORAKL_NETWORK_API_URL`, `ORAKL_NETWORK_DELEGATOR_URL` : 이 두 개의 URL은 이전에 fetcher를 배포할 때 사용한 규칙과 동일합니다. 서비스 이름과 네임스페이스를 포함하는지 확인하세요.
-- `PROVIDER_URL` : 사용할 노드의 JSON RPC 주소입니다. 예) `https://api.baobab.klaytn.net:8651`
+- `PROVIDER_URL` : 사용할 노드의 JSON RPC 주소입니다. 예) `https://public-en.kairos.node.kaia.io`
 - `SLACK_WEBHOOK_URL` : 값이 없는 경우 비워둘 수 있습니다.
 - `REDIS_HOST`, `REDIS_PORT`: Kubernetes에서 새로운 Redis를 배포하거나, 이미 보유하고 있는 Redis를 사용할 수 있습니다.
