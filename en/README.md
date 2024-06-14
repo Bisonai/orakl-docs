@@ -8,20 +8,21 @@ description: >-
 
 ## Installation
 
-> The oracle version `v0.1` uses Solidity version `^0.8.16`. The version of npm package `@bisonai/orakl-contract` is an internal version of package to recognize changes.
+> The oracle version `v0.1` and `v0.2` uses Solidity version `^0.8.20`. The version of npm package `@bisonai/orakl-contract` is an internal version of package to recognize changes.
 
 ```
-yarn add @bisonai/orakl-contracts@v1.0.0
+yarn add @bisonai/orakl-contracts@v2.0.2
 ```
 
 The rest of this page describes [Services](./#services) and [Payment](./#payment) options.
 
 ## Services
 
-* [Verifiable Random Function (VRF)](developers-guide/vrf.md)
-* [Request-Response](developers-guide/request-response.md)
-* [Data Feed](developers-guide/data-feed.md)
-* [Proof of Reserve](developers-guide/proof-of-reserve.md)
+- [Verifiable Random Function (VRF)](developers-guide/vrf.md)
+- [Request-Response](developers-guide/request-response.md)
+- [Data Feed](developers-guide/data-feed.md)
+- [Data Feed V2](developers-guide/data-feed-v2.md)
+- [Proof of Reserve](developers-guide/proof-of-reserve.md)
 
 ### Verifiable Random Function (VRF)
 
