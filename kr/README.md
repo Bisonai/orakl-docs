@@ -7,10 +7,10 @@ description: >-
 
 ## Installation
 
-> 오라클 버전 v0.1은 Solidity 버전 ^0.8.16을 사용합니다. npm 패키지인 @bisonai/orakl-contract의 버전은 변경 사항을 인식하기 위한 내부 버전입니다.
+> 오라클 컨트랙트 버전 v0.1, v0.2는 Solidity 버전 ^0.8.20을 사용합니다. npm 패키지인 @bisonai/orakl-contract의 버전은 변경 사항을 인식하기 위한 내부 버전입니다.
 
 ```
-yarn add @bisonai/orakl-contracts@v1.0.0
+yarn add @bisonai/orakl-contracts@v2.0.2
 ```
 
 이 페이지의 나머지 부분에서는 [서비스](./#services) 와 [결제 옵션](./#payment) 에 대해 설명합니다.
