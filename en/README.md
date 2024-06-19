@@ -18,15 +18,15 @@ The rest of this page describes [Services](./#services) and [Payment](./#payment
 
 ## Services
 
-- [Verifiable Random Function (VRF)](developers-guide/vrf.md)
-- [Request-Response](developers-guide/request-response.md)
-- [Data Feed](developers-guide/data-feed.md)
-- [Data Feed V2](developers-guide/data-feed-v2.md)
-- [Proof of Reserve](developers-guide/proof-of-reserve.md)
+* [Verifiable Random Function (VRF)](developers-guide/vrf.md)
+* [Request-Response](developers-guide/request-response.md)
+* [Data Feed](developers-guide/data-feed.md)
+* [Data Feed V2](developers-guide/data-feed-v2.md)
+* [Proof of Reserve](developers-guide/proof-of-reserve.md)
 
-### Verifiable Random Function (VRF)
+### Verifiable Randomness Function (VRF)
 
-**Verifiable Random Function** allows for the generation of random numbers on the blockchain in a verifiable and transparent manner. This can be useful for a wide range of use cases, such as gaming and gambling applications, where a fair and unbiased random number generator is essential.
+**Verifiable Randomness Function** allows for the generation of random numbers on the blockchain in a verifiable and transparent manner. This can be useful for a wide range of use cases, such as gaming and gambling applications, where a fair and unbiased random number generator is essential.
 
 The detailed information about Orakl Network VRF can be found at [developer's guide on how to use VRF](developers-guide/vrf.md). If you want to start using VRF right away, we recommend to look at [an example Hardhat project using Orakl Network VRF](https://github.com/Bisonai/vrf-consumer).
 
