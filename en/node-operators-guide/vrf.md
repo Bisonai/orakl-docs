@@ -124,7 +124,7 @@ After the **Orakl Network API** is healthy, launch the VRF service, which consis
 yarn start:core:vrf
 ```
 
-For development purposes, the service can be run with `nodemon`, which automatically restarts all the microservices when file changes are detected, using the following command:
+Run in dev mode through the following command:
 
 ```sh
 yarn dev:core:vrf
@@ -140,13 +140,13 @@ yarn start:reporter:vrf
 
 ## Quick launch with Docker
 
-From [orakl]() repository's root, run the following command to build all images:
+From [orakl](https://github.com/Bisonai/orakl) repository's root, run the following command to build all images:
 
 ```bash
 docker-compose -f docker-compose.local-core.yaml build
 ```
 
-Set wallet credentials, `ADDRESS` and `PRIVATE_KEY` values, in the [.core-cli-contracts.env](https://github.com/Bisonai/orakl/blob/master/dockerfiles/local-vrf-rr/envs/.core-cli-contracts.env) file. Keep in mind that the default chain is `localhost`. If you'd like to change it to either `baobab` or `cypress`, update `CHAIN` and `PROVIDER_URL` values in the earlier mentioned `.env` file. Note that if the chain is not `localhost`, `Coordinator` and `Prepayment` contracts won't be deployed. Instead, Bisonai's already deployed contract addresses ([VRF](https://github.com/Bisonai/vrf-consumer/blob/master/hardhat.config.ts), [RR](https://github.com/Bisonai/request-response-consumer/blob/master/hardhat.config.ts)) will be used. After setting the appropriate `.env` values, run the following command to start the VRF service:
+Set wallet credentials, `ADDRESS` and `PRIVATE_KEY` values, in the [.core-cli-contracts.env](https://github.com/Bisonai/orakl/blob/master/dockerfiles/local-vrf-rr/envs/.core-cli-contracts.env) file. Keep in mind that the default chain is `localhost`. If changes are required, update `CHAIN` (other options being `baobab` and `cypress`) and `PROVIDER_URL` values. Note that if the chain is not `localhost`, `Coordinator` and `Prepayment` contracts won't be deployed. Instead, Bisonai's already deployed [contract addresses](https://github.com/Bisonai/vrf-consumer/blob/9b06ddd10b472d821878c9994463856664387c85/hardhat.config.ts#L60-L68) will be used. After setting the appropriate `.env` values, run the following command to start the VRF service:
 
 ```bash
 SERVICE=vrf docker-compose -f docker-compose.local-core.yaml up --force-recreate
@@ -167,8 +167,6 @@ Here is what happens after the above command is run:
 - if the chain is `localhost`:
   - `contracts/v0.1/hardhat.config.cjs` file gets updated with `PROVIDER_URL`
   - relevant coordinator and prepayment contracts get deployed
-
-Keep in mind that if the chain is `localhost` you'll need the [keyHash](/dockerfiles/local-vrf-rr/envs/vrf-keys.json) value for VRF consumer and update it in `vrf-consumer/scripts/utils.ts`
 
 ## Architecture
 
