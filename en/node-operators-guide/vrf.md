@@ -118,13 +118,55 @@ Errors and warnings emitted by the **Orakl Network VRF** can be [sent to Slack c
 
 Before launching the VRF solution, the **Orakl Network API** has to be accessible from the **Orakl Network VRF** to load VRF keys, and listener settings.
 
-After the **Orakl Network API** is healthy, VRF microservices (listener, worker, reporter) can be launched in an arbitrary order. Microservices communicate with each other through the BullMQ - job queue.
+After the **Orakl Network API** is healthy, launch the VRF service, which consists of listener, worker, and reporter microservices, with the command below. Microservices communicate with each other through the BullMQ - job queue.
+
+```sh
+yarn start:core:vrf
+```
+
+Run in dev mode through the following command:
+
+```sh
+yarn dev:core:vrf
+```
+
+It's also possible to run the microservices separately in any arbitrary order:
 
 ```sh
 yarn start:listener:vrf
 yarn start:worker:vrf
 yarn start:reporter:vrf
 ```
+
+## Quick launch with Docker
+
+From [orakl](https://github.com/Bisonai/orakl) repository's root, run the following command to build all images:
+
+```bash
+docker-compose -f docker-compose.local-core.yaml build
+```
+
+Set wallet credentials, `ADDRESS` and `PRIVATE_KEY` values, in the [.core-cli-contracts.env](https://github.com/Bisonai/orakl/blob/master/dockerfiles/local-vrf-rr/envs/.core-cli-contracts.env) file. Keep in mind that the default chain is `localhost`. If changes are required, update `CHAIN` (other options being `baobab` and `cypress`) and `PROVIDER_URL` values. Note that if the chain is not `localhost`, `Coordinator` and `Prepayment` contracts won't be deployed. Instead, Bisonai's already deployed [contract addresses](https://github.com/Bisonai/vrf-consumer/blob/9b06ddd10b472d821878c9994463856664387c85/hardhat.config.ts#L60-L68) will be used. After setting the appropriate `.env` values, run the following command to start the VRF service:
+
+```bash
+SERVICE=vrf docker-compose -f docker-compose.local-core.yaml up --force-recreate
+```
+
+**Note** that the current docker implementation is designed to run a single service, either `rr` or `vrf`, at a time. Therefore, it's highly recommended to add `--force-recreate` when running `docker-compose up` command. That will restart all containers thus removing all the modified data in those containers.
+
+Here is what happens after the above command is run:
+
+- `api`, `postgres`, `redis`, and `json-rpc` services will start as separate docker containers
+- `postgres` will get populated with necessary data:
+  - chains
+  - services
+  - vrf keys
+  - listener (after contracts are deployed)
+  - reporter (after contracts are deployed)
+- migration files in `contracts/v0.1/migration/` get updated with provided keys and other values
+- if the chain is `localhost`:
+  - `contracts/v0.1/hardhat.config.cjs` file gets updated with `PROVIDER_URL`
+  - relevant coordinator and prepayment contracts get deployed
 
 ## Architecture
 
