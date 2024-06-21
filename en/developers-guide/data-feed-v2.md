@@ -52,7 +52,7 @@ import { IFeedProxy } from "@bisonai/orakl-contracts/src/v0.2/interfaces/IFeedPr
 contract DataFeedConsumer {
     IFeedProxy internal dataFeed;
     constructor(address feedProxy) {
-        dataFeed = IAggregator(feedProxy);
+        dataFeed = IFeedProxy(feedProxy);
     }
 }
 ```
@@ -101,7 +101,7 @@ uint8 decimals = dataFeed.decimals();
 `FeedProxy` is always connected to a single `Feed`, but this connection is not fixed and `Feed` can be changed. If you want to make sure that you are still using the same `Feed` you can ask for the `Feed` address through `getFeed()` function.
 
 ```solidity
-address currentAggregator = dataFeed.getFeed()
+address currentFeed = dataFeed.getFeed()
 ```
 
 ### Use Feed Router
@@ -109,7 +109,7 @@ address currentAggregator = dataFeed.getFeed()
 - Conveniently access data feeds using `FeedRouter` contract
 - Access all functions in `FeedProxy` by including price pair name as parameter
 
-Initialize AggregatorRouter that enables access to all supported data feeds.
+Initialize FeedRouter that enables access to all supported data feeds.
 
 ```solidity
 import { IFeedRouter } from "@bisonai/orakl-contracts/src/v0.2/interfaces/IFeedRouter.sol";
@@ -180,7 +180,7 @@ At times, it might be necessary to update the address of `Feed`. If the `Feed` a
 
 After the new `Feed` is proposed, one can query a new data feed through a special functions: `latestRoundDataFromProposedFeed` and `getRoundDataFromProposedFeed`. These functions are useful for testing a new data feed, before accepting the new proposed `Feed`.
 
-The function `confirmFeed` is used to finalize the transition to the new proposed `Feed`, and can be executed only with account that has `onlyOwner` privilege. New aggregator is finalized through `setFeed` (called also inside of `constructor` of `FeedProxy`). Finally, the new aggregator is announced through emitted event.
+The function `confirmFeed` is used to finalize the transition to the new proposed `Feed`, and can be executed only with account that has `onlyOwner` privilege. New feed is finalized through `setFeed` (called also inside of `constructor` of `FeedProxy`). Finally, the new feed is announced through emitted event.
 
 ```solidity
 function confirmFeed(address _feed) external onlyOwner {
