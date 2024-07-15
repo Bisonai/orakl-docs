@@ -23,14 +23,14 @@ The Orakl Data Feed includes various data feeds that can be used free of charge.
 
 Reference following link to check deployed addresses
 
-- [Feeds](https://raw.githubusercontent.com/Bisonai/orakl/master/contracts/v0.1/deployments/datafeeds-addresses.json)
-- [Others](https://raw.githubusercontent.com/Bisonai/orakl/master/contracts/v0.1/deployments/other-addresses.json)
+- [Feeds](https://raw.githubusercontent.com/Bisonai/orakl/master/contracts/v0.2/addresses/datafeeds-addresses.json)
+- [Others](https://raw.githubusercontent.com/Bisonai/orakl/master/contracts/v0.2/addresses/others-addresses.json)
 
 ## Architecture
 
-The on-chain implementation of Data Feed is composed of two smart contracts: [`Aggregator`](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/Aggregator.sol) and [`AggregatorProxy`](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/AggregatorProxy.sol). At first,`Aggregator` and `AggregatorProxy` are deployed together in pair, representing a single data feed (e.g. temperature in Seoul or price of BTC/USD). `Aggregator` is being updated at regular intervals by off-chain oracles, and `AggregatorProxy` is used to access the submitted data to `Aggregator`. Deployed `AggregatorProxy` contract represents a consistent API to read data from the feed, and `Aggregator` contract can be replaced with a newer version.
+The on-chain implementation of Data Feed is composed of two smart contracts: [`Feed`](https://github.com/Bisonai/orakl/blob/master/contracts/v0.2/src/Feed.sol) and [`FeedProxy`](https://github.com/Bisonai/orakl/blob/master/contracts/v0.2/src/FeedProxy.sol). At first,`Feed` and `FeedProxy` are deployed together in pair, representing a single data feed (e.g. temperature in Seoul or price of BTC/USD). `Feed` is being updated at regular intervals by off-chain oracles, and `FeedProxy` is used to access the submitted data to `Feed`. Deployed `FeedProxy` contract represents a consistent API to read data from the feed, and `Feed` contract can be replaced with a newer version.
 
-In the rest of the page, we will focus on [how to read from data feed](data-feed.md#how-to-read-from-data-feed) and [explain relation between `Aggregator` and `AggregatorProxy`](data-feed.md#relation-between-aggregatorproxy-and-aggregator).
+In the rest of the page, we will focus on [how to read from data feed](data-feed-v2.md#how-to-read-from-data-feed) and [explain relation between `Feed` and `FeedProxy`](data-feed-v2.md#relation-between-feedproxy-and-feed).
 
 ## How to read from data feed?
 
@@ -38,21 +38,21 @@ In this section, we will explain how to integrate Orakl Network data feed to you
 
 The section is split into following topics:
 
-- [Initialization](data-feed.md#initialization)
-- [Read Data](data-feed.md#read-data)
-- [Process Data](data-feed.md#process-data)
+- [Initialization](data-feed-v2.md#initialization)
+- [Read Data](data-feed-v2.md#read-data)
+- [Process Data](data-feed-v2.md#process-data)
 
 ### Initialization
 
-The access to data feed is provided through the `AggregatorProxy` address corresponding to a data feed of your choice, and [`IAggregator`](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/interfaces/IAggregator.sol) from [`@bisonai/orakl-contracts`](https://www.npmjs.com/package/@bisonai/orakl-contracts).
+The access to data feed is provided through the `FeedProxy` address corresponding to a data feed of your choice, and [`IFeedProxy`](https://github.com/Bisonai/orakl/blob/master/contracts/v0.2/src/interfaces/IFeedProxy.sol) from [`@bisonai/orakl-contracts`](https://www.npmjs.com/package/@bisonai/orakl-contracts).
 
 ```solidity
-import { IAggregator } from "@bisonai/orakl-contracts/src/v0.1/interfaces/IAggregator.sol";
+import { IFeedProxy } from "@bisonai/orakl-contracts/src/v0.2/interfaces/IFeedProxy.sol";
 
 contract DataFeedConsumer {
-    IAggregator internal dataFeed;
-    constructor(address aggregatorProxy) {
-        dataFeed = IAggregator(aggregatorProxy);
+    IFeedProxy internal dataFeed;
+    constructor(address feedProxy) {
+        dataFeed = IFeedProxy(feedProxy);
     }
 }
 ```
@@ -67,9 +67,7 @@ The `latestRoundData` function returns metadata about the latest submission.
 (
    uint80 id,
     int256 answer,
-    uint startedAt,
-    uint updatedAt,
-    uint80 answeredInRound
+    uint updatedAt
 ) = dataFeed.latestRoundData();
 ```
 
@@ -80,25 +78,19 @@ uint80 roundId =
 (
     uint80 id,
     int256 answer,
-    uint startedAt,
-    uint updatedAt,
-    uint80 answeredInRound
+    uint updatedAt
 ) = dataFeed.getRoundData(roundId);
 ```
 
 ### Process Data
 
-The values returned from `latestRoundData()` and `getRoundData(roundId)` functions do not include only the data feed value (=`answer`) at corresponding round `id` but also others:
+The values returned from `latestRoundData()` and `getRoundData(roundId)` functions do not include only the data feed value (=`answer`) at corresponding round `id` but also `updatedAt`
 
-- `startedAt`
-- `updatedAt`
-- `answeredInRound`
-
-`startedAt` represents the timestamp when the round was started. `updatedAt` represents the timestamp when the round was updated last time. `answeredInRound` is the round `id` in which the answer was computed.
+`updatedAt` represents the timestamp when the round was updated last time.
 
 > We highly recommend you to keep track of all metadata returned by both `latestRoundData()` and `getRoundData(roundId)`. If your application is dependent on frequent updates, you have to make sure in application layer that data returned by any of these functions is not stale.
 
-`AggregatorProxy` has several other auxiliary functions that should be utilized in order to avoid any issues from misrepresenting the `answer` returned from data feed.
+`feedProxy` has several other auxiliary functions that should be utilized in order to avoid any issues from misrepresenting the `answer` returned from data feed.
 
 All `answer`s are returned with a specific decimal precision that can be queried using `decimals()` function.
 
@@ -106,25 +98,25 @@ All `answer`s are returned with a specific decimal precision that can be queried
 uint8 decimals = dataFeed.decimals();
 ```
 
-`AggregatorProxy` is always connected to a single `Aggregator`, but this connection is not fixed and `Aggregator` can be changed. If you want to make sure that you are still using the same `Aggregator` you can ask for the `Aggregator` address through `aggregator()` function.
+`FeedProxy` is always connected to a single `Feed`, but this connection is not fixed and `Feed` can be changed. If you want to make sure that you are still using the same `Feed` you can ask for the `Feed` address through `getFeed()` function.
 
 ```solidity
-address currentAggregator = dataFeed.aggregator()
+address currentFeed = dataFeed.getFeed()
 ```
 
-### Use Aggregator Router
+### Use Feed Router
 
-- Conveniently access data feeds using `AggregatorRouter` contract
-- Access all functions in `AggregatorProxy` by including price pair name as parameter
+- Conveniently access data feeds using `FeedRouter` contract
+- Access all functions in `FeedProxy` by including price pair name as parameter
 
-Initialize AggregatorRouter that enables access to all supported data feeds.
+Initialize FeedRouter that enables access to all supported data feeds.
 
 ```solidity
-import { IAggregatorRouter } from "@bisonai/orakl-contracts/src/v0.1/interfaces/IAggregatorRouter.sol";
+import { IFeedRouter } from "@bisonai/orakl-contracts/src/v0.2/interfaces/IFeedRouter.sol";
 contract DataFeedConsumer {
-    IAggregatorRouter internal router;
+    IFeedRouter internal router;
     constructor(address _router) {
-        router = IAggregatorRouter(_router);
+        router = IFeedRouter(_router);
     }
 }
 ```
@@ -135,9 +127,7 @@ Read the latest submitted value of given data feed (e.g. "BTC-USDT")
 (
    uint80 id,
     int256 answer,
-    uint startedAt,
-    uint updatedAt,
-    uint80 answeredInRound
+    uint updatedAt
 ) = router.latestRoundData("BTC-USDT");
 ```
 
@@ -148,9 +138,7 @@ uint80 roundId =
 (
     uint80 id,
     int256 answer,
-    uint startedAt,
-    uint updatedAt,
-    uint80 answeredInRound
+    uint updatedAt
 ) = router.getRoundData("BTC-USDT", roundId);
 ```
 
@@ -160,43 +148,48 @@ Get decimals for given data feed (e.g. "BTC-USDT")
 uint8 decimals = router.decimals("BTC-USDT");
 ```
 
-Get Aggregator address associated with given data feed (e.g. "BTC-USDT").
+Get Feed address associated with given data feed (e.g. "BTC-USDT").
 
 ```solidity
-address currentAggregator = router.aggregator("BTC-USDT")
+address currentFeed = router.feed("BTC-USDT")
 ```
 
-## Relation between `AggregatorProxy` and `Aggregator`
+## Relation between `FeedProxy` and `Feed`
 
-When deploying an`AggregatorProxy` , `Aggregator`'s address has to be specified to create a connection between the contracts. Consumer can then request data through `latestRoundData` or `getRoundData` functions, and data will be fetched from `Aggregator` that is represented by the `aggregatorAddress`.
+When deploying an`FeedProxy` , `Feed`'s address has to be specified to create a connection between the contracts. Consumer can then request data through `latestRoundData` or `getRoundData` functions, and data will be fetched from `Feed` that is represented by the `feedAddress`.
 
 ```solidity
-constructor(address aggregatorAddress) {
-    setAggregator(aggregatorAddress);
+constructor(address _feed) {
+    setFeed(_feed);
 }
 ```
 
-At times, it might be necessary to update the address of `Aggregator.` If the `Aggregator` address is updated, a queried data feed will come from a different `Aggregator` than before the update. `AggregatorProxy`'s update of `Aggregator` is split into two steps: proposal and confirmation. Both steps can be only executed with `onlyOwner` privileges.
+At times, it might be necessary to update the address of `Feed`. If the `Feed` address is updated, a queried data feed will come from a different `Feed` than before the update. `FeedProxy`'s update of `Feed` is split into two steps: proposal and confirmation. Both steps can be only executed with `onlyOwner` privileges.
 
-`proposeAggregator` stores the proposed address to storage variable and emits event about new address being proposed.
+`proposeFeed` stores the proposed address to storage variable and emits event about new address being proposed.
 
 ```solidity
- function proposeAggregator(address aggregatorAddress) external onlyOwner {
-     sProposedAggregator = AggregatorProxyInterface(aggregatorAddress);
-     emit AggregatorProposed(address(sCurrentPhase.aggregator), aggregatorAddress);
- }
+ function proposeFeed(address _feed) external onlyOwner {
+        if (_feed == address(0)) {
+            revert InvalidProposedFeed();
+        }
+        proposedFeed = IFeed(_feed);
+        emit FeedProposed(address(feed), _feed);
+    }
 ```
 
-After the new `Aggregator` is proposed, one can query a new data feed through a special functions: `proposedLatestRoundData` and `proposedGetRoundData`. These functions are useful for testing a new data feed, before accepting the new proposed `Aggregator`.
+After the new `Feed` is proposed, one can query a new data feed through a special functions: `latestRoundDataFromProposedFeed` and `getRoundDataFromProposedFeed`. These functions are useful for testing a new data feed, before accepting the new proposed `Feed`.
 
-The function `confirmAggregator` is used to finalize the transition to the new proposed `Aggregator`, and can be executed only with account that has `onlyOwner` privilege. New aggregator is finalized through `setAggregator` (called also inside of `constructor` of `AggregatorProxy`). Finally, the new aggregator is announced through emitted event.
+The function `confirmFeed` is used to finalize the transition to the new proposed `Feed`, and can be executed only with account that has `onlyOwner` privilege. New feed is finalized through `setFeed` (called also inside of `constructor` of `FeedProxy`). Finally, the new feed is announced through emitted event.
 
 ```solidity
-function confirmAggregator(address aggregatorAddress) external onlyOwner {
-    require(aggregatorAddress == address(sProposedAggregator), "Invalid proposed aggregator");
-    address previousAggregator = address(sCurrentPhase.aggregator);
-    delete sProposedAggregator;
-    setAggregator(aggregatorAddress);
-    emit AggregatorConfirmed(previousAggregator, aggregatorAddress);
-}
+function confirmFeed(address _feed) external onlyOwner {
+        if (_feed != address(proposedFeed)) {
+            revert InvalidProposedFeed();
+        }
+        address previousFeed = address(feed);
+        delete proposedFeed;
+        setFeed(_feed);
+        emit FeedConfirmed(previousFeed, _feed);
+    }
 ```

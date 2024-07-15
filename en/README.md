@@ -18,11 +18,10 @@ The rest of this page describes [Services](./#services) and [Payment](./#payment
 
 ## Services
 
-* [Verifiable Random Function (VRF)](developers-guide/vrf.md)
-* [Request-Response](developers-guide/request-response.md)
-* [Data Feed](developers-guide/data-feed.md)
-* [Data Feed V2](developers-guide/data-feed-v2.md)
-* [Proof of Reserve](developers-guide/proof-of-reserve.md)
+- [Verifiable Random Function (VRF)](developers-guide/vrf.md)
+- [Request-Response](developers-guide/request-response.md)
+- [Data Feed](developers-guide/data-feed.md)
+- [Proof of Reserve](developers-guide/proof-of-reserve.md)
 
 ### Verifiable Randomness Function (VRF)
 
@@ -52,8 +51,8 @@ The detailed information about Orakl Network Proof of Reserve can be found at [d
 
 The main payment method in Orakl Network is called a [Prepayment](developers-guide/prepayment.md). It allows users to deposit $KLAY to their Orakl Network account, and use it to request Orakl Network VRF or Orakl Network Request-Response. We provide two different account types that support the prepayment method:
 
-* [Permanent account](./#permanent-account)
-* [Temporary account](./#temporary-account)
+- [Permanent account](./#permanent-account)
+- [Temporary account](./#temporary-account)
 
 ### Permanent account
 
