@@ -23,8 +23,6 @@
   - [Service](node-operators-guide/cli/service.md)
   - [Listener](node-operators-guide/cli/listener.md)
   - [VRF Keys](node-operators-guide/cli/vrf-keys.md)
-  - [Adapter](node-operators-guide/cli/adapter.md)
-  - [Aggregator](node-operators-guide/cli/aggregator.md)
   - [Reporter](node-operators-guide/cli/reporter.md)
   - [Fetcher](node-operators-guide/cli/fetcher.md)
   - [Delegator](node-operators-guide/cli/delegator.md)
