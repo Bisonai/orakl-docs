@@ -5,7 +5,7 @@
 - [Introduction](README.md)
 - [Verifiable Randomness Function (VRF)](developers-guide/vrf.md)
 - [Request-Response](developers-guide/request-response.md)
-- [Data Feed V2](developers-guide/data-feed.md)
+- [Data Feed](developers-guide/data-feed.md)
 - [Proof of Reserve](developers-guide/proof-of-reserve.md)
 - [Prepayment](developers-guide/prepayment.md)
 - [L2 Services](developers-guide/l2-services.md)

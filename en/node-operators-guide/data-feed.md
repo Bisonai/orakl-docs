@@ -1,4 +1,4 @@
-# Orakl Network Data Feed V2
+# Orakl Network Data Feed
 
 ## Description
 

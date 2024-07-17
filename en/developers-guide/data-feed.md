@@ -30,7 +30,7 @@ Reference following link to check deployed addresses
 
 The on-chain implementation of Data Feed is composed of two smart contracts: [`Feed`](https://github.com/Bisonai/orakl/blob/master/contracts/v0.2/src/Feed.sol) and [`FeedProxy`](https://github.com/Bisonai/orakl/blob/master/contracts/v0.2/src/FeedProxy.sol). At first,`Feed` and `FeedProxy` are deployed together in pair, representing a single data feed (e.g. temperature in Seoul or price of BTC/USD). `Feed` is being updated at regular intervals by off-chain oracles, and `FeedProxy` is used to access the submitted data to `Feed`. Deployed `FeedProxy` contract represents a consistent API to read data from the feed, and `Feed` contract can be replaced with a newer version.
 
-In the rest of the page, we will focus on [how to read from data feed](data-feed-v2.md#how-to-read-from-data-feed) and [explain relation between `Feed` and `FeedProxy`](data-feed-v2.md#relation-between-feedproxy-and-feed).
+In the rest of the page, we will focus on [how to read from data feed](data-feed.md#how-to-read-from-data-feed) and [explain relation between `Feed` and `FeedProxy`](data-feed.md#relation-between-feedproxy-and-feed).
 
 ## How to read from data feed?
 
@@ -38,9 +38,9 @@ In this section, we will explain how to integrate Orakl Network data feed to you
 
 The section is split into following topics:
 
-- [Initialization](data-feed-v2.md#initialization)
-- [Read Data](data-feed-v2.md#read-data)
-- [Process Data](data-feed-v2.md#process-data)
+- [Initialization](data-feed.md#initialization)
+- [Read Data](data-feed.md#read-data)
+- [Process Data](data-feed.md#process-data)
 
 ### Initialization
 
