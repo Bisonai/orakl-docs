@@ -90,7 +90,7 @@ The values returned from `latestRoundData()` and `getRoundData(roundId)` functio
 
 > We highly recommend you to keep track of all metadata returned by both `latestRoundData()` and `getRoundData(roundId)`. If your application is dependent on frequent updates, you have to make sure in application layer that data returned by any of these functions is not stale.
 
-`feedProxy` has several other auxiliary functions that should be utilized in order to avoid any issues from misrepresenting the `answer` returned from data feed.
+`FeedProxy` has several other auxiliary functions that should be utilized in order to avoid any issues from misrepresenting the `answer` returned from data feed.
 
 All `answer`s are returned with a specific decimal precision that can be queried using `decimals()` function.
 
