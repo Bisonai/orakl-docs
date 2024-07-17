@@ -6,7 +6,7 @@ description: Registering and Using Oracle Network Services on L2 Chains
 
 - [Registry Contract](l2-services.md#registry-contract)
 - [Endpoint Contracts](l2-services.md#endpoint-contracts)
-- [How to Integrate Data Feed, VRF and Request-Response on L2](l2-services.md#how-to-integrate-data-feed-vrf-and-request-response-on-l2)
+- [How to Integrate VRF and Request-Response on L2](l2-services.md#how-to-integrate-vrf-and-request-response-on-l2)
 
 ## Registry Contract
 
@@ -52,49 +52,6 @@ function editChainInfo(
     chainRegistry[_chainID].jsonRpc = _jsonRpc;
     chainRegistry[_chainID].endpoint = _endpoint;
     emit ChainEdited(_jsonRpc, _endpoint);
-}
-```
-
-### L2 Data Feeds Management
-
-1. Add Data Feed
-
-```solidity
-function addAggregator(
-    uint256 chainID,
-    address l1Aggregator,
-    address l2Aggregator
-) external onlyConfirmedChainOwner(chainID) {
-    AggregatorPair memory newAggregatorPair = AggregatorPair({
-        aggregatorID: aggregatorCount[chainID]++,
-        l1Aggregator: l1Aggregator,
-        l2Aggregator: l2Aggregator
-    });
-    aggregators[chainID].push(newAggregatorPair);
-    emit AggregatorAdded(chainID, newAggregatorPair.aggregatorID);
-}
-```
-
-2. Remove Data Feed
-
-```solidity
-function removeAggregator(
-    uint256 chainID,
-    uint256 aggregatorID
-) external onlyConfirmedChainOwner(chainID) {
-    AggregatorPair[] storage aggregatorInfo = aggregators[chainID];
-    for (uint256 i = 0; i < aggregatorInfo.length; i++) {
-        if (aggregatorInfo[i].aggregatorID == aggregatorID) {
-            // Move the last item to the current index to be removed
-            aggregatorInfo[i] = aggregatorInfo[aggregatorInfo.length - 1];
-
-            // Remove the last item from the list
-            aggregatorInfo.pop();
-
-            emit AggregatorRemoved(chainID, aggregatorID);
-            break; // Exit the loop once item is found and removed
-        }
-    }
 }
 ```
 
@@ -173,51 +130,7 @@ function removeConsumer(
 
 You need to deploy this contract on your chain; it acts as a coordinator for VRF and Request-Response.
 
-1. Add L2 Data Feed
-
-```solidity
-function addAggregator(address _newAggregator) external onlyOwner {
-    if (sAggregators[_newAggregator]) revert InvalidAggregator(_newAggregator);
-    sAggregators[_newAggregator] = true;
-    sAggregatorCount += 1;
-    emit AggregatorAdded(_newAggregator);
-}
-```
-
-2. Remove L2 Data Feed
-
-```solidity
-function removeAggregator(address _aggregator) external onlyOwner {
-    if (!sAggregators[_aggregator]) revert InvalidAggregator(_aggregator);
-    delete sAggregators[_aggregator];
-    sAggregatorCount -= 1;
-    emit AggregatorRemoved(_aggregator);
-}
-```
-
-3. Add L2 Data Feed Reporter
-
-```solidity
-function addSubmitter(address _newSubmitter) external onlyOwner {
-    if (sSubmitters[_newSubmitter]) revert InvalidSubmitter(_newSubmitter);
-    sSubmitters[_newSubmitter] = true;
-    sSubmitterCount += 1;
-    emit SubmitterAdded(_newSubmitter);
-}
-```
-
-4. Add L2 Data Feed Reporter
-
-```solidity
-function removeSubmitter(address _submitter) external onlyOwner {
-        if (!sSubmitters[_submitter]) revert InvalidSubmitter(_submitter);
-        delete sSubmitters[_submitter];
-        sSubmitterCount -= 1;
-        emit SubmitterRemoved(_submitter);
-    }
-```
-
-5. Request Random Words From L2
+1. Request Random Words From L2
 
 ```solidity
 function requestRandomWords(
@@ -246,7 +159,7 @@ function requestRandomWords(
 }
 ```
 
-6. Request Data From L2
+2. Request Data From L2
 
 ```solidity
 function requestData(
@@ -275,15 +188,10 @@ function requestData(
 }
 ```
 
-## How to Integrate Data Feed, VRF and Request-Response on L2
+## How to Integrate VRF and Request-Response on L2
 
-- [Data Feed](l2-services.md#data-feed)
 - [VRF](l2-services.md#vrf)
 - [Request-Response](l2-services.md#request-response)
-
-### Data Feed
-
-The use of `Aggregator` and `AggregatorProxy` smart contracts on L2 is the same as on the mainnet. Please refer to our [Data Feed mock consumer contract](https://github.com/Bisonai/data-feed-consumer).
 
 ### VRF
 
