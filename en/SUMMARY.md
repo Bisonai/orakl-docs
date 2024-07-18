@@ -9,6 +9,7 @@
 - [Proof of Reserve](developers-guide/proof-of-reserve.md)
 - [Prepayment](developers-guide/prepayment.md)
 - [L2 Services](developers-guide/l2-services.md)
+- [Data Availability Layer API](developers-guide/data-availability-layer-api.md)
 - [Example Projects](developers-guide/example-projects/README.md)
   - [Binary Option Example](developers-guide/example-projects/binary-example.md)
   - [Flipcoin Example](developers-guide/example-projects/flipcoin-example.md)
