@@ -322,13 +322,12 @@ Mainnet: ws://dal.cypress.orakl.network/api/v1/dal/ws
 
 ```bash
 {
-"method":"SUBSCRIBE",
-"params":
-[
-"submission@BTC-USDT",
-"submission@ETH-USDT",
-...
-]
+   "method":"SUBSCRIBE",
+   "params":[
+      "submission@BTC-USDT",
+      "submission@ETH-USDT",
+      ...
+   ]
 }
 ```
 
@@ -336,12 +335,12 @@ Mainnet: ws://dal.cypress.orakl.network/api/v1/dal/ws
 
 ```bash
 {
-"symbol": "BTC-USDT",
-"value": "60000",
-"aggregateTime": "1719472582",
-"proof": "123",
-"feedHash": [...],
-"decimals": "8"
+  "symbol": "BTC-USDT",
+  "value": "60000",
+  "aggregateTime": "1719472582",
+  "proof": "123",
+  "feedHash": [...],
+  "decimals": "8"
 }
 ```
 
@@ -353,10 +352,10 @@ Mainnet: ws://dal.cypress.orakl.network/api/v1/dal/ws
 websocat ws://dal.baobab.orakl.network/api/v1/dal/ws -H "X-API-Key:{API_KEY}"
 # subscribe
 {
-    "method": "SUBSCRIBE",
-    "params": [
-        "submission@BTC-USDT"
-    ]
+  "method": "SUBSCRIBE",
+  "params": [
+    "submission@BTC-USDT"
+  ]
 }
 ```
 
@@ -366,10 +365,88 @@ websocat ws://dal.baobab.orakl.network/api/v1/dal/ws -H "X-API-Key:{API_KEY}"
 <summary>Example Response</summary>
 
 ```bash
-{"symbol":"BTC-USDT","value":"5732860170908","aggregateTime":"1720502960","proof":"zAeZ0QqHGa30fFZsOWAZbP2WmfuEU6ZYsbQxwYVwHFIdkE3bozpBmCbzEz4UmQFZhioAKMgEiJedTXSjq3vhDxw=","feedHash":[169,43,203,91,197,26,165,83,94,208,204,63,82,41,146,221,154,111,178,232,221,109,207,72,71,5,217,62,179,205,22,122],"decimals":"8"}
-{"symbol":"BTC-USDT","value":"5733252415338","aggregateTime":"1720502960","proof":"KL5Xaw4D0eg4MaQ/E/WSB0aJITMMGlBqilDIA1dAWXYn+sY9Ybn8hOXuq6XcIhs9VghsCptzikq+Cx7a5dssURs=","feedHash":[169,43,203,91,197,26,165,83,94,208,204,63,82,41,146,221,154,111,178,232,221,109,207,72,71,5,217,62,179,205,22,122],"decimals":"8"}
-{"symbol":"BTC-USDT","value":"5733252402408","aggregateTime":"1720502961","proof":"ekU3K9UL1FI7xKS7Yy+qM/9WXecS+ODskGv/gqv82PBB+3kgJqnD04VDgjkKgZxlbvmjJq10Gw8mr+8/b8g5/hw=","feedHash":[169,43,203,91,197,26,165,83,94,208,204,63,82,41,146,221,154,111,178,232,221,109,207,72,71,5,217,62,179,205,22,122],"decimals":"8"}
-{"symbol":"BTC-USDT","value":"5733253373832","aggregateTime":"1720502962","proof":"vSAuMs6OTRyS0FM75buIuTlARbq2Lq+fhnHrr1MnNTAssZxg+UEKI/EMQy5wKJa3EQGnkMXZ2HsTQ44zVTocuhs=","feedHash":[169,43,203,91,197,26,165,83,94,208,204,63,82,41,146,221,154,111,178,232,221,109,207,72,71,5,217,62,179,205,22,122],"decimals":"8"}
+{
+  "symbol": "BTC-USDT",
+  "value": "5732860170908",
+  "aggregateTime": "1720502960",
+  "proof": "zAeZ0QqHGa30fFZsOWAZbP2WmfuEU6ZYsbQxwYVwHFIdkE3bozpBmCbzEz4UmQFZhioAKMgEiJedTXSjq3vhDxw=",
+  "feedHash": [
+    169,
+    43,
+    203,
+    91,
+    197,
+    26,
+    165,
+    83,
+    94,
+    208,
+    204,
+    63,
+    82,
+    41,
+    146,
+    221,
+    154,
+    111,
+    178,
+    232,
+    221,
+    109,
+    207,
+    72,
+    71,
+    5,
+    217,
+    62,
+    179,
+    205,
+    22,
+    122
+  ],
+  "decimals": "8"
+}
+{
+  "symbol": "BTC-USDT",
+  "value": "5733252415338",
+  "aggregateTime": "1720502960",
+  "proof": "KL5Xaw4D0eg4MaQ/E/WSB0aJITMMGlBqilDIA1dAWXYn+sY9Ybn8hOXuq6XcIhs9VghsCptzikq+Cx7a5dssURs=",
+  "feedHash": [
+    169,
+    43,
+    203,
+    91,
+    197,
+    26,
+    165,
+    83,
+    94,
+    208,
+    204,
+    63,
+    82,
+    41,
+    146,
+    221,
+    154,
+    111,
+    178,
+    232,
+    221,
+    109,
+    207,
+    72,
+    71,
+    5,
+    217,
+    62,
+    179,
+    205,
+    22,
+    122
+  ],
+  "decimals": "8"
+}
 ```
 
 </details>
@@ -393,8 +470,37 @@ function submit(
 
 - abi
 
-```
-[{"type":"function","name":"submit","inputs":[{"name":"_feedHashes","type":"bytes32[]","internalType":"bytes32[]"},{"name":"_answers","type":"int256[]","internalType":"int256[]"},{"name":"_timestamps","type":"uint256[]","internalType":"uint256[]"},{"name":"_proofs","type":"bytes[]","internalType":"bytes[]"}],"outputs":[],"stateMutability":"nonpayable"}]
+```json
+[
+  {
+    "type": "function",
+    "name": "submit",
+    "inputs": [
+      {
+        "name": "_feedHashes",
+        "type": "bytes32[]",
+        "internalType": "bytes32[]"
+      },
+      {
+        "name": "_answers",
+        "type": "int256[]",
+        "internalType": "int256[]"
+      },
+      {
+        "name": "_timestamps",
+        "type": "uint256[]",
+        "internalType": "uint256[]"
+      },
+      {
+        "name": "_proofs",
+        "type": "bytes[]",
+        "internalType": "bytes[]"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  }
+]
 ```
 
 There is no restriction for `msg.sender`, make a function call with parameters received through api.
