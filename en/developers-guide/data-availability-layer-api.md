@@ -8,8 +8,8 @@ Through the pull-based oracle, price data can be updated on-chain on demand by t
 
 ## API Endpoint
 
-- Testnet (REST): https://dal.baobab.orakl.network/api/v1
-- Mainnet (REST): https://dal.cypress.orakl.network/api/v1
+- Testnet (REST): https://dal.baobab.orakl.network
+- Mainnet (REST): https://dal.cypress.orakl.network
 
 The API requires the `X-API-Key` header for both REST API calls and WebSocket connections. Please [contact us](mailto:business@orakl.network) to receive a valid API key.
 
@@ -36,7 +36,7 @@ returns supported symbols
 <summary>Example Request</summary>
 
 ```bash
-curl --location --request GET 'https://dal.baobab.orakl.network/api/v1/dal/symbols' \
+curl --location --request GET 'https://dal.baobab.orakl.network/symbols' \
 --header 'X-API-Key: {API_KEY}' \
 --header 'Content-Type: application/json'
 ```
@@ -104,7 +104,7 @@ returns latest submission parameters for all supported pairs
 <summary>Example Request</summary>
 
 ```bash
-curl --location --request GET 'https://dal.baobab.orakl.network/api/v1/dal/latest-data-feeds/all' \
+curl --location --request GET 'https://dal.baobab.orakl.network/latest-data-feeds/all' \
 --header 'X-API-Key: {API_KEY}' \
 --header 'Content-Type: application/json'
 ```
@@ -212,7 +212,7 @@ returns latest submit parameters for certain pairs
 <summary>Example Request</summary>
 
 ```bash
-curl --location --request GET 'https://dal.baobab.orakl.network/api/v1/dal/latest-data-feeds/btc-usdt,eth-usdt' \
+curl --location --request GET 'https://dal.baobab.orakl.network/latest-data-feeds/btc-usdt,eth-usdt' \
 --header 'X-API-Key: {API_KEY}' \
 --header 'Content-Type: application/json'
 ```
@@ -349,7 +349,7 @@ Mainnet: ws://dal.cypress.orakl.network/api/v1/dal/ws
 
 ```bash
 # connect
-websocat ws://dal.baobab.orakl.network/api/v1/dal/ws -H "X-API-Key:{API_KEY}"
+websocat ws://dal.baobab.orakl.network/ws -H "X-API-Key:{API_KEY}"
 # subscribe
 {
   "method": "SUBSCRIBE",
