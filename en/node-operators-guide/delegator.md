@@ -157,4 +157,4 @@ Once the Orakl Network Delegator is launched, we must load the `privateKey` to b
 
 ## Architecture
 
-<figure><img src="../.gitbook/assets/orakl-network-delegator.png" alt=""><figcaption><p>Orakl Network Delegator</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/orakl-network-delegator (1).png" alt=""><figcaption><p>Orakl Network Delegator</p></figcaption></figure>

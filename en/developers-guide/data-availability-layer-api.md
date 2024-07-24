@@ -1,49 +1,47 @@
 ---
-description: Integrate pull based oracle through Data Availability Layer API
+description: Pull-based oracle submission using Data Availability Layer API
 ---
 
-# Pull Oracle
+# Data Availability Layer API (DAL)
 
-Through the pull-based oracle, price data can be updated on-chain on demand by the user. Off-chain price data, which is updated at subsecond intervals, can be accessed and submitted to the chain on demand.
+The on-chain price data can be updated on-demand by a user through the pull-based oracle. Off-chain price data are updated at sub-second intervals. Users with valid API key can access and [submit the latest price data on-chain](data-availability-layer-api.md#on-chain-price-data-submission). The price data can be either accessed through [REST API](data-availability-layer-api.md#rest-api) or [WebSocket API](data-availability-layer-api.md#websocket-api).
 
-## API Endpoint
-
-- Testnet (REST): https://dal.baobab.orakl.network
-- Mainnet (REST): https://dal.cypress.orakl.network
-
-The API requires the `X-API-Key` header for both REST API calls and WebSocket connections. Please [contact us](mailto:business@orakl.network) to receive a valid API key.
+The DAL API requires the `X-API-Key` header. Please [contact us](mailto:business@orakl.network) to receive a valid API key.
 
 ## Basic Return Types
 
-It mostly returns a list of the following types:
+| Property      | Type      | Explanation     |
+| ------------- | --------- | --------------- |
+| symbol        | string    | symbol name     |
+| value         | string    | price value     |
+| aggregateTime | string    | timestamp value |
+| proof         | \[]byte   | proof value     |
+| feedHash      | \[32]byte | feed hash       |
+| decimals      | string    | decimals        |
 
-| Property      | Type     | Explanation     |
-| ------------- | -------- | --------------- |
-| symbol        | string   | symbol name     |
-| value         | string   | price value     |
-| aggregateTime | string   | timestamp value |
-| proof         | []byte   | proof value     |
-| feedHash      | [32]byte | feed hash       |
-| decimals      | string   | decimals        |
+## REST API
 
-## Rest API
+* Testnet (REST): [https://dal.baobab.orakl.network](https://dal.baobab.orakl.network)
+* Mainnet (REST): [https://dal.cypress.orakl.network](https://dal.cypress.orakl.network)
 
-### Get `/dal/symbols`
+### GET `/symbols`
 
 returns supported symbols
 
 <details>
+
 <summary>Example Request</summary>
 
 ```bash
 curl --location --request GET 'https://dal.baobab.orakl.network/symbols' \
---header 'X-API-Key: {API_KEY}' \
+--header 'X-API-Key: $API_KEY' \
 --header 'Content-Type: application/json'
 ```
 
 </details>
 
 <details>
+
 <summary>Example Response</summary>
 
 ```bash
@@ -96,22 +94,24 @@ curl --location --request GET 'https://dal.baobab.orakl.network/symbols' \
 
 </details>
 
-### Get `/dal/latest-data-feeds/all`
+### GET `/latest-data-feeds/all`
 
 returns latest submission parameters for all supported pairs
 
 <details>
+
 <summary>Example Request</summary>
 
 ```bash
 curl --location --request GET 'https://dal.baobab.orakl.network/latest-data-feeds/all' \
---header 'X-API-Key: {API_KEY}' \
+--header 'X-API-Key: $API_KEY' \
 --header 'Content-Type: application/json'
 ```
 
 </details>
 
 <details>
+
 <summary>Example Response</summary>
 
 ```bash
@@ -204,22 +204,24 @@ curl --location --request GET 'https://dal.baobab.orakl.network/latest-data-feed
 
 </details>
 
-### Get `/dal/latest-data-feeds/{symbol, symbol, ..}`
+### GET `/latest-data-feeds/{symbol,symbol,...}`
 
-returns latest submit parameters for certain pairs
+returns the latest submission parameters for requested pairs
 
 <details>
+
 <summary>Example Request</summary>
 
 ```bash
 curl --location --request GET 'https://dal.baobab.orakl.network/latest-data-feeds/btc-usdt,eth-usdt' \
---header 'X-API-Key: {API_KEY}' \
+--header 'X-API-Key: $API_KEY' \
 --header 'Content-Type: application/json'
 ```
 
 </details>
 
 <details>
+
 <summary>Example Response</summary>
 
 ```bash
@@ -311,45 +313,23 @@ curl --location --request GET 'https://dal.baobab.orakl.network/latest-data-feed
 
 </details>
 
-## Websocket
+## WebSocket API
 
-Websocket endpoints are as followed
+Testnet (WS): [ws://dal.baobab.orakl.network/ws](ws://dal.baobab.orakl.network/ws)
 
-Testnet: ws://dal.baobab.orakl.network/api/v1/dal/ws
-Mainnet: ws://dal.cypress.orakl.network/api/v1/dal/ws
+Mainnet (WS): [ws://dal.cypress.orakl.network/ws](ws://dal.cypress.orakl.network/ws)
 
-### Subscribe
+### Connect and Request `/ws`
 
-```bash
-{
-   "method":"SUBSCRIBE",
-   "params":[
-      "submission@BTC-USDT",
-      "submission@ETH-USDT",
-      ...
-   ]
-}
-```
-
-### Pushed Data
-
-```bash
-{
-  "symbol": "BTC-USDT",
-  "value": "60000",
-  "aggregateTime": "1719472582",
-  "proof": "123",
-  "feedHash": [...],
-  "decimals": "8"
-}
-```
+subscribes and pushes price feeds
 
 <details>
+
 <summary>Example Request</summary>
 
 ```bash
 # connect
-websocat ws://dal.baobab.orakl.network/ws -H "X-API-Key:{API_KEY}"
+websocat ws://dal.baobab.orakl.network/ws -H "X-API-Key: $API_KEY"
 # subscribe
 {
   "method": "SUBSCRIBE",
@@ -362,6 +342,7 @@ websocat ws://dal.baobab.orakl.network/ws -H "X-API-Key:{API_KEY}"
 </details>
 
 <details>
+
 <summary>Example Response</summary>
 
 ```bash
@@ -451,24 +432,24 @@ websocat ws://dal.baobab.orakl.network/ws -H "X-API-Key:{API_KEY}"
 
 </details>
 
-## Submit Price Onchain
+## On-chain Price Data Submission
 
-The price data is submitted on-chain through contract [SubmissionProxy](https://github.com/Bisonai/orakl/blob/master/contracts/v0.2/src/SubmissionProxy.sol). And contract address can be found [here](https://raw.githubusercontent.com/Bisonai/orakl/master/contracts/v0.2/addresses/others-addresses.json)
+The price data is submitted on-chain through [SubmissionProxy](https://github.com/Bisonai/orakl/blob/master/contracts/v0.2/src/SubmissionProxy.sol) contract. The contract address can be found at [JSON configuration](https://raw.githubusercontent.com/Bisonai/orakl/master/contracts/v0.2/addresses/others-addresses.json).
 
-### Function
+### `submit` function
 
-- signature
+#### Signature
 
 ```solidity
 function submit(
-        bytes32[] calldata _feedHashes,
-        int256[] calldata _answers,
-        uint256[] calldata _timestamps,
-        bytes[] calldata _proofs
-    )
+    bytes32[] calldata _feedHashes,
+    int256[] calldata _answers,
+    uint256[] calldata _timestamps,
+    bytes[] calldata _proofs
+)
 ```
 
-- abi
+#### ABI
 
 ```json
 [
@@ -503,4 +484,4 @@ function submit(
 ]
 ```
 
-There is no restriction for `msg.sender`, make a function call with parameters received through api.
+There are no restrictions for `msg.sender`. You can make a function call with parameters received through DAL API.

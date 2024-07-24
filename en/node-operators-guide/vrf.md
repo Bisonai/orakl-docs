@@ -22,7 +22,7 @@ orakl-cli listener insert \
     --eventName RandomWordsRequested
 ```
 
-- example
+* example
 
 ```sh
 orakl-cli listener insert --service VRF --chain baobab --address 0xDA8c0A00A372503aa6EC80f9b29Cc97C454bE499 --enventName RandomWordsRequested
@@ -41,7 +41,7 @@ orakl-cli reporter insert \
   --oracleAddress ${oracleAddress}
 ```
 
-- example
+* example
 
 ```sh
 orakl-cli reporter insert \
@@ -88,15 +88,15 @@ orakl-cli vrf insert \
 
 Before we launch the **Orakl Network VRF**, we must specify [several environment variables](https://github.com/Bisonai/orakl/blob/master/core/.env.example). The environment variables are automatically loaded from a `.env` file.
 
-- `NODE_ENV=production`
-- `CHAIN`
-- `PROVIDER_URL`
-- `ORAKL_NETWORK_API_URL`
-- `LOG_LEVEL`
-- `REDIS_HOST`
-- `REDIS_PORT`
-- `HEALTH_CHECK_PORT`
-- `SLACK_WEBHOOK_URL`
+* `NODE_ENV=production`
+* `CHAIN`
+* `PROVIDER_URL`
+* `ORAKL_NETWORK_API_URL`
+* `LOG_LEVEL`
+* `REDIS_HOST`
+* `REDIS_PORT`
+* `HEALTH_CHECK_PORT`
+* `SLACK_WEBHOOK_URL`
 
 The **Orakl Network VRF** is implemented in Node.js which uses `NODE_ENV` environment variable to signal the execution environment (e.g. `production`, `development`). [Setting the environment to `production`](https://nodejs.org/en/learn/getting-started/nodejs-the-difference-between-development-and-production) generally ensures that logging is kept to a minimum, and more caching levels take place to optimize performance.
 
@@ -108,7 +108,7 @@ The **Orakl Network VRF** is implemented in Node.js which uses `NODE_ENV` enviro
 
 Setting a level of logs emitted by a running instance is set through `LOG_LEVEL` environment variable, and can be one of the following: `error`, `warning`, `info`, `debug` and `trace`, ordered from the most restrictive to the least. By selecting any of the available options you subscribe to the specified level and all levels with lower restrictiveness.
 
-`REDIS_HOST` and `REDIS_PORT` represent host and port of [Redis](https://redis.io/) to which all **Orakl Network VRF** microservices connect. The default values are `localhost` and `6379`, respectively.&#x20;
+`REDIS_HOST` and `REDIS_PORT` represent host and port of [Redis](https://redis.io/) to which all **Orakl Network VRF** microservices connect. The default values are `localhost` and `6379`, respectively.
 
 The **Orakl Network VRF** does not offer a rich REST API, but defines a health check endpoint (`/`) served under a port denoted as `HEALTH_CHECK_PORT`.
 
@@ -156,18 +156,18 @@ SERVICE=vrf docker-compose -f docker-compose.local-core.yaml up --force-recreate
 
 Here is what happens after the above command is run:
 
-- `api`, `postgres`, `redis`, and `json-rpc` services will start as separate docker containers
-- `postgres` will get populated with necessary data:
-  - chains
-  - services
-  - vrf keys
-  - listener (after contracts are deployed)
-  - reporter (after contracts are deployed)
-- migration files in `contracts/v0.1/migration/` get updated with provided keys and other values
-- if the chain is `localhost`:
-  - `contracts/v0.1/hardhat.config.cjs` file gets updated with `PROVIDER_URL`
-  - relevant coordinator and prepayment contracts get deployed
+* `api`, `postgres`, `redis`, and `json-rpc` services will start as separate docker containers
+* `postgres` will get populated with necessary data:
+  * chains
+  * services
+  * vrf keys
+  * listener (after contracts are deployed)
+  * reporter (after contracts are deployed)
+* migration files in `contracts/v0.1/migration/` get updated with provided keys and other values
+* if the chain is `localhost`:
+  * `contracts/v0.1/hardhat.config.cjs` file gets updated with `PROVIDER_URL`
+  * relevant coordinator and prepayment contracts get deployed
 
 ## Architecture
 
-<figure><img src="../.gitbook/assets/orakl-network-vrf.png" alt=""><figcaption><p>Orakl Network VRF</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/orakl-network-vrf (1).png" alt=""><figcaption><p>Orakl Network VRF</p></figcaption></figure>

@@ -20,10 +20,10 @@ Off-chain part is split to several auxiliary micro services, and the main oracle
 
 * [Orakl Network API](api.md)
 * [Orakl Network CLI](cli/)
-* [Orakl Network Fetcher](fetcher.md)
+* [Orakl Network Fetcher](broken-reference)
 * [Orakl Network VRF](vrf.md)
 * [Orakl Network Request-Response](request-response.md)
 * [Orakl Network Data Feed](data-feed.md)
 * [Orakl Network Proof of Reserve](proof-of-reserve.md)
 * [Orakl Network Delegator](delegator.md)
-* [Helm Chart Infra Setup](helmchart.md)
+* [Helm Chart Infra Setup](broken-reference)
