@@ -28,7 +28,7 @@ It mostly returns a list of the following types:
 
 ## Rest API
 
-### Get `/dal/symbols`
+### Get `/symbols`
 
 returns supported symbols
 
@@ -96,7 +96,7 @@ curl --location --request GET 'https://dal.baobab.orakl.network/symbols' \
 
 </details>
 
-### Get `/dal/latest-data-feeds/all`
+### Get `/latest-data-feeds/all`
 
 returns latest submission parameters for all supported pairs
 
@@ -204,7 +204,7 @@ curl --location --request GET 'https://dal.baobab.orakl.network/latest-data-feed
 
 </details>
 
-### Get `/dal/latest-data-feeds/{symbol, symbol, ..}`
+### Get `/latest-data-feeds/{symbol, symbol, ..}`
 
 returns latest submit parameters for certain pairs
 
@@ -315,8 +315,8 @@ curl --location --request GET 'https://dal.baobab.orakl.network/latest-data-feed
 
 Websocket endpoints are as followed
 
-Testnet: ws://dal.baobab.orakl.network/api/v1/dal/ws
-Mainnet: ws://dal.cypress.orakl.network/api/v1/dal/ws
+Testnet: ws://dal.baobab.orakl.network/ws
+Mainnet: ws://dal.cypress.orakl.network/ws
 
 ### Subscribe
 
