@@ -10,7 +10,6 @@ The DAL API requires the `X-API-Key` header. Please [contact us](mailto:business
 
 ## Basic Return Types
 
-
 | Property      | Type   | Explanation         |
 | ------------- | ------ | ------------------- |
 | symbol        | string | symbol name         |
@@ -22,8 +21,8 @@ The DAL API requires the `X-API-Key` header. Please [contact us](mailto:business
 
 ### Rest API
 
-* Testnet (REST): [https://dal.baobab.orakl.network](https://dal.baobab.orakl.network)
-* Mainnet (REST): [https://dal.cypress.orakl.network](https://dal.cypress.orakl.network)
+- Testnet (REST): [https://dal.baobab.orakl.network](https://dal.baobab.orakl.network)
+- Mainnet (REST): [https://dal.cypress.orakl.network](https://dal.cypress.orakl.network)
 
 ### GET `/symbols`
 
@@ -233,6 +232,9 @@ The price data is submitted on-chain through [SubmissionProxy](https://github.co
 
 ### `submit` function
 
+Submits in bulk without strict checks.
+It will silently skip invalid submissions and submit only valid submissions.
+
 #### Signature
 
 ```solidity
@@ -279,7 +281,7 @@ function submit(
 ]
 ```
 
-### submitStrict
+### `submitStrict` function
 
 Submits in bulk with strict checks.
 If one of the submission entry fails, the whole tx will fail with error
@@ -322,7 +324,7 @@ function submitStrict(
 ]
 ```
 
-### submitSingle
+### `submitSingle` function
 
 Submits single entry with checks.
 
