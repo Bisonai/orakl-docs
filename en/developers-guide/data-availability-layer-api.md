@@ -147,7 +147,7 @@ returns the latest submission parameters for requested pairs
 <summary>Example Request</summary>
 
 ```bash
-curl --location --request GET 'https://dal.baobab.orakl.network/latest-data-feeds/btc-usdt,eth-usdt' \
+curl --location --request GET 'https://dal.baobab.orakl.network/latest-data-feeds/all' \
 --header 'X-API-Key: $API_KEY' \
 --header 'Content-Type: application/json'
 ```
@@ -176,7 +176,101 @@ curl --location --request GET 'https://dal.baobab.orakl.network/latest-data-feed
         "feedHash": "0x7020b52841bb268cbc78137a54d4bf1f5305eed1039fb5d003ba95b8ededc46c",
         "decimals": "8"
     }
+    ...
 ]
+```
+
+</details>
+
+### GET `/latest-data-feeds/{symbol,symbol,...}`
+
+returns the latest submission parameters for requested pairs
+
+<details>
+
+<summary>Example Request</summary>
+
+```bash
+curl --location --request GET 'https://dal.baobab.orakl.network/latest-data-feeds/all' \
+--header 'X-API-Key: $API_KEY' \
+--header 'Content-Type: application/json'
+```
+
+</details>
+
+<details>
+
+<summary>Example Response</summary>
+
+```bash
+[
+    {
+        "symbol": "BTC-USDT",
+        "value": "6426575817343",
+        "aggregateTime": "1721886857",
+        "proof": "0x6cb90489dddc93c376425355cb497353695e53d91a7d61c3f1e122b1e5c0e2367dc95d36f40d5960784250008ed4a9f18d75b189f0d72eb9e2564e0a05ad374a1c",
+        "feedHash": "0xa92bcb5bc51aa5535ed0cc3f522992dd9a6fb2e8dd6dcf484705d93eb3cd167a",
+        "decimals": "8"
+    },
+    {
+        "symbol": "ETH-USDT",
+        "value": "318659264245",
+        "aggregateTime": "1721886857",
+        "proof": "0xd7c13dd825dd112de3ce52f704514d60c41f6d34bea3be13fc44a46394376ebd3947bdcb8d8dec9ae2959d1992b99220d4bf60988c7482b9ee98d3079199096b1b",
+        "feedHash": "0x7020b52841bb268cbc78137a54d4bf1f5305eed1039fb5d003ba95b8ededc46c",
+        "decimals": "8"
+    },
+    ...
+]
+```
+
+</details>
+
+### Get `/latest-data-feeds/transpose/{symbol, symbol..}`
+
+returns latest submission paramters for all certain pairs in transpose format
+
+<details>
+<summary>Example Request</summary>
+
+```bash
+curl --location 'localhost:8090/latest-data-feeds/transpose/ADA-USDT,BTC-USDT' \
+--header 'X-API-Key: $API_KEY'
+```
+
+</details>
+
+<details>
+
+<summary> Example Response </summary>
+
+```bash
+{
+    "symbols": [
+        "ADA-USDT",
+        "BTC-USDT"
+    ],
+    "values": [
+        "39386169",
+        "6416315907599"
+    ],
+    "aggregateTimes": [
+        "1721888065",
+        "1721888065"
+    ],
+    "proofs": [
+        "0xb2257cad024889288e0a047d8ab55e0553a9ccafbfbb3ada10392abc2c2bc24c0398189260c4141a3e39b1361445d3d394b2fe0b953b97eaabe9c081dff4c4441b",
+        "0x0ad8a61c99bd5b911b37c98d5424c02f7c22afad5b18a434c9e4132a4542da9a2e499b26b75e6e256bc1d77301e5f9edeb62967c3180db2b7b3dbf2c0e8c0c6c1c"
+    ],
+    "feedHashes": [
+        "0x5f741f7995dc7d3a3a89dd2daccc6c019033c69204605aabf2739c3aa5ec8a62",
+        "0xa92bcb5bc51aa5535ed0cc3f522992dd9a6fb2e8dd6dcf484705d93eb3cd167a"
+    ],
+    "decimals": [
+        "8",
+        "8"
+    ]
+}
 ```
 
 </details>
