@@ -191,7 +191,7 @@ returns latest submission paramters for all pairs in transpose format
 <summary>Example Request</summary>
 
 ```bash
-curl --location 'localhost:8090/latest-data-feeds/transpose/all' \
+curl --location 'https://dal.baobab.orakl.network/latest-data-feeds/transpose/all' \
 --header 'X-API-Key: $API_KEY'
 ```
 
@@ -246,7 +246,7 @@ returns latest submission paramters for certain pairs in transpose format
 <summary>Example Request</summary>
 
 ```bash
-curl --location 'localhost:8090/latest-data-feeds/transpose/ADA-USDT,BTC-USDT' \
+curl --location 'https://dal.baobab.orakl.network/latest-data-feeds/transpose/ADA-USDT,BTC-USDT' \
 --header 'X-API-Key: $API_KEY'
 ```
 
