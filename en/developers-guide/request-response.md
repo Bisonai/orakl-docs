@@ -23,9 +23,9 @@ In this document, we describe both **Permanent Account** and **Temporary Account
 
 ## Permanent Account (recommended)
 
-We assume that at this point you have already created permanent account through [`Prepayment` smart contract](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/Prepayment.sol), deposited $KLAY, and assigned consumer(s) to it. If not, [please read how to do all the above](prepayment.md), in order to be able to continue in this guide.
+We assume that at this point you have already created permanent account through [`Prepayment` smart contract](https://github.com/Bisonai-CIC/orakl/blob/master/contracts/src/v0.1/Prepayment.sol), deposited $KAIA, and assigned consumer(s) to it. If not, [please read how to do all the above](prepayment.md), in order to be able to continue in this guide.
 
-After you created account (and obtained `accId`), deposited some $KLAY and assigned at least one consumer, you can use it to request data and receive response.
+After you created account (and obtained `accId`), deposited some $KAIA and assigned at least one consumer, you can use it to request data and receive response.
 
 - [Initialization](request-response.md#initialization)
 - [Get estimated service fee](request-response.md#get-estimated-service-fee)
@@ -168,7 +168,7 @@ This function is executed from `RequestResponseCoordinator` contract defined dur
 
 ## Temporary Account
 
-**Temporary Account** is an alternative type of account which does not require a user to create account, deposit $KLAY, or assign consumer before being able to utilize Request-Response functionality. Request-Response with **Temporary Account** is only a little bit different compared to **Permanent Account**, however, the fulfillment function is exactly same.
+**Temporary Account** is an alternative type of account which does not require a user to create account, deposit $KAIA, or assign consumer before being able to utilize Request-Response functionality. Request-Response with **Temporary Account** is only a little bit different compared to **Permanent Account**, however, the fulfillment function is exactly same.
 
 - [Initialization with Temporary Account](request-response.md#initialization-with-temporary-account)
 - [Request data with Temporary Account (consumer)](request-response.md#request-data-with-temporary-account-consumer)
@@ -210,7 +210,7 @@ contract RequestResponseConsumer is RequestResponseConsumerFulfillUint128 {
 
 ### Request data with Temporary Account (consumer)
 
-The data request using **Temporary Account** is very similar to request using **Permanent Account**. The only difference is that for **Temporary Account** user has to send $KLAY together with call using `value` property, and does not have to specify account ID (`accId`) as in **Permanent Account**. There are several checks that have to pass in order to successfully request data. You can read about them in one of the previous subsections called Request data.
+The data request using **Temporary Account** is very similar to request using **Permanent Account**. The only difference is that for **Temporary Account** user has to send $KAIA together with call using `value` property, and does not have to specify account ID (`accId`) as in **Permanent Account**. There are several checks that have to pass in order to successfully request data. You can read about them in one of the previous subsections called Request data.
 
 ```solidity
 receive() external payable {}
@@ -246,9 +246,9 @@ In the section below, you can find more detailed explanation of how data request
 
 ### Cancel request and receive refund (consumer)
 
-In the previous section, we explained that $KLAY is sent together with request for data to `RequestResponseCoordinator` which passes the $KLAY deposit to `Prepayment` contract. The $KLAY payment stays in the `Prepayment` contract until the request is fulfilled.
+In the previous section, we explained that $KAIA is sent together with request for data to `RequestResponseCoordinator` which passes the $KAIA deposit to `Prepayment` contract. The $KAIA payment stays in the `Prepayment` contract until the request is fulfilled.
 
-In rare cases, it is possible that request cannot be fulfilled, and consumer does not receive requested data. To refund deposited $KLAY in such cases, one must first cancel request by calling `cancelRequest` inside of `RequestResponseCoordinator` and then withdraw $KLAY (`withdrawTemporary`) from temporary account inside of `Prepayment` contract. In both cases, consumer smart contract has to be the sender (`msg.sender`). Our consumer smart contract therefore has to include such auxiliary function(s) to make appropriate calls. If we do not add such functions to consumer contract, it will not be possible to cancel request and withdraw funds deposited to temporary account. Deposited funds will be then forever locked inside of `Prepayment` contract.
+In rare cases, it is possible that request cannot be fulfilled, and consumer does not receive requested data. To refund deposited $KAIA in such cases, one must first cancel request by calling `cancelRequest` inside of `RequestResponseCoordinator` and then withdraw $KAIA (`withdrawTemporary`) from temporary account inside of `Prepayment` contract. In both cases, consumer smart contract has to be the sender (`msg.sender`). Our consumer smart contract therefore has to include such auxiliary function(s) to make appropriate calls. If we do not add such functions to consumer contract, it will not be possible to cancel request and withdraw funds deposited to temporary account. Deposited funds will be then forever locked inside of `Prepayment` contract.
 
 The code listing below is an example of function inside of consumer contract to cancel and withdraw funds from temporary account.
 
@@ -292,7 +292,7 @@ function requestData(
     );
     sPrepayment.depositTemporary{value: fee}(accId);
 
-    // Refund extra $KLAY
+    // Refund extra $KAIA
     uint256 remaining = msg.value - fee;
     if (remaining > 0) {
         (bool sent, ) = refundRecipient.call{value: remaining}("");
@@ -305,9 +305,9 @@ function requestData(
 }
 ```
 
-This function first calculates a fee (`fee`) for the request by calling `estimateDirectPaymentFee()` function. `isDirectPayment` variable indicates whether the request is created through **Prepayment** or **Direct Payment** method. Then, it deposits the required fee (`fee`) to the account by calling `s_prepayment.deposit(accId)` and passing the fee (`fee`) as value. If the amount of $KLAY passed by `msg.value` to the `requestData` is larger than required fee (`fee`), the remaining amount is sent back to the caller using the `msg.sender.call()` method. Finally, the function returns `requestId` that is generated by the `requestDataInternal()` function.
+This function first calculates a fee (`fee`) for the request by calling `estimateDirectPaymentFee()` function. `isDirectPayment` variable indicates whether the request is created through **Prepayment** or **Direct Payment** method. Then, it deposits the required fee (`fee`) to the account by calling `s_prepayment.deposit(accId)` and passing the fee (`fee`) as value. If the amount of $KAIA passed by `msg.value` to the `requestData` is larger than required fee (`fee`), the remaining amount is sent back to the caller using the `msg.sender.call()` method. Finally, the function returns `requestId` that is generated by the `requestDataInternal()` function.
 
-This function first calculates a fee for the request by calling `estimateFee()` function. Then, it create a temporary account inside of Prepayment contract with `sPrepayment.createTemporaryAccount(msg.sender)` call. In the next step, we request data by calling `requestData` function. The function has several validation steps, therefore we included requesting for data before depositing the required fee to the account (`sPrepayment.depositTemporary{value: fee}(accId)`). If the amount of $KLAY passed by `msg.value` to the `requestData` is larger than a required fee, the remaining amount is sent back to the `refundRecipient` address. Finally, the function returns `requestId` that is generated by the internal `requestData()` call.
+This function first calculates a fee for the request by calling `estimateFee()` function. Then, it create a temporary account inside of Prepayment contract with `sPrepayment.createTemporaryAccount(msg.sender)` call. In the next step, we request data by calling `requestData` function. The function has several validation steps, therefore we included requesting for data before depositing the required fee to the account (`sPrepayment.depositTemporary{value: fee}(accId)`). If the amount of $KAIA passed by `msg.value` to the `requestData` is larger than a required fee, the remaining amount is sent back to the `refundRecipient` address. Finally, the function returns `requestId` that is generated by the internal `requestData()` call.
 
 ## Request & Response Post-Processing
 

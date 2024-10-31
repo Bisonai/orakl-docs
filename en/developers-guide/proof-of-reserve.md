@@ -12,25 +12,24 @@ The **Orakl Network's Proof of Reserve (PoR)** stands as a vital element in fost
 Playing a pivotal role, PoR is dedicated to the validation of reserve holdings for financial entities through a secure and auditable procedure.
 The GPC Proof of Reserve refers to a reserved quantity of non-fungible tokens (NFTs) issued specifically for Gold Pegged Coin.
 
-
 ### Proof of Reserve on Cypress
 
 <table><thead><tr><th width="157">PoR</th><th>Aggregator</th><th>AggregatorProxy</th><th>Heartbeat (m)</th></tr></thead><tbody>
     <tr>
         <td>GPC (Gold Pegged Coin)</td>
-        <td><a href="https://www.klaytnfinder.io/account/0xb5e91e5CE0B8e6fc3029b4E9ce057675a2c96dd1">0xb5e91e5CE0B8e6fc3029b4E9ce057675a2c96dd1</a></td>
-        <td><a href="https://www.klaytnfinder.io/account/0x9FbA23B10692cB3fa6Fea09834855ACc597BD180">0x9FbA23B10692cB3fa6Fea09834855ACc597BD180</a></td>
+        <td><a href="https://kaiascan.io/account/0xb5e91e5CE0B8e6fc3029b4E9ce057675a2c96dd1">0xb5e91e5CE0B8e6fc3029b4E9ce057675a2c96dd1</a></td>
+        <td><a href="https://kaiascan.io/account/0x9FbA23B10692cB3fa6Fea09834855ACc597BD180">0x9FbA23B10692cB3fa6Fea09834855ACc597BD180</a></td>
         <td>60</td></tr></tr></tbody></table>
 
 ### Proof of Reserve on Baobab
+
 **Disclaimer:** The data submitted to Baobab chain and is only for testing purposes. It does not always represent real-world data.
 
 <table><thead><tr><th width="157">PoR</th><th>Aggregator</th><th>AggregatorProxy</th><th>Heartbeat (m)</th></tr></thead><tbody>
     <tr>
-        <td>GPC (Gold Pegged Coin)</td><td><a href="https://baobab.klaytnfinder.io/account/0x58798D6Ca40480DF2FAd1b69939C3D29d91b60d3">0x58798D6Ca40480DF2FAd1b69939C3D29d91b60d3</a></td>
-        <td><a href="https://baobab.klaytnfinder.io/account/0x821179a6d4F62fa6979BF42bEb9eE16a1F14C4eD">0x821179a6d4F62fa6979BF42bEb9eE16a1F14C4eD</a></td>
+        <td>GPC (Gold Pegged Coin)</td><td><a href="https://kairos.kaiascan.io/account/0x58798D6Ca40480DF2FAd1b69939C3D29d91b60d3">0x58798D6Ca40480DF2FAd1b69939C3D29d91b60d3</a></td>
+        <td><a href="https://kairos.kaiascan.io/account/0x821179a6d4F62fa6979BF42bEb9eE16a1F14C4eD">0x821179a6d4F62fa6979BF42bEb9eE16a1F14C4eD</a></td>
         <td>2</td></tr></tr></tbody></table>
-
 
 ## How to read from Aggregator contract of PoR
 

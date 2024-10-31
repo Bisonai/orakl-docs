@@ -49,7 +49,7 @@ The detailed information about Orakl Network Proof of Reserve can be found at [d
 
 ## Payment & Account Types
 
-The main payment method in Orakl Network is called a [Prepayment](developers-guide/prepayment.md). It allows users to deposit $KLAY to their Orakl Network account, and use it to request Orakl Network VRF or Orakl Network Request-Response. We provide two different account types that support the prepayment method:
+The main payment method in Orakl Network is called a [Prepayment](developers-guide/prepayment.md). It allows users to deposit $KAIA to their Orakl Network account, and use it to request Orakl Network VRF or Orakl Network Request-Response. We provide two different account types that support the prepayment method:
 
 - [Permanent account](./#permanent-account)
 - [Temporary account](./#temporary-account)

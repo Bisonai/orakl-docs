@@ -6,7 +6,7 @@ description: Whitelist Fee Delegation Service
 
 ## Description
 
-The **Orakl Network Delegator** is a [fee delegation](https://docs.klaytn.foundation/content/klaytn/design/transactions/fee-delegation) micro-service that verify incoming transaction based on customized whitelist rules, and sign them as a fee payer when they are eligible. The code is located under [`delegator` directory](https://github.com/Bisonai/orakl/tree/master/delegator).
+The **Orakl Network Delegator** is a [fee delegation](https://docs.kaia.io/learn/transactions/fee-delegation/) micro-service that verify incoming transaction based on customized whitelist rules, and sign them as a fee payer when they are eligible. The code is located under [`delegator` directory](https://github.com/Bisonai/orakl/tree/master/delegator).
 
 ## API Endpoints
 
@@ -126,9 +126,9 @@ curl -X 'POST' \
 
 Before we launch the **Orakl Network Delegator**, we must specify [few environment variables](https://github.com/Bisonai/orakl/blob/master/delegator/.env.example). The environment variables are automatically loaded from an `.env` file.
 
-* `DATABASE_URL`
-* `PROVIDER_URL`
-* `APP_PORT`
+- `DATABASE_URL`
+- `PROVIDER_URL`
+- `APP_PORT`
 
 `DATABASE_URL` represents a [connection string](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING) to a database that will hold the **Orakl Network** state.
 
@@ -144,7 +144,7 @@ Before we launch the **Orakl Network Delegator**, we must specify [few environme
 
 ## Launch
 
-Before launching the **Orakl Network Delegator**, one must add delegator's private key to `privateKey` column inside of `fee_payers` table. This private key will be used to sign [delegated fee transactions](https://docs.klaytn.foundation/content/klaytn/design/transactions/fee-delegation) as a fee payer.
+Before launching the **Orakl Network Delegator**, one must add delegator's private key to `privateKey` column inside of `fee_payers` table. This private key will be used to sign [delegated fee transactions](https://docs.kaia.io/learn/transactions/fee-delegation/) as a fee payer.
 
 To launch the Orakl Network Delegator from source code in the production, first build the service, and then launch it.
 
