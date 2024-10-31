@@ -6,18 +6,18 @@ These Terms of Use (the "Terms" or "Terms of Use") set forth the relationship be
 
 ### **02. Definition of Terms**
 
-1. “Service” or “Orakl” refers to a Klaytn native oracle that provides Data Feed, VRF.  Request-Response solutions and Proof of Reserve (POR).
+1. “Service” or “Orakl” refers to a Kaia native oracle that provides Data Feed, VRF. Request-Response solutions and Proof of Reserve (POR).
 2. “Blockchain” refers to technology that stores data in an electronic block and connects each block sequentially like a chain, and records the transaction details in a ledger that anyone can read and duplicates it on each computer participating in the blockchain network. It refers to a distributed data storage method that stores.
-3. “Smart contract” refers to a bundle of codes written in a language that can be operated as a program on Klaytn.
+3. “Smart contract” refers to a bundle of codes written in a language that can be operated as a program on Kaia.
 4. “Digital Assets” refers to all data on the blockchain, including coins, tokens, and NFTs, as a means of storing value and a medium of exchange in an electronic way through services.
-5. “KLAY” refer to Token that is commonly used within Klaytn, a unique blockchain platform.
-6. "Token" refers to digital assets in the form of coins or tokens issued through smart contracts on the Klaytn main chain.
+5. “KAIA” refer to Token that is commonly used within Kaia, a unique blockchain platform.
+6. "Token" refers to digital assets in the form of coins or tokens issued through smart contracts on the Kaia main chain.
 7. “NFT” refers to a Non-fungible Token that has a unique key value.
 8. "Member"(or "User") refers to an individual who executes a use contract with the Company (the Use Agreement”) in accordance with these Terms of Use and uses the Services provided by the Company.
 9. “Account” refers to an account created to identify the person in the Service, and refers to a service account that is granted to a User who agrees to these Terms of Use and executes the Use Agreement with the Company.
-10. “Klaytn Account Address” refers to a unique identification address that exists on Klaytn to record changes in digital assets between Users in the Service.
+10. “Kaia Account Address” refers to a unique identification address that exists on Kaia to record changes in digital assets between Users in the Service.
 11. "Password" refers to a combination of numbers and letters set by the User for confidentiality and confirming that the User is a user matching the Account and account address.
-12. “Klaytn Wallet Key” refer to a unique combination of letters and numbers used or required for all smart contract operations such as transmission, transaction, and signing of digital assets held by the account address.
+12. “Kaia Wallet Key” refer to a unique combination of letters and numbers used or required for all smart contract operations such as transmission, transaction, and signing of digital assets held by the account address.
 13. The definitions of terms used in the Terms are in accordance with relevant laws and general business practices, except for those specified in the preceding paragraph.
 
 ### 03. Modification of the Terms of Use
@@ -126,12 +126,11 @@ In the event that the Company collects personal information, the Company strives
 
 #### Prepayment
 
-Prepayment allows consumers of Orakl Network to prepay for services in KLAY, and then using those funds when interacting with Orakl Network.
+Prepayment allows consumers of Orakl Network to prepay for services in KAIA, and then using those funds when interacting with Orakl Network.
 
 #### Direct Payment
 
-Direct Payment method allows to use Orakl Network's services without requiring to create any account in advance. All services can be requested and paid at the time of the request in KLAY.\
-
+Direct Payment method allows to use Orakl Network's services without requiring to create any account in advance. All services can be requested and paid at the time of the request in KAIA.\
 
 2. Members must use the payment method in their own name when using the payment method of Paragraph 1 for payment of paid services, and must not use another person's payment method arbitrarily. Members are responsible for all damages to the Company, the legitimate owner of the payment method, and a third party related to payment that may occur by using the payment method of another person arbitrarily, unless there is intentional or negligence on the part of the Company.
 3. The information entered by the Member in connection with the payment and the responsibilities and disadvantages incurred in connection with the information shall be borne by the Member, unless there is intentional or negligence on the part of the Company.
@@ -139,10 +138,10 @@ Direct Payment method allows to use Orakl Network's services without requiring t
 5. Depending on the Company's policy, the cumulative payment amount of the Member may be limited.
 6. To ensure more convenience on the part of the Users, more payment methods may be added in addition to those stated in Paragraph 1.
 
-### 15 (KLAY as Payment Method)
+### 15 (KAIA as Payment Method)
 
-1. The Company may allow KLAY as a payment method as defined in Article 2. Payment using KLAY shall only be possible for single payments.
-2. The User shall comply with the payment policies set forth by the Company when using KLAY as a payment method. The Company shall display the payment policies on the payment page of its Service so that Users may check and learn the content thereof with ease.
+1. The Company may allow KAIA as a payment method as defined in Article 2. Payment using KAIA shall only be possible for single payments.
+2. The User shall comply with the payment policies set forth by the Company when using KAIA as a payment method. The Company shall display the payment policies on the payment page of its Service so that Users may check and learn the content thereof with ease.
 3. In the following cases, the Company may restrict approval until the reasons for limiting approval for payment applications are resolved.
 4. In case of service failure
 5. In case of inspection or failure of the payment
@@ -150,8 +149,7 @@ Direct Payment method allows to use Orakl Network's services without requiring t
 ### 16. Modification or Suspension of the Service
 
 1. The Company may change part or all of the Service provision if there is a reasonable reason, such as in the following cases:
-2.
-   1. Illegal activity;
+2. 1. Illegal activity;
    2. Maintenance and inspection of information and communication facilities such as computers, equipment replacement and breakdown, disruption of communication, etc.
    3. Maintenance such as facilities for Service;
    4. Service unavailable due to power outage, failure of all facilities, or congestion of usage;
@@ -171,7 +169,7 @@ Direct Payment method allows to use Orakl Network's services without requiring t
 
 ### 18. Termination of the Service
 
-1. Users may terminate the Use Agreements they have entered with the Company at any time by withdrawing all their KLAY from the Service.
+1. Users may terminate the Use Agreements they have entered with the Company at any time by withdrawing all their KAIA from the Service.
 2. The Company may terminate the Use Agreements with Users for the reasons listed below. In such cases, the Company shall notify the User of the termination, and the cause(s) thereof, pursuant to Article 8. The Company shall allow the User to state its opinions on the alleged cause(s) of termination.
 3. The Use Agreement shall expire the moment Company’s decision to terminate has been communicated to the User.
    1. Although the Company requested a User who is restricted from using the Service pursuant to Article 20 of these Terms of Use to correct by setting a considerable amount of time, if the User did not correct it within the requested period or the reason cause to the User cannot be corrected from objective perspective;
@@ -193,7 +191,7 @@ Direct Payment method allows to use Orakl Network's services without requiring t
 2. The Company may request payment information necessary for the refund process described in Paragraph 1. In such a case, the User must provide the requested information within the date set forth by the Company. Failing to do so may result in the cancellation of the refund process.
 3. Refunds are to be made in the same payment method used by the User. In case it is not possible to make the refund in the same payment method, the refund may be made in a different method as set forth by the Company, which will be notified to the User in writing in advance.
 4. The User is responsible for any damages following any non-compliance during the refund process by the User due to negligence or intentional disregard, even after the Company sufficiently informed the Users of the process in accordance with Paragraph 2, and the Company shall not be responsible.
-5. If the User requests a refund for a payment made in KLAY, the amount of KLAY to be refunded shall be determined pursuant to Article 15.
+5. If the User requests a refund for a payment made in KAIA, the amount of KAIA to be refunded shall be determined pursuant to Article 15.
 6. In the event of a refund under the Paragraph 1, the procedures shall be in accordance with relevant laws and regulations such as the Act on the Consumer Protection in Electronic Commerce, etc.
 7. To the extent permitted by applicable laws, the Company shall not be obligated to provide refunds if such a request for refunds falls outside the scope of liability defined in Article 21 or is based on the circumstances disclaimed by the Company under Article 22.&#x20;
 
@@ -217,7 +215,7 @@ Direct Payment method allows to use Orakl Network's services without requiring t
 1. We are not responsible or liable for any loss, damage, cost, or expense, whether direct or indirect (the “Losses”) incurred to the User if such Losses are due to the following reasons.
    1. If the Service cannot be provided due to natural disasters, equivalent national emergency or any other similar event with a cause outside of the Company’s control;
    2. If a use of the Service becomes impossible due to compliance with the de facto or legal administrative dispositions and/or orders of a government agency;
-   3. If the service failure occurs due to a failure of the blockchain platform Klaytn, data sources, data providers or a cause attributable to the User;
+   3. If the service failure occurs due to a failure of the blockchain platform Kaia, data sources, data providers or a cause attributable to the User;
    4. If the data provided to the Users in connection with the POR service is inaccurate or not up-to-date due to reasons not attributable to the Company, including, without limitation, reasons such as API downtime or inaccurate data insertion by the original data provider;&#x20;
    5. If the server fails due to instantaneous Service access increase, etc.
    6. When it is confirmed that the contents of information, data, and the reliability, accuracy and completeness of the information posted by the User in relation to the Service are altered or false.
@@ -248,7 +246,6 @@ Direct Payment method allows to use Orakl Network's services without requiring t
 1. The laws of the Republic of Korea shall be the proper law governing this Terms and any disputes between Company and Users.
 2. The court of the jurisdiction in which the User is permanently located, at the time of pressing the lawsuit, shall be the competent court presiding over the litigation between Company and a given User. Where the User lacks a permanent address and jurisdiction, the district court presiding over the jurisdiction in which the Company is temporarily located shall oversee the litigation. Where the User lacks a definite permanent or temporary address at the time of the lawsuit, the competent court shall be decided according to the Civil Litigation Act.
 3. Notwithstanding the foregoing, any litigation between a User with a foreign permanent or temporary address and the Company shall be presided over by the Seoul Central District Court in the Republic of Korea.\
-
 
 These Terms of Use is effective as of 4 May 2024.
 
