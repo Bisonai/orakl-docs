@@ -247,6 +247,6 @@ Direct Payment method allows to use Orakl Network's services without requiring t
 2. The court of the jurisdiction in which the User is permanently located, at the time of pressing the lawsuit, shall be the competent court presiding over the litigation between Company and a given User. Where the User lacks a permanent address and jurisdiction, the district court presiding over the jurisdiction in which the Company is temporarily located shall oversee the litigation. Where the User lacks a definite permanent or temporary address at the time of the lawsuit, the competent court shall be decided according to the Civil Litigation Act.
 3. Notwithstanding the foregoing, any litigation between a User with a foreign permanent or temporary address and the Company shall be presided over by the Seoul Central District Court in the Republic of Korea.\
 
-These Terms of Use is effective as of 4 May 2024.
+These Terms of Use is effective as of 31 October 2024.
 
 \
