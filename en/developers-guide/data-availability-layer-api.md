@@ -458,3 +458,72 @@ function submitSingle(bytes32 _feedHash, int256 _answer, uint256 _timestamp, byt
   }
 ]
 ```
+
+### `submitWithoutSupersedValidation` function
+
+Submit a batch of answers to multiple feeds. The answers are ignored if they have been superseded. If any of the answers do not meet the rest of required conditions the whole batch is reverted.
+
+- signature
+
+```solidity
+    function submitWithoutSupersedValidation(
+        bytes32[] calldata _feedHashes,
+        int256[] calldata _answers,
+        uint256[] calldata _timestamps,
+        bytes[] calldata _proofs
+    )
+```
+
+- abi
+
+```json
+[
+  {
+    "type": "function",
+    "name": "submitWithoutSupersedValidation",
+    "inputs": [
+      {
+        "name": "_feedHashes",
+        "type": "bytes32[]",
+        "internalType": "bytes32[]"
+      },
+      { "name": "_answers", "type": "int256[]", "internalType": "int256[]" },
+      {
+        "name": "_timestamps",
+        "type": "uint256[]",
+        "internalType": "uint256[]"
+      },
+      { "name": "_proofs", "type": "bytes[]", "internalType": "bytes[]" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  }
+]
+```
+
+### `submitSingleWithoutSupersedValidation` function
+
+Submit a single submission to a feed. The submission is ignored if it has been superseded. If the submission does not meet the rest of required conditions the submission is reverted.
+
+- signature
+
+```solidity
+function submitSingleWithoutSupersedValidation(bytes32 _feedHash, int256 _answer, uint256 _timestamp, bytes calldata _proof)
+```
+
+- abi
+
+```json
+{
+  "type": "function",
+  "name": "submitSingleWithoutSupersedValidation",
+  "inputs": [
+    { "name": "_feedHash", "type": "bytes32", "internalType": "bytes32" },
+    { "name": "_answer", "type": "int256", "internalType": "int256" },
+    { "name": "_timestamp", "type": "uint256", "internalType": "uint256" },
+    { "name": "_proof", "type": "bytes", "internalType": "bytes" }
+  ],
+  "outputs": [],
+  "stateMutability": "nonpayable"
+}
+```
