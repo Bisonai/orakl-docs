@@ -8,23 +8,22 @@ A detailed example of how to use **Orakl Network Data Feed** can be found at exa
 
 ## What is Data Feed?
 
-The Orakl Network Data Feed is a secure, reliable, and decentralized source of off-chain data accessible to smart contracts on-chain. The data feed is updated at predefined time intervals, as well as if the data value deviates more than a predefined threshold, to ensure that the data remains accurate and up-to-date. Data feeds can be used in many different on-chain protocols:
+The Orakl Network Data Feed is a secure, reliable, and decentralized source of off-chain data accessible to smart contracts on-chain. The data are collected The data feed is updated at predefined time intervals, as well as if the data value deviates more than a predefined threshold, to ensure that the data remains accurate and up-to-date. Data feeds can be used in many different on-chain protocols:
 
-- Lending and borrowing
-- Mirrored assets
-- Stablecoins
-- Asset management
-- Options and futures
-- and many more!
+* Lending and borrowing
+* Mirrored assets
+* Stablecoins
+* Asset management
+* Options and futures
+* and many more!
 
-The Orakl Data Feed includes various data feeds that can be used free of charge. The currently supported data feeds can be found in tables below.
+### Data Aggregation
+
+The price data are aggregated using the Volume-Weighted Average Price (VWAP) to capture the current market price as accurately as possible. For data feeds that do not provide volume information, median aggregation is utilized.
 
 ### Contract Addresses
 
-Reference following link to check deployed addresses
-
-- [Feeds](https://raw.githubusercontent.com/Bisonai/orakl/master/contracts/v0.2/addresses/datafeeds-addresses.json)
-- [Others](https://raw.githubusercontent.com/Bisonai/orakl/master/contracts/v0.2/addresses/others-addresses.json)
+The Orakl Data Feed includes various data feeds that can be used free of charge. The currently supported data feeds are listed in [datafeeds-addresses.json](https://raw.githubusercontent.com/Bisonai/orakl/master/contracts/v0.2/addresses/datafeeds-addresses.json) configuration file. Other auxiliary addresses can be found at [others-addresses.json](https://raw.githubusercontent.com/Bisonai/orakl/master/contracts/v0.2/addresses/others-addresses.json) configuration file.
 
 ## Architecture
 
@@ -38,9 +37,9 @@ In this section, we will explain how to integrate Orakl Network data feed to you
 
 The section is split into following topics:
 
-- [Initialization](data-feed.md#initialization)
-- [Read Data](data-feed.md#read-data)
-- [Process Data](data-feed.md#process-data)
+* [Initialization](data-feed.md#initialization)
+* [Read Data](data-feed.md#read-data)
+* [Process Data](data-feed.md#process-data)
 
 ### Initialization
 
@@ -104,10 +103,10 @@ uint8 decimals = dataFeed.decimals();
 address currentFeed = dataFeed.getFeed()
 ```
 
-### Use Feed Router
+### Use `FeedRouter`
 
-- Conveniently access data feeds using `FeedRouter` contract
-- Access all functions in `FeedProxy` by including price pair name as parameter
+* Conveniently access data feeds using `FeedRouter` contract
+* Access all functions in `FeedProxy` by including price pair name as parameter
 
 Initialize FeedRouter that enables access to all supported data feeds.
 
@@ -153,6 +152,14 @@ Get Feed address associated with given data feed (e.g. "BTC-USDT").
 ```solidity
 address currentFeed = router.feed("BTC-USDT")
 ```
+
+### Time-Weighted Average Price (TWAP)
+
+The `Feed` contract implements the calculation of TWAP using previously submitted data. In addition to the `Feed` contract, TWAP is accessible through the `FeedProxy` and `FeedRouter` contracts. The calculation is controlled by three parameters: `interval`, `latestUpdatedAtTolerance`, and `minCount`.
+
+* The `interval` represents the time range used for the TWAP calculation, where all values within the range are utilized in the computation.
+* The `latestUpdatedAtTolerance` specifies the maximum number of seconds allowed since the last submission to the feed. If the last submission exceeds this tolerance, the TWAP calculation will revert.
+* Lastly, the `minCount` parameter defines the minimum number of required data points to compute the TWAP. If the number of data points is insufficient, the calculation will revert.
 
 ## Relation between `FeedProxy` and `Feed`
 
