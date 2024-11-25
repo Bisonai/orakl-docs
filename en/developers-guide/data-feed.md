@@ -40,6 +40,7 @@ The section is split into following topics:
 * [Initialization](data-feed.md#initialization)
 * [Read Data](data-feed.md#read-data)
 * [Process Data](data-feed.md#process-data)
+* [Time-Weighted Average Price (TWAP)](data-feed.md#time-weighted-average-price-twap)
 
 ### Initialization
 
