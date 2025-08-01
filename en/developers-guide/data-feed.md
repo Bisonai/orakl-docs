@@ -8,7 +8,7 @@ A detailed example of how to use **Orakl Network Data Feed** can be found at exa
 
 ## What is Data Feed?
 
-The Orakl Network Data Feed is a secure, reliable, and decentralized source of off-chain data accessible to smart contracts on-chain. The data are collected The data feed is updated at predefined time intervals, as well as if the data value deviates more than a predefined threshold, to ensure that the data remains accurate and up-to-date. Data feeds can be used in many different on-chain protocols:
+The Orakl Network data feed is a secure, reliable, and decentralized source of off-chain data accessible to smart contracts on-chain. The data feed is updated at predefined time intervals, or more frequently if the data value deviates more than a predefined threshold, to ensure that the data remains accurate and up-to-date. Data feeds can be used in many different on-chain protocols:
 
 * Lending and borrowing
 * Mirrored assets
@@ -16,6 +16,14 @@ The Orakl Network Data Feed is a secure, reliable, and decentralized source of o
 * Asset management
 * Options and futures
 * and many more!
+
+### Types of Data Feed&#x20;
+
+Orakl Network offers four types of data feeds—**Single**, **Basic**, **Standard**, and **Premium**—each varying in data source, redundancy, and reliability.&#x20;
+
+**Single** **feeds** rely on a single data source, which makes the data more susceptible to manipulation, making it unsuitable for application of VWAP (Volume-Weighted Average Price). Users relying on single feeds are encouraged to implement on-chain protections such as TWAP (Time-Weighted Average Price).&#x20;
+
+In contrast, **Basic** **feeds** aggregate data from 2-4 different sources, **Standard** **feeds** from 5-8, and **Premium** **feeds** from more than 8. These multi-source feeds support the use of VWAP, offering improved accuracy and stronger protection against any manipulation. Generally, the more data sources a feed incorporates, the more reliable and secure it becomes.
 
 ### Data Aggregation
 
