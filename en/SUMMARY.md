@@ -13,7 +13,6 @@
 * [Example Projects](developers-guide/example-projects/README.md)
   * [Binary Option Example](developers-guide/example-projects/binary-example.md)
   * [Flipcoin Example](developers-guide/example-projects/flipcoin-example.md)
-  * [Mystery Box Example](developers-guide/example-projects/mystery-box-example.md)
 
 ## Node Operator's Guide
 
