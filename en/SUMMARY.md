@@ -8,7 +8,6 @@
 * [Data Feed](developers-guide/data-feed.md)
 * [Proof of Reserve](developers-guide/proof-of-reserve.md)
 * [Prepayment](developers-guide/prepayment.md)
-* [L2 Services](developers-guide/l2-services.md)
 * [Data Availability Layer API (DAL)](developers-guide/data-availability-layer-api.md)
 * [Example Projects](developers-guide/example-projects/README.md)
   * [Binary Option Example](developers-guide/example-projects/binary-example.md)
