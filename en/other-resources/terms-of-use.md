@@ -216,12 +216,13 @@ Direct Payment method allows to use Orakl Network's services without requiring t
    1. If the Service cannot be provided due to natural disasters, equivalent national emergency or any other similar event with a cause outside of the Company’s control;
    2. If a use of the Service becomes impossible due to compliance with the de facto or legal administrative dispositions and/or orders of a government agency;
    3. If the service failure occurs due to a failure of the blockchain platform Kaia, data sources, data providers or a cause attributable to the User;
-   4. If the server fails due to instantaneous Service access increase, etc.
-   5. When it is confirmed that the contents of information, data, and the reliability, accuracy and completeness of the information posted by the User in relation to the Service are altered or false.
-   6. When there is no special provision in the relevant laws regarding the use of Services provided for free.
-   7. When transactions are made between Users or between Users and third parties through Service.
-   8. If the Losses are due to restriction or suspension of use according to these Terms of Use.
-   9. if the Losses are due to technical defects that cannot be remedied with current technology available at the time of the Loss, force majeure, or events not attributable to the Company, including but not limited to power outages, fires, communication failures, DDoS attacks, IDC failures, or server downtime caused by a sudden surge in user access, or other similar events, which render the provision of Services impossible.
+   4. If the data provided to the Users is inaccurate or not up-to-date due to reasons not attributable to the Company, including, without limitation, reasons such as API downtime or inaccurate data insertion by the original data provider;
+   5. If the server fails due to instantaneous Service access increase, etc.
+   6. When it is confirmed that the contents of information, data, and the reliability, accuracy and completeness of the information posted by the User in relation to the Service are altered or false.
+   7. When there is no special provision in the relevant laws regarding the use of Services provided for free.
+   8. When transactions are made between Users or between Users and third parties through Service.
+   9. If the Losses are due to restriction or suspension of use according to these Terms of Use.
+   10. if the Losses are due to technical defects that cannot be remedied with current technology available at the time of the Loss, force majeure, or events not attributable to the Company, including but not limited to power outages, fires, communication failures, DDoS attacks, IDC failures, or server downtime caused by a sudden surge in user access, or other similar events, which render the provision of Services impossible.
 2. To the extent permitted by applicable laws, the Company does not make any direct or indirect agreements or guarantees for any matters not specified in these Terms of Use in relation to the Service.
 3. The Company shall not be held responsible or liable for Users’ failure to reap the profits they expected from, or losses due to using, Company’s Services.
 4. The User accepts and agrees that the sole and exclusive remedy available in connection with any liability arising from the use of the Services shall be limited to a full or partial refund of the fees paid. To the maximum extent permitted by applicable law, the Company shall not be liable for any Losses arising from or in connection with the Services, including but not limited to consequential, incidental, indirect, special, economic, or punitive damages, or any loss of business profits, goodwill, business interruption, computer malfunction or failure, loss of business information, or any other commercial or monetary Losses. In any event, the Company’s liability shall not exceed the actual amount of fees received from the User.
