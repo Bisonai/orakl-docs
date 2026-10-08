@@ -6,7 +6,7 @@ These Terms of Use (the "Terms" or "Terms of Use") set forth the relationship be
 
 ### **02. Definition of Terms**
 
-1. “Service” or “Orakl” refers to a Kaia native oracle that provides Data Feed, VRF. Request-Response solutions and Proof of Reserve (POR).
+1. “Service” or “Orakl” refers to a Kaia native oracle that provides Data Feed, VRF and Request-Response solutions.
 2. “Blockchain” refers to technology that stores data in an electronic block and connects each block sequentially like a chain, and records the transaction details in a ledger that anyone can read and duplicates it on each computer participating in the blockchain network. It refers to a distributed data storage method that stores.
 3. “Smart contract” refers to a bundle of codes written in a language that can be operated as a program on Kaia.
 4. “Digital Assets” refers to all data on the blockchain, including coins, tokens, and NFTs, as a means of storing value and a medium of exchange in an electronic way through services.
@@ -104,7 +104,6 @@ In the event that the Company collects personal information, the Company strives
    1. Provide on-chain data feed
    2. Allow Users to call any APIs via Request-Response
    3. Generate random numbers via VRF (Verifiable Random Function)
-   4. Proof of Reserve (PoR)
 2. Please refer to the website (https://www.orakl.network/) for detailed regulations of the type and content of the Service according to the preceding paragraph.
 3. The Company can set the scope of the Service, the available time, and the number of times of use, and the User may use the Service only according to the service provision conditions set by the Company. The Company will notify Users in accordance with Article 8 so that Users can check.
 4. Service fee may be charged for using the Service provided by the Company and a User using the Service shall abide by the policy including terms of the fee designated and amended by the Company from time to time.
@@ -217,13 +216,12 @@ Direct Payment method allows to use Orakl Network's services without requiring t
    1. If the Service cannot be provided due to natural disasters, equivalent national emergency or any other similar event with a cause outside of the Company’s control;
    2. If a use of the Service becomes impossible due to compliance with the de facto or legal administrative dispositions and/or orders of a government agency;
    3. If the service failure occurs due to a failure of the blockchain platform Kaia, data sources, data providers or a cause attributable to the User;
-   4. If the data provided to the Users in connection with the POR service is inaccurate or not up-to-date due to reasons not attributable to the Company, including, without limitation, reasons such as API downtime or inaccurate data insertion by the original data provider;
-   5. If the server fails due to instantaneous Service access increase, etc.
-   6. When it is confirmed that the contents of information, data, and the reliability, accuracy and completeness of the information posted by the User in relation to the Service are altered or false.
-   7. When there is no special provision in the relevant laws regarding the use of Services provided for free.
-   8. When transactions are made between Users or between Users and third parties through Service.
-   9. If the Losses are due to restriction or suspension of use according to these Terms of Use.
-   10. if the Losses are due to technical defects that cannot be remedied with current technology available at the time of the Loss, force majeure, or events not attributable to the Company, including but not limited to power outages, fires, communication failures, DDoS attacks, IDC failures, or server downtime caused by a sudden surge in user access, or other similar events, which render the provision of Services impossible.
+   4. If the server fails due to instantaneous Service access increase, etc.
+   5. When it is confirmed that the contents of information, data, and the reliability, accuracy and completeness of the information posted by the User in relation to the Service are altered or false.
+   6. When there is no special provision in the relevant laws regarding the use of Services provided for free.
+   7. When transactions are made between Users or between Users and third parties through Service.
+   8. If the Losses are due to restriction or suspension of use according to these Terms of Use.
+   9. if the Losses are due to technical defects that cannot be remedied with current technology available at the time of the Loss, force majeure, or events not attributable to the Company, including but not limited to power outages, fires, communication failures, DDoS attacks, IDC failures, or server downtime caused by a sudden surge in user access, or other similar events, which render the provision of Services impossible.
 2. To the extent permitted by applicable laws, the Company does not make any direct or indirect agreements or guarantees for any matters not specified in these Terms of Use in relation to the Service.
 3. The Company shall not be held responsible or liable for Users’ failure to reap the profits they expected from, or losses due to using, Company’s Services.
 4. The User accepts and agrees that the sole and exclusive remedy available in connection with any liability arising from the use of the Services shall be limited to a full or partial refund of the fees paid. To the maximum extent permitted by applicable law, the Company shall not be liable for any Losses arising from or in connection with the Services, including but not limited to consequential, incidental, indirect, special, economic, or punitive damages, or any loss of business profits, goodwill, business interruption, computer malfunction or failure, loss of business information, or any other commercial or monetary Losses. In any event, the Company’s liability shall not exceed the actual amount of fees received from the User.
