@@ -6,7 +6,6 @@
 * [Verifiable Randomness Function (VRF)](developers-guide/vrf.md)
 * [Request-Response](developers-guide/request-response.md)
 * [Data Feed](developers-guide/data-feed.md)
-* [Proof of Reserve](developers-guide/proof-of-reserve.md)
 * [Prepayment](developers-guide/prepayment.md)
 * [L2 Services](developers-guide/l2-services.md)
 * [Data Availability Layer API (DAL)](developers-guide/data-availability-layer-api.md)
@@ -30,7 +29,6 @@
 * [Orakl Network Request-Response](node-operators-guide/request-response.md)
 * [Orakl Network Data Feed](node-operators-guide/data-feed.md)
 * [Orakl Network Delegator](node-operators-guide/delegator.md)
-* [Orakl Network Proof of Reserve](node-operators-guide/proof-of-reserve.md)
 
 ## Other Resources
 
