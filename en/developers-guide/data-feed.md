@@ -31,7 +31,7 @@ The price data are aggregated using the Volume-Weighted Average Price (VWAP) to 
 
 ### Contract Addresses
 
-The Orakl Data Feed includes various data feeds that can be used free of charge. The currently supported data feeds are listed in [datafeeds-addresses.json](https://raw.githubusercontent.com/Bisonai/orakl/master/contracts/v0.2/addresses/datafeeds-addresses.json) configuration file. Other auxiliary addresses can be found at [others-addresses.json](https://raw.githubusercontent.com/Bisonai/orakl/master/contracts/v0.2/addresses/others-addresses.json) configuration file.
+The Orakl Data Feed includes various data feeds that can be used free of charge. The currently supported data feeds are listed in [feeds.json](https://raw.githubusercontent.com/Bisonai/orakl/master/contracts/v0.2/addresses/feeds.json) configuration file, keyed by network (`mainnet`, `kairos`). Other auxiliary addresses (`FeedRouter`, `SubmissionProxy`) can be found at [core.json](https://raw.githubusercontent.com/Bisonai/orakl/master/contracts/v0.2/addresses/core.json) configuration file.
 
 ## Architecture
 
