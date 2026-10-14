@@ -334,7 +334,7 @@ websocat ws://dal.baobab.orakl.network/ws -H "X-API-Key: $API_KEY"
 
 ## On-chain Price Data Submission
 
-The price data is submitted on-chain through [SubmissionProxy](https://github.com/Bisonai/orakl/blob/master/contracts/v0.2/src/SubmissionProxy.sol) contract. The contract address can be found at [JSON configuration](https://raw.githubusercontent.com/Bisonai/orakl/master/contracts/v0.2/addresses/others-addresses.json).
+The price data is submitted on-chain through [SubmissionProxy](https://github.com/Bisonai/orakl/blob/master/contracts/v0.2/src/SubmissionProxy.sol) contract. The contract address can be found at [JSON configuration](https://raw.githubusercontent.com/Bisonai/orakl/master/contracts/v0.2/addresses/core.json).
 
 ### `submit` function
 
