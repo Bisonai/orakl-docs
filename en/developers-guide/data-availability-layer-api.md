@@ -21,8 +21,8 @@ The DAL API requires the `X-API-Key` header. Please [contact us](mailto:business
 
 ### Rest API
 
-- Testnet (REST): [https://dal.baobab.orakl.network](https://dal.baobab.orakl.network)
-- Mainnet (REST): [https://dal.cypress.orakl.network](https://dal.cypress.orakl.network)
+- Testnet (REST): [https://dal.kairos.orakl.network](https://dal.kairos.orakl.network)
+- Mainnet (REST): [https://dal.mainnet.orakl.network](https://dal.mainnet.orakl.network)
 
 ### GET `/symbols`
 
@@ -33,7 +33,7 @@ returns supported symbols
 <summary>Example Request</summary>
 
 ```bash
-curl --location --request GET 'https://dal.baobab.orakl.network/symbols' \
+curl --location --request GET 'https://dal.kairos.orakl.network/symbols' \
 --header 'X-API-Key: $API_KEY' \
 --header 'Content-Type: application/json'
 ```
@@ -103,7 +103,7 @@ returns latest submission parameters for all supported pairs
 <summary>Example Request</summary>
 
 ```bash
-curl --location --request GET 'https://dal.baobab.orakl.network/latest-data-feeds/all' \
+curl --location --request GET 'https://dal.kairos.orakl.network/latest-data-feeds/all' \
 --header 'X-API-Key: $API_KEY' \
 --header 'Content-Type: application/json'
 ```
@@ -147,7 +147,7 @@ returns the latest submission parameters for requested pairs
 <summary>Example Request</summary>
 
 ```bash
-curl --location --request GET 'https://dal.baobab.orakl.network/latest-data-feeds/all' \
+curl --location --request GET 'https://dal.kairos.orakl.network/latest-data-feeds/all' \
 --header 'X-API-Key: $API_KEY' \
 --header 'Content-Type: application/json'
 ```
@@ -191,7 +191,7 @@ returns latest submission paramters for all pairs in transpose format
 <summary>Example Request</summary>
 
 ```bash
-curl --location 'https://dal.baobab.orakl.network/latest-data-feeds/transpose/all' \
+curl --location 'https://dal.kairos.orakl.network/latest-data-feeds/transpose/all' \
 --header 'X-API-Key: $API_KEY'
 ```
 
@@ -246,7 +246,7 @@ returns latest submission paramters for certain pairs in transpose format
 <summary>Example Request</summary>
 
 ```bash
-curl --location 'https://dal.baobab.orakl.network/latest-data-feeds/transpose/ADA-USDT,BTC-USDT' \
+curl --location 'https://dal.kairos.orakl.network/latest-data-feeds/transpose/ADA-USDT,BTC-USDT' \
 --header 'X-API-Key: $API_KEY'
 ```
 
@@ -289,9 +289,9 @@ curl --location 'https://dal.baobab.orakl.network/latest-data-feeds/transpose/AD
 
 ## WebSocket API
 
-Testnet (WS): [ws://dal.baobab.orakl.network/ws](ws://dal.baobab.orakl.network/ws)
+Testnet (WS): [ws://dal.kairos.orakl.network/ws](ws://dal.kairos.orakl.network/ws)
 
-Mainnet (WS): [ws://dal.cypress.orakl.network/ws](ws://dal.cypress.orakl.network/ws)
+Mainnet (WS): [ws://dal.mainnet.orakl.network/ws](ws://dal.mainnet.orakl.network/ws)
 
 ### Connect and Request `/ws`
 
@@ -303,7 +303,7 @@ subscribes and pushes price feeds
 
 ```bash
 # connect
-websocat ws://dal.baobab.orakl.network/ws -H "X-API-Key: $API_KEY"
+websocat ws://dal.kairos.orakl.network/ws -H "X-API-Key: $API_KEY"
 # subscribe
 {
   "method": "SUBSCRIBE",
