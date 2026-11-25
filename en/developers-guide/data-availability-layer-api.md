@@ -289,9 +289,9 @@ curl --location 'https://dal.kairos.orakl.network/latest-data-feeds/transpose/AD
 
 ## WebSocket API
 
-Testnet (WS): [ws://dal.kairos.orakl.network/ws](ws://dal.kairos.orakl.network/ws)
+Testnet (WSS): [wss://dal.kairos.orakl.network/ws](wss://dal.kairos.orakl.network/ws)
 
-Mainnet (WS): [ws://dal.mainnet.orakl.network/ws](ws://dal.mainnet.orakl.network/ws)
+Mainnet (WSS): [wss://dal.mainnet.orakl.network/ws](wss://dal.mainnet.orakl.network/ws)
 
 ### Connect and Request `/ws`
 
@@ -303,7 +303,7 @@ subscribes and pushes price feeds
 
 ```bash
 # connect
-websocat ws://dal.kairos.orakl.network/ws -H "X-API-Key: $API_KEY"
+websocat wss://dal.kairos.orakl.network/ws -H "X-API-Key: $API_KEY"
 # subscribe
 {
   "method": "SUBSCRIBE",
