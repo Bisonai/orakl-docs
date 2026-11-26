@@ -4,7 +4,7 @@ description: Pull-based oracle submission using Data Availability Layer API
 
 # Data Availability Layer API (DAL)
 
-The on-chain price data can be updated on-demand by a user through the pull-based oracle. Off-chain price data are updated at sub-second intervals. Users with valid API key can access and [submit the latest price data on-chain](data-availability-layer-api.md#on-chain-price-data-submission). The price data can be either accessed through [REST API](data-availability-layer-api.md#rest-api) or [WebSocket API](data-availability-layer-api.md#websocket-api).
+The onchain price data can be updated on-demand by a user through the pull-based oracle. Offchain price data are updated at sub-second intervals. Users with valid API key can access and [submit the latest price data onchain](data-availability-layer-api.md#onchain-price-data-submission). The price data can be either accessed through [REST API](data-availability-layer-api.md#rest-api) or [WebSocket API](data-availability-layer-api.md#websocket-api).
 
 The DAL API requires the `X-API-Key` header. Please [contact us](mailto:business@orakl.network) to receive a valid API key.
 
@@ -332,9 +332,9 @@ websocat wss://dal.kairos.orakl.network/ws -H "X-API-Key: $API_KEY"
 
 </details>
 
-## On-chain Price Data Submission
+## Onchain Price Data Submission
 
-The price data is submitted on-chain through [SubmissionProxy](https://github.com/Bisonai/orakl/blob/master/contracts/v0.2/src/SubmissionProxy.sol) contract. The contract address can be found at [JSON configuration](https://raw.githubusercontent.com/Bisonai/orakl/master/contracts/v0.2/addresses/core.json).
+The price data is submitted onchain through [SubmissionProxy](https://github.com/Bisonai/orakl/blob/master/contracts/v0.2/src/SubmissionProxy.sol) contract. The contract address can be found at [JSON configuration](https://raw.githubusercontent.com/Bisonai/orakl/master/contracts/v0.2/addresses/core.json).
 
 ### `submit` function
 

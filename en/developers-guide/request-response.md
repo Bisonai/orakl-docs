@@ -1,5 +1,5 @@
 ---
-description: Arbitrary Off-Chain Data Available To Your Smart Contract
+description: Arbitrary Offchain Data Available To Your Smart Contract
 ---
 
 # Request-Response
@@ -8,7 +8,7 @@ A detailed example of how to use the **Orakl Network Request-Response** can be f
 
 ## What is Request-Response?
 
-The **Orakl Network Request-Response** serves as a solution to cover a wide range of use cases. While it may not be possible to bring every data feed directly to the blockchain, the Request-Response allows users to specify within their smart contracts the specific data they require and how they should be processed before they are received on-chain. This feature returns data in Single Word Response format, providing users with greater flexibility and control over their data, and allowing them to access a wide range of external data sources.
+The **Orakl Network Request-Response** serves as a solution to cover a wide range of use cases. While it may not be possible to bring every data feed directly to the blockchain, the Request-Response allows users to specify within their smart contracts the specific data they require and how they should be processed before they are received onchain. This feature returns data in Single Word Response format, providing users with greater flexibility and control over their data, and allowing them to access a wide range of external data sources.
 
 **Orakl Network Request-Response** can be used with two different account types that support [prepayment](prepayment.md) method:
 
@@ -19,7 +19,7 @@ The **Orakl Network Request-Response** serves as a solution to cover a wide rang
 
 **Temporary Account** allows user to pay directly for Request-Response without any extra prerequisites. This approach is great for infrequent use, or for users that do not want to hassle with **Temporary Account** settings and want to use Request-Response as soon as possible.
 
-In this document, we describe both **Permanent Account** and **Temporary Account** approaches that can be used for requesting data from off-chain. Finally, we explain [how to build an on-chain requests](request-response.md#request) and [how to post-process an API response](request-response.md#response-post-processing).
+In this document, we describe both **Permanent Account** and **Temporary Account** approaches that can be used for requesting data from offchain. Finally, we explain [how to build an onchain requests](request-response.md#request) and [how to post-process an API response](request-response.md#response-post-processing).
 
 ## Permanent Account (recommended)
 
@@ -107,7 +107,7 @@ The example code below encodes a request for an ETH/USD price feed from [https:/
 }
 ```
 
-After accessing the ETH/USD price, we notice that the price value is encoded in floating point. To simplify transition of floating point value from off-chain to on-chain, we decide to multiply the price value by 10e8 and keep the value in `uint256` data type. This final value is submitted by the off-chain oracle to `RequestResponseCoordinator` which consequently calls `fulfillDataRequest` function in your consumer smart contract. In the final section of this page, you can learn more about other ways [how to build a request and how to parse the response from off-chain API server](request-response.md#request).
+After accessing the ETH/USD price, we notice that the price value is encoded in floating point. To simplify transition of floating point value from offchain to onchain, we decide to multiply the price value by 10e8 and keep the value in `uint256` data type. This final value is submitted by the offchain oracle to `RequestResponseCoordinator` which consequently calls `fulfillDataRequest` function in your consumer smart contract. In the final section of this page, you can learn more about other ways [how to build a request and how to parse the response from offchain API server](request-response.md#request).
 
 ```solidity
 function requestData(
@@ -139,7 +139,7 @@ Below, you can find an explanation of `requestData` function and its arguments d
 - `req`: a `Request` structure that holds encoded user request
 - `callbackGasLimit`: a `uint32` value representing the gas limit for the callback function that executes after the confirmations have been received.
 - `accId`: a `uint64` value representing the ID of the account associated with the request.
-- `numSubmission`: requested number of submission from off-chain oracles
+- `numSubmission`: requested number of submission from offchain oracles
 
 The function call `requestData()` on `COORDINATOR` contract passes `req`, `accId`, `callbackGasLimit` and `numSubmission` as arguments. After a successful execution of this function, you obtain an ID (`requestId`) that uniquely defines your request. Later, when your request is fulfilled, the ID (`requestId`) is supplied together with response to be able to make a match between requests and fulfillments when there is more than one request.
 
@@ -311,7 +311,7 @@ This function first calculates a fee for the request by calling `estimateFee()` 
 
 ## Request & Response Post-Processing
 
-The **Orakl Network Request-Response** solution enables consumers to define their own requests on-chain, process them by off-chain oracle, and report the results back to consumer smart contract on chain.
+The **Orakl Network Request-Response** solution enables consumers to define their own requests onchain, process them by offchain oracle, and report the results back to consumer smart contract onchain.
 
 Requests are created with the help of the [Orakl library](https://github.com/Bisonai/orakl/blob/master/contracts/src/v0.1/libraries/Orakl.sol). Every request is associated with a job ID which describes what data type it expects to report. The list of currently supported report data types can be found in the table below.
 
@@ -319,7 +319,7 @@ Requests are created with the help of the [Orakl library](https://github.com/Bis
 
 ### Request
 
-The job identifier is used to initialize the `Orakl.Request` data structure. Once the request is received by the off-chain oracle, it knows what data type to use for final reporting.
+The job identifier is used to initialize the `Orakl.Request` data structure. Once the request is received by the offchain oracle, it knows what data type to use for final reporting.
 
 ```solidity
 bytes32 jobId = keccak256(abi.encodePacked("uint128"));

@@ -1,7 +1,7 @@
 ---
 description: >-
   Orakl Network is a decentralized oracle network that allows smart contracts to
-  securely access off-chain data and other resources.
+  securely access offchain data and other resources.
 ---
 
 # Introduction
@@ -30,13 +30,13 @@ The detailed information about Orakl Network VRF can be found at [developer's gu
 
 ### Request-Response
 
-**Request-Response** allows to query any information off-chain and bring it to your smart contract.
+**Request-Response** allows to query any information offchain and bring it to your smart contract.
 
 The detailed information about Orakl Network Request-Response can be found at [developer's guide on how to use Request-Response](developers-guide/request-response.md). After understanding the basics of Request-Response, you can look at [an example Hardhat project using Orakl Network Request-Response](https://github.com/Bisonai/vrf-consumer).
 
 ### Data Feed
 
-**Data Feed** provides a direct on-chain access to the latest off-chain information. The data are collected in a decentralized and secure way through a set of decentralized and reliable operators.
+**Data Feed** provides a direct onchain access to the latest offchain information. The data are collected in a decentralized and secure way through a set of decentralized and reliable operators.
 
 The detailed information about Orakl Network Data Feed can be found at [developer's guide on how to use Data Feed](developers-guide/data-feed.md). To get a hands-on experience with Orakl Network Data Feed, we recommend to explore [an example Hardhat project using Orakl Network Data Feed](https://github.com/Bisonai/data-feed-consumer).
 

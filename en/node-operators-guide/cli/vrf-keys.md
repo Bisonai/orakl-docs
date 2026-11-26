@@ -6,7 +6,7 @@ description: List, Generate, Insert and Remove Orakl Network VRF Keys
 
 > If you are not an **Orakl Network VRF Node Operator**, you do not need to read the explanation on this page.
 
-The **Orakl Network VRF Worker** needs an access to a private VRF keys (`sk`) to produce a provably random number given the consumer seed (received from on-chain). The **Orakl Network VRF Listener** requires a key hash (`keyHash`) that uniquely represents VRF keys. Typically, an **Orakl Network VRF Node Operator** does not need more than a single set of VRF keys (`pk`, `sk`, `pkX`, `pkY` and `keyHash`).
+The **Orakl Network VRF Worker** needs an access to a private VRF keys (`sk`) to produce a provably random number given the consumer seed (received from onchain). The **Orakl Network VRF Listener** requires a key hash (`keyHash`) that uniquely represents VRF keys. Typically, an **Orakl Network VRF Node Operator** does not need more than a single set of VRF keys (`pk`, `sk`, `pkX`, `pkY` and `keyHash`).
 
 The **Orakl Network CLI** provides commands to
 

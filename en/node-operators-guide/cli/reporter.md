@@ -18,7 +18,7 @@ The **Orakl Network CLI** provides commands to modify both [permanent](reporter.
 
 ## What Is Reporter?
 
-Reporter is an abstraction for Externally Owned Account (EOA), as well as for an on-chain oracle that is associated with it. Reporter is allowed to make transactions only to the oracle specified by the address (`oracleAddress`) on a predefined `chain` for a specific `service`.
+Reporter is an abstraction for Externally Owned Account (EOA), as well as for an onchain oracle that is associated with it. Reporter is allowed to make transactions only to the oracle specified by the address (`oracleAddress`) on a predefined `chain` for a specific `service`.
 
 Reporter metadata are used in all the **Orakl Network** services (**Orakl Network Listener**, **Orakl Network Worker** and **Orakl Network Reporter**).
 
@@ -44,7 +44,7 @@ orakl-cli reporter list --chain baobab --service VRF
 
 ### Insert New Reporter
 
-To insert new reporter, one can use the `reporter insert` command. The command requires three groups of commands: EOA-related, oracle-related and category-related. EOA parameters (`--address` and `--privateKey`) are used to create wallet that creates and sends transaction to on-chain smart contract. Oracle parameter (`oracleAddress`) defines which smart contract can be executed by this reporter's wallet. The **Orakl Network** uses a single EOA for each smart contract in order to limit scalability issues when multiple transaction are issued from the same wallet around the same time. Lastly, category parameters (`--chain` and `--service`) are used to for reporter separation by chain and service, respectively.
+To insert new reporter, one can use the `reporter insert` command. The command requires three groups of commands: EOA-related, oracle-related and category-related. EOA parameters (`--address` and `--privateKey`) are used to create wallet that creates and sends transaction to onchain smart contract. Oracle parameter (`oracleAddress`) defines which smart contract can be executed by this reporter's wallet. The **Orakl Network** uses a single EOA for each smart contract in order to limit scalability issues when multiple transaction are issued from the same wallet around the same time. Lastly, category parameters (`--chain` and `--service`) are used to for reporter separation by chain and service, respectively.
 
 ```sh
 orakl-cli reporter insert \
