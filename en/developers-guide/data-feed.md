@@ -1,5 +1,5 @@
 ---
-description: Continuous stream of off-chain data to your smart contract
+description: Continuous stream of offchain data to your smart contract
 ---
 
 # Data Feed
@@ -8,7 +8,7 @@ A detailed example of how to use **Orakl Network Data Feed** can be found at exa
 
 ## What is Data Feed?
 
-The Orakl Network data feed is a secure, reliable, and decentralized source of off-chain data accessible to smart contracts on-chain. The data feed is updated at predefined time intervals, or more frequently if the data value deviates more than a predefined threshold, to ensure that the data remains accurate and up-to-date. Data feeds can be used in many different on-chain protocols:
+The Orakl Network data feed is a secure, reliable, and decentralized source of offchain data accessible to smart contracts onchain. The data feed is updated at predefined time intervals, or more frequently if the data value deviates more than a predefined threshold, to ensure that the data remains accurate and up-to-date. Data feeds can be used in many different onchain protocols:
 
 * Lending and borrowing
 * Mirrored assets
@@ -21,7 +21,7 @@ The Orakl Network data feed is a secure, reliable, and decentralized source of o
 
 Orakl Network offers four types of data feeds—**Single**, **Basic**, **Standard**, and **Premium**—each varying in data source, redundancy, and reliability.&#x20;
 
-**Single** **feeds** rely on a single data source, which makes the data more susceptible to manipulation, making it unsuitable for application of VWAP (Volume-Weighted Average Price). Users relying on single feeds are encouraged to implement on-chain protections such as TWAP (Time-Weighted Average Price).&#x20;
+**Single** **feeds** rely on a single data source, which makes the data more susceptible to manipulation, making it unsuitable for application of VWAP (Volume-Weighted Average Price). Users relying on single feeds are encouraged to implement onchain protections such as TWAP (Time-Weighted Average Price).&#x20;
 
 In contrast, **Basic** **feeds** aggregate data from 2-4 different sources, **Standard** **feeds** from 5-8, and **Premium** **feeds** from more than 8. These multi-source feeds support the use of VWAP, offering improved accuracy and stronger protection against any manipulation. Generally, the more data sources a feed incorporates, the more reliable and secure it becomes.
 
@@ -35,7 +35,7 @@ The Orakl Data Feed includes various data feeds that can be used free of charge.
 
 ## Architecture
 
-The on-chain implementation of Data Feed is composed of two smart contracts: [`Feed`](https://github.com/Bisonai/orakl/blob/master/contracts/v0.2/src/Feed.sol) and [`FeedProxy`](https://github.com/Bisonai/orakl/blob/master/contracts/v0.2/src/FeedProxy.sol). At first,`Feed` and `FeedProxy` are deployed together in pair, representing a single data feed (e.g. temperature in Seoul or price of BTC/USD). `Feed` is being updated at regular intervals by off-chain oracles, and `FeedProxy` is used to access the submitted data to `Feed`. Deployed `FeedProxy` contract represents a consistent API to read data from the feed, and `Feed` contract can be replaced with a newer version.
+The onchain implementation of Data Feed is composed of two smart contracts: [`Feed`](https://github.com/Bisonai/orakl/blob/master/contracts/v0.2/src/Feed.sol) and [`FeedProxy`](https://github.com/Bisonai/orakl/blob/master/contracts/v0.2/src/FeedProxy.sol). At first,`Feed` and `FeedProxy` are deployed together in pair, representing a single data feed (e.g. temperature in Seoul or price of BTC/USD). `Feed` is being updated at regular intervals by offchain oracles, and `FeedProxy` is used to access the submitted data to `Feed`. Deployed `FeedProxy` contract represents a consistent API to read data from the feed, and `Feed` contract can be replaced with a newer version.
 
 In the rest of the page, we will focus on [how to read from data feed](data-feed.md#how-to-read-from-data-feed) and [explain relation between `Feed` and `FeedProxy`](data-feed.md#relation-between-feedproxy-and-feed).
 

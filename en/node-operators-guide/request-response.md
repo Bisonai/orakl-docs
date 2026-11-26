@@ -2,7 +2,7 @@
 
 ## Description
 
-The **Orakl Network Request-Response** is one of the main Orakl Network solutions. It provides an access to off-chain data from on-chain smart contracts. Requests are emitted through on-chain event, captured by the **Orakl Network Request-Response Listener**, processed by the **Orakl Network Request-Response Worker** and eventually responded back to on-chain through the **Orakl Network Request-Response Reporter**.
+The **Orakl Network Request-Response** is one of the main Orakl Network solutions. It provides an access to offchain data from onchain smart contracts. Requests are emitted through onchain event, captured by the **Orakl Network Request-Response Listener**, processed by the **Orakl Network Request-Response Worker** and eventually responded back to onchain through the **Orakl Network Request-Response Reporter**.
 
 The code is located under [`core` directory](https://github.com/Bisonai/orakl/tree/master/core), and separated to three independent microservices: listener, worker and reporter.
 
@@ -141,6 +141,6 @@ Here is what happens after the above command is run:
 
 ## Architecture
 
-The architecture is very similar to the **Orakl Network VRF**. The only difference is that the **Orakl Network Request-Response Worker** fetches and processes data based on the on-chain request.
+The architecture is very similar to the **Orakl Network VRF**. The only difference is that the **Orakl Network Request-Response Worker** fetches and processes data based on the onchain request.
 
 <figure><img src="../.gitbook/assets/orakl-network-request-response (1).png" alt=""><figcaption><p>Orakl Network Request-Response</p></figcaption></figure>
